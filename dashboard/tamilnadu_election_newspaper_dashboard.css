@@ -1,0 +1,1496 @@
+    /* -------------------------------------------------------------
+       VINTAGE NEWSPAPER DESIGN SYSTEM
+       ------------------------------------------------------------- */
+    :root {
+      --paper-bg: #f4edd4;
+      --paper-bg-darker: #e8dcb9;
+      --ink-charcoal: #1e1a15;
+      --ink-red: #801d1d;
+      --ink-green: #294c25;
+      
+      /* Political Muted Tones */
+      --party-tvk: #d4a72c;      /* Muted Gold */
+      --party-dmk: #a82727;      /* Deep Red */
+      --party-aiadmk: #277239;   /* Forest Green */
+      --party-inc: #2c7da0;      /* Vintage Sky Blue */
+      --party-vck: #6b3f87;      /* Muted Purple */
+      --party-iuml: #2b7051;     /* Sea Green */
+      --party-other: #706757;    /* Slate Gray */
+      --party-nota: #8c826e;     /* Grungy Taupe */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--paper-bg);
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--ink-charcoal);
+      line-height: 1.6;
+      padding: 0;
+      margin: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='150' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23paperNoise)' opacity='0.08'/%3E%3C/svg%3E");
+      position: relative;
+    }
+
+    /* Aged Paper Overlay / Vignette */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      box-shadow: inset 0 0 100px rgba(43,27,16,0.15);
+      z-index: 9999;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 15px;
+      display: none; /* Shown after language selection */
+    }
+
+    /* -------------------------------------------------------------
+       LANGUAGE SELECTION SPLASH SCREEN OVERLAY
+       ------------------------------------------------------------- */
+    .lang-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: var(--paper-bg);
+      background-image: url("data:image/svg+xml,%3Csvg width='150' height='150' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paperNoise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='150' height='150' filter='url(%23paperNoise)' opacity='0.08'/%3E%3C/svg%3E");
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10000;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+
+    .lang-card {
+      width: 90%;
+      max-width: 480px;
+      border: 4px double var(--ink-charcoal);
+      padding: 35px 30px;
+      background: var(--paper-bg);
+      text-align: center;
+      position: relative;
+      box-shadow: 0 12px 36px rgba(43,27,16,0.18);
+    }
+
+    .lang-card::before {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      border: 1px dotted var(--ink-charcoal);
+      pointer-events: none;
+    }
+
+    .lang-title-gothic {
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: 52px;
+      color: var(--ink-charcoal);
+      line-height: 1.1;
+      margin-bottom: 2px;
+    }
+
+    .lang-title-tamil {
+      font-family: 'Noto Serif Tamil', serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--ink-red);
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .lang-divider-double {
+      border-bottom: 3px double var(--ink-charcoal);
+      margin-bottom: 20px;
+    }
+
+    .lang-instruction-en {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--ink-charcoal);
+    }
+
+    .lang-instruction-ta {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: var(--ink-red);
+    }
+
+    .lang-buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-bottom: 25px;
+    }
+
+    .lang-select-btn {
+      background: transparent;
+      border: 1px solid var(--ink-charcoal);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13px;
+      font-weight: 900;
+      text-transform: uppercase;
+      padding: 12px 24px;
+      color: var(--ink-charcoal);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .lang-select-btn:hover {
+      background: var(--ink-charcoal);
+      color: var(--paper-bg);
+      transform: translateY(-1px);
+    }
+
+    .lang-footer {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: var(--ink-charcoal);
+      text-transform: uppercase;
+      opacity: 0.8;
+    }
+
+    /* -------------------------------------------------------------
+       MASTHEAD / LOGO / HEADING
+       ------------------------------------------------------------- */
+    .masthead {
+      border-bottom: 4px double var(--ink-charcoal);
+      padding: 15px 0 10px 0;
+      text-align: center;
+    }
+
+    .motto {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--ink-charcoal);
+      margin-bottom: 6px;
+    }
+
+    .title-gothic {
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: 68px;
+      line-height: 0.95;
+      font-weight: 400;
+      letter-spacing: -2px;
+      color: var(--ink-charcoal);
+      margin: 5px 0;
+    }
+
+    .dateline {
+      display: flex;
+      justify-content: space-between;
+      border-top: 1px solid var(--ink-charcoal);
+      border-bottom: 1px solid var(--ink-charcoal);
+      padding: 5px 15px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-top: 5px;
+      text-transform: uppercase;
+    }
+
+    .banner-edition {
+      background: var(--ink-charcoal);
+      color: var(--paper-bg);
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 5px;
+      padding: 6px;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    /* -------------------------------------------------------------
+       NAVIGATION TABS (Vintage Paper Tabs)
+       ------------------------------------------------------------- */
+    .tab-nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      border-bottom: 3px double var(--ink-charcoal);
+      margin-bottom: 15px;
+      background: rgba(30,26,21,0.03);
+    }
+
+    .tab-btn {
+      background: none;
+      border: none;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 12px 18px;
+      color: var(--ink-charcoal);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 15%;
+      width: 70%;
+      height: 3px;
+      background-color: var(--ink-red);
+      transform: scaleX(0);
+      transition: transform 0.25s ease;
+    }
+
+    .tab-btn:hover {
+      background: rgba(30,26,21,0.05);
+      color: var(--ink-red);
+    }
+
+    .tab-btn.active {
+      color: var(--ink-red);
+    }
+
+    .tab-btn.active::after {
+      transform: scaleX(1);
+    }
+
+    /* -------------------------------------------------------------
+       SECTION PAGES
+       ------------------------------------------------------------- */
+    .np-page {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .np-page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* -------------------------------------------------------------
+       NEWSPAPER COLUMN GRID
+       ------------------------------------------------------------- */
+    .newspaper-row {
+      display: grid;
+      grid-template-columns: 1fr 2px 2fr 2px 1fr;
+      gap: 0;
+      border-bottom: 2px solid var(--ink-charcoal);
+      padding-bottom: 15px;
+    }
+
+    .newspaper-row.top-hero {
+      grid-template-columns: 3.2fr 2px 1.3fr;
+      border-bottom: 2px solid var(--ink-charcoal);
+    }
+
+    .newspaper-row.bottom-stats {
+      grid-template-columns: 1fr 2px 1.2fr 2px 1.5fr;
+      margin-top: 15px;
+      border-bottom: 2px solid var(--ink-charcoal);
+      padding-bottom: 15px;
+    }
+
+    .newspaper-row.no-bottom {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .np-divider {
+      background-color: var(--ink-charcoal);
+      opacity: 0.85;
+    }
+
+    .np-col {
+      padding: 0 15px;
+    }
+
+    .np-col:first-child {
+      padding-left: 0;
+    }
+
+    .np-col:last-child {
+      padding-right: 0;
+    }
+
+    @media (max-width: 900px) {
+      .newspaper-row,
+      .newspaper-row.top-hero,
+      .newspaper-row.bottom-stats {
+        grid-template-columns: 1fr !important;
+        gap: 20px;
+        border-bottom: none;
+      }
+      .np-divider {
+        display: none;
+      }
+      .np-col {
+        padding: 0 !important;
+      }
+    }
+
+    /* -------------------------------------------------------------
+       TYPOGRAPHY AND DECORATIONS
+       ------------------------------------------------------------- */
+    .section-head {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border-bottom: 2px solid var(--ink-charcoal);
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+      color: var(--ink-red);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .section-head-subtitle {
+      font-size: 10px;
+      color: var(--ink-charcoal);
+      font-weight: 400;
+      letter-spacing: 0px;
+    }
+
+    .article-headline {
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      color: var(--ink-charcoal);
+      letter-spacing: -0.5px;
+    }
+
+    .article-headline.lead {
+      font-size: 32px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+
+    .byline {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      color: var(--ink-charcoal);
+      border-top: 1px dotted var(--ink-charcoal);
+      border-bottom: 1px dotted var(--ink-charcoal);
+      padding: 4px 0;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .byline.center {
+      text-align: center;
+    }
+
+    .article-body {
+      font-size: 12.5px;
+      line-height: 1.7;
+      text-align: justify;
+      color: rgba(30, 26, 21, 0.95);
+    }
+
+    .article-body.columns-2 {
+      column-count: 2;
+      column-gap: 20px;
+      column-rule: 0.5px dotted var(--ink-charcoal);
+    }
+
+    @media (max-width: 600px) {
+      .article-body.columns-2 {
+        column-count: 1;
+      }
+    }
+
+    .dropcap::first-letter,
+    .dropcap p:first-of-type::first-letter {
+      font-size: 55px;
+      font-weight: 900;
+      float: left;
+      line-height: 0.8;
+      margin-right: 8px;
+      margin-top: 4px;
+      color: var(--ink-red);
+      font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+    }
+
+    .ornament {
+      text-align: center;
+      font-size: 18px;
+      color: var(--ink-red);
+      padding: 10px 0;
+      letter-spacing: 6px;
+      opacity: 0.8;
+      user-select: none;
+    }
+
+    .pull-quote {
+      border-top: 1px solid var(--ink-charcoal);
+      border-bottom: 1px solid var(--ink-charcoal);
+      padding: 10px 15px;
+      margin: 15px 0;
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 700;
+      text-align: center;
+      color: var(--ink-red);
+      line-height: 1.4;
+    }
+
+    .pull-quote-caption {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9px;
+      letter-spacing: 1px;
+      margin-top: 6px;
+      font-style: normal;
+      font-weight: 400;
+      color: var(--ink-charcoal);
+    }
+
+    /* -------------------------------------------------------------
+       VINTAGE CARDS AND STAT BOXES
+       ------------------------------------------------------------- */
+    .stat-box {
+      border: 1px solid var(--ink-charcoal);
+      padding: 12px;
+      text-align: center;
+      margin-bottom: 12px;
+      background: rgba(30,26,21,0.02);
+      position: relative;
+    }
+
+    .stat-box::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      border: 1px dotted var(--ink-charcoal);
+      pointer-events: none;
+    }
+
+    .stat-num {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--ink-red);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-charcoal);
+      margin-top: 5px;
+      font-weight: 700;
+    }
+
+    .stat-sub {
+      font-size: 10px;
+      color: var(--ink-charcoal);
+      font-style: italic;
+      margin-top: 3px;
+    }
+
+    /* Classifieds Banner (classified strip) */
+    .classifieds-banner {
+      border-top: 2px solid var(--ink-charcoal);
+      border-bottom: 4px double var(--ink-charcoal);
+      padding: 8px 15px;
+      font-size: 11px;
+      overflow: hidden;
+      white-space: nowrap;
+      background: rgba(30,26,21,0.01);
+      margin: 15px 0;
+    }
+
+    .classifieds-container {
+      display: inline-block;
+      animation: ticker 40s linear infinite;
+    }
+
+    .classifieds-container:hover {
+      animation-play-state: paused;
+    }
+
+    .classified-item {
+      display: inline-block;
+      padding: 0 25px;
+      border-right: 1px solid var(--ink-charcoal);
+      color: var(--ink-charcoal);
+    }
+
+    .classified-item strong {
+      color: var(--ink-red);
+    }
+
+    @keyframes ticker {
+      0% { transform: translate3d(0, 0, 0); }
+      100% { transform: translate3d(-50%, 0, 0); }
+    }
+
+    /* -------------------------------------------------------------
+       INTERACTIVE SEAT MAP GRID
+       ------------------------------------------------------------- */
+    .seat-grid-container {
+      margin: 10px 0;
+    }
+
+    .seat-grid-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .seat-grid {
+      display: grid;
+      grid-template-columns: repeat(20, 1fr);
+      gap: 3px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 400px) {
+      .seat-grid {
+        grid-template-columns: repeat(15, 1fr);
+      }
+    }
+
+    .seat {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 1px;
+      cursor: pointer;
+      border: 0.5px solid rgba(0, 0, 0, 0.2);
+      transition: all 0.15s ease;
+    }
+
+    .seat:hover {
+      transform: scale(1.35);
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+
+    .seat-p-tvk { background-color: var(--party-tvk); }
+    .seat-p-dmk { background-color: var(--party-dmk); }
+    .seat-p-aiadmk { background-color: var(--party-aiadmk); }
+    .seat-p-inc { background-color: var(--party-inc); }
+    .seat-p-vck { background-color: var(--party-vck); }
+    .seat-p-iuml { background-color: var(--party-iuml); }
+    .seat-p-other { background-color: var(--party-other); }
+
+    /* Muted Legendary swatches */
+    .legend-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin: 12px 0;
+      font-size: 11px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-weight: 700;
+    }
+
+    .legend-swatch {
+      width: 11px;
+      height: 11px;
+      border-radius: 1px;
+      border: 0.5px solid rgba(0,0,0,0.3);
+    }
+
+    /* -------------------------------------------------------------
+       VINTAGE TABLES
+       ------------------------------------------------------------- */
+    .np-table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+
+    .np-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 11.5px;
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    .np-table th {
+      border-top: 2px solid var(--ink-charcoal);
+      border-bottom: 2px solid var(--ink-charcoal);
+      padding: 6px 8px;
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-red);
+      font-weight: 900;
+    }
+
+    .np-table td {
+      padding: 6px 8px;
+      border-bottom: 1px dotted var(--paper-bg-darker);
+      color: var(--ink-charcoal);
+      vertical-align: middle;
+    }
+
+    .np-table tr:hover td {
+      background: rgba(30, 26, 21, 0.03);
+    }
+
+    .np-table tr:last-child td {
+      border-bottom: 2px solid var(--ink-charcoal);
+    }
+
+    .np-table td.strong {
+      font-weight: 700;
+    }
+
+    .np-table .text-right {
+      text-align: right;
+    }
+
+    .party-tag {
+      display: inline-block;
+      font-family: 'Courier Prime', monospace;
+      font-size: 8px;
+      font-weight: 700;
+      color: var(--paper-bg);
+      padding: 2px 6px;
+      border-radius: 2px;
+      text-transform: uppercase;
+    }
+
+    /* -------------------------------------------------------------
+       SEARCH & INTERACTIVE CONTROLS
+       ------------------------------------------------------------- */
+    .search-panel {
+      background: var(--paper-bg-darker);
+      border: 1px solid var(--ink-charcoal);
+      padding: 15px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .search-panel::before {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      right: 3px;
+      bottom: 3px;
+      border: 1px dotted var(--ink-charcoal);
+      pointer-events: none;
+    }
+
+    .search-title {
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--ink-red);
+      margin-bottom: 10px;
+      letter-spacing: 1px;
+      text-align: center;
+    }
+
+    .search-inputs {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .input-group label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .vintage-input {
+      background: var(--paper-bg);
+      border: 1px solid var(--ink-charcoal);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13px;
+      padding: 8px;
+      color: var(--ink-charcoal);
+      outline: none;
+      width: 100%;
+    }
+
+    .vintage-input:focus {
+      background: #ffffff;
+      border-color: var(--ink-red);
+    }
+
+    /* -------------------------------------------------------------
+       CONSTITUENCY RESULTS CARD
+       ------------------------------------------------------------- */
+    .constituency-card {
+      border: 3px double var(--ink-charcoal);
+      padding: 20px;
+      background: var(--paper-bg);
+      position: relative;
+    }
+
+    .card-header-vintage {
+      border-bottom: 2px solid var(--ink-charcoal);
+      padding-bottom: 10px;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .ac-number-badge {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      border: 1px solid var(--ink-charcoal);
+      padding: 2px 8px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .ac-title {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--ink-charcoal);
+      line-height: 1.1;
+    }
+
+    .ac-meta {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      margin-top: 5px;
+      color: var(--ink-charcoal);
+      text-transform: uppercase;
+    }
+
+    .alert-vintage {
+      border: 1px dashed var(--ink-red);
+      background: rgba(128, 29, 29, 0.05);
+      padding: 12px 15px;
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .alert-vintage-title {
+      font-size: 12px;
+      font-weight: 900;
+      color: var(--ink-red);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .alert-vintage-body {
+      font-size: 11px;
+      line-height: 1.5;
+    }
+
+    /* Turnout Progress Bar */
+    .turnout-bar-container {
+      margin: 10px 0;
+    }
+
+    .turnout-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .turnout-bar-track {
+      height: 14px;
+      background: var(--paper-bg-darker);
+      border: 1px solid var(--ink-charcoal);
+      position: relative;
+    }
+
+    .turnout-bar-fill {
+      height: 100%;
+      background: var(--ink-red);
+      width: 0; /* Animated */
+      transition: width 0.8s cubic-bezier(0.1, 0.8, 0.25, 1);
+    }
+
+    .turnout-bar-mark {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--ink-charcoal);
+      z-index: 2;
+    }
+
+    .turnout-bar-mark-label {
+      position: absolute;
+      top: -14px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 8px;
+      transform: translateX(-50%);
+    }
+
+    /* -------------------------------------------------------------
+       CABINET MEMBER GRID & VINTAGE PROTOCOLS
+       ------------------------------------------------------------- */
+    .cabinet-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .cabinet-strength-section {
+      border: 2px solid var(--ink-charcoal);
+      padding: 15px 20px;
+      margin-bottom: 25px;
+      background: rgba(30, 26, 21, 0.02);
+      position: relative;
+    }
+
+    .cabinet-strength-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed var(--ink-charcoal);
+      padding-bottom: 8px;
+      margin-bottom: 12px;
+    }
+
+    .cabinet-strength-title {
+      font-size: 14px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .cabinet-strength-total {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid var(--ink-charcoal);
+      padding: 2px 8px;
+      background: var(--paper-bg);
+    }
+
+    .cabinet-strength-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .party-strength-card {
+      border: 1px solid var(--ink-charcoal);
+      padding: 8px 12px;
+      background: var(--paper-bg);
+      display: flex;
+      align-items: center;
+    }
+
+    .party-strength-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      margin-right: 10px;
+      border: 1px solid var(--ink-charcoal);
+    }
+
+    .party-strength-info {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      line-height: 1.2;
+    }
+
+    .party-strength-name {
+      font-weight: 700;
+    }
+
+    .party-strength-count {
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    .featured-cm-card {
+      display: grid;
+      grid-template-columns: 250px 1fr;
+      gap: 25px;
+      border: 3px double var(--ink-charcoal);
+      padding: 20px;
+      background: var(--paper-bg);
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    @media (max-width: 768px) {
+      .featured-cm-card {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+    }
+
+    .featured-cm-badge {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: var(--ink-red);
+      color: var(--paper-bg);
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      text-transform: uppercase;
+    }
+
+    .cm-head-of-govt-badge {
+      display: inline-block;
+      background: rgba(30, 26, 21, 0.1);
+      color: var(--ink-charcoal);
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      padding: 2px 6px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      border-radius: 3px;
+    }
+
+    .cm-portfolio-title {
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-top: 15px;
+      margin-bottom: 8px;
+      border-bottom: 1px dashed var(--ink-charcoal);
+      padding-bottom: 3px;
+    }
+
+    /* Newspaper Halftone Photo Styling */
+    .vintage-photo-container {
+      position: relative;
+      border: 2px solid var(--ink-charcoal);
+      padding: 4px;
+      background-color: #ffffff;
+      box-shadow: 2px 2px 0px var(--ink-charcoal);
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .vintage-photo-container.circular {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      margin: 0 auto 10px auto;
+      box-shadow: none;
+      border: 3px double var(--ink-charcoal);
+    }
+    .vintage-photo-container.rectangular {
+      width: 100%;
+      height: 380px;
+      margin: 0 auto;
+    }
+    
+    .vintage-photo-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    .vintage-photo-container.circular .vintage-photo-img {
+      border-radius: 50%;
+    }
+
+    .vintage-photo-container::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+      pointer-events: none;
+      background-image: radial-gradient(circle, var(--ink-charcoal) 25%, transparent 26%);
+      background-size: 3.5px 3.5px;
+      mix-blend-mode: screen;
+      opacity: 0.15;
+    }
+    .vintage-photo-container.circular::after {
+      border-radius: 50%;
+    }
+
+    .vintage-photo-fallback {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .portfolio-tags-area {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 8px;
+    }
+    .portfolio-stamp-tag {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      border: 1px solid var(--ink-charcoal);
+      padding: 1.5px 5px;
+      background: rgba(30, 26, 21, 0.03);
+      color: var(--ink-charcoal);
+      border-radius: 2px;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    .minister-card {
+      border: 1px solid var(--ink-charcoal);
+      padding: 15px;
+      background: rgba(30, 26, 21, 0.01);
+      position: relative;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .minister-card::before {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      border: 1px dotted var(--ink-charcoal);
+      pointer-events: none;
+    }
+
+    .minister-card:hover {
+      background: var(--paper-bg-darker);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .minister-rank {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      border: 1px solid var(--ink-charcoal);
+      padding: 1px 5px;
+      background: var(--paper-bg);
+      z-index: 10;
+    }
+
+    .minister-title {
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--ink-red);
+      margin-bottom: 2px;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .minister-details {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      color: var(--ink-charcoal);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-weight: 700;
+      border-bottom: 1px dashed var(--ink-charcoal);
+      padding-bottom: 4px;
+    }
+
+    .minister-portfolio {
+      font-size: 11px;
+      line-height: 1.5;
+      color: var(--ink-charcoal);
+      margin-top: auto;
+    }
+
+    /* -------------------------------------------------------------
+       STATEWIDE ELECTORAL MAP
+       ------------------------------------------------------------- */
+    .map-wrapper {
+      position: relative;
+      width: 100%;
+      margin-bottom: 25px;
+    }
+
+    .statewide-map-canvas {
+      width: 100%;
+      height: 600px;
+      border: 2px solid var(--ink-charcoal);
+      background: var(--paper-bg);
+      position: relative;
+    }
+
+    .map-legend-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      border: 2px double var(--ink-charcoal);
+      padding: 10px;
+      margin-bottom: 15px;
+      background: rgba(30, 26, 21, 0.02);
+    }
+
+    .map-legend-item {
+      display: flex;
+      align-items: center;
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .map-legend-color {
+      width: 12px;
+      height: 12px;
+      border: 1px solid var(--ink-charcoal);
+      margin-right: 8px;
+    }
+
+    .map-hover-box {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      width: 250px;
+      background: #ffffff;
+      border: 3px double var(--ink-charcoal);
+      padding: 15px;
+      z-index: 1000;
+      pointer-events: none;
+      box-shadow: 3px 3px 0px var(--ink-charcoal);
+      font-family: 'Playfair Display', Georgia, serif;
+      color: var(--ink-charcoal);
+    }
+
+    .map-hover-title {
+      font-size: 14px;
+      font-weight: 900;
+      border-bottom: 1px dashed var(--ink-charcoal);
+      padding-bottom: 4px;
+      margin-bottom: 8px;
+      color: var(--ink-red);
+    }
+
+    .map-hover-row {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      margin-bottom: 3px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .map-hover-row.candidate {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 6px;
+      color: var(--ink-charcoal);
+      text-transform: uppercase;
+      display: block;
+      border-bottom: 1px solid var(--paper-bg-darker);
+      padding-bottom: 3px;
+    }
+
+    /* -------------------------------------------------------------
+       VINTAGE CHARTS CONTAINER
+       ------------------------------------------------------------- */
+    .chart-container-vintage {
+      background: var(--paper-bg);
+      border: 1px solid var(--ink-charcoal);
+      padding: 15px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .chart-container-vintage::after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      border: 1px dotted var(--ink-charcoal);
+      pointer-events: none;
+    }
+
+    .chart-title-vintage {
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 12px;
+      color: var(--ink-charcoal);
+      letter-spacing: 1px;
+    }
+
+    /* -------------------------------------------------------------
+       MAP CONTAINERS
+       ------------------------------------------------------------- */
+    .map-box {
+      border: 1px solid var(--ink-charcoal);
+      height: 380px;
+      background: var(--paper-bg-darker);
+      position: relative;
+      margin-bottom: 15px;
+    }
+
+    .map-box::before {
+      content: "";
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      right: 3px;
+      bottom: 3px;
+      border: 1px dotted var(--ink-charcoal);
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    #leafletMap {
+      width: 100%;
+      height: 100%;
+      background-color: var(--paper-bg) !important;
+      filter: sepia(1) hue-rotate(-15deg) contrast(1.15) brightness(0.95) saturate(0.6);
+      z-index: 1;
+    }
+
+    /* Interactive SVG Map Fallback/Option */
+    .svg-map-wrapper {
+      width: 100%;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .svg-region-path {
+      fill: var(--paper-bg-darker);
+      stroke: var(--ink-charcoal);
+      stroke-width: 1.5;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .svg-region-path:hover {
+      fill: var(--paper-bg);
+      stroke: var(--ink-red);
+      stroke-width: 2.5;
+    }
+
+    .svg-region-path.active {
+      fill: rgba(128, 29, 29, 0.15);
+      stroke: var(--ink-red);
+      stroke-width: 2.5;
+    }
+
+    .region-info-pane {
+      background: var(--paper-bg);
+      border: 1px solid var(--ink-charcoal);
+      padding: 12px;
+      font-size: 11px;
+      text-align: left;
+      margin-top: 10px;
+    }
+
+    /* -------------------------------------------------------------
+       FOOTER
+       ------------------------------------------------------------- */
+    .newspaper-footer {
+      border-top: 4px double var(--ink-charcoal);
+      border-bottom: 2px solid var(--ink-charcoal);
+      padding: 15px 0;
+      margin-top: 30px;
+      text-align: center;
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .footer-disclaimer {
+      font-size: 9px;
+      color: rgba(30, 26, 21, 0.6);
+      margin-top: 5px;
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .title-gothic {
+        font-size: 48px;
+      }
+    }
+
+    /* Broadsheet Newspaper Custom styles */
+    .hero-sub-banner {
+      color: var(--ink-red);
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      text-align: center;
+    }
+    .hero-sub-banner-second {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      color: var(--ink-charcoal);
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .article-headline.lead-broadside {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 900;
+      line-height: 1.1;
+      color: var(--ink-charcoal);
+      margin-bottom: 12px;
+      border-bottom: 1px dashed var(--ink-charcoal);
+      padding-bottom: 10px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: -0.5px;
+    }
+    .hero-subheading {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      font-style: italic;
+      color: rgba(30, 26, 21, 0.9);
+      line-height: 1.5;
+      margin-bottom: 15px;
+      border-bottom: 1px dotted var(--ink-charcoal);
+      padding-bottom: 10px;
+      text-align: justify;
+    }
+    .hero-photo-caption {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--ink-charcoal);
+      margin-top: 6px;
+      margin-bottom: 15px;
+      border-bottom: 1px dashed var(--ink-charcoal);
+      padding-bottom: 8px;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .sidebar-story {
+      margin-bottom: 18px;
+      border-bottom: 1px dashed var(--ink-charcoal);
+      padding-bottom: 12px;
+    }
+    .sidebar-story:last-child {
+      margin-bottom: 0;
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .sidebar-headline {
+      font-size: 14.5px;
+      font-weight: 900;
+      line-height: 1.25;
+      color: var(--ink-charcoal);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    /* Tamil Language Typography Overrides (Daily Thanthi inspired bold serif display) */
+    body.lang-ta,
+    body.lang-ta input,
+    body.lang-ta button,
+    body.lang-ta select,
+    body.lang-ta table,
+    body.lang-ta .vintage-photo-fallback text {
+      font-family: 'Noto Serif Tamil', 'Playfair Display', Georgia, serif !important;
+    }
+
+    body.lang-ta h1,
+    body.lang-ta h2,
+    body.lang-ta h3,
+    body.lang-ta h4,
+    body.lang-ta h5,
+    body.lang-ta h6,
+    body.lang-ta .article-headline,
+    body.lang-ta .section-head span,
+    body.lang-ta .sidebar-headline {
+      font-family: 'Noto Serif Tamil', serif !important;
+      font-weight: 900 !important;
+    }
+
+    body.lang-ta .title-gothic,
+    body.lang-ta .lang-title-gothic {
+      font-family: 'Noto Serif Tamil', serif !important;
+      font-weight: 900 !important;
+      letter-spacing: -0.5px;
+    }
+
+    .lang-instruction-ta,
+    .lang-select-btn {
+      font-family: 'Noto Serif Tamil', 'Playfair Display', Georgia, serif;
+    }
+
+    /* Reduce Tamil font size in right side to prevent overflows */
+    body.lang-ta #frontPageRightCol .sidebar-headline {
+      font-size: 12.5px !important;
+    }
+    body.lang-ta #frontPageRightCol .sidebar-body {
+      font-size: 10.5px !important;
+      line-height: 1.4 !important;
+    }

@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The People's Ledger — Tamil Nadu 2026 Assembly Election Special</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons for Vintage Style -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  
+  <link rel="stylesheet" href="tamilnadu_election_newspaper_dashboard.css">
+</head>
+<body>
+
+  <!-- LANGUAGE SELECTION OVERLAY -->
+  <div class="lang-overlay" id="langOverlay">
+    <div class="lang-card">
+      <div class="lang-title-gothic">The People's Ledger</div>
+      <div class="lang-title-tamil">மக்கள் பதிவேடு</div>
+      <div class="lang-divider-double"></div>
+      <p class="lang-instruction-en">Select Your Historical Language Edition</p>
+      <p class="lang-instruction-ta">உங்கள் வரலாற்று மொழிப் பதிப்பைத் தேர்ந்தெடுக்கவும்</p>
+      <div class="lang-buttons">
+        <button class="lang-select-btn" onclick="chooseLanguage('en')">English Edition</button>
+        <button class="lang-select-btn" onclick="chooseLanguage('ta')">தமிழ் பதிப்பு</button>
+      </div>
+      <div class="lang-footer">Est. 1948 · Constituency Electoral Archive</div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <div class="container" id="mainContainer">
+    
+    <!-- NEWSPAPER MASTHEAD -->
+    <header class="masthead">
+      <div class="motto" data-t="masthead_motto">Recording the People's Verdict</div>
+      <h1 class="title-gothic" data-t="masthead_title">The People's Ledger</h1>
+      <div class="dateline">
+        <span data-t="masthead_dateline_issue">VOL. LXXVI · ISSUE 234</span>
+        <span style="font-family:'Playfair Display', serif; font-size:11px; cursor:pointer; color:var(--ink-red)" onclick="toggleLanguage()">
+          <i class="fa-solid fa-language"></i> <span id="langToggleBtnText">தமிழ் பதிப்பு</span>
+        </span>
+        <span data-t="masthead_dateline_price">PRICE: ANNA ONE (FREE ARCHIVE)</span>
+      </div>
+      <div class="banner-edition" data-t="masthead_banner">✦ SPECIAL CONSTITUENCY ARCHIVE & ELECTORAL REVIEW ✦</div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <nav class="tab-nav" id="tabNavContainer">
+      <!-- Populated dynamically via JS -->
+    </nav>
+
+    <!-- =========================================================
+         PAGE 1: FRONT PAGE (HOME)
+         ========================================================= -->
+    <section class="np-page active" id="page-frontpage">
+      <!-- TOP HERO ROW -->
+      <div class="newspaper-row top-hero">
+        <!-- CENTER COLUMN: LEAD HERO STORY -->
+        <div class="np-col" id="frontPageCenterCol">
+          <!-- Populated dynamically via JS function renderDynamicFrontPage -->
+        </div>
+
+        <div class="np-divider"></div>
+
+        <!-- RIGHT COLUMN: SIDEBARS -->
+        <div class="np-col" id="frontPageRightCol">
+          <!-- Populated dynamically via JS function renderDynamicFrontPage -->
+        </div>
+      </div>
+
+      <!-- BOTTOM STATS ROW -->
+      <div class="newspaper-row bottom-stats">
+        
+        <!-- LEFT PANEL: QUICK TALLIES -->
+        <div class="np-col">
+          <div class="section-head">
+            <span data-t="quick_tallies">Official Returns</span>
+            <span class="section-head-subtitle" data-t="quick_tallies_subtitle">Final Count</span>
+          </div>
+          
+          <div class="stat-box">
+            <div class="stat-num">234</div>
+            <div class="stat-label" data-t="total_assembly_seats">Total Assembly Seats</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">118</div>
+            <div class="stat-label" data-t="majority_mark">Majority Mark Required</div>
+            <div class="stat-sub" data-t="majority_sub">50% + 1 Seat</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" id="frontPageStatTurnout">74%</div>
+            <div class="stat-label" data-t="average_turnout">Statewide Turnout</div>
+            <div class="stat-sub" id="frontPageStatTurnoutSub">74.00% Turnout</div>
+          </div>
+        </div>
+
+        <div class="np-divider"></div>
+
+        <!-- CENTER PANEL: STATEWIDE SEATS -->
+        <div class="np-col">
+          <div class="section-head">
+            <span data-t="statewide_seats">Statewide Seats</span>
+          </div>
+          
+          <div class="np-table-container">
+            <table class="np-table" style="font-size:11px">
+              <thead>
+                <tr>
+                  <th data-t="col_party">Alliance / Party</th>
+                  <th class="text-right" data-t="col_seats">Seats</th>
+                  <th class="text-right" data-t="col_share">Share</th>
+                </tr>
+              </thead>
+              <tbody id="frontPageTallyBody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="np-divider"></div>
+
+        <!-- RIGHT PANEL: CHAMBER LAYOUT -->
+        <div class="np-col">
+          <div class="seat-grid-container">
+            <div class="seat-grid-title" data-t="chamber_layout">Chamber Layout (234 Seats)</div>
+            <div class="seat-grid" id="frontPageSeatGrid"></div>
+            <div class="legend-grid" id="frontPageLegend">
+              <!-- Loaded dynamically -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- TICKER BANNER -->
+      <div class="classifieds-banner">
+        <div class="classifieds-container" id="tickerContainer">
+          <!-- Loaded dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PAGE 2: CONSTITUENCY EXPLORER (SEARCH / DETAIL)
+         ========================================================= -->
+    <section class="np-page" id="page-explorer">
+      
+      <!-- SEARCH PANEL -->
+      <div class="search-panel">
+        <div class="search-title" data-t="select_constituency">Constituency Electoral Archive Lookup</div>
+        <div class="search-inputs">
+          <div class="input-group">
+            <label for="constituencySelect" data-t="select_constituency_label">Select Constituency Name</label>
+            <select id="constituencySelect" class="vintage-input" onchange="loadConstituencyDetails(this.value)">
+              <option value="194">TIRUPPATTUR (AC 194) — Closest Race (30 Margin)</option>
+              <option value="1">GUMMIDIPOONDI (AC 001) — Vote-Split Case Study</option>
+              <option value="2">EDAPPADI (AC 153) — Biggest Landslide (98K Margin)</option>
+              <option value="12">PERAMBUR (AC 012) — CM C. Joseph Vijay's Seat</option>
+              <option value="3">SHOZHINGANALLUR (AC 027) — Large TVK Landslide</option>
+              <option value="4">MADAVARAM (AC 009) — TVK Landslide</option>
+              <option value="15">KOLATHUR (AC 013) — Stalin Lost/Flipped Seat</option>
+              <option value="13">THOUSAND LIGHTS (AC 018) — Speaker Prabhakar's Seat</option>
+              <option value="14">CHEPAUK-THIRUVALLIKENI (AC 019) — LOP Udhayanidhi Stalin's Seat</option>
+              <option value="5">UDHAGAMANDALAM (AC 108) — Highest NOTA (1.04%)</option>
+              <option value="6">BHAVANISAGAR (AC 107) — High NOTA (0.85%)</option>
+              <option value="7">VELACHERY (AC 026) — Urban NOTA (0.73%)</option>
+              <option value="8">RAMANATHAPURAM (AC 211) — Highest Female Gap (+11.4%)</option>
+              <option value="9">TIRUPPUR (AC 114) — Lowest Female Gap (-2.0%)</option>
+              <option value="10">MAILAM (AC 072) — Lowest NOTA (0.16%)</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label for="constituencySearch" data-t="or_type_search">Or Type to Search All 234 Seats</label>
+            <input type="text" id="constituencySearch" class="vintage-input" placeholder="Type name (e.g. Virugampakkam...)" oninput="filterConstituencySearch(this.value)">
+            <div id="searchSuggestions" style="position: absolute; top: 100%; left: 0; right: 0; background: var(--paper-bg); border: 1px solid var(--ink-charcoal); display: none; z-index: 100; max-height: 200px; overflow-y: auto; font-size:12px; box-shadow: 0 4px 10px rgba(0,0,0,0.15)"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN EXPLORER ROW -->
+      <div class="newspaper-row no-bottom">
+        
+        <!-- CARD DETAILS AREA -->
+        <div class="np-col" style="grid-column: span 3;">
+          <div class="constituency-card" id="constituencyDetailCard">
+            <div id="cardContentArea">
+              <!-- Re-rendered via JS -->
+            </div>
+          </div>
+        </div>
+
+        <div class="np-divider"></div>
+        
+        <!-- MAP SIDEBAR -->
+        <div class="np-col" style="grid-column: span 1;">
+          <div class="section-head">
+            <span data-t="district_map_view">District Map View</span>
+          </div>
+          <p style="font-size:11px; margin-bottom:10px; font-style:italic" data-t="district_map_sub">Interactive boundaries centered on Madras Presidency divisions. Filtered to sepia newsprint.</p>
+          
+          <div class="map-box">
+            <div id="leafletMap"></div>
+          </div>
+          
+          <div class="section-head">
+            <span data-t="select_assembly_division">Select Assembly Division</span>
+          </div>
+          
+          <div class="svg-map-wrapper">
+            <svg viewBox="0 0 100 150" width="100%" height="220px">
+              <!-- Simplified representation of Tamil Nadu's 4 major regions -->
+              <path class="svg-region-path" id="svg-reg-North" d="M 45,5 L 85,15 L 80,45 L 60,50 L 40,40 Z" onclick="selectSvgRegion('North')" />
+              <text x="56" y="25" font-size="5.5" fill="var(--ink-charcoal)" font-weight="bold" pointer-events="none" id="svg-label-North">NORTH</text>
+              
+              <path class="svg-region-path" id="svg-reg-West" d="M 20,40 L 40,40 L 50,75 L 30,95 L 15,80 Z" onclick="selectSvgRegion('West')" />
+              <text x="23" y="65" font-size="5.5" fill="var(--ink-charcoal)" font-weight="bold" pointer-events="none" id="svg-label-West">WEST</text>
+              
+              <path class="svg-region-path" id="svg-reg-Central" d="M 40,40 L 60,50 L 58,85 L 42,95 L 30,95 L 50,75 Z" onclick="selectSvgRegion('Central')" />
+              <text x="40" y="70" font-size="5.5" fill="var(--ink-charcoal)" font-weight="bold" pointer-events="none" id="svg-label-Central">CENTRAL</text>
+              
+              <path class="svg-region-path" id="svg-reg-South" d="M 30,95 L 42,95 L 58,85 L 75,115 L 55,145 L 20,130 Z" onclick="selectSvgRegion('South')" />
+              <text x="36" y="115" font-size="5.5" fill="var(--ink-charcoal)" font-weight="bold" pointer-events="none" id="svg-label-South">SOUTH</text>
+            </svg>
+            <div class="region-info-pane" id="svgRegionInfo">
+              <!-- Loaded dynamically -->
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PAGE 3: VOTER ARCHIVES (ECI STATISTICS)
+         ========================================================= -->
+    <section class="np-page" id="page-voters">
+      <div class="newspaper-row">
+        <div class="np-col" style="grid-column: span 5;">
+          <div class="section-head">
+            <span data-t="district_ledger">Statewide Voter Archives</span>
+            <span class="section-head-subtitle" data-t="district_ledger_sub">Official 2026 Turnout Ledger</span>
+          </div>
+          
+          <h2 class="article-headline" style="text-align:center;margin-bottom:15px" data-t="voter_archives_headline">DEMOCRATIC RECORD: FEMALE ELECTORS OUTVOTE MALES</h2>
+          <div class="byline center" data-t="voter_archives_byline">Compiled by the ECI Records Registry · Special Report</div>
+          
+          <div class="article-body" style="margin-bottom:20px; text-align:center; max-width:800px; margin-left:auto; margin-right:auto" data-t="voter_archives_desc">
+            Of Tamil Nadu's 234 assembly seats, women turned out to vote at higher percentages in 165 seats (≈70%)...
+          </div>
+        </div>
+      </div>
+
+      <div class="newspaper-row no-bottom" style="margin-top:15px">
+        <!-- Top 5 and Bottom 5 lists -->
+        <div class="np-col" style="grid-column: span 2">
+          <div class="section-head">
+            <span data-t="top_5_female_gap">Top 5 Female Turnout Advantages</span>
+          </div>
+          <table class="np-table" style="margin-bottom:25px">
+            <thead>
+              <tr>
+                <th data-t="col_district">District Name</th>
+                <th data-t="col_region">Region</th>
+                <th class="text-right" data-t="col_gap">Female Advantage</th>
+              </tr>
+            </thead>
+            <tbody id="top5FemaleBody">
+              <!-- Loaded dynamically -->
+            </tbody>
+          </table>
+
+          <div class="section-head">
+            <span data-t="bottom_5_female_gap">Lowest / Reversed Turnout Gaps</span>
+          </div>
+          <table class="np-table">
+            <thead>
+              <tr>
+                <th data-t="col_district">District Name</th>
+                <th data-t="col_region">Region</th>
+                <th class="text-right" data-t="col_gap">Female Advantage</th>
+              </tr>
+            </thead>
+            <tbody id="bottom5FemaleBody">
+              <!-- Loaded dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="np-divider"></div>
+
+        <!-- Interactive District Ledger -->
+        <div class="np-col" style="grid-column: span 2">
+          <div class="section-head">
+            <span data-t="district_ledger_title">District ECI Ledger</span>
+            <span style="font-size:9px; text-transform:none" data-t="click_to_sort">Click headers to sort</span>
+          </div>
+          <p style="font-size:11px; margin-bottom:10px; font-style:italic" data-t="district_ledger_sub_guide">Summarized ECI register for districts. Showing electors and comparative turnout details.</p>
+          
+          <div class="np-table-container" style="max-height: 400px; border: 1px solid var(--ink-charcoal)">
+            <table class="np-table" id="districtLedgerTable">
+              <thead>
+                <tr>
+                  <th onclick="sortDistrictLedger('name')" style="cursor:pointer" id="ledger-head-dist">District <i class="fa-solid fa-sort"></i></th>
+                  <th onclick="sortDistrictLedger('electors')" style="cursor:pointer" class="text-right" id="ledger-head-electors">Total Electors <i class="fa-solid fa-sort"></i></th>
+                  <th onclick="sortDistrictLedger('turnout')" style="cursor:pointer" class="text-right" id="ledger-head-turnout">Turnout % <i class="fa-solid fa-sort"></i></th>
+                  <th onclick="sortDistrictLedger('gap')" style="cursor:pointer" class="text-right" id="ledger-head-gap">Gender Gap <i class="fa-solid fa-sort"></i></th>
+                </tr>
+              </thead>
+              <tbody id="districtLedgerBody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PAGE 4: COUNCIL OF MINISTERS (GOVERNMENT DATA)
+         ========================================================= -->
+    <section class="np-page" id="page-cabinet">
+      <div class="newspaper-row">
+        <div class="np-col" style="grid-column: span 5;">
+          <div class="section-head">
+            <span data-t="gov_sec_head">Government of Tamil Nadu</span>
+            <span class="section-head-subtitle" data-t="gov_sec_sub">Cabinet Gazette</span>
+          </div>
+          
+          <h2 class="article-headline" style="text-align:center;margin-bottom:5px" data-t="gov_main_head">COUNCIL OF MINISTERS & LEGISLATIVE LEADERSHIP</h2>
+          <p style="text-align:center; font-style:italic; font-size:12px; margin-bottom:20px" data-t="gov_main_sub">
+            Chief Minister C. Joseph Vijay (TVK) leads a coalition administration of 35 ministers.
+          </p>
+        </div>
+      </div>
+
+      <!-- Cabinet Strength Ledger -->
+      <div class="newspaper-row">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="cabinet-strength-section">
+            <div class="cabinet-strength-header">
+              <span class="cabinet-strength-title" data-t="cab_strength_title">Cabinet Strength by Party</span>
+              <span class="cabinet-strength-total"><span data-t="cab_strength_total_lbl">Total Strength</span>: 35 <span data-t="cab_strength_ministers_lbl">Ministers</span></span>
+            </div>
+            <div class="cabinet-strength-grid">
+              <!-- TVK -->
+              <div class="party-strength-card">
+                <div class="party-strength-dot" style="background:var(--party-tvk)"></div>
+                <div class="party-strength-info">
+                  <span class="party-strength-name">TVK</span> <span style="font-size:8px;color:gray;">(Tamilaga Vettri Kazhagam)</span><br>
+                  <span class="party-strength-count">31 <span data-t="cab_strength_ministers_lbl">Ministers</span></span>
+                </div>
+              </div>
+              <!-- INC -->
+              <div class="party-strength-card">
+                <div class="party-strength-dot" style="background:var(--party-inc)"></div>
+                <div class="party-strength-info">
+                  <span class="party-strength-name">INC</span> <span style="font-size:8px;color:gray;">(Indian National Congress)</span><br>
+                  <span class="party-strength-count">2 <span data-t="cab_strength_ministers_lbl">Ministers</span></span>
+                </div>
+              </div>
+              <!-- VCK -->
+              <div class="party-strength-card">
+                <div class="party-strength-dot" style="background:var(--party-vck)"></div>
+                <div class="party-strength-info">
+                  <span class="party-strength-name">VCK</span> <span style="font-size:8px;color:gray;">(Viduthalai Chiruthaigal Katchi)</span><br>
+                  <span class="party-strength-count">1 <span data-t="cab_strength_minister_lbl">Minister</span></span>
+                </div>
+              </div>
+              <!-- IUML -->
+              <div class="party-strength-card">
+                <div class="party-strength-dot" style="background:var(--party-iuml)"></div>
+                <div class="party-strength-info">
+                  <span class="party-strength-name">IUML</span> <span style="font-size:8px;color:gray;">(Indian Union Muslim League)</span><br>
+                  <span class="party-strength-count">1 <span data-t="cab_strength_minister_lbl">Minister</span></span>
+                </div>
+              </div>
+            </div>
+            <p style="font-size:9.5px; font-family:'Courier Prime', monospace; margin-top:12px; color:var(--ink-charcoal); border-top: 1px dashed var(--ink-charcoal); padding-top: 6px;" data-t="cab_seniority_note">
+              Note: The order is based on Seniority of Ministers and Subjects based on G.O.Ms.No.366 dated 30.05.2026.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Chief Minister Card Area -->
+      <div class="newspaper-row">
+        <div class="np-col" style="grid-column: span 5">
+          <div id="featuredCmArea">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Other Cabinet Ministers Grid -->
+      <div class="newspaper-row" style="padding-bottom:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="section-head">
+            <span data-t="cabinet_title">Council of Ministers Cabinet (35 members)</span>
+          </div>
+          <div class="cabinet-grid" id="cabinetGridArea">
+            <!-- Populated dynamically via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Assembly Leadership -->
+      <div class="newspaper-row no-bottom" style="margin-top:15px">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="section-head">
+            <span data-t="assembly_title">Legislative Officers & Assembly Leaders</span>
+          </div>
+          
+          <div class="np-table-container">
+            <table class="np-table">
+              <thead>
+                <tr>
+                  <th data-t="col_designation">Designation</th>
+                  <th data-t="col_name">Name</th>
+                  <th data-t="col_party">Party</th>
+                  <th data-t="col_constituency">Constituency</th>
+                  <th data-t="col_took_office">Took Office</th>
+                  <th data-t="col_narrative">Historical Role / Narrative Context</th>
+                </tr>
+              </thead>
+              <tbody id="assemblyOfficialsBody">
+                <!-- Loaded dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PAGE 5: STATISTICAL REPORT (ANALYSIS & CHARTS)
+         ========================================================= -->
+    <section class="np-page" id="page-statistics">
+      <div class="newspaper-row">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="section-head">
+            <span data-t="stats_sec_head">Electoral Research & Statistical Division</span>
+            <span class="section-head-subtitle" data-t="stats_sec_sub">Technical Review</span>
+          </div>
+          <h2 class="article-headline" style="text-align:center; margin-bottom:15px" data-t="stats_main_head">STATISTICAL DISTRIBUTIONS & MARGINAL COMPARISONS</h2>
+          <p style="text-align:center; font-size:12px; font-style:italic; max-width:850px; margin: 0 auto 20px auto" data-t="stats_main_sub">
+            The records below detail the competitive breakdown of the election...
+          </p>
+        </div>
+      </div>
+
+      <div class="newspaper-row no-bottom" style="margin-top:15px">
+        
+        <!-- Chart Column 1 -->
+        <div class="np-col" style="grid-column: span 2">
+          <div class="chart-container-vintage">
+            <div class="chart-title-vintage" id="chart-va-title">Figure V-A: Frequency Distribution of Winning Margins</div>
+            <canvas id="marginHistogram" style="max-height: 250px; width: 100%"></canvas>
+          </div>
+          
+          <div class="section-head">
+            <span data-t="reserved_title">Reserved Seat Competitiveness</span>
+          </div>
+          <p style="font-size:11.5px; line-height:1.6; text-align:justify" data-t="reserved_body">
+            Tamil Nadu sets aside 44 seats for Scheduled Castes (SC) and 2 seats for Scheduled Tribes (ST)...
+          </p>
+        </div>
+
+        <div class="np-divider"></div>
+
+        <!-- Chart Column 2 -->
+        <div class="np-col" style="grid-column: span 2">
+          <div class="chart-container-vintage">
+            <div class="chart-title-vintage" id="chart-vb-title">Figure V-B: Average Margin by Reservation (SC/ST)</div>
+            <canvas id="marginReservedChart" style="max-height: 250px; width: 100%"></canvas>
+          </div>
+          
+          <div class="section-head">
+            <span data-t="postal_title">The Postal Decided Race — Tiruppattur</span>
+          </div>
+          <p style="font-size:11.5px; line-height:1.6; text-align:justify" data-t="postal_body">
+            Across the entire state, only one single constituency would have returned a different winner...
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PAGE 6: STATEWIDE ELECTORAL MAP (ALLIANCE SEAT SHARE)
+         ========================================================= -->
+    <section class="np-page" id="page-map">
+      <div class="newspaper-row">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="section-head">
+            <span data-t="map_sec_head">Electoral Cartography Division</span>
+            <span class="section-head-subtitle" data-t="map_sec_sub">Statewide Geographic Review</span>
+          </div>
+          
+          <h2 class="article-headline" style="text-align:center; margin-bottom:10px" data-t="map_main_head">TAMIL NADU CONSTITUENCY MAP EXPLORER</h2>
+          <p style="text-align:center; font-size:12px; font-style:italic; max-width:850px; margin: 0 auto 15px auto" data-t="map_main_sub">
+            This geographical review maps all 234 assembly constituencies, colored by their winning alliance. Hover over any constituency to view candidate tallies, votes, and margins. Click any constituency to open its comprehensive details in the explorer.
+          </p>
+
+          <!-- Map Legend -->
+          <div class="map-legend-container">
+            <div class="map-legend-item">
+              <div class="map-legend-color" style="background:#66541e"></div>
+              <span data-t="legend_tvk">TVK Coalition</span>
+            </div>
+            <div class="map-legend-item">
+              <div class="map-legend-color" style="background:#ff7a70"></div>
+              <span data-t="legend_dmk">DMK Alliance (DMK+)</span>
+            </div>
+            <div class="map-legend-item">
+              <div class="map-legend-color" style="background:#277239"></div>
+              <span data-t="legend_admk">AIADMK Alliance (ADMK+)</span>
+            </div>
+            <div class="map-legend-item">
+              <div class="map-legend-color" style="background:#706757"></div>
+              <span data-t="legend_others">Others</span>
+            </div>
+          </div>
+
+          <!-- Map Container -->
+          <div class="map-wrapper">
+            <div id="statewideMap" class="statewide-map-canvas"></div>
+            
+            <!-- Hover Information Box -->
+            <div id="mapHoverBox" class="map-hover-box" style="display:none;">
+              <div class="map-hover-title" id="mapHoverTitle">Constituency</div>
+              <div class="map-hover-row candidate" id="mapHoverCandidate">Candidate Name</div>
+              <div class="map-hover-row">
+                <span data-t="hover_party">Party</span>
+                <strong id="mapHoverParty">Party</strong>
+              </div>
+              <div class="map-hover-row">
+                <span data-t="hover_alliance">Alliance</span>
+                <strong id="mapHoverAlliance">Alliance</strong>
+              </div>
+              <div class="map-hover-row">
+                <span data-t="hover_votes">Votes</span>
+                <strong id="mapHoverVotes">0</strong>
+              </div>
+              <div class="map-hover-row">
+                <span data-t="hover_margin">Margin</span>
+                <strong id="mapHoverMargin">0</strong>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSPAPER FOOTER -->
+    <footer class="newspaper-footer">
+      <div data-t="footer_title">THE PEOPLE'S LEDGER ARCHIVE · RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
+      <div class="footer-disclaimer" data-t="footer_disclaimer">Disclaimer: This is an old-newspaper themed data representation...</div>
+    </footer>
+
+  </div>
+
+<!-- Libraries -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="tn_ac_2021.js"></script>
+
+  <script src="tamilnadu_election_newspaper_dashboard.js"></script>
+</body>
+</html>
