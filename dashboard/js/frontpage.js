@@ -125,7 +125,21 @@ async function loadBQPartyWinners() {
       console.log(`[BigQuery] Successfully loaded ${data.length} party winner tallies.`);
     }
   } catch (err) {
-    console.error('[BigQuery] Could not load party winners:', err);
+    console.error('[BigQuery] Could not load party winners, using fallback:', err);
+    BQ_PARTY_WINNERS = [
+      {"party_code": "TVK", "party_full": "Tamilaga Vettri Kazhagam", "seats_won": 108},
+      {"party_code": "DMK", "party_full": "Dravida Munnetra Kazhagam", "seats_won": 59},
+      {"party_code": "ADMK", "party_full": "All India Anna Dravida Munnetra Kazhagam", "seats_won": 47},
+      {"party_code": "INC", "party_full": "Indian National Congress", "seats_won": 5},
+      {"party_code": "PMK", "party_full": "Pattali Makkal Katchi", "seats_won": 4},
+      {"party_code": "IUML", "party_full": "Indian Union Muslim League", "seats_won": 2},
+      {"party_code": "CPI", "party_full": "Communist Party of India", "seats_won": 2},
+      {"party_code": "VCK", "party_full": "Viduthalai Chiruthaigal Katchi", "seats_won": 2},
+      {"party_code": "CPI(M)", "party_full": "Communist Party of India (Marxist)", "seats_won": 2},
+      {"party_code": "BJP", "party_full": "Bharatiya Janata Party", "seats_won": 1},
+      {"party_code": "DMDK", "party_full": "Desiya Murpokku Dravida Kazhagam", "seats_won": 1},
+      {"party_code": "AMMK", "party_full": "Amma Makkal Munnettra Kazagam", "seats_won": 1}
+    ];
   }
 }
 
