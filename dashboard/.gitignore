@@ -1,0 +1,9 @@
+gcp-key.json
+__pycache__/
+*.pyc
+edit_history.txt
+js_edits_detailed.txt
+step_29_view.txt
+.agents
+.gemini
+*.log

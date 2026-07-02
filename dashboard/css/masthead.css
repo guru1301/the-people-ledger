@@ -1,0 +1,288 @@
+/* =============================================================
+   MASTHEAD — Modern Tamil Newspaper Header
+   Style: Daily Thanthi / Dinamalar top identity bar
+   ============================================================= */
+
+/* ── Language Selection Overlay ── */
+.lang-overlay {
+  position: fixed; top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: linear-gradient(135deg, #1a0808 0%, #3a0010 50%, #1a0808 100%);
+  display: flex; justify-content: center; align-items: center;
+  z-index: 10000;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.lang-card {
+  width: 90%;
+  max-width: 500px;
+  background: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+/* Red top stripe */
+.lang-card::before {
+  content: "";
+  display: block;
+  height: 8px;
+  background: var(--ink-red);
+  width: 100%;
+}
+
+.lang-card-inner { padding: 36px 40px 30px; }
+
+.lang-title-gothic {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 52px;
+  color: var(--ink-charcoal);
+  line-height: 1.05;
+  margin-bottom: 4px;
+}
+.lang-title-tamil {
+  font-family: 'Noto Serif Tamil', serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--ink-red);
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+.lang-divider-double {
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--ink-red), var(--ink-red), transparent);
+  margin-bottom: 22px;
+  opacity: 0.5;
+}
+.lang-instruction-en {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 3px;
+  color: var(--ink-gray);
+}
+.lang-instruction-ta {
+  font-family: 'Noto Serif Tamil', serif;
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 26px;
+  color: var(--ink-charcoal);
+}
+.lang-buttons { display: flex; gap: 16px; justify-content: center; margin-bottom: 20px; }
+.lang-select-btn {
+  background: var(--ink-red);
+  border: none;
+  font-family: 'Noto Serif Tamil', 'Playfair Display', Georgia, serif;
+  font-size: 14px;
+  font-weight: 900;
+  padding: 13px 30px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  letter-spacing: 0.5px;
+}
+.lang-select-btn:hover { background: var(--ink-red-dark); transform: translateY(-2px); box-shadow: 0 4px 16px rgba(192,0,26,0.35); }
+.lang-footer {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--ink-light);
+  text-transform: uppercase;
+}
+
+/* ── Masthead (Top header of newspaper) ── */
+.masthead {
+  background: #ffffff;
+  border-bottom: 2px solid var(--ink-charcoal);
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Top utility bar (vibrant red/charcoal contrast) */
+.masthead-utility-bar {
+  background: var(--ink-red);
+  color: #ffffff;
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Main masthead identity band */
+.masthead-main {
+  background: #ffffff;
+  padding: 28px 20px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border-bottom: 1px solid var(--paper-border);
+}
+
+.masthead-center { text-align: center; }
+
+.masthead-rule-top {
+  border-top: 3px solid var(--ink-charcoal);
+  border-bottom: 1px solid var(--ink-charcoal);
+  height: 4px;
+  margin: 8px auto 6px;
+  width: 80%;
+  max-width: 600px;
+}
+.masthead-rule-bottom {
+  border-top: 1px solid var(--ink-charcoal);
+  border-bottom: 3px solid var(--ink-charcoal);
+  height: 4px;
+  margin: 6px auto 10px;
+  width: 80%;
+  max-width: 600px;
+}
+
+.motto {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-light);
+  margin-bottom: 6px;
+}
+
+.title-gothic {
+  font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+  font-size: 62px;
+  line-height: 1.05;
+  font-weight: 900;
+  letter-spacing: -1px;
+  color: var(--ink-charcoal);
+  display: block;
+  text-transform: uppercase;
+  text-shadow: none;
+}
+
+.title-tamil-sub {
+  font-family: 'Noto Serif Tamil', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-red); /* elegant red sub-heading */
+  letter-spacing: 3px;
+  margin-top: 6px;
+  display: block;
+  text-shadow: none;
+}
+
+/* Dateline bar */
+.dateline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1210;
+  padding: 7px 24px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.88);
+  border-top: 3px solid var(--ink-red);
+}
+
+.banner-edition {
+  background: #ffffff;
+  color: var(--ink-red);
+  text-align: center;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  padding: 6px 0;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--paper-border);
+}
+
+/* ── Navigation Tabs ── */
+.tab-nav {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: #ffffff;
+  border-bottom: 4px solid var(--ink-red);
+  margin-bottom: 0;
+  gap: 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 14px 24px;
+  color: var(--ink-charcoal);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  border-right: 1px solid rgba(0,0,0,0.06);
+}
+.tab-btn:last-child { border-right: none; }
+.tab-btn:hover { background: var(--ink-red); color: #ffffff; }
+.tab-btn.active { background: var(--ink-red); color: #ffffff; }
+
+/* ── Page section separator bar ── */
+.page-section-bar {
+  background: var(--ink-charcoal);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 5px 16px;
+  margin: 14px 0 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ── Footer ── */
+.newspaper-footer {
+  border-top: 4px solid var(--ink-red);
+  padding: 16px 0;
+  margin-top: 32px;
+  text-align: center;
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--ink-gray);
+  background: #ffffff;
+}
+.footer-disclaimer {
+  font-size: 9px;
+  color: var(--ink-light);
+  margin-top: 5px;
+  font-style: italic;
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+/* ── Tamil Typography Overrides ── */
+@media (max-width: 768px) { .title-gothic { font-size: 44px; } }
+body.lang-ta,
+body.lang-ta input, body.lang-ta button, body.lang-ta select, body.lang-ta table {
+  font-family: 'Noto Serif Tamil', 'Playfair Display', Georgia, serif !important;
+}
+body.lang-ta h1, body.lang-ta h2, body.lang-ta h3, body.lang-ta h4,
+body.lang-ta .article-headline, body.lang-ta .section-head span, body.lang-ta .sidebar-headline {
+  font-family: 'Noto Serif Tamil', serif !important;
+  font-weight: 900 !important;
+}
+body.lang-ta .title-gothic { font-family: 'Noto Serif Tamil', serif !important; font-weight: 900 !important; }

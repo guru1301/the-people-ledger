@@ -16,9 +16,72 @@
   <!-- Leaflet Map CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   
-  <link rel="stylesheet" href="tamilnadu_election_newspaper_dashboard.css">
+  <!-- Modular CSS styles -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/masthead.css">
+  <link rel="stylesheet" href="css/frontpage.css">
+  <link rel="stylesheet" href="css/explorer.css">
+  <link rel="stylesheet" href="css/voters.css">
+  <link rel="stylesheet" href="css/statistics.css">
+  <link rel="stylesheet" href="css/map.css">
+  <link rel="stylesheet" href="css/ministers.css">
 </head>
 <body>
+
+  <!-- Global SVG Gradients for Leaflet Map and UI Swatches -->
+  <svg width="0" height="0" style="position: absolute; z-index: -9999; pointer-events: none;">
+    <defs>
+      <!-- TVK: Red - Yellow - Red angled gradient -->
+      <linearGradient id="grad-tvk" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#b80016" />
+        <stop offset="33%" stop-color="#d30d25" />
+        <stop offset="38%" stop-color="#FFD700" />
+        <stop offset="62%" stop-color="#FFD700" />
+        <stop offset="67%" stop-color="#d30d25" />
+        <stop offset="100%" stop-color="#b80016" />
+      </linearGradient>
+
+      <!-- DMK: Black - Red angled gradient -->
+      <linearGradient id="grad-dmk" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0f0f0f" />
+        <stop offset="47%" stop-color="#242424" />
+        <stop offset="53%" stop-color="#d30d25" />
+        <stop offset="100%" stop-color="#9a0010" />
+      </linearGradient>
+
+      <!-- AIADMK: Premium Forest to Emerald Green gradient -->
+      <linearGradient id="grad-aiadmk" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0a521e" />
+        <stop offset="50%" stop-color="#12702c" />
+        <stop offset="100%" stop-color="#22c55e" />
+      </linearGradient>
+
+      <!-- INC: Congress Blue gradient -->
+      <linearGradient id="grad-inc" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#0b407a" />
+        <stop offset="100%" stop-color="#2575fc" />
+      </linearGradient>
+
+      <!-- VCK: Purple gradient -->
+      <linearGradient id="grad-vck" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#491a66" />
+        <stop offset="100%" stop-color="#8b3fc4" />
+      </linearGradient>
+
+      <!-- IUML: Teal Green gradient -->
+      <linearGradient id="grad-iuml" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#064e3b" />
+        <stop offset="100%" stop-color="#10b981" />
+      </linearGradient>
+
+      <!-- Others: Neutral slate gradient -->
+      <linearGradient id="grad-other" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#475569" />
+        <stop offset="100%" stop-color="#94a3b8" />
+      </linearGradient>
+    </defs>
+  </svg>
+
 
   <!-- LANGUAGE SELECTION OVERLAY -->
   <div class="lang-overlay" id="langOverlay">
@@ -38,20 +101,41 @@
 
   <!-- MAIN CONTAINER -->
   <div class="container" id="mainContainer">
-    
     <!-- NEWSPAPER MASTHEAD -->
     <header class="masthead">
-      <div class="motto" data-t="masthead_motto">Recording the People's Verdict</div>
-      <h1 class="title-gothic" data-t="masthead_title">The People's Ledger</h1>
-      <div class="dateline">
-        <span data-t="masthead_dateline_issue">VOL. LXXVI · ISSUE 234</span>
-        <span style="font-family:'Playfair Display', serif; font-size:11px; cursor:pointer; color:var(--ink-red)" onclick="toggleLanguage()">
-          <i class="fa-solid fa-language"></i> <span id="langToggleBtnText">தமிழ் பதிப்பு</span>
+      <!-- Top Red Utility Bar -->
+      <div class="masthead-utility-bar">
+        <span data-t="masthead_dateline_issue">VOL. LXXVI &middot; ISSUE 234 &middot; ASSEMBLY ELECTION SPECIAL</span>
+        <span style="cursor:pointer;font-size:11px;letter-spacing:1px" onclick="toggleLanguage()">
+          &#127760; <span id="langToggleBtnText">தமிழ் பதிப்பு</span>
         </span>
-        <span data-t="masthead_dateline_price">PRICE: ANNA ONE (FREE ARCHIVE)</span>
+        <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
-      <div class="banner-edition" data-t="masthead_banner">✦ SPECIAL CONSTITUENCY ARCHIVE & ELECTORAL REVIEW ✦</div>
+
+      <!-- Main Title Block -->
+      <div class="masthead-main">
+        <div class="masthead-center">
+          <div class="motto" data-t="masthead_motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
+          <div class="masthead-rule-top"></div>
+          <h1 class="title-gothic" data-t="masthead_title">The People's Ledger</h1>
+          <div class="masthead-rule-bottom"></div>
+          <span class="title-tamil-sub">தமிழ்நாடு தேர்தல் பதிவேடு &middot; 2026</span>
+        </div>
+      </div>
+
+      <!-- Dateline Bar -->
+      <div class="dateline">
+        <span data-t="masthead_dateline_issue">VOL. LXXVI &middot; ISSUE 234</span>
+        <span id="liveDateTime"></span>
+        <span data-t="masthead_banner">✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+      </div>
     </header>
+
+
+
+
+
+
 
     <!-- NAVIGATION TABS -->
     <nav class="tab-nav" id="tabNavContainer">
@@ -140,6 +224,19 @@
           </div>
         </div>
 
+      </div>
+
+      <!-- 19 FINDINGS SECTION -->
+      <div class="newspaper-row findings-row no-bottom">
+        <div class="np-col" style="grid-column: 1 / -1;">
+          <div class="section-head" style="margin-bottom: 12px;">
+            <span id="findingsSectionTitle" data-t="findings_section_title">SPECIAL INVESTIGATION: 19 KEY FINDINGS</span>
+            <span class="section-head-subtitle" id="findingsSectionSubtitle" data-t="findings_section_subtitle">Electoral Data Insights</span>
+          </div>
+          <div class="findings-grid" id="findingsGrid">
+            <!-- Dynamically populated from js/findings.js -->
+          </div>
+        </div>
       </div>
 
       <!-- TICKER BANNER -->
@@ -255,7 +352,7 @@
           <div class="byline center" data-t="voter_archives_byline">Compiled by the ECI Records Registry · Special Report</div>
           
           <div class="article-body" style="margin-bottom:20px; text-align:center; max-width:800px; margin-left:auto; margin-right:auto" data-t="voter_archives_desc">
-            Of Tamil Nadu's 234 assembly seats, women turned out to vote at higher percentages in 165 seats (≈70%)...
+            Of Tamil Nadu's 234 assembly seats, women turned out to vote at higher percentages in 165 seats (≈70%). The tables below document the stark regional contrasts.
           </div>
         </div>
       </div>
@@ -326,122 +423,6 @@
     </section>
 
     <!-- =========================================================
-         PAGE 4: COUNCIL OF MINISTERS (GOVERNMENT DATA)
-         ========================================================= -->
-    <section class="np-page" id="page-cabinet">
-      <div class="newspaper-row">
-        <div class="np-col" style="grid-column: span 5;">
-          <div class="section-head">
-            <span data-t="gov_sec_head">Government of Tamil Nadu</span>
-            <span class="section-head-subtitle" data-t="gov_sec_sub">Cabinet Gazette</span>
-          </div>
-          
-          <h2 class="article-headline" style="text-align:center;margin-bottom:5px" data-t="gov_main_head">COUNCIL OF MINISTERS & LEGISLATIVE LEADERSHIP</h2>
-          <p style="text-align:center; font-style:italic; font-size:12px; margin-bottom:20px" data-t="gov_main_sub">
-            Chief Minister C. Joseph Vijay (TVK) leads a coalition administration of 35 ministers.
-          </p>
-        </div>
-      </div>
-
-      <!-- Cabinet Strength Ledger -->
-      <div class="newspaper-row">
-        <div class="np-col" style="grid-column: span 5">
-          <div class="cabinet-strength-section">
-            <div class="cabinet-strength-header">
-              <span class="cabinet-strength-title" data-t="cab_strength_title">Cabinet Strength by Party</span>
-              <span class="cabinet-strength-total"><span data-t="cab_strength_total_lbl">Total Strength</span>: 35 <span data-t="cab_strength_ministers_lbl">Ministers</span></span>
-            </div>
-            <div class="cabinet-strength-grid">
-              <!-- TVK -->
-              <div class="party-strength-card">
-                <div class="party-strength-dot" style="background:var(--party-tvk)"></div>
-                <div class="party-strength-info">
-                  <span class="party-strength-name">TVK</span> <span style="font-size:8px;color:gray;">(Tamilaga Vettri Kazhagam)</span><br>
-                  <span class="party-strength-count">31 <span data-t="cab_strength_ministers_lbl">Ministers</span></span>
-                </div>
-              </div>
-              <!-- INC -->
-              <div class="party-strength-card">
-                <div class="party-strength-dot" style="background:var(--party-inc)"></div>
-                <div class="party-strength-info">
-                  <span class="party-strength-name">INC</span> <span style="font-size:8px;color:gray;">(Indian National Congress)</span><br>
-                  <span class="party-strength-count">2 <span data-t="cab_strength_ministers_lbl">Ministers</span></span>
-                </div>
-              </div>
-              <!-- VCK -->
-              <div class="party-strength-card">
-                <div class="party-strength-dot" style="background:var(--party-vck)"></div>
-                <div class="party-strength-info">
-                  <span class="party-strength-name">VCK</span> <span style="font-size:8px;color:gray;">(Viduthalai Chiruthaigal Katchi)</span><br>
-                  <span class="party-strength-count">1 <span data-t="cab_strength_minister_lbl">Minister</span></span>
-                </div>
-              </div>
-              <!-- IUML -->
-              <div class="party-strength-card">
-                <div class="party-strength-dot" style="background:var(--party-iuml)"></div>
-                <div class="party-strength-info">
-                  <span class="party-strength-name">IUML</span> <span style="font-size:8px;color:gray;">(Indian Union Muslim League)</span><br>
-                  <span class="party-strength-count">1 <span data-t="cab_strength_minister_lbl">Minister</span></span>
-                </div>
-              </div>
-            </div>
-            <p style="font-size:9.5px; font-family:'Courier Prime', monospace; margin-top:12px; color:var(--ink-charcoal); border-top: 1px dashed var(--ink-charcoal); padding-top: 6px;" data-t="cab_seniority_note">
-              Note: The order is based on Seniority of Ministers and Subjects based on G.O.Ms.No.366 dated 30.05.2026.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Featured Chief Minister Card Area -->
-      <div class="newspaper-row">
-        <div class="np-col" style="grid-column: span 5">
-          <div id="featuredCmArea">
-            <!-- Populated dynamically via JS -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Other Cabinet Ministers Grid -->
-      <div class="newspaper-row" style="padding-bottom:20px">
-        <div class="np-col" style="grid-column: span 5">
-          <div class="section-head">
-            <span data-t="cabinet_title">Council of Ministers Cabinet (35 members)</span>
-          </div>
-          <div class="cabinet-grid" id="cabinetGridArea">
-            <!-- Populated dynamically via JS -->
-          </div>
-        </div>
-      </div>
-
-      <!-- Assembly Leadership -->
-      <div class="newspaper-row no-bottom" style="margin-top:15px">
-        <div class="np-col" style="grid-column: span 5">
-          <div class="section-head">
-            <span data-t="assembly_title">Legislative Officers & Assembly Leaders</span>
-          </div>
-          
-          <div class="np-table-container">
-            <table class="np-table">
-              <thead>
-                <tr>
-                  <th data-t="col_designation">Designation</th>
-                  <th data-t="col_name">Name</th>
-                  <th data-t="col_party">Party</th>
-                  <th data-t="col_constituency">Constituency</th>
-                  <th data-t="col_took_office">Took Office</th>
-                  <th data-t="col_narrative">Historical Role / Narrative Context</th>
-                </tr>
-              </thead>
-              <tbody id="assemblyOfficialsBody">
-                <!-- Loaded dynamically -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- =========================================================
          PAGE 5: STATISTICAL REPORT (ANALYSIS & CHARTS)
          ========================================================= -->
     <section class="np-page" id="page-statistics">
@@ -453,7 +434,7 @@
           </div>
           <h2 class="article-headline" style="text-align:center; margin-bottom:15px" data-t="stats_main_head">STATISTICAL DISTRIBUTIONS & MARGINAL COMPARISONS</h2>
           <p style="text-align:center; font-size:12px; font-style:italic; max-width:850px; margin: 0 auto 20px auto" data-t="stats_main_sub">
-            The records below detail the competitive breakdown of the election...
+            The records below detail the competitive breakdown of the election, including margin frequencies across all 234 seats, performance discrepancies inside reserved blocks (SC/ST), and the singular impact of postal returns.
           </p>
         </div>
       </div>
@@ -471,7 +452,7 @@
             <span data-t="reserved_title">Reserved Seat Competitiveness</span>
           </div>
           <p style="font-size:11.5px; line-height:1.6; text-align:justify" data-t="reserved_body">
-            Tamil Nadu sets aside 44 seats for Scheduled Castes (SC) and 2 seats for Scheduled Tribes (ST)...
+            Tamil Nadu sets aside 44 seats for Scheduled Castes (SC) and 2 seats for Scheduled Tribes (ST). Data indicates that reserved seats were substantially more competitive on average.<br><br>While General seats returned an average winning margin of 17,544 votes, SC seats had a tighter average of 14,192 votes. ST seats returned an ultra-competitive average of just 2,422 votes.
           </p>
         </div>
 
@@ -488,7 +469,7 @@
             <span data-t="postal_title">The Postal Decided Race — Tiruppattur</span>
           </div>
           <p style="font-size:11.5px; line-height:1.6; text-align:justify" data-t="postal_body">
-            Across the entire state, only one single constituency would have returned a different winner...
+            Across the entire state, only one single constituency would have returned a different winner without postal ballot returns.
           </p>
         </div>
 
@@ -562,19 +543,39 @@
       </div>
     </section>
 
+    <!-- =========================================================
+         PAGE 6: COUNCIL OF MINISTERS
+         ========================================================= -->
+    <section class="np-page" id="page-ministers">
+      <div id="ministersContainer">
+        <div class="ministers-loading">Loading Cabinet Data…</div>
+      </div>
+    </section>
+
     <!-- NEWSPAPER FOOTER -->
     <footer class="newspaper-footer">
       <div data-t="footer_title">THE PEOPLE'S LEDGER ARCHIVE · RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer" data-t="footer_disclaimer">Disclaimer: This is an old-newspaper themed data representation...</div>
+      <div class="footer-disclaimer" data-t="footer_disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
     </footer>
 
   </div>
 
 <!-- Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 <script src="tn_ac_2021.js"></script>
 
-  <script src="tamilnadu_election_newspaper_dashboard.js"></script>
+<!-- JS load order — core first, data second, features last -->
+<script src="js/core.js"></script>
+<script src="js/data-constituency.js"></script>
+<script src="js/data-district.js"></script>
+<script src="js/findings.js"></script>
+<script src="js/frontpage.js"></script>
+<script src="js/explorer.js"></script>
+<script src="js/voters.js"></script>
+<script src="js/statistics.js"></script>
+<script src="js/map.js"></script>
+<script src="js/ministers.js"></script>
 </body>
 </html>

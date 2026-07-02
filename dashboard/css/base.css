@@ -1,0 +1,373 @@
+/* =============================================================
+   BASE — Elite Tamil Online Newspaper Design System
+   Reference: Dinamalar.com · Dina Thanthi · Dinakaran online
+   ============================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,900;1,400;1,600&family=Noto+Serif+Tamil:wght@400;600;700;900&family=Courier+Prime:wght@400;700&display=swap');
+
+:root {
+  /* ── Paper & Background ── */
+  --paper-bg:         #ffffff;
+  --paper-bg-warm:    #fdfaf5;
+  --paper-bg-darker:  #f0ece2;
+  --paper-border:     #d8c8a0;
+
+  /* ── Ink / Text ── */
+  --ink-charcoal:     #1a1210;
+  --ink-gray:         #4a4540;
+  --ink-light:        #7a736a;
+
+  /* ── Brand Colors (Tamil Newspaper Red) ── */
+  --ink-red:          #c0001a;
+  --ink-red-dark:     #8a0012;
+  --ink-red-light:    #e8001f;
+  --ink-gold:         #b8860b;
+  --ink-green:        #1a6b2a;
+  --ink-blue:         #0d3b7a;
+
+  /* ── Section Header Bands ── */
+  --band-red:         #c0001a;
+  --band-navy:        #0d3b7a;
+  --band-green:       #1a6b2a;
+  --band-gold:        #8a6800;
+
+  /* ── Party Colors ── */
+  --party-tvk:        #C8001A;   /* TVK — dominant red from flag */
+  --party-dmk:        #111111;   /* DMK — dominant black from flag */
+  --party-aiadmk:     #1a7c30;   /* AIADMK — green */
+  --party-inc:        #1a5fa0;   /* INC — blue */
+  --party-vck:        #6b3f87;   /* VCK — purple */
+  --party-iuml:       #1a6b50;   /* IUML — forest green */
+  --party-other:      #706757;   /* Others — warm gray */
+  --party-nota:       #888;
+}
+
+/* ── Reset & Base ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: #f9f6f1;
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--ink-charcoal);
+  line-height: 1.6;
+}
+
+/* Subtle warm paper vignette */
+body::before {
+  content: "";
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(180,140,80,0.06) 100%);
+  z-index: 9998;
+}
+
+/* ── Layout Container ── */
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  display: none;
+}
+
+/* ── Section Pages ── */
+.np-page { display: none; animation: fadeIn 0.28s ease; padding: 16px 20px 20px; }
+.np-page.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── Newspaper Column Grid ── */
+.newspaper-row {
+  display: grid;
+  grid-template-columns: 1fr 1px 2fr 1px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--paper-border);
+  padding-bottom: 18px;
+}
+.newspaper-row.top-hero {
+  grid-template-columns: 3.2fr 1px 1.3fr;
+  border-bottom: 1px solid var(--paper-border);
+  padding-bottom: 0;
+}
+.newspaper-row.bottom-stats {
+  grid-template-columns: 1fr 1px 1.2fr 1px 1.5fr;
+  margin-top: 0;
+  border-bottom: 1px solid var(--paper-border);
+  padding-bottom: 16px;
+}
+.newspaper-row.no-bottom { border-bottom: none; padding-bottom: 0; }
+
+.np-divider { background-color: var(--paper-border); }
+.np-col { padding: 0 18px; }
+.np-col:first-child { padding-left: 0; }
+.np-col:last-child { padding-right: 0; }
+
+@media (max-width: 900px) {
+  .newspaper-row, .newspaper-row.top-hero, .newspaper-row.bottom-stats {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+    border-bottom: none;
+  }
+  .np-divider { display: none; }
+  .np-col { padding: 0 !important; }
+}
+
+/* ── Section Head Labels — Elite Tamil Portal Style ── */
+.section-head {
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  background: var(--ink-charcoal);
+  color: #fff;
+  padding: 6px 12px;
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-left: 5px solid var(--ink-red);
+}
+.section-head-subtitle {
+  font-size: 9px;
+  color: rgba(255,255,255,0.65);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+/* ── Headlines & Typography ── */
+.article-headline {
+  font-size: 22px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  color: var(--ink-charcoal);
+  letter-spacing: -0.3px;
+}
+.article-headline.lead        { font-size: 30px; text-align: center; margin-bottom: 12px; }
+.article-headline.lead-broadside { font-size: 26px; line-height: 1.15; color: var(--ink-red-dark); margin-bottom: 10px; }
+
+.byline {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: var(--ink-gray);
+  border-top: 1px solid var(--paper-border);
+  border-bottom: 1px solid var(--paper-border);
+  padding: 4px 0;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.byline.center { text-align: center; }
+
+.article-body {
+  font-size: 13px;
+  line-height: 1.75;
+  text-align: justify;
+  color: var(--ink-charcoal);
+}
+.article-body.columns-2 {
+  column-count: 2;
+  column-gap: 20px;
+  column-rule: 1px solid var(--paper-border);
+}
+@media (max-width: 600px) { .article-body.columns-2 { column-count: 1; } }
+
+/* Drop cap */
+.dropcap::first-letter,
+.dropcap p:first-of-type::first-letter {
+  font-size: 58px;
+  font-weight: 900;
+  float: left;
+  line-height: 0.78;
+  margin-right: 8px;
+  margin-top: 6px;
+  color: var(--ink-red);
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+}
+
+/* Specific overrides for Tamil drop cap to prevent accent clipping */
+body.lang-ta .dropcap::first-letter,
+body.lang-ta .dropcap p:first-of-type::first-letter {
+  font-family: 'Noto Serif Tamil', serif;
+  line-height: 1.15;
+  margin-top: 0px;
+  padding-top: 6px;
+}
+
+.ornament {
+  text-align: center;
+  font-size: 18px;
+  color: var(--ink-red);
+  padding: 8px 0;
+  letter-spacing: 8px;
+  opacity: 0.6;
+  user-select: none;
+}
+
+.pull-quote {
+  border-top: 2px solid var(--ink-charcoal);
+  border-bottom: 2px solid var(--ink-charcoal);
+  padding: 12px 0;
+  margin: 16px 0;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 700;
+  color: var(--ink-charcoal);
+  line-height: 1.45;
+  text-align: center;
+}
+
+/* ── Tables ── */
+.np-table-container { width: 100%; overflow-x: auto; margin-top: 8px; }
+.np-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+.np-table th {
+  background: var(--ink-red);
+  color: #fff;
+  padding: 8px 12px;
+  text-align: left;
+  font-size: 9.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  border: none;
+}
+.np-table td {
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--paper-border);
+  color: var(--ink-charcoal);
+  vertical-align: middle;
+  background: #fff;
+}
+.np-table tr:nth-child(even) td { background: #fdf9f5; }
+.np-table tr:hover td { background: rgba(192,0,26,0.04) !important; }
+.np-table tr:last-child td { border-bottom: 2px solid var(--ink-charcoal); }
+.np-table td.strong { font-weight: 700; }
+.np-table .text-right { text-align: right; }
+
+/* ── Party Tag Badges ── */
+.party-tag {
+  display: inline-block;
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  color: #fff;
+  padding: 2px 6px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Stat Boxes ── */
+.stat-box {
+  border: 1px solid var(--paper-border);
+  border-top: 3px solid var(--ink-red);
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  text-align: center;
+}
+.stat-num {
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--ink-red);
+  line-height: 1;
+  font-family: 'Playfair Display', Georgia, serif;
+}
+.stat-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--ink-gray);
+  margin-top: 4px;
+}
+.stat-sub {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  color: var(--ink-light);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+/* ── Seat Grid (Assembly Chamber) ── */
+.seat-grid-container { margin-top: 8px; }
+.seat-grid-title {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-gray);
+  margin-bottom: 8px;
+  border-bottom: 1px solid var(--paper-border);
+  padding-bottom: 5px;
+}
+.seat-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5px;
+  margin-bottom: 10px;
+}
+.seat {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  transition: transform 0.12s ease;
+  cursor: pointer;
+}
+.seat:hover { transform: scale(1.6); z-index: 5; position: relative; }
+.seat-p-tvk    { background: linear-gradient(135deg, #b80016 0%, #FFD700 45%, #FFD700 55%, #b80016 100%); }
+.seat-p-dmk    { background: linear-gradient(135deg, #111111 0%, #1c1c1c 48%, #d30d25 52%, #9a0010 100%); }
+.seat-p-aiadmk { background: linear-gradient(135deg, #0a521e 0%, #12702c 50%, #22c55e 100%); }
+.seat-p-inc    { background: linear-gradient(135deg, #0b407a 0%, #2575fc 100%); }
+.seat-p-other  { background: linear-gradient(135deg, #475569 0%, #94a3b8 100%); }
+
+.legend-grid { display: flex; gap: 12px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 5px; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--ink-gray); }
+.legend-swatch { width: 10px; height: 10px; border-radius: 50%; }
+
+/* ── Alert Box (Vote-split / Postal) ── */
+.alert-vintage {
+  border: 1px solid var(--ink-gold);
+  background: #fffbf0;
+  padding: 10px 14px;
+  margin: 14px 0;
+  border-radius: 2px;
+}
+.alert-vintage-title {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-gold);
+  margin-bottom: 5px;
+}
+.alert-vintage-body { font-size: 11.5px; line-height: 1.6; color: var(--ink-charcoal); }
+
+/* ── Search / Input ── */
+.vintage-input {
+  width: 100%;
+  padding: 9px 12px;
+  background: #fff;
+  border: 1px solid var(--paper-border);
+  border-bottom: 2px solid var(--ink-charcoal);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 13px;
+  color: var(--ink-charcoal);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.vintage-input:focus { border-color: var(--ink-red); }
+
+/* ── Bilingual ── */
+body.lang-ta .lang-en { display: none !important; }
+body:not(.lang-ta) .lang-ta { display: none !important; }
+
+/* ── Utility ── */
+.strong { font-weight: 700; }

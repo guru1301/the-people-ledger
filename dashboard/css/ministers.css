@@ -1,0 +1,592 @@
+/* =============================================================
+   MINISTERS — Council of Ministers Page
+   Tamil Nadu 2026 Cabinet · Elite Newspaper Portal Style
+   ============================================================= */
+
+/* ── Page Wrapper ── */
+#page-ministers {
+  background: #f9f6f1;
+  min-height: 80vh;
+}
+
+/* ── Slide Navigation ── */
+.members-slide-nav {
+  display: flex;
+  gap: 0;
+  border-bottom: 3px solid var(--ink-charcoal);
+  margin-bottom: 22px;
+  background: #fff;
+}
+.members-slide-btn {
+  background: none;
+  border: none;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 14px 28px;
+  cursor: pointer;
+  color: var(--ink-gray);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -3px;
+  transition: all 0.2s ease;
+}
+.members-slide-btn:hover { color: var(--ink-red); background: rgba(192,0,26,0.04); }
+.members-slide-btn.active {
+  color: var(--ink-red);
+  border-bottom-color: var(--ink-red);
+  background: #fff;
+}
+
+/* ── Officials List ── */
+.officials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+/* ── Individual Official Card ── */
+.official-card {
+  background: #ffffff;
+  border: 1px solid var(--paper-border);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  display: flex;
+  gap: 0;
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.official-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+.official-photo-col {
+  width: 140px;
+  flex-shrink: 0;
+  position: relative;
+  background: var(--ink-charcoal);
+  display: flex;
+  flex-direction: column;
+}
+.official-photo-wrap {
+  flex: 1;
+  overflow: hidden;
+}
+.official-photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  filter: contrast(1.05) saturate(1.0);
+  transition: transform 0.3s ease;
+}
+.official-card:hover .official-photo-wrap img { transform: scale(1.05); }
+.official-photo-wrap.photo-error { background: var(--paper-bg-darker); min-height: 120px; }
+
+.official-block-badge {
+  padding: 5px 8px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+}
+
+.official-info-col {
+  flex: 1;
+  padding: 18px 22px;
+  border-left: 4px solid var(--ink-red);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.official-position-tag {
+  display: inline-block;
+  background: var(--ink-red);
+  color: #fff;
+  font-family: 'Courier Prime', monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  margin-bottom: 4px;
+  align-self: flex-start;
+}
+.official-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--ink-charcoal);
+  line-height: 1.1;
+}
+.official-name-tamil {
+  font-family: 'Noto Serif Tamil', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-red);
+  display: block;
+}
+.official-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 4px 0;
+  border-top: 1px solid var(--paper-border);
+  border-bottom: 1px solid var(--paper-border);
+  padding: 8px 0;
+}
+.official-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 90px;
+}
+.official-meta-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+.official-meta-item strong {
+  font-family: 'Playfair Display', serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--ink-charcoal);
+}
+.official-description {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--ink-gray);
+  line-height: 1.6;
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .official-card { flex-direction: column; }
+  .official-photo-col { width: 100%; height: 180px; }
+  .official-info-col { border-left: none; border-top: 4px solid var(--ink-red); }
+  .members-slide-btn { padding: 10px 14px; font-size: 11px; }
+}
+
+
+
+/* ── Loading / Error State ── */
+.ministers-loading {
+  text-align: center;
+  padding: 60px 20px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+.ministers-loading::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 3px;
+  background: var(--ink-red);
+  margin: 14px auto 0;
+  animation: loadingPulse 1.2s ease-in-out infinite alternate;
+}
+@keyframes loadingPulse { from { width: 20px; } to { width: 80px; } }
+
+.ministers-error {
+  text-align: center;
+  padding: 40px;
+  color: var(--ink-red);
+  font-weight: 700;
+  border: 1px solid var(--ink-red);
+  margin: 20px;
+}
+
+/* ── Page Header Bar ── */
+.ministers-page-header {
+  background: var(--ink-charcoal);
+  border-left: 6px solid var(--ink-red);
+  padding: 10px 16px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.ministers-page-header h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin: 0;
+}
+.ministers-page-header span {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 1px;
+}
+
+/* ── Chief Minister Hero Block ── */
+.cm-hero {
+  display: flex;
+  gap: 0;
+  background: #fff;
+  border: 1px solid var(--paper-border);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.09);
+  margin-bottom: 28px;
+  overflow: hidden;
+}
+
+.cm-hero-photo {
+  width: 280px;
+  flex-shrink: 0;
+  position: relative;
+  background: var(--ink-charcoal);
+}
+.cm-hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  filter: contrast(1.05) saturate(1.05);
+}
+.cm-hero-photo-badge {
+  position: absolute;
+  bottom: 0;
+  left: 0; right: 0;
+  background: var(--ink-red);
+  color: #fff;
+  text-align: center;
+  font-family: 'Courier Prime', monospace;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 8px;
+}
+
+.cm-hero-info {
+  flex: 1;
+  padding: 28px 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-left: 4px solid var(--ink-red);
+}
+.cm-designation-tag {
+  display: inline-block;
+  background: var(--ink-red);
+  color: #fff;
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 4px 14px;
+  margin-bottom: 14px;
+}
+.cm-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--ink-charcoal);
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+.cm-name-tamil {
+  font-family: 'Noto Serif Tamil', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink-red);
+  margin-bottom: 16px;
+  display: block;
+}
+.cm-meta-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.cm-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cm-meta-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+}
+.cm-meta-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink-charcoal);
+}
+.cm-portfolios {
+  border-top: 1px solid var(--paper-border);
+  padding-top: 14px;
+}
+.cm-portfolios-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ink-light);
+  margin-bottom: 8px;
+}
+.cm-portfolio-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cm-portfolio-tag {
+  background: #f0ece4;
+  border: 1px solid var(--paper-border);
+  color: var(--ink-charcoal);
+  font-family: 'Playfair Display', serif;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 2px;
+}
+
+/* ── Ministers Grid Section Header ── */
+.ministers-grid-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  border-bottom: 2px solid var(--ink-charcoal);
+  padding-bottom: 8px;
+}
+.ministers-grid-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--ink-charcoal);
+  margin: 0;
+}
+.ministers-count-badge {
+  background: var(--ink-red);
+  color: #fff;
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 10px;
+  letter-spacing: 1px;
+}
+
+/* ── Ministers Card Grid ── */
+.ministers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+/* ── Individual Minister Card ── */
+.minister-card {
+  background: #ffffff;
+  border: 1px solid var(--paper-border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  overflow: hidden;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+  cursor: pointer;
+  position: relative;
+}
+.minister-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.13);
+}
+.minister-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--ink-red);
+}
+
+.minister-card-photo {
+  width: 100%;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  background: var(--ink-charcoal);
+  position: relative; /* needed for overlay */
+}
+.minister-card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  filter: contrast(1.04) saturate(1.0);
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+.minister-card:hover .minister-card-photo img {
+  transform: scale(1.08);
+  filter: contrast(1.0) saturate(0.4) brightness(0.45);
+}
+
+/* Photo hover overlay — reveals portfolio list */
+.minister-photo-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 18, 16, 0.88);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 14px 12px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.minister-card:hover .minister-photo-overlay {
+  opacity: 1;
+}
+.minister-overlay-title {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--ink-red);
+  margin-bottom: 8px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+  padding-bottom: 6px;
+}
+.minister-overlay-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.minister-overlay-list li {
+  font-family: 'Playfair Display', serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.9);
+  line-height: 1.3;
+  padding-left: 8px;
+  border-left: 2px solid var(--ink-red);
+}
+
+/* Broken image fallback */
+.minister-card-photo.photo-error {
+  background: var(--paper-bg-darker);
+  min-height: 160px;
+}
+
+.minister-card-body {
+  padding: 12px;
+  border-top: 1px solid var(--paper-border);
+}
+.minister-rank {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8.5px;
+  font-weight: 700;
+  color: var(--ink-red);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.minister-name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--ink-charcoal);
+  line-height: 1.25;
+  margin-bottom: 2px;
+}
+.minister-name-tamil {
+  font-family: 'Noto Serif Tamil', serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-gray);
+  margin-bottom: 8px;
+  display: block;
+  line-height: 1.4;
+}
+.minister-designation {
+  font-family: 'Playfair Display', serif;
+  font-size: 10px;
+  font-style: italic;
+  color: var(--ink-red);
+  line-height: 1.4;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed var(--paper-border);
+  padding-bottom: 8px;
+}
+
+/* Portfolio tags strip under designation */
+.minister-portfolios-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.minister-portfolio-tag {
+  background: rgba(192,0,26,0.07);
+  border: 1px solid rgba(192,0,26,0.2);
+  color: var(--ink-charcoal);
+  font-family: 'Courier Prime', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  padding: 2px 7px;
+  letter-spacing: 0.3px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.minister-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+.minister-constituency {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  color: var(--ink-light);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.minister-age-badge {
+  background: var(--ink-charcoal);
+  color: #fff;
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  letter-spacing: 0.5px;
+}
+
+/* ── Tamil lang overrides ── */
+body.lang-ta .minister-name { display: none; }
+body.lang-ta .minister-name-tamil { display: block !important; font-size: 12px; color: var(--ink-charcoal); font-weight: 900; }
+body:not(.lang-ta) .minister-name-tamil { display: none; }
+body.lang-ta .minister-designation { font-style: normal; }
+body.lang-ta .cm-name { display: none; }
+body.lang-ta .cm-name-tamil { font-size: 26px !important; color: var(--ink-charcoal) !important; }
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .cm-hero { flex-direction: column; }
+  .cm-hero-photo { width: 100%; height: 260px; }
+  .ministers-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+}
