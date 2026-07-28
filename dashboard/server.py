@@ -400,15 +400,17 @@ def get_constituency_history(ac_no):
                 FROM Ranked w LEFT JOIN Ranked r ON r.rank = 2 WHERE w.rank = 1
             """),
             ("2016", f"""
-                WITH Ranked AS (
-                  SELECT Candidate, PARTY AS Party, CAST(TOTAL AS INT64) AS Total_Votes,
-                         ROW_NUMBER() OVER (PARTITION BY AC_No ORDER BY TOTAL DESC) as rank
-                  FROM `tn-election-2026-501004.tn_election_2026.fact_results_2016`
-                  WHERE AC_No = {ac_int}
-                )
-                SELECT w.Candidate AS winner_name, w.Party AS winner_party,
-                       CAST(w.Total_Votes - COALESCE(r.Total_Votes, 0) AS INT64) AS victory_margin
-                FROM Ranked w LEFT JOIN Ranked r ON r.rank = 2 WHERE w.rank = 1
+                SELECT 
+                  Candidate AS winner_name,
+                  Party AS winner_party,
+                  CAST(Margin AS INT64) AS victory_margin
+                FROM `tn-election-2026-501004.tn_election_2026.fact_results_2016`
+                WHERE Position = 1 
+                  AND (
+                    LOWER(Constituency_Name) = LOWER((SELECT AC_Name FROM `tn-election-2026-501004.tn_election_2026.dim_constituency` WHERE AC_No = {ac_int} LIMIT 1))
+                    OR CAST(AC_No AS INT64) = {ac_int}
+                  )
+                LIMIT 1
             """)
         ]
 
