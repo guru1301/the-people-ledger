@@ -3,90 +3,462 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 07 Special Edition</title>
+  <title>WHEN TAMIL NADU VOTED LIKE NEVER BEFORE — 86.03% Turnout — The People's Ledger</title>
+  <meta name="description" content="An investigation into Tamil Nadu's record 86.03% voter turnout in the 2026 Assembly election, verified against BigQuery records.">
   
-  <!-- Fonts -->
+  <!-- Fonts matching index.html & findings 1-6 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
+
+  <!-- Modular CSS imports matching index.html and findings 1-6 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    /* Full-width balanced newspaper grid styling matching Findings 1-6 */
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal, #1a1210);
+      font-family: 'Playfair Display', Georgia, serif;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      line-height: 1.6;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+
+    body.lang-ta, 
+    body.lang-ta .paragraph-body, 
+    body.lang-ta .article-headline, 
+    body.lang-ta .hero-subheading,
+    body.lang-ta .doc-box {
+      font-family: 'Noto Serif Tamil', serif !important;
     }
+
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
+    }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Top Hero Stat Cards Grid (6 cards) */
+    .hero-stats-grid-6 {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 10px;
+      margin: 16px 0 22px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 1000px) {
+      .hero-stats-grid-6 { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .hero-stats-grid-6 { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .hero-stat-card {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 12px 14px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .hero-stat-number {
+      font-family: 'Courier Prime', monospace;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--ink-red, #c92a2a);
+      line-height: 1.1;
+    }
+    .hero-stat-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-light, #666);
+      margin-top: 4px;
+    }
+
+    /* Section Grid Rows matching Findings 1-6 */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols { grid-template-columns: 1fr 1fr; }
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+
+    .section-head {
+      font-family: 'Courier Prime', monospace;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink-red, #c92a2a);
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+      padding-bottom: 5px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 15px;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+      color: var(--ink-charcoal, #1a1210);
+    }
+    .paragraph-body:first-of-type { text-indent: 0; }
+
+    .dropcap {
+      float: left;
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: 62px;
+      line-height: 48px;
+      padding-top: 4px;
+      padding-right: 8px;
+      padding-left: 3px;
+      color: var(--ink-charcoal, #1a1210);
+    }
+
+    /* Buttons matching Findings 1-6 */
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue, #1c7ed6);
       text-decoration: none;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm, #fdfaf5);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
+      letter-spacing: 0.5px;
       cursor: pointer;
     }
     .back-btn:hover {
-      background: var(--ink-red);
+      background: var(--ink-red, #c92a2a);
       color: #fff;
+      border-color: var(--ink-red, #c92a2a);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal, #1a1210);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal, #1a1210);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
-      display: block;
+    .lang-toggle-btn:hover {
+      background: var(--ink-red, #c92a2a);
+      border-color: var(--ink-red, #c92a2a);
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    /* Hero Watermark Display Box */
+    .hero-stat-banner {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 28px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      margin-bottom: 20px;
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .hero-stat-banner::before {
+      content: 'TN 2026';
+      position: absolute;
+      right: -10px;
+      bottom: -20px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 120px;
       font-weight: 900;
+      color: rgba(216, 200, 160, 0.12);
+      pointer-events: none;
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
+
+    .hero-giant-stat {
+      font-family: 'Courier Prime', monospace;
+      font-size: 96px;
+      font-weight: 900;
+      line-height: 0.85;
+      color: var(--ink-red, #c92a2a);
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .hero-giant-lbl {
+      font-family: 'Courier Prime', monospace;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--ink-charcoal, #1a1210);
+      margin-top: 8px;
+    }
+
+    .hero-cascade-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px dashed var(--paper-border, #d8c8a0);
+    }
+    .hero-cascade-box {
+      background: #fdfaf5;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 10px 16px;
+      text-align: center;
+      min-width: 160px;
+    }
+    .hero-cascade-val {
+      font-family: 'Courier Prime', monospace;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--ink-charcoal, #1a1210);
+    }
+    .hero-cascade-lbl {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-light, #666);
+      margin-top: 2px;
+    }
+
+    /* Gender Comparison Progress Bars */
+    .gender-bar-card {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+    .gender-bar-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Courier Prime', monospace;
+      font-size: 12px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .gender-bar-track {
+      background: #e8e2d8;
+      height: 20px;
+      position: relative;
+    }
+    .gender-bar-fill {
+      height: 100%;
+      transition: width 0.8s ease;
+    }
+    .fill-female { background: #c92a2a; }
+    .fill-male { background: #1a1210; }
+    .fill-tg { background: #d97706; }
+
+    /* Flow Diagram Box */
+    .flow-diagram-box {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 18px;
+      font-family: 'Courier Prime', monospace;
+    }
+    .flow-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--paper-border, #d8c8a0);
+      font-size: 12.5px;
+    }
+    .flow-item:last-child { border-bottom: none; }
+
+    /* Record Match Panels */
+    .match-panel-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      align-items: center;
+    }
+    @media (max-width: 600px) { .match-panel-grid { grid-template-columns: 1fr; } }
+    .match-box {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 16px;
+      text-align: center;
+      font-family: 'Courier Prime', monospace;
+    }
+    .match-val { font-size: 20px; font-weight: 900; color: var(--ink-charcoal, #1a1210); }
+    .match-lbl { font-size: 10px; text-transform: uppercase; color: #666; margin-top: 4px; }
+    .match-badge {
+      background: #ebfbee;
+      border: 1px solid #2b8a3e;
+      color: #2b8a3e;
+      font-family: 'Courier Prime', monospace;
+      font-size: 12px;
+      font-weight: 900;
+      padding: 10px 14px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    /* Archival Table matching Findings 1-6 */
+    .archival-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 12.5px;
+      margin: 14px 0;
+    }
+    .archival-table th {
+      background: var(--ink-charcoal, #1a1210);
+      color: #fff;
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    .archival-table th.text-right { text-align: right; }
+    .archival-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+    }
+    .archival-table td.text-right { text-align: right; }
+    .archival-table tr:nth-child(even) td { background: #fcf9f4; }
+    .archival-table tr:hover td { background: rgba(192,0,26,0.05); }
+
+    /* Timeline */
+    .timeline-archive {
+      position: relative;
+      padding-left: 24px;
+      margin: 14px 0;
+    }
+    .timeline-archive::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--paper-border, #d8c8a0);
+    }
+    .timeline-node {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .timeline-node:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -21px;
+      top: 3px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--ink-charcoal, #1a1210);
+    }
+    .timeline-node.final-node .timeline-dot {
+      background: var(--ink-red, #c92a2a);
+      width: 14px;
+      height: 14px;
+      left: -23px;
+    }
+    .timeline-time {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: bold;
+      color: var(--ink-red, #c92a2a);
+    }
+    .timeline-heading {
+      font-family: 'Courier Prime', monospace;
+      font-size: 13.5px;
+      font-weight: bold;
+      color: var(--ink-charcoal, #1a1210);
+    }
+    .timeline-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      color: #444;
+      margin-top: 2px;
+    }
+
+    /* Documentation Box */
+    .doc-box {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 16px 20px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #333;
+    }
+    .doc-box ul { margin: 6px 0 0 0; padding-left: 18px; }
+    .doc-box li { margin-bottom: 6px; }
+
+    /* Newspaper Mini Footer */
+    .newspaper-footer-mini {
+      text-align: center;
+      padding: 20px 0 10px 0;
+      border-top: 2px double var(--paper-border, #d8c8a0);
+      margin-top: 25px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      color: var(--ink-light, #666);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
   </style>
 </head>
 <body>
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
+  <div class="container">
 
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
-    
-    <!-- NEWSPAPER MASTHEAD -->
+    <!-- NEWSPAPER MASTHEAD (MATCHING FINDINGS 1-6) -->
     <header class="masthead">
-      <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; ASSEMBLY ELECTION SPECIAL</span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
-
-      <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
           <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
@@ -96,109 +468,423 @@
           <span class="title-tamil-sub">தமிழ்நாடு தேர்தல் பதிவேடு &middot; 2026</span>
         </div>
       </div>
-
-      <!-- Dateline Bar -->
       <div class="dateline">
         <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 07</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span id="liveDateTime">Monday, July 27, 2026</span>
+        <span>✦ SPECIAL ELECTORATE &amp; TURNOUT REVIEW ✦</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Assembly Seats</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #07</div>
-          <h2 class="article-headline lead-broadside">TVK Coalition Majority</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">The newly aligned TVK coalition secured a total of 107 seats in the legislative assembly, establishing a dominant position as the largest single legislative bloc in the state following the 2026 elections.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">This performance enabled the coalition to form the new government with legislative support from other post-poll allies. The alliance made significant inroads into traditional strongholds, shifting the state's political map.</p>
-            <p style="margin-bottom:0; text-indent:20px;">The consolidation of 107 seats represents a major political transition for Tamil Nadu, marking the first time the state administration is led by the TVK coalition and changing the traditional bipolar setup.</p>
-          </div>
+    <section class="np-page active">
+
+      <!-- Navigation & Language Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <div style="display: flex; gap: 8px;">
+          <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> <span id="lbl_back">Index</span></a>
+          <button class="lang-toggle-btn" id="langToggleBtn" onclick="togglePageLanguage()">English / தமிழ்</button>
         </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">107 Seats</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
+        <div style="font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light); text-align:right;">
+          SPECIAL DATA FINDING #7 &middot; STATEWIDE TURNOUT
         </div>
-
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">சட்டமன்ற இடங்கள்</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #07</div>
-          <h2 class="article-headline lead-broadside">தவெக கூட்டணியின் இடங்கள்</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">புதிய தவெக கூட்டணி சட்டமன்றத்தில் 107 இடங்களைக் கைப்பற்றி, தனிப்பெரும் கூட்டணியாகத் தங்களை நிலைநிறுத்தியுள்ளது. இது மாநிலத்தின் புதிய அரசியல் அத்தியாயத்தின் தொடக்கமாகும்.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">இத்தகைய சிறப்பான வெற்றி, மற்ற தேர்தல் பிந்தைய கூட்டணிகளுடன் இணைந்து புதிய அரசை அமைக்க வழிவகுத்தது. பாரம்பரியக் கோட்டைகளாகக் கருதப்பட்ட பல தொகுதிகளில் இக்கூட்டணி வெற்றி பெற்றுள்ளது.</p>
-            <p style="margin-bottom:0; text-indent:20px;">107 இடங்களை வென்றுள்ள தவெக கூட்டணி, தமிழ்நாட்டின் பாரம்பரிய இருமுனை அரசியல் களத்தை மாற்றி அமைத்து, புதிய ஆட்சி அதிகாரத்தை அமைத்துள்ளது.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">107 இடங்கள்</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- Header Banner matching Findings 1-6 -->
+      <div class="hero-sub-banner" style="background: var(--ink-charcoal);">SPECIAL DATA FINDING #7</div>
+      <h2 class="article-headline" style="font-size:28px; line-height:1.15; color:var(--ink-red-dark); font-weight:900; margin-bottom:8px;" id="lbl_main_headline">
+        WHEN TAMIL NADU VOTED LIKE NEVER BEFORE
+      </h2>
+      <div class="hero-subheading" style="font-size:13.5px; line-height:1.5; margin-bottom:14px;" id="lbl_main_subheadline">
+        86.03% — More Than 49.3 Million Citizens Cast Their Vote, Producing Tamil Nadu's Highest Certified Turnout of the 2026 Election
       </div>
-    </div>
+      <div class="byline" style="margin-bottom:16px;">By Data Investigations Unit &middot; Special Electorate Review</div>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
+      <!-- HERO SECTION -->
+      <div class="section-full-width">
+        <div class="hero-stat-banner">
+          <div class="hero-giant-stat" id="counter_hero_turnout">86.03%</div>
+          <div class="hero-giant-lbl">Official Final Turnout &middot; Tamil Nadu Assembly Election 2026</div>
 
+          <div class="hero-cascade-row">
+            <div class="hero-cascade-box">
+              <div class="hero-cascade-val">57.41M</div>
+              <div class="hero-cascade-lbl">Registered Electors</div>
+            </div>
+            <div style="font-size:18px; color:var(--ink-red); font-weight:900;">↓</div>
+            <div class="hero-cascade-box">
+              <div class="hero-cascade-val">49.39M</div>
+              <div class="hero-cascade-lbl">Citizens Cast Vote</div>
+            </div>
+            <div style="font-size:18px; color:var(--ink-red); font-weight:900;">↓</div>
+            <div class="hero-cascade-box">
+              <div class="hero-cascade-val">234</div>
+              <div class="hero-cascade-lbl">Constituencies</div>
+            </div>
+            <div style="font-size:18px; color:var(--ink-red); font-weight:900;">↓</div>
+            <div class="hero-cascade-box" style="background:#fff5f5; border-color:#e03131;">
+              <div class="hero-cascade-val" style="color:var(--ink-red);">86.03%</div>
+              <div class="hero-cascade-lbl" style="color:var(--ink-red); font-weight:bold;">Official Final Turnout</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURE ARTICLE -->
+      <div class="section-full-width">
+        <div class="section-head"><i class="fa-solid fa-newspaper"></i> <span>Feature Article &middot; A State That Turned Out in Record Numbers</span></div>
+        <p class="paragraph-body" id="lbl_feature_p1">
+          <span class="dropcap">D</span>emocracy is measured not only by who wins an election, but also by how many people choose to participate in it. The 2026 Tamil Nadu Assembly Election recorded an official voter turnout of 86.03%, with 49,389,958 citizens casting their ballots out of 57,411,793 registered electors. Verified using the Election Commission of India's certified records and independently reproduced from our BigQuery warehouse, this figure reflects one of the highest levels of electoral participation recorded in the state.
+        </p>
+        <p class="paragraph-body" id="lbl_feature_p2">
+          Every constituency contributed to this statewide participation. From urban centres to rural communities, millions of voters took part in choosing the next Legislative Assembly. The final certified turnout demonstrates the scale of civic engagement across Tamil Nadu.
+        </p>
+      </div>
+
+      <!-- SECTION 1: Election at a Glance (6 Statistic Cards) -->
+      <div class="section-full-width">
+        <div class="section-head"><i class="fa-solid fa-square-poll-vertical"></i> <span>Section 1 &middot; Election at a Glance</span></div>
+        <div class="hero-stats-grid-6">
+          <div class="hero-stat-card">
+            <div class="hero-stat-number">86.03%</div>
+            <div class="hero-stat-label">Official Turnout</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-number" style="color: var(--ink-charcoal);">57.41M</div>
+            <div class="hero-stat-label">Registered Electors</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-number" style="color: var(--ink-charcoal);">49.39M</div>
+            <div class="hero-stat-label">Total Votes Cast</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-number" style="color: var(--ink-charcoal);">234</div>
+            <div class="hero-stat-label">Constituencies</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-number" style="color: var(--ink-charcoal);">586,954</div>
+            <div class="hero-stat-label">Postal Votes</div>
+          </div>
+          <div class="hero-stat-card" style="background: #ebfbee; border-color: #2b8a3e;">
+            <div class="hero-stat-number" style="color: #2b8a3e; font-size: 20px;">Exact Match</div>
+            <div class="hero-stat-label" style="color: #2b8a3e;">BigQuery Verified</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: The Participation Story & SECTION 3: Women Led the Turnout (2-Column Row) -->
+      <div class="section-row-2col equal-cols">
+        <!-- Section 2: The Participation Story -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-diagram-project"></i> <span>Section 2 &middot; The Participation Story</span></div>
+          <div style="background:#fff; border:1px solid var(--paper-border); padding:20px; text-align:center;">
+            <div style="font-family:'Courier Prime',monospace; font-size:24px; font-weight:900;">57,411,793</div>
+            <div style="font-family:'Courier Prime',monospace; font-size:10px; color:#666; text-transform:uppercase;">Registered Electors</div>
+
+            <div style="font-size:20px; color:var(--ink-red); margin:10px 0;">↓</div>
+
+            <div style="font-family:'Courier Prime',monospace; font-size:24px; font-weight:900;">49,389,958</div>
+            <div style="font-family:'Courier Prime',monospace; font-size:10px; color:#666; text-transform:uppercase;">Citizens Voted</div>
+
+            <div style="font-size:20px; color:var(--ink-red); margin:10px 0;">↓</div>
+
+            <div style="background:var(--ink-charcoal); color:#ffe066; padding:12px; font-family:'Courier Prime',monospace;">
+              <div style="font-size:36px; font-weight:900;">86.03%</div>
+              <div style="font-size:10px; color:#fff; text-transform:uppercase;">Official Turnout</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Women Led the Turnout -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-venus-mars"></i> <span>Section 3 &middot; Women Led the Turnout</span></div>
+          
+          <div class="gender-bar-card">
+            <div class="gender-bar-header">
+              <span>Female Turnout &middot; 86.20%</span>
+              <span>25,261,339 Votes</span>
+            </div>
+            <div class="gender-bar-track">
+              <div class="gender-bar-fill fill-female" style="width: 86.20%;"></div>
+            </div>
+          </div>
+
+          <div class="gender-bar-card">
+            <div class="gender-bar-header">
+              <span>Male Turnout &middot; 83.77%</span>
+              <span>23,537,143 Votes</span>
+            </div>
+            <div class="gender-bar-track">
+              <div class="gender-bar-fill fill-male" style="width: 83.77%;"></div>
+            </div>
+          </div>
+
+          <div class="gender-bar-card">
+            <div class="gender-bar-header">
+              <span>Third Gender Turnout &middot; 58.46%</span>
+              <span>4,518 Votes</span>
+            </div>
+            <div class="gender-bar-track">
+              <div class="gender-bar-fill fill-tg" style="width: 58.46%;"></div>
+            </div>
+          </div>
+
+          <p class="paragraph-body" style="font-size:13.5px; margin-top:10px;" id="lbl_women_story">
+            Women recorded a higher turnout than men across Tamil Nadu. Out of 234 Assembly constituencies, female turnout exceeded male turnout in 169 constituencies, while male turnout was higher in 65 constituencies, highlighting the significant contribution of women to the state's electoral participation.
+          </p>
+        </div>
+      </div>
+
+      <!-- SECTION 4: Following Every Vote & SECTION 5: Postal Ballots (2-Column Row) -->
+      <div class="section-row-2col equal-cols">
+        <!-- Section 4: Following Every Vote -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-list-check"></i> <span>Section 4 &middot; Following Every Vote</span></div>
+          
+          <div class="flow-diagram-box">
+            <div class="flow-item">
+              <span>Total Votes Cast</span>
+              <strong>49,389,958</strong>
+            </div>
+            <div class="flow-item">
+              <span>Valid Votes</span>
+              <span>49,124,320</span>
+            </div>
+            <div class="flow-item">
+              <span>NOTA Votes</span>
+              <span>199,805</span>
+            </div>
+            <div class="flow-item">
+              <span>Rejected Postal Ballots</span>
+              <span>65,047</span>
+            </div>
+            <div class="flow-item">
+              <span>Rejected EVM Votes</span>
+              <span>786</span>
+            </div>
+            <div class="flow-item" style="background:#f8f9fa; border-top:2px solid var(--ink-charcoal); margin-top:6px; padding-top:8px;">
+              <span>Verified Total</span>
+              <strong style="color:var(--ink-red); font-size:14px;">49,389,958</strong>
+            </div>
+          </div>
+
+          <div class="doc-box" style="font-size:12.5px; margin-top:10px;">
+            The reconciliation of votes from the BigQuery warehouse exactly matches the certified Election Commission total, demonstrating complete accounting of the reported votes.
+          </div>
+        </div>
+
+        <!-- Section 5: Postal Ballots -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-envelope-open-text"></i> <span>Section 5 &middot; Postal Ballots</span></div>
+          
+          <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px; margin-bottom:14px;">
+            <div style="background:#fff; border:1px solid var(--paper-border); padding:10px; text-align:center;">
+              <div style="font-family:'Courier Prime',monospace; font-size:18px; font-weight:900;">586,954</div>
+              <div style="font-family:'Courier Prime',monospace; font-size:8.5px; color:#666; text-transform:uppercase;">Postal Received</div>
+            </div>
+            <div style="background:#fff; border:1px solid var(--paper-border); padding:10px; text-align:center;">
+              <div style="font-family:'Courier Prime',monospace; font-size:18px; font-weight:900; color:var(--ink-red);">65,047</div>
+              <div style="font-family:'Courier Prime',monospace; font-size:8.5px; color:#666; text-transform:uppercase;">Rejected Ballots</div>
+            </div>
+            <div style="background:#fff; border:1px solid var(--paper-border); padding:10px; text-align:center;">
+              <div style="font-family:'Courier Prime',monospace; font-size:18px; font-weight:900; color:var(--ink-red);">11.08%</div>
+              <div style="font-family:'Courier Prime',monospace; font-size:8.5px; color:#666; text-transform:uppercase;">Rejection Rate</div>
+            </div>
+          </div>
+
+          <p class="paragraph-body" style="font-size:13.5px;" id="lbl_postal_story">
+            Postal ballots formed an important part of the final certified count. Of the 586,954 postal ballots, 65,047 were rejected during the official scrutiny process, resulting in an overall rejection rate of 11.08%.
+          </p>
+        </div>
+      </div>
+
+      <!-- SECTION 6: Where Voter Participation Was Highest -->
+      <div class="section-full-width">
+        <div class="section-head"><i class="fa-solid fa-ranking-star"></i> <span>Section 6 &middot; Where Voter Participation Was Highest</span></div>
+        
+        <table class="archival-table">
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>AC No</th>
+              <th>Constituency Name</th>
+              <th class="text-right">Official Turnout %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>135</td>
+              <td><strong>Karur</strong></td>
+              <td class="text-right"><strong>94.44%</strong></td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>91</td>
+              <td><strong>Veerapandi</strong></td>
+              <td class="text-right"><strong>94.27%</strong></td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>103</td>
+              <td><strong>Perundurai</strong></td>
+              <td class="text-right"><strong>93.76%</strong></td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>137</td>
+              <td><strong>Kulithalai</strong></td>
+              <td class="text-right"><strong>93.69%</strong></td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>87</td>
+              <td><strong>Sankari</strong></td>
+              <td class="text-right"><strong>93.64%</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SECTION 7: Matching the Official Record -->
+      <div class="section-full-width">
+        <div class="section-head"><i class="fa-solid fa-certificate"></i> <span>Section 7 &middot; Matching the Official Record</span></div>
+        
+        <div class="match-panel-grid">
+          <div class="match-box">
+            <div style="font-size:10px; color:#888; text-transform:uppercase; margin-bottom:4px;">BigQuery Calculation</div>
+            <div class="match-val">49,389,958 &divide; 57,411,793 &times; 100</div>
+            <div class="match-lbl" style="font-size:16px; font-weight:bold; color:var(--ink-red); margin-top:6px;">= 86.03%</div>
+          </div>
+
+          <div class="match-badge">
+            <i class="fa-solid fa-circle-check"></i> VERIFIED<br>Exact Match
+          </div>
+
+          <div class="match-box">
+            <div style="font-size:10px; color:#888; text-transform:uppercase; margin-bottom:4px;">Official ECI Report</div>
+            <div class="match-val" style="font-size:32px; color:var(--ink-red);">86.03%</div>
+            <div class="match-lbl">Certified Final Output</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 8: From Polling Day to Final Certification -->
+      <div class="section-full-width">
+        <div class="section-head"><i class="fa-solid fa-timeline"></i> <span>Section 8 &middot; From Polling Day to Final Certification</span></div>
+        
+        <div class="timeline-archive">
+          <div class="timeline-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">Polling Day</div>
+            <div class="timeline-heading">Initial Polling Day Estimate &middot; 85.10%</div>
+            <div class="timeline-text">Election Commission initially released an estimated polling-day figure of 85.10%.</div>
+          </div>
+          <div class="timeline-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">Post-Poll Audit</div>
+            <div class="timeline-heading">Postal Ballots Processed</div>
+            <div class="timeline-text">Scrutiny and reconciliation of 586,954 postal ballots across all 234 divisions.</div>
+          </div>
+          <div class="timeline-node final-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">Final Certification</div>
+            <div class="timeline-heading">Final Certified Turnout &middot; 86.03%</div>
+            <div class="timeline-text">Final official turnout confirmed at 86.03%. This report uses the certified figure throughout.</div>
+          </div>
+        </div>
+
+        <p class="paragraph-body" style="font-size:13.5px;" id="lbl_timeline_story">
+          The Election Commission initially released a polling-day estimate of 85.10%. After the completion of postal ballot processing and final certification, the official turnout was confirmed at 86.03%. This report uses the final certified figure throughout.
+        </p>
+      </div>
+
+      <!-- SECTION 9: Methodology & SECTION 10: Limitations (2-Column Row) -->
+      <div class="section-row-2col equal-cols">
+        <!-- Section 9: Methodology -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-flask"></i> <span>Section 9 &middot; Methodology</span></div>
+          <div class="doc-box">
+            <ul>
+              <li>Source: Election Commission of India ST4895 reports.</li>
+              <li>Independent verification using BigQuery <code>fact_turnout_2026</code>.</li>
+              <li>Calculations performed using aggregated constituency-level data.</li>
+              <li>Vote reconciliation matched the certified statewide totals exactly.</li>
+              <li>All figures rounded to two decimal places where applicable.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Section 10: Limitations -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-triangle-exclamation"></i> <span>Section 10 &middot; Limitations</span></div>
+          <div class="doc-box">
+            <ul>
+              <li>Analysis is based on constituency-level aggregate data.</li>
+              <li>Individual voter-level records are not available.</li>
+              <li>Polling station statistics are sourced from the official ECI publication rather than the BigQuery warehouse.</li>
+              <li>Historical comparisons should rely on official ECI historical records.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- EDITORIAL CONCLUSION -->
+      <div class="section-full-width" style="border-bottom:none;">
+        <div class="section-head"><i class="fa-solid fa-feather"></i> <span>Editorial Conclusion &middot; A Record of Participation</span></div>
+        <div class="doc-box" style="text-align:center; background:#fff; font-style:italic; font-size:15.5px; line-height:1.8; border:2px double var(--paper-border);" id="lbl_conclusion_text">
+          The story of the 2026 Tamil Nadu Assembly Election extends beyond the final seat count. It is also a story of participation. With 49.39 million citizens casting their ballots and an officially certified turnout of 86.03%, the election demonstrated the scale of democratic engagement across the state. Independent verification against our BigQuery warehouse reproduced the Election Commission's official turnout exactly, reinforcing the accuracy of the published record. Every constituency contributed to this collective expression of democracy, making voter participation one of the defining features of the 2026 election.
+        </div>
+      </div>
+
+      <!-- Mini Newspaper Footer matching Findings 1-6 -->
+      <footer class="newspaper-footer-mini">
+        THE PEOPLE'S LEDGER &middot; SPECIAL ELECTORATE &amp; TURNOUT REVIEW &middot; FINDING #7 &middot; TAMIL NADU 2026
+      </footer>
+
+    
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_06.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 6</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #7</span>
+        <a href="finding_08.html" class="back-btn">Finding 8 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+    </section>
   </div>
 
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    let currentLang = 'en';
+
+    function updateDateTime() {
+      const el = document.getElementById('liveDateTime');
+      if (el) el.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function togglePageLanguage() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const btn = document.getElementById('langToggleBtn');
+      if (btn) btn.innerText = currentLang === 'en' ? 'English / தமிழ்' : 'தமிழ் / English';
+
+      if (currentLang === 'ta') {
+        document.body.classList.add('lang-ta');
+        document.getElementById('lbl_back').innerText = 'பட்டியல்';
+        document.getElementById('lbl_main_headline').innerText = 'தமிழகம் இதுவரை காணாத வாக்குப்பதிவு சாதனை';
+        document.getElementById('lbl_main_subheadline').innerText = '86.03% — 2026 தேர்தலின் அதிகாரப்பூர்வ வரலாற்றுச் சாதனை வாக்குப்பதிவு';
+      } else {
+        document.body.classList.remove('lang-ta');
+        document.getElementById('lbl_back').innerText = 'Index';
+        document.getElementById('lbl_main_headline').innerText = 'WHEN TAMIL NADU VOTED LIKE NEVER BEFORE';
+        document.getElementById('lbl_main_subheadline').innerText = '86.03% — More Than 49.3 Million Citizens Cast Their Vote, Producing Tamil Nadu\'s Highest Certified Turnout of the 2026 Election';
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', updateDateTime);
+    } else {
+      updateDateTime();
     }
   </script>
 </body>

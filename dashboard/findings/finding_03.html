@@ -3,90 +3,300 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 03 Special Edition</title>
-  
-  <!-- Fonts -->
+  <title>NOTA EXCEEDED THE VICTORY MARGIN IN 11 CONSTITUENCIES — The People's Ledger</title>
+  <meta name="description" content="An investigation into 199,801 NOTA votes across Tamil Nadu's 234 assembly constituencies in 2026 — where voter rejection outpaced the margin of victory in 11 seats.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
+
+  <!-- CSS imports matching index.html and finding_01/02.html -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    /* Full-width balanced newspaper grid styling */
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal);
+      padding: 0;
+      margin: 0;
+      width: 100%;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
     }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Top Hero Stat Cards Grid (4-columns full width) */
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0 22px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 850px) {
+      .hero-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .hero-stats-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Balanced 2-Column Section Rows */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols {
+      grid-template-columns: 1fr 1fr;
+    }
+    .section-row-2col.custom-10-12 {
+      grid-template-columns: 1fr 1.25fr;
+    }
+    /* Full-width single section */
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-full-width .section-head {
+      width: 100%;
+    }
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols, .section-row-2col.custom-10-12 {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14.5px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+    }
+
+    .paragraph-body:first-of-type {
+      text-indent: 0;
+    }
+
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue);
       text-decoration: none;
+      border: 1px solid var(--paper-border);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
-      cursor: pointer;
+      letter-spacing: 0.5px;
     }
+
     .back-btn:hover {
       background: var(--ink-red);
       color: #fff;
+      border-color: var(--ink-red);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
-      display: block;
+    .lang-toggle-btn:hover {
+      background: var(--ink-red);
+      border-color: var(--ink-red);
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    /* Tables */
+    .archival-table { width: 100%; border-collapse: collapse; font-family: 'Playfair Display', Georgia, serif; font-size: 12.5px; margin: 12px 0; }
+    .archival-table th { background: var(--ink-charcoal); color: #fff; font-family: 'Courier Prime', monospace; font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 10px; text-align: left; }
+    .archival-table td { padding: 7px 10px; border-bottom: 1px solid var(--paper-border); }
+    .archival-table tr:nth-child(even) td { background: #fcf9f4; }
+    .archival-table tr:hover td { background: #f5efe4; }
+    .archival-table .text-right { text-align: right; }
+    .archival-table .strong { font-weight: 700; }
+    .archival-table .red { color: var(--ink-red); }
+    .archival-table .green { color: #0e7a2e; }
+
+    /* Hero stat cards */
+    .hero-stat-card {
+      background: #fff;
+      border: 1px solid var(--paper-border);
+      padding: 14px 16px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .hero-stat-number {
+      font-family: 'Courier Prime', monospace;
+      font-size: 32px;
       font-weight: 900;
+      color: var(--ink-red);
+      line-height: 1.1;
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
+    .hero-stat-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-top: 4px;
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+
+    /* Section headings */
+    .section-head {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: var(--ink-charcoal);
+      border-bottom: 2px solid var(--ink-charcoal);
+      padding-bottom: 5px;
+      margin-bottom: 14px;
+    }
+    .section-head .section-head-subtitle {
+      display: block;
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: var(--ink-light);
+      font-weight: normal;
+      margin-top: 2px;
+    }
+
+    /* Caution box */
+    .caution-box {
+      background: #fdfaf3;
+      border: 1px solid #d4b867;
+      padding: 14px 18px;
+      margin-top: 16px;
+    }
+    .caution-box-head {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #8b6f19;
+      margin-bottom: 8px;
+      border-bottom: 1px dashed #d4b867;
+      padding-bottom: 6px;
+    }
+
+    /* Pagination */
+    .table-pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      color: var(--ink-light);
+    }
+    .table-pagination button {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      background: var(--paper-bg-warm);
+      border: 1px solid var(--paper-border);
+      padding: 3px 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.15s ease;
+    }
+    .table-pagination button:hover { background: var(--ink-red); color: #fff; border-color: var(--ink-red); }
+    .table-pagination button:disabled { opacity: 0.4; cursor: default; }
+    .table-pagination button:disabled:hover { background: var(--paper-bg-warm); color: var(--ink-charcoal); border-color: var(--paper-border); }
+
+    /* Case study box */
+    .case-study-box {
+      background: #faf6ee;
+      border: 2px solid var(--ink-charcoal);
+      padding: 18px 22px;
+      margin: 16px 0;
+    }
+    .case-study-box .case-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 18px;
+      font-weight: 900;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--paper-border);
+      padding-bottom: 8px;
+    }
+    .case-study-box .case-stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .case-study-box .case-stat {
+      text-align: center;
+      padding: 8px;
+      background: #fff;
+      border: 1px solid var(--paper-border);
+    }
+    .case-study-box .case-stat .val {
+      font-family: 'Courier Prime', monospace;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--ink-red);
+    }
+    .case-study-box .case-stat .lbl {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-light);
+      margin-top: 2px;
     }
   </style>
 </head>
 <body>
-
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
-
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
-    
+  <div class="container">
     <!-- NEWSPAPER MASTHEAD -->
     <header class="masthead">
-      <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
-        <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; ASSEMBLY ELECTION SPECIAL</span>
+        <span style="cursor:pointer;font-size:11px;letter-spacing:1px" onclick="togglePageLanguage()">
+          &#127760; <span id="langToggleBtnText">தமிழ் பதிப்பு</span>
+        </span>
+        <span>FINDING #3 &middot; SPECIAL DATA INVESTIGATION</span>
       </div>
-
-      <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
           <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
@@ -96,109 +306,437 @@
           <span class="title-tamil-sub">தமிழ்நாடு தேர்தல் பதிவேடு &middot; 2026</span>
         </div>
       </div>
-
-      <!-- Dateline Bar -->
       <div class="dateline">
-        <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 03</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span>VOL. LXXVI &middot; FINDING 3</span>
+        <span id="liveDateTime"></span>
+        <span>✦ NOTA ANALYSIS &middot; ELECTORAL EVIDENCE SERIES ✦</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Demography Analysis</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #03</div>
-          <h2 class="article-headline lead-broadside">Female Turnout Advantage</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">In exactly 165 out of the 234 assembly segments, the percentage of female voter turnout outpaced that of male voters. This marked gender advantage highlights the growing political assertiveness and voting independence of women across the state.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">Rural districts in the southern and western belts saw some of the most pronounced female turnout gaps. Women turned out in greater proportions to express their priorities regarding social security, local infrastructure, and welfare schemes.</p>
-            <p style="margin-bottom:0; text-indent:20px;">Political observers suggest that the high female turnout was a major factor in determining victory margins in tight multi-cornered contests, forcing political coalitions to dedicate significant portions of their manifestos to gender-focused policies.</p>
-          </div>
-        </div>
+    <section class="np-page active">
 
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">165 Seats</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
-        </div>
-
+      <!-- BACK & LANG TOGGLE ROW -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <a href="../index.html" class="back-btn" id="lbl_back"><i class="fa-solid fa-arrow-left"></i> Index</a>
+        <button class="lang-toggle-btn" id="langToggleBtn" onclick="togglePageLanguage()">English / தமிழ்</button>
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">மக்கள் தொகை பகுப்பாய்வு</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #03</div>
-          <h2 class="article-headline lead-broadside">பெண்களின் கூடுதல் வாக்குப்பதிவு</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">தமிழகத்தின் 234 சட்டமன்றத் தொகுதிகளில் 165 தொகுதிகளில் பெண் வாக்காளர்களின் வாக்குப்பதிவு சதவீதம் ஆண்களை விட அதிகமாக பதிவாகி சாதனை படைத்துள்ளது. இது பெண்களின் அரசியல் ஈடுபாட்டையும் விழிப்புணர்வையும் காட்டுகிறது.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">தெற்கு மற்றும் மேற்கு மண்டலங்களில் உள்ள கிராமப்புறங்களில் பெண்களின் பங்களிப்பு மிக அதிகமாக இருந்தது. சமூகப் பாதுகாப்பு, உள்ளூர் உள்கட்டமைப்பு மற்றும் நலத்திட்டங்கள் தொடர்பான விவாதங்களே இவர்களை பெருமளவில் பங்கேற்கச் செய்தன.</p>
-            <p style="margin-bottom:0; text-indent:20px;">பெண்களின் இந்த அதிகப்படியான வாக்குப்பதிவு, பல தொகுதிகளின் வெற்றியைத் தீர்மானிப்பதில் முக்கிய காரணியாக இருந்ததுடன், கட்சிகளை அவர்களின் கொள்கைகளில் பெண்களுக்கான திட்டங்களை அதிகரிக்கச் செய்தது.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">165 தொகுதிகள்</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- MAIN HEADLINE -->
+      <div style="border-bottom: 3px double var(--ink-charcoal); padding-bottom: 14px; margin-bottom: 8px;">
+        <h1 id="lbl_main_headline" style="font-family: 'Playfair Display', Georgia, serif; font-size: 30px; font-weight: 900; line-height: 1.15; text-transform: uppercase; margin: 0;">
+          NOTA EXCEEDED THE VICTORY MARGIN IN <span id="dyn_headline_count">11</span> CONSTITUENCIES
+        </h1>
+        <p id="lbl_main_subheadline" style="font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-style: italic; color: var(--ink-gray); margin: 8px 0 0 0; line-height: 1.5;">
+          Across 234 assembly seats, <span id="dyn_sub_total_nota">199,801</span> voters chose None of the Above — a statewide rejection rate of <span id="dyn_sub_nota_pct">0.41%</span>. In 11 constituencies, that protest count was larger than the margin separating winner from runner-up.
+        </p>
       </div>
-    </div>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
+      <!-- HERO STATS ROW -->
+      <div class="hero-stats-grid">
+        <div class="hero-stat-card">
+          <div class="hero-stat-number" id="hero_total_nota">199,801</div>
+          <div class="hero-stat-label">Total NOTA Votes</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-number" id="hero_nota_pct">0.41%</div>
+          <div class="hero-stat-label">Statewide NOTA Share</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-number" id="hero_margin_count" style="color: #b80016;">11</div>
+          <div class="hero-stat-label">Seats: NOTA &gt; Margin</div>
+        </div>
+        <div class="hero-stat-card">
+          <div class="hero-stat-number" id="hero_highest_nota">1.03%</div>
+          <div class="hero-stat-label">Highest NOTA Rate</div>
+        </div>
+      </div>
 
+
+      <!-- ====== SECTION 1: STATEWIDE SUMMARY + TOP NOTA TABLE ====== -->
+      <div class="section-row-2col">
+        <div>
+          <div class="section-head">
+            <span>1. The Scale of Rejection</span>
+            <span class="section-head-subtitle">Statewide NOTA Summary</span>
+          </div>
+          <p class="paragraph-body" style="text-indent:0;">
+            Across all 234 assembly constituencies in the 2026 Tamil Nadu elections, a total of <strong id="txt_total_nota">199,801</strong> voters pressed the NOTA button — choosing to formally reject every candidate on the ballot. This represented <strong id="txt_weighted_pct">0.41%</strong> of the <strong id="txt_total_votes">49,324,119</strong> total votes cast (including NOTA).
+          </p>
+          <p class="paragraph-body">
+            The mean constituency-level NOTA rate was <strong id="txt_mean_pct">0.41%</strong>. The highest NOTA rate was recorded in <strong id="txt_highest_name">Udhagamandalam</strong> (<span id="txt_highest_district">The Nilgiris</span>) at <strong id="txt_highest_pct">1.03%</strong>, while the lowest was <strong id="txt_lowest_name">Mailam</strong> (<span id="txt_lowest_district">Viluppuram</span>) at just <strong id="txt_lowest_pct">0.16%</strong>.
+          </p>
+          <p class="paragraph-body">
+            While NOTA's absolute share appears small, its significance emerges when measured against victory margins. Under India's First-Past-The-Post (FPTP) system, even a single-vote margin is fully decisive. NOTA does not transfer to any candidate, nor does it invalidate a result. It is a metric of voter rejection — not an electoral reset mechanism.
+          </p>
+        </div>
+        <div>
+          <div class="section-head">
+            <span>Top 10 Highest NOTA Rate</span>
+            <span class="section-head-subtitle">Constituencies by NOTA %</span>
+          </div>
+          <table class="archival-table" id="tblTopNota">
+            <thead>
+              <tr>
+                <th>Constituency</th>
+                <th>District</th>
+                <th class="text-right">NOTA</th>
+                <th class="text-right">NOTA %</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyTopNota"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- ====== SECTION 2: 11-SEAT MARGIN TABLE (full width) ====== -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span>2. The 11-Seat Margin Investigation</span>
+          <span class="section-head-subtitle">Constituencies Where NOTA Votes Exceeded the Victory Margin</span>
+        </div>
+        <p class="paragraph-body" style="text-indent:0; max-width: 900px;">
+          In <strong id="txt_margin_count">11</strong> of 234 constituencies (<strong id="txt_margin_pct">4.70%</strong>), the number of NOTA votes was larger than the margin separating the winner from the runner-up. This does <em>not</em> mean NOTA changed any result. Under FPTP rules, a 1-vote lead is as decisive as a 100,000-vote lead. What these numbers reveal is the <em>scale of visible voter dissatisfaction</em> relative to the closeness of the contest.
+        </p>
+        <table class="archival-table" id="tblMargin">
+          <thead>
+            <tr>
+              <th>AC</th>
+              <th>Constituency</th>
+              <th>District</th>
+              <th>Winner</th>
+              <th>Party</th>
+              <th>Runner-Up</th>
+              <th>Party</th>
+              <th class="text-right">Margin</th>
+              <th class="text-right">NOTA</th>
+              <th class="text-right">NOTA Above</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyMargin"></tbody>
+        </table>
+      </div>
+
+
+      <!-- ====== SECTION 3: TIRUPPATTUR CASE + BOTTOM NOTA TABLE ====== -->
+      <div class="section-row-2col">
+        <div>
+          <div class="section-head">
+            <span>3. Case Study: Tiruppattur (AC 185)</span>
+            <span class="section-head-subtitle">The Narrowest Margin, The Largest NOTA Shadow</span>
+          </div>
+          <div class="case-study-box">
+            <div class="case-title" id="case_title">Tiruppattur — Sivaganga District</div>
+            <div class="case-stat-row">
+              <div class="case-stat">
+                <div class="val" id="case_margin">1</div>
+                <div class="lbl">Victory Margin</div>
+              </div>
+              <div class="case-stat">
+                <div class="val" id="case_nota">747</div>
+                <div class="lbl">NOTA Votes</div>
+              </div>
+              <div class="case-stat">
+                <div class="val" id="case_above">746</div>
+                <div class="lbl">NOTA Above Margin</div>
+              </div>
+            </div>
+            <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 13.5px; line-height: 1.7; text-align: justify; margin: 12px 0 0 0;">
+              <strong id="case_winner_name">Seenivasa Sethupathy R.</strong> (<span id="case_winner_party">TVK</span>) won with <strong id="case_winner_votes">83,375</strong> votes against <strong id="case_runner_name">Periakaruppan KR</strong> (<span id="case_runner_party">DMK</span>) who received <strong id="case_runner_votes">83,374</strong> votes — a margin of just <strong>1 vote</strong>. Meanwhile, <strong>747</strong> voters in the same constituency chose NOTA. The rejected-ballot count was 746 times larger than the margin of victory — the most extreme ratio in the state.
+            </p>
+            <p style="font-family: 'Playfair Display', Georgia, serif; font-size: 13.5px; line-height: 1.7; text-align: justify; margin: 10px 0 0 0;">
+              This does not mean NOTA altered the outcome. Under FPTP, the single-vote lead is fully valid and legally decisive. But the contrast between a 1-vote margin and 747 dissatisfied voters illustrates the gap between electoral mechanics and voter sentiment.
+            </p>
+          </div>
+        </div>
+        <div>
+          <div class="section-head">
+            <span>Bottom 10 Lowest NOTA Rate</span>
+            <span class="section-head-subtitle">Constituencies by NOTA %</span>
+          </div>
+          <table class="archival-table" id="tblBottomNota">
+            <thead>
+              <tr>
+                <th>Constituency</th>
+                <th>District</th>
+                <th class="text-right">NOTA</th>
+                <th class="text-right">NOTA %</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyBottomNota"></tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- ====== SECTION 4: CROSS-PARTY + DISTRICT NOTA RATES ====== -->
+      <div class="section-row-2col equal-cols">
+        <div>
+          <div class="section-head">
+            <span>4. Cross-Party Evidence</span>
+            <span class="section-head-subtitle">Winner Parties in NOTA &gt; Margin Seats</span>
+          </div>
+          <p class="paragraph-body" style="text-indent:0;">
+            The 11 constituencies where NOTA exceeded the victory margin were not monopolized by any single party. Multiple parties held winning positions in these tight seats, confirming that NOTA-sensitive margins are distributed across the political spectrum — not concentrated against one alliance.
+          </p>
+          <table class="archival-table" id="tblCrossParty">
+            <thead>
+              <tr>
+                <th>Winner Party</th>
+                <th class="text-right">Seats</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyCrossParty"></tbody>
+          </table>
+        </div>
+        <div>
+          <div class="section-head">
+            <span>5. District NOTA Geography</span>
+            <span class="section-head-subtitle">NOTA Rate by District (38 Districts)</span>
+          </div>
+          <table class="archival-table" id="tblDistrict">
+            <thead>
+              <tr>
+                <th>District</th>
+                <th class="text-right">Seats</th>
+                <th class="text-right">NOTA</th>
+                <th class="text-right">NOTA %</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyDistrict"></tbody>
+          </table>
+          <div class="table-pagination" id="districtPagination">
+            <span id="districtPaginationInfo">Showing 1–10 of 38</span>
+            <div>
+              <button id="districtPrevBtn" onclick="changeDistrictPage(-1)" disabled>Prev</button>
+              <button id="districtNextBtn" onclick="changeDistrictPage(1)">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ====== SECTION 5: ANALYTICAL LIMITATIONS ====== -->
+      <div class="section-full-width">
+        <div class="caution-box">
+          <div class="caution-box-head"><i class="fa-solid fa-triangle-exclamation"></i> Analytical Limitations & Methodological Note</div>
+          <div class="caution-box-body" style="font-size: 11.5px; line-height: 1.6; text-align: justify; color: var(--ink-gray);">
+            <p style="margin-bottom: 8px;">"This investigation does <strong>not</strong> claim that NOTA changed, altered, or influenced any election result. Under India's First-Past-The-Post (FPTP) system, even a single-vote margin is fully decisive and legally valid. NOTA votes do not transfer to any candidate, nor do they trigger a re-election."</p>
+            <p style="margin-bottom: 8px;">"The comparison between NOTA votes and victory margins is a mathematical observation — not a causal claim. Voter motivations for choosing NOTA are unobservable from aggregate data alone."</p>
+            <p style="margin-bottom: 8px;">"NOTA rates in this analysis use total votes cast (including NOTA) as the denominator, consistent with ECI reporting standards."</p>
+          </div>
+        </div>
+      </div>
+
+
+      
+    
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_02.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 2</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #3</span>
+        <a href="finding_04.html" class="back-btn">Finding 4 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+    </section>
   </div>
 
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    let currentLang = new URLSearchParams(window.location.search).get('lang') || 'en';
+    let F3_DATA = null;
+    let districtPage = 0;
+    const DISTRICT_PAGE_SIZE = 10;
+
+    function fmt(n) {
+      if (n === null || n === undefined) return '—';
+      return Number(n).toLocaleString('en-IN');
+    }
+
+    async function loadFinding03Data() {
+      try {
+        const res = await fetch('/api/findings/3/data');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        F3_DATA = await res.json();
+      } catch (err) {
+        console.error('[Finding 3] API failed, using empty state:', err);
+        F3_DATA = null;
+      }
+      if (F3_DATA) bindAllData();
+    }
+
+    function bindAllData() {
+      const d = F3_DATA;
+      const sw = d.statewide || {};
+      const ma = d.margin_analysis || {};
+      const hi = d.highest_nota || {};
+      const lo = d.lowest_nota || {};
+      const tc = d.tiruppattur_case || {};
+
+      // Hero cards
+      setText('hero_total_nota', fmt(sw.total_nota_votes));
+      setText('hero_nota_pct', (sw.weighted_nota_pct || 0.41).toFixed(2) + '%');
+      setText('hero_margin_count', ma.nota_exceeded_margin_count || 11);
+      setText('hero_highest_nota', (hi.nota_pct || 1.03).toFixed(2) + '%');
+
+      // Headline
+      setText('dyn_headline_count', ma.nota_exceeded_margin_count || 11);
+      setText('dyn_sub_total_nota', fmt(sw.total_nota_votes));
+      setText('dyn_sub_nota_pct', (sw.weighted_nota_pct || 0.41).toFixed(2) + '%');
+
+      // Section 1 text
+      setText('txt_total_nota', fmt(sw.total_nota_votes));
+      setText('txt_weighted_pct', (sw.weighted_nota_pct || 0.41).toFixed(2) + '%');
+      setText('txt_total_votes', fmt(sw.total_votes));
+      setText('txt_mean_pct', (sw.mean_constituency_nota_pct || 0.41).toFixed(2) + '%');
+      setText('txt_highest_name', hi.ac_name || 'Udhagamandalam');
+      setText('txt_highest_district', hi.district || 'The Nilgiris');
+      setText('txt_highest_pct', (hi.nota_pct || 1.03).toFixed(2) + '%');
+      setText('txt_lowest_name', lo.ac_name || 'Mailam');
+      setText('txt_lowest_district', lo.district || 'Viluppuram');
+      setText('txt_lowest_pct', (lo.nota_pct || 0.16).toFixed(2) + '%');
+
+      // Section 2 margin text
+      setText('txt_margin_count', ma.nota_exceeded_margin_count || 11);
+      setText('txt_margin_pct', (ma.percentage || 4.70).toFixed(2) + '%');
+
+      // Top NOTA table
+      renderTopBottomTable('tbodyTopNota', d.top_nota_constituencies || []);
+      // Bottom NOTA table
+      renderTopBottomTable('tbodyBottomNota', d.bottom_nota_constituencies || []);
+
+      // 11-seat margin table
+      renderMarginTable(d.nota_vs_margin || []);
+
+      // Cross-party table
+      renderCrossPartyTable(d.nota_vs_margin || []);
+
+      // District table
+      renderDistrictTable();
+
+      // Tiruppattur case
+      if (tc) {
+        setText('case_margin', fmt(tc.victory_margin));
+        setText('case_nota', fmt(tc.nota_votes));
+        setText('case_above', fmt(tc.nota_above_margin));
+        setText('case_winner_name', tc.winner_name || 'SEENIVASA SETHUPATHY. R');
+        setText('case_winner_party', tc.winner_party || 'TVK');
+        setText('case_winner_votes', fmt(tc.winner_votes));
+        setText('case_runner_name', tc.runner_up_name || 'PERIAKARUPPAN. KR');
+        setText('case_runner_party', tc.runner_up_party || 'DMK');
+        setText('case_runner_votes', fmt(tc.runner_up_votes));
+      }
+    }
+
+    function setText(id, val) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    }
+
+    function renderTopBottomTable(tbodyId, rows) {
+      const tbody = document.getElementById(tbodyId);
+      if (!tbody) return;
+      tbody.innerHTML = rows.map(r => `<tr>
+        <td class="strong">${r.ac_name || ''}</td>
+        <td>${r.district || ''}</td>
+        <td class="text-right">${fmt(r.nota_votes)}</td>
+        <td class="text-right strong red">${(r.nota_pct || 0).toFixed(2)}%</td>
+      </tr>`).join('');
+    }
+
+    function renderMarginTable(rows) {
+      const tbody = document.getElementById('tbodyMargin');
+      if (!tbody) return;
+      tbody.innerHTML = rows.map(r => `<tr>
+        <td>${r.ac_no || ''}</td>
+        <td class="strong">${r.ac_name || ''}</td>
+        <td>${r.district || ''}</td>
+        <td>${r.winner_name || ''}</td>
+        <td class="strong">${r.winner_party || ''}</td>
+        <td>${r.runner_up_name || ''}</td>
+        <td>${r.runner_up_party || ''}</td>
+        <td class="text-right">${fmt(r.victory_margin)}</td>
+        <td class="text-right strong red">${fmt(r.nota_votes)}</td>
+        <td class="text-right strong" style="color:#b80016;">${fmt(r.nota_above_margin)}</td>
+      </tr>`).join('');
+    }
+
+    function renderCrossPartyTable(marginRows) {
+      const partyMap = {};
+      marginRows.forEach(r => {
+        const p = r.winner_party || 'Other';
+        partyMap[p] = (partyMap[p] || 0) + 1;
+      });
+      const sorted = Object.entries(partyMap).sort((a, b) => b[1] - a[1]);
+      const tbody = document.getElementById('tbodyCrossParty');
+      if (!tbody) return;
+      tbody.innerHTML = sorted.map(([party, count]) => `<tr>
+        <td class="strong">${party}</td>
+        <td class="text-right strong">${count}</td>
+      </tr>`).join('');
+    }
+
+    function renderDistrictTable() {
+      if (!F3_DATA || !F3_DATA.district_analysis) return;
+      const all = F3_DATA.district_analysis;
+      const start = districtPage * DISTRICT_PAGE_SIZE;
+      const end = Math.min(start + DISTRICT_PAGE_SIZE, all.length);
+      const slice = all.slice(start, end);
+
+      const tbody = document.getElementById('tbodyDistrict');
+      if (!tbody) return;
+      tbody.innerHTML = slice.map(r => `<tr>
+        <td class="strong">${r.district || ''}</td>
+        <td class="text-right">${r.constituencies_count || ''}</td>
+        <td class="text-right">${fmt(r.nota_votes)}</td>
+        <td class="text-right strong red">${(r.nota_pct || 0).toFixed(2)}%</td>
+      </tr>`).join('');
+
+      setText('districtPaginationInfo', `Showing ${start + 1}–${end} of ${all.length}`);
+      document.getElementById('districtPrevBtn').disabled = districtPage === 0;
+      document.getElementById('districtNextBtn').disabled = end >= all.length;
+    }
+
+    function changeDistrictPage(delta) {
+      if (!F3_DATA || !F3_DATA.district_analysis) return;
+      const maxPage = Math.ceil(F3_DATA.district_analysis.length / DISTRICT_PAGE_SIZE) - 1;
+      districtPage = Math.max(0, Math.min(maxPage, districtPage + delta));
+      renderDistrictTable();
+    }
+
+    function togglePageLanguage() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const btn = document.getElementById('langToggleBtn');
+      if (btn) btn.innerText = currentLang === 'en' ? 'English / தமிழ்' : 'தமிழ் / English';
+      const btnText = document.getElementById('langToggleBtnText');
+      if (btnText) btnText.textContent = currentLang === 'en' ? 'தமிழ் பதிப்பு' : 'English Edition';
+
+      if (currentLang === 'ta') {
+        setText('lbl_back', 'முகப்பு');
+        document.getElementById('lbl_main_headline').innerHTML = '234 தொகுதிகளில் <span id="dyn_headline_count">11</span> தொகுதிகளில் நோட்டா வாக்குகள் வெற்றி வாக்கு வித்தியாசத்தை விட அதிகம்';
+        document.getElementById('lbl_main_subheadline').innerHTML = '234 சட்டமன்றத் தொகுதிகளில் <span id="dyn_sub_total_nota">' + fmt(F3_DATA?.statewide?.total_nota_votes || 199801) + '</span> வாக்காளர்கள் நோட்டாவிற்கு வாக்களித்தனர் — <span id="dyn_sub_nota_pct">' + ((F3_DATA?.statewide?.weighted_nota_pct || 0.41).toFixed(2)) + '%</span> மாநில நிராகரிப்பு விகிதம்.';
+      } else {
+        setText('lbl_back', 'Index');
+        const mc = F3_DATA?.margin_analysis?.nota_exceeded_margin_count || 11;
+        document.getElementById('lbl_main_headline').innerHTML = 'NOTA EXCEEDED THE VICTORY MARGIN IN <span id="dyn_headline_count">' + mc + '</span> CONSTITUENCIES';
+        document.getElementById('lbl_main_subheadline').innerHTML = 'Across 234 assembly seats, <span id="dyn_sub_total_nota">' + fmt(F3_DATA?.statewide?.total_nota_votes || 199801) + '</span> voters chose None of the Above — a statewide rejection rate of <span id="dyn_sub_nota_pct">' + ((F3_DATA?.statewide?.weighted_nota_pct || 0.41).toFixed(2)) + '%</span>. In ' + mc + ' constituencies, that protest count was larger than the margin separating winner from runner-up.';
+      }
+    }
+
+    // Live date
+    function updateDateTime() {
+      const el = document.getElementById('liveDateTime');
+      if (el) el.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    // Init
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', () => { loadFinding03Data(); updateDateTime(); });
+    } else {
+      loadFinding03Data(); updateDateTime();
     }
   </script>
 </body>

@@ -16,19 +16,40 @@ let _membersActiveSlide = 'ministers'; // 'ministers' | 'officials'
    ────────────────────────────────────────── */
 async function getMinistersData() {
   if (_ministersCache) return _ministersCache;
-  const res = await fetch('/api/ministers');
-  if (!res.ok) throw new Error(`HTTP ${res.status} fetching ministers API`);
-  _ministersCache = await res.json();
+  try {
+    const res = await fetch('/api/ministers');
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.length > 0) {
+        _ministersCache = data;
+        return _ministersCache;
+      }
+    }
+  } catch (err) {
+    console.warn('API fetch failed, falling back to embedded dataset:', err);
+  }
+  _ministersCache = window.MINISTERS_FALLBACK_DATA || [];
   return _ministersCache;
 }
 
 async function getOfficialsData() {
   if (_officialsCache) return _officialsCache;
-  const res = await fetch('/api/officials');
-  if (!res.ok) throw new Error(`HTTP ${res.status} fetching officials API`);
-  _officialsCache = await res.json();
+  try {
+    const res = await fetch('/api/officials');
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.length > 0) {
+        _officialsCache = data;
+        return _officialsCache;
+      }
+    }
+  } catch (err) {
+    console.warn('API fetch failed, falling back to embedded dataset:', err);
+  }
+  _officialsCache = window.OFFICIALS_FALLBACK_DATA || [];
   return _officialsCache;
 }
+
 
 /* ──────────────────────────────────────────
    MAIN ENTRY — called from core.js
@@ -102,19 +123,46 @@ function _updateSlideLabels(lang) {
   if (bo) bo.innerHTML = isTa ? '⚖ சட்டப்பேரவை பதவியினர்' : '⚖ Assembly Officials';
 }
 
+function getAvatarPlaceholderSvg(name, party) {
+  const cleanName = (name || '').replace(/^(Dr\.|Mr\.|Mrs\.|Ms\.)\s*/i, '').trim();
+  const parts = cleanName.split(/[\s\.]+/).filter(Boolean);
+  let initials = 'TN';
+  if (parts.length >= 2) {
+    initials = (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+  } else if (parts.length === 1) {
+    initials = parts[0].slice(0, 2).toUpperCase();
+  }
+
+  let accentColor = '#d30d25';
+  const p = (party || '').toUpperCase();
+  if (p.includes('DMK') && !p.includes('AIADMK')) accentColor = '#d30d25';
+  else if (p.includes('AIADMK')) accentColor = '#12702c';
+  else if (p.includes('INC')) accentColor = '#0b407a';
+  else if (p.includes('BJP')) accentColor = '#ff8800';
+  else if (p.includes('VCK')) accentColor = '#491a66';
+  else if (p.includes('PMK')) accentColor = '#ffaa00';
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="240" viewBox="0 0 200 240"><rect width="200" height="240" fill="#24201c"/><rect x="5" y="5" width="190" height="230" fill="none" stroke="#3a332c" stroke-width="2"/><circle cx="100" cy="85" r="42" fill="#473f37"/><path d="M 35 210 C 35 145 165 145 165 210 Z" fill="#473f37"/><rect x="50" y="192" width="100" height="26" rx="3" fill="${accentColor}"/><text x="100" y="210" font-family="'Courier Prime', monospace" font-size="14" font-weight="bold" fill="#ffffff" text-anchor="middle">${initials}</text></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+
 /* ──────────────────────────────────────────
    MINISTERS SLIDE
    ────────────────────────────────────────── */
 function buildMinistersContent(data, lang) {
   const isTa = lang === 'ta';
   const sorted = [...data].sort((a, b) => Number(a.Rank_Order) - Number(b.Rank_Order));
-  const cm = sorted.find(r => Number(r.Rank_Order) === 1);
+  const cm = sorted.find(r => Number(r.Rank_Order) === 1) || sorted[0];
   const ministers = sorted.filter(r => Number(r.Rank_Order) > 1);
 
   /* CM portfolios */
   const cmPortfolios = (isTa ? cm.Portfolios_TA : cm.Portfolios_EN)
     .split(';').map(p => p.trim()).filter(Boolean)
     .map(p => `<span class="cm-portfolio-tag">${p}</span>`).join('');
+
+  const cmImgSrc = (cm.Image && cm.Image !== 'nan' && cm.Image !== 'undefined')
+    ? cm.Image
+    : 'https://pub-b25d504a24b04494839eefe88766f3e8.r2.dev/assets/ministers/Chief%20MInister.jpg';
 
   const cmBlock = `
     <div class="ministers-page-header">
@@ -123,7 +171,7 @@ function buildMinistersContent(data, lang) {
     </div>
     <div class="cm-hero">
       <div class="cm-hero-photo">
-        <img src="${cm.Image}" alt="${cm.Name_EN}" onerror="this.style.opacity=0">
+        <img src="${cmImgSrc}" alt="${cm.Name_EN}" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='https://pub-b25d504a24b04494839eefe88766f3e8.r2.dev/assets/ministers/Chief%20MInister.jpg';">
         <div class="cm-hero-photo-badge">${isTa ? 'முதலமைச்சர்' : 'Chief Minister'}</div>
       </div>
       <div class="cm-hero-info">
@@ -158,10 +206,20 @@ function buildMinistersContent(data, lang) {
     const pTags = pItems.map(p => `<span class="minister-portfolio-tag">${p}</span>`).join('');
     const hoverLi = pItems.map(p => `<li>${p}</li>`).join('');
 
+    let rawMImg = '';
+    if (m.Image && m.Image !== 'nan' && m.Image !== 'undefined') rawMImg = m.Image;
+    else if (m.image && m.image !== 'nan' && m.image !== 'undefined') rawMImg = m.image;
+    else if (m['image url'] && m['image url'] !== 'nan') rawMImg = m['image url'];
+    else if (m.image_url && m.image_url !== 'nan') rawMImg = m.image_url;
+
+    rawMImg = (rawMImg || '').toString().trim();
+    const fallbackSvg = getAvatarPlaceholderSvg(m.Name_EN, m.Party);
+    const mImgSrc = rawMImg || fallbackSvg;
+
     return `
       <div class="minister-card">
         <div class="minister-card-photo">
-          <img src="${m.Image}" alt="${m.Name_EN}" loading="lazy" onerror="this.parentElement.classList.add('photo-error')">
+          <img src="${mImgSrc}" alt="${m.Name_EN}" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='${fallbackSvg}';">
           <div class="minister-photo-overlay">
             <div class="minister-overlay-title">${isTa ? 'பொறுப்புகள்' : 'Portfolios'}</div>
             <ul class="minister-overlay-list">${hoverLi}</ul>
@@ -174,7 +232,10 @@ function buildMinistersContent(data, lang) {
           <div class="minister-designation">${isTa ? m.Designation_TA : m.Designation_EN}</div>
           <div class="minister-portfolios-strip">${pTags}</div>
           <div class="minister-meta">
-            <span class="minister-constituency">${isTa ? m.Constituency_TA : m.Constituency}</span>
+            <span class="minister-constituency" style="display:inline-flex; align-items:center; gap:4px;">
+              ${typeof getPartyFlagHtml === 'function' ? getPartyFlagHtml(m.Party, "width: 14px; height: 9px; object-fit: cover; border-radius: 1px; border: 1px solid rgba(0,0,0,0.15);") : ""}
+              ${isTa ? m.Constituency_TA : m.Constituency}
+            </span>
             <span class="minister-age-badge">${m.Age}${isTa ? ' வ' : 'y'}</span>
           </div>
         </div>
@@ -206,12 +267,21 @@ function buildOfficialsContent(data, lang) {
     const blockColor = o.party_block === 'Government' || o.party_block === 'அரசு'
       ? 'var(--ink-red)' : 'var(--ink-blue, #1a4a8a)';
 
+    let rawOImg = '';
+    if (o['image url'] && o['image url'] !== 'nan') rawOImg = o['image url'];
+    else if (o.image_url && o.image_url !== 'nan') rawOImg = o.image_url;
+    else if (o.Image && o.Image !== 'nan') rawOImg = o.Image;
+    else if (o.image && o.image !== 'nan') rawOImg = o.image;
+
+    rawOImg = (rawOImg || '').toString().trim();
+    const fallbackSvg = getAvatarPlaceholderSvg(o.name, o.party);
+    const oImgSrc = rawOImg || fallbackSvg;
+
     return `
       <div class="official-card">
         <div class="official-photo-col">
           <div class="official-photo-wrap">
-            <img src="${o['image url']}" alt="${o.name}" loading="lazy"
-                 onerror="this.parentElement.classList.add('photo-error')">
+            <img src="${oImgSrc}" alt="${o.name}" referrerpolicy="no-referrer" onerror="this.onerror=null; this.src='${fallbackSvg}';">
           </div>
           <div class="official-block-badge" style="background:${blockColor}">
             ${isTa ? o.party_block_ta : o.party_block}
@@ -224,7 +294,10 @@ function buildOfficialsContent(data, lang) {
           <div class="official-meta-row">
             <span class="official-meta-item">
               <span class="official-meta-label">${isTa ? 'கட்சி' : 'Party'}</span>
-              <strong>${isTa ? o.party_ta : o.party}</strong>
+              <strong style="display:inline-flex; align-items:center; gap:4px;">
+                ${typeof getPartyFlagHtml === 'function' ? getPartyFlagHtml(o.party, "width: 14px; height: 9px; object-fit: cover; border-radius: 1px; border: 1px solid rgba(0,0,0,0.15);") : ""}
+                ${isTa ? o.party_ta : o.party}
+              </strong>
             </span>
             <span class="official-meta-item">
               <span class="official-meta-label">${isTa ? 'தொகுதி' : 'Constituency'}</span>

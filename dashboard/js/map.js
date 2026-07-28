@@ -84,7 +84,7 @@ function initStatewideMap() {
                 else                                       allianceText = "மற்றவர்கள்";
               }
               const hoverBox = document.getElementById('mapHoverBox');
-              document.getElementById('mapHoverTitle').textContent     = `${cData.ac_no.toString().padStart(3,'0')} | ${cData.name.toUpperCase()}`;
+              document.getElementById('mapHoverTitle').textContent     = `${cData.ac_no.toString().padStart(3,'0')} | ${cData.name}`;
               document.getElementById('mapHoverCandidate').textContent = cData.winner_name;
               document.getElementById('mapHoverParty').textContent     = cData.winner_party;
               document.getElementById('mapHoverAlliance').textContent  = allianceText;
@@ -106,7 +106,7 @@ function initStatewideMap() {
               const opt = document.createElement('option');
               opt.value = acNo.toString();
               const cData = getConstituencyData(acNo.toString());
-              opt.textContent = (cData ? cData.name : cName) + ` (AC ${acNo})`;
+              opt.textContent = cData ? cData.name : cName;
               selectBox.appendChild(opt);
             }
             selectBox.value = acNo.toString();

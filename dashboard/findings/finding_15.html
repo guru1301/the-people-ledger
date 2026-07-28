@@ -3,93 +3,318 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 15 Special Edition</title>
+  <title>WOMEN IN THE ASSEMBLY — Special Data Finding #15 — The People's Ledger</title>
+  <meta name="description" content="An investigative data analysis into women representation, generational change, and electoral performance in the Tamil Nadu Legislative Assembly Election 2026.">
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
+
+  <!-- CSS imports matching index.html and findings 1-15 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal);
+      padding: 0;
+      margin: 0;
+      width: 100%;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
     }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Exclusive Editorial Tag Stamp */
+    .exclusive-tag {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      font-weight: 900;
+      background: var(--ink-charcoal);
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+    .exclusive-tag.red { background: var(--ink-red); }
+    .exclusive-tag.blue { background: var(--ink-blue); }
+
+    /* Top Hero Stat Cards Grid (4 KPI cards) */
+    .hero-stats-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0 22px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 850px) {
+      .hero-stats-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .hero-stats-grid-4 { grid-template-columns: 1fr; }
+    }
+
+    /* Methodology & Panel Boxes */
+    .methodology-panel {
+      background: #f4efe6;
+      border: 1px solid var(--paper-border-dark);
+      border-left: 5px solid var(--ink-charcoal);
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .methodology-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11.5px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink-charcoal);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .methodology-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--ink-gray);
+    }
+
+    /* Section Grid Layouts */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+    
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14.5px;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+    }
+    
+    .paragraph-body:first-of-type {
+      text-indent: 0;
+    }
+
+    /* Visual Notice Box */
+    .visual-notice-box {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      background: #f0ebe1;
+      border-left: 3px solid var(--ink-red);
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      color: var(--ink-charcoal);
+    }
+    .visual-notice-box strong {
+      color: var(--ink-red);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue);
       text-decoration: none;
+      border: 1px solid var(--paper-border);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
-      cursor: pointer;
+      letter-spacing: 0.5px;
     }
+    
     .back-btn:hover {
       background: var(--ink-red);
       color: #fff;
+      border-color: var(--ink-red);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
-      display: block;
+    .lang-toggle-btn:hover {
+      background: var(--ink-red);
+      border-color: var(--ink-red);
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    .search-input-np {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      border: 1px solid var(--paper-border);
+      background: #ffffff;
+      color: var(--ink-charcoal);
+      outline: none;
+      width: 210px;
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .search-input-np:focus {
+      border-color: var(--ink-red);
+    }
+
+    .archival-table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      font-family: 'Playfair Display', Georgia, serif; 
+      font-size: 13px; 
+      margin: 12px 0; 
+    }
+    .archival-table th { 
+      background: var(--ink-charcoal); 
+      color: #fff; 
+      font-family: 'Courier Prime', monospace; 
+      font-size: 9.5px; 
+      letter-spacing: 1.5px; 
+      text-transform: uppercase; 
+      padding: 8px 10px; 
+      text-align: left; 
+    }
+    .archival-table td { 
+      padding: 8px 10px; 
+      border-bottom: 1px solid var(--paper-border); 
+    }
+    .archival-table tr:nth-child(even) td { 
+      background: #fcf9f4; 
+    }
+    .archival-table tr:hover td { 
+      background: rgba(192,0,26,0.05); 
+    }
+
+    .spotlight-card-box {
+      background: #ffffff;
+      border: 1px solid var(--paper-border-dark);
+      border-left: 5px solid var(--ink-red);
+      padding: 18px 22px;
+      border-radius: 4px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      margin: 14px 0;
+    }
+
+    .key-insights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (max-width: 768px) {
+      .key-insights-grid { grid-template-columns: 1fr; }
+    }
+    .key-insight-card {
+      background: #ffffff;
+      border: 1px solid var(--paper-border);
+      border-left: 4px solid var(--ink-red);
+      padding: 14px;
+    }
+    .key-insight-num {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      font-weight: bold;
+      color: var(--ink-red);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .key-insight-head {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
       font-weight: 900;
+      color: var(--ink-charcoal);
+      margin-bottom: 6px;
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
+    .key-insight-desc {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-gray);
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+
+    .limitations-box {
+      border: 2px double var(--ink-charcoal);
+      background: #fffdfa;
+      padding: 18px 22px;
+      margin: 24px 0;
     }
   </style>
 </head>
 <body>
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
-
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+  <!-- MAIN CONTAINER -->
+  <div class="container">
     
     <!-- NEWSPAPER MASTHEAD -->
     <header class="masthead">
       <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL DATA FINDING #15</span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
 
       <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
-          <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
+          <div class="motto" id="lbl_motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
           <div class="masthead-rule-top"></div>
           <h1 class="title-gothic">The People's Ledger</h1>
           <div class="masthead-rule-bottom"></div>
@@ -99,106 +324,497 @@
 
       <!-- Dateline Bar -->
       <div class="dateline">
-        <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 15</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span>CHENNAI, TAMIL NADU</span>
+        <span>SPECIAL LEGISLATIVE REVIEW</span>
+        <span>SPECIAL ARCHIVE &middot; FINDING #15</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Postal Ballot Decider</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #15</div>
-          <h2 class="article-headline lead-broadside">Postal Ballot Decisive Outcome</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">Detailed analytical comparisons show that only one constituency in the entire state had its winner flipped because of postal ballot counts: Tiruppattur (AC 194).</p>
-            <p style="margin-bottom:12px; text-indent:20px;">Without the inclusion of postal ballots cast by public servants and security personnel, the runner-up candidate would have emerged victorious based purely on electronic voting machine (EVM) counts.</p>
-            <p style="margin-bottom:0; text-indent:20px;">This finding highlights the critical, decisive power of postal votes. It highlights the importance of public duty electors whose ballots can determine the ultimate legislative representative in close contests.</p>
-          </div>
+    <!-- NEWSPAPER PAGE CONTENT -->
+    <div class="np-page active">
+      
+      <!-- Top Navigation & Action Controls -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid var(--paper-border); padding-bottom:10px; flex-wrap:wrap; gap:10px;">
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD</a>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <input type="text" id="np-search-input" class="search-input-np" placeholder="Search Party / Category..." onkeyup="filterWomenTable()">
+          <button onclick="toggleLang()" class="lang-toggle-btn" id="btn_lang_toggle">TAMIL VERSION (தமிழ்)</button>
         </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">1 Seat</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
-        </div>
-
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">தபால் வாக்குத் தீர்ப்பு</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #15</div>
-          <h2 class="article-headline lead-broadside">தபால் வாக்குகளால் மாறிய தொகுதி</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">ஆராய்ச்சி முடிவுகளின்படி, மாநிலத்திலேயே தபால் வாக்குகளின் எண்ணிக்கையால் மட்டும் வெற்றி பெற்ற கட்சி மாறிய ஒரே தொகுதி திருப்பத்தூர் (AC 194) ஆகும்.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">அரசு ஊழியர்கள் மற்றும் பாதுகாப்புப் படையினர் செலுத்திய தபால் வாக்குகளை நீக்கியிருந்தால், வாக்குப்பதிவு இயந்திரங்களின் அடிப்படையில் மட்டும் இரண்டாம் இடம் பிடித்த வேட்பாளரே வென்றிருப்பார்.</p>
-            <p style="margin-bottom:0; text-indent:20px;">இந்தக் கண்டுபிடிப்பு தபால் வாக்குகளின் அசாதாரண வலிமையை உணர்த்துகிறது, மேலும் கடுமையான போட்டிகளில் ஒவ்வொரு வாக்கும் எவ்வளவு முக்கியமானது என்பதை இது காட்டுகிறது.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">1 தொகுதி</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- Article Header & Category Band -->
+      <div>
+        <span class="exclusive-tag red"><i class="fa-solid fa-star"></i> EXCLUSIVE DEMOGRAPHIC INVESTIGATION</span>
+        <span class="exclusive-tag"><i class="fa-solid fa-venus"></i> GENDER REPRESENTATION STUDY</span>
+        <span class="exclusive-tag blue"><i class="fa-solid fa-shield-halved"></i> 234 ELECTED MLAS</span>
       </div>
-    </div>
+      
+      <!-- 1. HEADLINE & SUBTITLE -->
+      <h1 class="headline-hero" id="hdr_headline" style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; line-height:1.15; text-transform:uppercase; margin-bottom:10px; border-bottom:2px solid var(--ink-charcoal); padding-bottom:10px;">
+        WOMEN IN THE ASSEMBLY
+      </h1>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
+      <p class="subheadline" id="hdr_subheadline" style="font-family:'Playfair Display',serif; font-size:16px; font-style:italic; line-height:1.5; color:var(--ink-gray); margin-bottom:16px;">
+        Representation, Generational Change and Electoral Performance in the Tamil Nadu Assembly Election 2026.
+      </p>
 
-  </div>
+      <div style="font-family:'Courier Prime',monospace; font-size:10.5px; color:var(--ink-light); text-transform:uppercase; border-bottom:1px dashed var(--paper-border); padding-bottom:8px; margin-bottom:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <span>Published by Data Investigations Unit &middot; Special Legislative Gender Dossier</span>
+        <span style="color:var(--ink-green); font-weight:bold;"><i class="fa-solid fa-shield-halved"></i> BIGQUERY VERIFIED DATASET (<code>fact_results_2026</code>)</span>
+      </div>
 
+      <!-- HERO KPI CARDS -->
+      <div class="hero-stats-grid-4">
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-charcoal);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_tot_mlas">Total MLAs</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-charcoal);" id="val_stat_tot_mlas">234</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_tot_mlas">Statewide Legislative Seats</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-red);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_women_mlas">Women MLAs</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-red);" id="val_stat_women_mlas">23</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_women_mlas">Elected Female Members</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-blue);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_men_mlas">Men MLAs</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-blue);" id="val_stat_men_mlas">211</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_men_mlas">Elected Male Members</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-green);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_rep_pct">Women Representation</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-green);" id="val_stat_rep_pct">9.83%</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_rep_pct">Assembly Share</div>
+        </div>
+      </div>
+
+      <!-- MINI FACT BOX: WOMEN AT A GLANCE -->
+      <div style="background:#fffdfa; border:1px solid var(--paper-border-dark); border-top:3px solid var(--ink-red); padding:14px 18px; margin:16px 0; font-family:'Courier Prime',monospace; font-size:11.5px;">
+        <div style="font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;"><i class="fa-solid fa-venus"></i> WOMEN AT A GLANCE</div>
+        <div style="line-height:1.6; color:var(--ink-charcoal);">
+          &bull; <strong>Women MLAs:</strong> 23 (9.83% of Assembly)<br>
+          &bull; <strong>Youngest Woman MLA:</strong> Kamali S. (Age 28 &middot; Avanashi SC &middot; TVK)<br>
+          &bull; <strong>Largest Women Victory:</strong> 69,992 votes<br>
+          &bull; <strong>Average Age:</strong> 46.3 years (6.4 yrs younger than men)<br>
+          &bull; <strong>Average Winning Margin:</strong> 16,066 votes (Diff of 796 votes vs men)
+        </div>
+      </div>
+
+      <!-- HERO OPENING STATEMENT & EXECUTIVE SUMMARY -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_hero_opening">HERO OPENING &middot; DEMOCRATIC REPRESENTATION &amp; GENDER INCLUSION</span>
+        </div>
+
+        <div id="exec_summary_content">
+          <p class="paragraph-body">
+            Women constituted nearly half of Tamil Nadu's participating electorate during the 2026 Assembly election. Yet when the Legislature was constituted, only 23 women secured seats in the 234-member Assembly. This investigation examines not only how many women entered the Assembly, but also where they won, which parties nominated successful women, how old they were, and how their electoral performance compared with that of male legislators.
+          </p>
+          <p class="paragraph-body">
+            Elections are fundamentally not only about which political platform forms the executive government, but also about who secures representation inside democratic institutions. Gender representation serves as a widely recognized benchmark of political inclusion and equity. While Tamil Nadu has historically witnessed influential female political leaders, the proportion of women holding legislative seats in the state assembly remains relatively low.
+          </p>
+          <p class="paragraph-body">
+            This analysis evaluates certified Election Commission of India (ECI) returns to understand the demographic composition of the 2026 Assembly through a gender lens. <strong>The analysis reveals that women account for less than one-tenth of the Assembly, although those elected were generally younger than their male counterparts and achieved victory margins comparable to the statewide average.</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- SECTION 1: REPRESENTATION IN NUMBERS -->
+      <div class="section-row-2col">
+        <div>
+          <div class="section-head">
+            <span id="head_sec1">SECTION 1 &middot; REPRESENTATION IN NUMBERS</span>
+          </div>
+
+          <h3 style="font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--ink-red); margin-bottom:12px;" id="q_sec1">
+            What proportion of the Assembly is female?
+          </h3>
+
+          <div id="sec1_body">
+            <p class="paragraph-body">
+              Out of 234 certified winning candidates elected to the Tamil Nadu Legislative Assembly in 2026, exactly <strong>23 are women</strong> and <strong>211 are men</strong>. Consequently, women constitute <strong>9.83%</strong> of the state legislature.
+            </p>
+            <p class="paragraph-body">
+              In practical terms, fewer than one in every ten MLAs elected in 2026 was a woman. Although female electors comprise a large share of registered voters and consistently register high polling-day turnout, this level of legislative representation indicates that electoral participation has not translated into proportional political representation inside Fort St. George.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-head">
+            <span id="head_sec1_table">GENDER COMPOSITION BREAKDOWN</span>
+          </div>
+
+          <div class="visual-notice-box">
+            <strong>The data reveals...</strong> Women hold 23 seats (9.83%) while men hold 211 seats (90.17%) in the 2026 Assembly.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Gender Category</th>
+                <th style="text-align:center;">MLAs Count</th>
+                <th style="text-align:right;">Assembly Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#fff4f4;">
+                <td><strong style="color:var(--ink-red);">Women MLAs</strong></td>
+                <td style="text-align:center; font-weight:900; color:var(--ink-red);">23</td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">9.83%</td>
+              </tr>
+              <tr style="background:#f0f7f2;">
+                <td><strong>Men MLAs</strong></td>
+                <td style="text-align:center; font-weight:bold;">211</td>
+                <td style="text-align:right; font-weight:bold;">90.17%</td>
+              </tr>
+              <tr>
+                <td><strong>Total Legislative Seats</strong></td>
+                <td style="text-align:center; font-weight:bold;">234</td>
+                <td style="text-align:right;">100.00%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SECTION 2: WHICH PARTIES ELECTED WOMEN? -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec2">SECTION 2 &middot; WHICH PARTIES ELECTED WOMEN?</span>
+        </div>
+
+        <div id="sec2_body">
+          <p class="paragraph-body">
+            Women's representation varied considerably across political parties in the 2026 election. <strong>Tamilaga Vettri Kazhagam (TVK)</strong> elected the highest number of women legislators, returning <strong>13 women MLAs</strong> out of its 108 Assembly seats.
+          </p>
+          <p class="paragraph-body">
+            <strong>All India Anna DMK (AIADMK)</strong> followed with <strong>6 women MLAs</strong>. Meanwhile, PMK, INC, CPI(M), and DMDK each elected 1 woman legislator. <strong>Despite winning a combined 67 Assembly seats, DMK, VCK, CPI, BJP, IUML and AMMKMNKZ did not return a single woman MLA.</strong>
+          </p>
+        </div>
+
+        <!-- Party Breakdown Table -->
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px; margin-top:14px;">
+          <div>
+            <table class="archival-table">
+              <thead>
+                <tr>
+                  <th>Party Platform</th>
+                  <th style="text-align:center;">Women MLAs</th>
+                  <th style="text-align:right;">Total Seats Won</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background:#fff4f4;">
+                  <td><strong style="color:var(--ink-red);">TVK</strong></td>
+                  <td style="text-align:center; font-weight:900; color:var(--ink-red);">13</td>
+                  <td style="text-align:right;">108</td>
+                </tr>
+                <tr style="background:#f0f7f2;">
+                  <td><strong>AIADMK</strong></td>
+                  <td style="text-align:center; font-weight:900; color:var(--ink-green);">6</td>
+                  <td style="text-align:right;">47</td>
+                </tr>
+                <tr>
+                  <td>PMK</td>
+                  <td style="text-align:center; font-weight:bold;">1</td>
+                  <td style="text-align:right;">4</td>
+                </tr>
+                <tr>
+                  <td>INC</td>
+                  <td style="text-align:center; font-weight:bold;">1</td>
+                  <td style="text-align:right;">5</td>
+                </tr>
+                <tr>
+                  <td>CPI(M)</td>
+                  <td style="text-align:center; font-weight:bold;">1</td>
+                  <td style="text-align:right;">2</td>
+                </tr>
+                <tr>
+                  <td>DMDK</td>
+                  <td style="text-align:center; font-weight:bold;">1</td>
+                  <td style="text-align:right;">1</td>
+                </tr>
+                <tr>
+                  <td>DMK, VCK, CPI, BJP, IUML, AMMK</td>
+                  <td style="text-align:center; color:var(--ink-gray);">0</td>
+                  <td style="text-align:right;">67</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div style="background:#f4efe6; border-left:4px solid var(--ink-charcoal); padding:14px 18px; font-family:'Playfair Display',serif; font-size:13.5px; line-height:1.65;">
+            <strong>Analytic Note on Party Percentages:</strong> A clear distinction must be drawn between total women elected and the percentage share within each party bench. Smaller parties may reflect high percentage shares (e.g., DMDK at 100%) simply because they won a single seat. Such percentages should therefore be interpreted alongside total seat counts.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: A YOUNGER GENERATION OF WOMEN LEADERS -->
+      <div class="section-row-2col equal-cols">
+        <div>
+          <div class="section-head">
+            <span id="head_sec3">SECTION 3 &middot; A YOUNGER GENERATION OF WOMEN LEADERS</span>
+          </div>
+
+          <p class="paragraph-body">
+            Age analysis reveals a clear demographic difference between male and female legislators in the 2026 Assembly.
+          </p>
+          <p class="paragraph-body">
+            The average age of male MLAs stands at <strong>52.7 years</strong>, whereas the average age of female MLAs is <strong>46.3 years</strong>—a difference of <strong>6.4 years younger</strong>.
+          </p>
+          <p class="paragraph-body">
+            The average age difference of 6.4 years suggests that women entering the Assembly belong to a comparatively newer generation of political leadership. Rather than simply expanding numerical representation, the election introduced younger women into state legislative politics.
+          </p>
+        </div>
+
+        <div>
+          <!-- Candidate Spotlight: Youngest Woman MLA -->
+          <div class="spotlight-card-box">
+            <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">
+              <i class="fa-solid fa-user-astronaut"></i> YOUNGEST ELECTED WOMAN MLA
+            </div>
+            <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:900; color:var(--ink-charcoal);">
+              Kamali S. <span style="font-size:14px; font-weight:normal; color:var(--ink-gray);">(Age 28)</span>
+            </div>
+            <div style="font-family:'Courier Prime',monospace; font-size:11.5px; color:var(--ink-blue); margin-top:2px;">
+              Constituency: <strong>AVANASHI (SC) [AC 112]</strong> &middot; Party: <strong>TVK</strong>
+            </div>
+            <div style="font-family:'Playfair Display',serif; font-size:12.5px; color:var(--ink-gray); margin-top:6px; font-style:italic;">
+              At age 28, Kamali S. represents both the youngest female legislator and the youngest certified MLA overall in the 2026 Assembly.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4: ELECTORAL PERFORMANCE -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec4">SECTION 4 &middot; ELECTORAL PERFORMANCE &amp; VICTORY MARGINS</span>
+        </div>
+
+        <h3 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--ink-charcoal); margin-bottom:10px;" id="q_sec4">
+          Did female candidates win by narrower margins than male candidates?
+        </h3>
+
+        <div id="sec4_body">
+          <p class="paragraph-body">
+            Analyzing certified victory margins and voter mobilization patterns demonstrates that female candidates achieved victory margins comparable to male candidates across competitive divisions.
+          </p>
+          <p class="paragraph-body">
+            Male MLAs recorded an average winning margin of <strong>16,862 votes</strong>, while female MLAs registered an average winning margin of <strong>16,066 votes</strong>—a small difference of just <strong>796 votes</strong>. <strong>Once elected, women won with victory margins almost identical to those of male legislators.</strong> Furthermore, constituencies won by female candidates exhibited a narrower gender turnout gap of <strong>1.54 percentage points</strong> compared to <strong>2.42 percentage points</strong> in constituencies won by male candidates.
+          </p>
+        </div>
+
+        <!-- DID YOU KNOW? BOX -->
+        <div style="background:#fcfaf5; border:1px solid var(--paper-border); border-left:4px solid var(--ink-blue); padding:14px 18px; margin:18px 0; font-family:'Playfair Display',serif; font-size:14px; line-height:1.75; font-style:italic;">
+          <strong style="font-family:'Courier Prime',monospace; font-style:normal; font-size:11px; color:var(--ink-blue); display:block; margin-bottom:4px; text-transform:uppercase; letter-spacing:1px;"><i class="fa-solid fa-lightbulb"></i> DID YOU KNOW?</strong>
+          Although women account for only 9.83% of elected MLAs, their average winning margin differs by less than 800 votes from male legislators, indicating that successful women candidates secured mandates comparable in strength to their male counterparts.
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:16px; margin-top:12px;">
+          <div style="background:#fffdfa; border:1px solid var(--paper-border); padding:14px;">
+            <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; color:var(--ink-red); text-transform:uppercase;">CLOSEST WOMAN VICTORY</div>
+            <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:900; color:var(--ink-red); margin-top:2px;">2,189 Votes</div>
+            <div style="font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-gray); margin-top:2px;">Highly Competitive Division</div>
+          </div>
+
+          <div style="background:#fffdfa; border:1px solid var(--paper-border); padding:14px;">
+            <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; color:var(--ink-green); text-transform:uppercase;">LARGEST WOMAN VICTORY</div>
+            <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:900; color:var(--ink-green); margin-top:2px;">69,992 Votes</div>
+            <div style="font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-gray); margin-top:2px;">Commanding Constituency Mandate</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 5: SOCIAL REPRESENTATION -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec5">SECTION 5 &middot; SOCIAL REPRESENTATION ACROSS CATEGORIES</span>
+        </div>
+
+        <div id="sec5_body">
+          <p class="paragraph-body">
+            Examining women legislators across social categories demonstrates representation spanning both general and reserved constituency divisions.
+          </p>
+          <p class="paragraph-body">
+            Out of the 23 female MLAs: <strong>14 won in General constituencies</strong>, <strong>8 won in Scheduled Caste (SC) reserved seats</strong>, and <strong>1 won in a Scheduled Tribe (ST) reserved seat</strong>. <strong>Nine of the 23 women MLAs (39.1%) entered the Assembly through reserved constituencies (SC/ST).</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- SECTION 6: KEY STATISTICAL INSIGHTS -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec6">SECTION 6 &middot; KEY STATISTICAL INSIGHTS</span>
+        </div>
+
+        <div class="key-insights-grid">
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #01</div>
+            <div class="key-insight-head">Women Hold 9.83% of Assembly</div>
+            <div class="key-insight-desc">
+              Only 23 of the 234 elected MLAs in the 2026 Assembly are women, representing fewer than one in every ten MLAs.
+            </div>
+          </div>
+
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #02</div>
+            <div class="key-insight-head">TVK Elected Most Women MLAs</div>
+            <div class="key-insight-desc">
+              TVK returned 13 female legislators, forming the largest women delegation in the house, followed by AIADMK with 6.
+            </div>
+          </div>
+
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #03</div>
+            <div class="key-insight-head">Women MLAs 6.4 Years Younger</div>
+            <div class="key-insight-desc">
+              Female MLAs average 46.3 years of age compared to 52.7 years for male MLAs, introducing a newer generation of leadership.
+            </div>
+          </div>
+
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #04</div>
+            <div class="key-insight-head">Victory Margins Match Male Average</div>
+            <div class="key-insight-desc">
+              Female MLAs averaged 16,066-vote winning margins, showing virtually identical electoral competitiveness to male MLAs (16,862).
+            </div>
+          </div>
+
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #05</div>
+            <div class="key-insight-head">Representation Spans All Categories</div>
+            <div class="key-insight-desc">
+              Nine of the 23 female MLAs (39.1%) were elected through reserved SC/ST constituencies alongside 14 General seat winners.
+            </div>
+          </div>
+
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #06</div>
+            <div class="key-insight-head">Youngest Woman Elected at Age 28</div>
+            <div class="key-insight-desc">
+              Kamali S. (TVK, Avanashi SC) entered the Assembly at age 28 as the youngest female certified legislator.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 7: WHAT THESE NUMBERS MEAN -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec7">SECTION 7 &middot; WHAT THESE NUMBERS MEAN</span>
+        </div>
+
+        <div id="sec7_body">
+          <p class="paragraph-body">
+            Political inclusion cannot be measured solely by polling-day voter turnout. A legislative assembly reflects institutional representation and candidate selection pipelines. While female voters participated actively in the 2026 election, relatively few women ultimately secured legislative seats.
+          </p>
+          <p class="paragraph-body">
+            However, the 23 women who entered the Assembly achieved victory margins (16,066 votes) that demonstrate robust electoral mandates. Furthermore, their younger average age profile (46.3 years) points to the emergence of a new generation of female political leaders inside Tamil Nadu's legislative framework.
+          </p>
+        </div>
+      </div>
+
+      <!-- SECTION 8: METHODOLOGY & EDITORIAL NOTE -->
+      <div class="methodology-panel">
+        <div class="methodology-title" id="head_methodology">
+          <i class="fa-solid fa-calculator"></i> METHODOLOGY &middot; ECI VERIFIED COMPUTATION
+        </div>
+        <div class="methodology-body" id="body_methodology">
+          Statistical calculations were performed using SQL queries in Google BigQuery on the certified 2026 Assembly winners dataset.<br><br>
+          <strong>Source:</strong> Certified Tamil Nadu Assembly Election 2026 results.<br>
+          <strong>Unit of Analysis:</strong> 234 winning candidates.<br>
+          <strong>Variables Analyzed:</strong> Gender, Age, Party, Social Category, Winning Margin.
+        </div>
+      </div>
+
+      <!-- EDITORIAL NOTE -->
+      <div style="background:#fffdfa; border:2px double var(--ink-charcoal); padding:18px 22px; margin:24px 0;" id="box_editorial_note">
+        <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">
+          <i class="fa-solid fa-circle-exclamation"></i> EDITORIAL NOTE &amp; DISCLAIMER
+        </div>
+        <div style="font-family:'Playfair Display',serif; font-size:14px; line-height:1.75; color:var(--ink-charcoal);" id="text_editorial_note">
+          "The analysis does not evaluate why parties nominated particular numbers of women candidates; it examines only the demographic characteristics of elected legislators. Consequently, the findings describe legislative representation rather than the overall participation of women in the electoral process."
+        </div>
+      </div>
+
+      <!-- FINAL STRONGER ARCHIVAL CLOSE -->
+      <div style="margin-top:24px; padding:20px 24px; background:#181818; color:#ffffff; border-radius:4px; font-family:'Playfair Display',serif; font-size:15px; line-height:1.8; text-align:center; font-style:italic;" id="final_archival_close">
+        This investigation forms part of The People's Ledger's continuing effort to document Tamil Nadu's electoral history through demographic evidence. By examining representation alongside certified returns, the series seeks to preserve the exact institutional reality of democratic inclusion over time.
+      </div>
+
+    </div> <!-- /.np-page -->
+
+    
+
+  
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_14.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 14</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #15</span>
+        <a href="../index.html" class="back-btn">Main Index <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+  </div> <!-- /.container -->
+
+  <!-- JavaScript for Language Toggle & Table Search -->
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    let currentLang = 'en';
+
+    const TRANSLATIONS = {
+      en: {
+        headline: "WOMEN IN THE ASSEMBLY",
+        subheadline: "Representation, Generational Change and Electoral Performance in the Tamil Nadu Assembly Election 2026.",
+        lbl_stat_tot_mlas: "Total MLAs",
+        lbl_stat_women_mlas: "Women MLAs",
+        lbl_stat_men_mlas: "Men MLAs",
+        lbl_stat_rep_pct: "Women Representation",
+        btn_lang: "TAMIL VERSION (தமிழ்)",
+        back_btn: '<i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD'
+      },
+      ta: {
+        headline: "சட்டமன்றத்தில் பெண்கள்",
+        subheadline: "2026 தமிழ்நாடு சட்டமன்றத் தேர்தலில் பெண்களின் பிரதிநிதித்துவம், தலைமுறை மாற்றம் மற்றும் தேர்தல் செயல்பாடு.",
+        lbl_stat_tot_mlas: "மொத்த எம்.எல்.ஏக்கள்",
+        lbl_stat_women_mlas: "பெண் எம்.எல்.ஏக்கள்",
+        lbl_stat_men_mlas: "ஆண் எம்.எல்.ஏக்கள்",
+        lbl_stat_rep_pct: "பெண்கள் பிரதிநிதித்துவம்",
+        btn_lang: "ENGLISH VERSION",
+        back_btn: '<i class="fa-solid fa-arrow-left"></i> முகப்புப் பக்கத்திற்குச் செல்'
+      }
+    };
+
+    function toggleLang() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const t = TRANSLATIONS[currentLang];
+      
+      document.getElementById('hdr_headline').innerText = t.headline;
+      document.getElementById('hdr_subheadline').innerText = t.subheadline;
+      document.getElementById('lbl_stat_tot_mlas').innerText = t.lbl_stat_tot_mlas;
+      document.getElementById('lbl_stat_women_mlas').innerText = t.lbl_stat_women_mlas;
+      document.getElementById('lbl_stat_men_mlas').innerText = t.lbl_stat_men_mlas;
+      document.getElementById('lbl_stat_rep_pct').innerText = t.lbl_stat_rep_pct;
+      document.getElementById('btn_lang_toggle').innerText = t.btn_lang;
+    }
+
+    function filterWomenTable() {
+      const input = document.getElementById('np-search-input').value.toUpperCase();
+      const rows = document.querySelectorAll('.archival-table tbody tr');
+      rows.forEach(row => {
+        const text = row.innerText;
+        if (text.toUpperCase().includes(input)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
     }
   </script>
 </body>

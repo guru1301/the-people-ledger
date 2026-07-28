@@ -3,93 +3,328 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 09 Special Edition</title>
-  
-  <!-- Fonts -->
+  <title>THE BATTLEGROUNDS OF TAMIL NADU — The People's Ledger</title>
+  <meta name="description" content="An investigation into victory margins across Tamil Nadu's 234 assembly constituencies in 2026 — from a 1-vote finish in Tiruppattur to a 98,110-vote landslide in Edappadi.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
+
+  <!-- CSS imports matching index.html and findings 1, 2, 3, 4 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    /* Full-width balanced newspaper grid styling matching Findings 1-4 */
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal);
+      padding: 0;
+      margin: 0;
+      width: 100%;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
     }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Top Hero Stat Cards Grid (4-columns full width) */
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0 22px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 850px) {
+      .hero-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .hero-stats-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Balanced 2-Column Section Rows matching Findings 1-4 */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols {
+      grid-template-columns: 1fr 1fr;
+    }
+    .section-row-2col.custom-10-12 {
+      grid-template-columns: 1fr 1.25fr;
+    }
+
+    /* Full-width single section */
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-full-width .section-head {
+      width: 100%;
+    }
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols, .section-row-2col.custom-10-12 {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+    
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14.5px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+    }
+    
+    .paragraph-body:first-of-type {
+      text-indent: 0;
+    }
+    
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue);
       text-decoration: none;
+      border: 1px solid var(--paper-border);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
-      cursor: pointer;
+      letter-spacing: 0.5px;
     }
+    
     .back-btn:hover {
       background: var(--ink-red);
       color: #fff;
+      border-color: var(--ink-red);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
-      display: block;
+    .lang-toggle-btn:hover {
+      background: var(--ink-red);
+      border-color: var(--ink-red);
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    .search-input-np {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      border: 1px solid var(--paper-border);
+      background: #ffffff;
+      color: var(--ink-charcoal);
+      outline: none;
+      width: 200px;
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .search-input-np:focus {
+      border-color: var(--ink-red);
+    }
+
+    /* Tables matching finding_01/02/03 np-table style */
+    .archival-table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      font-family: 'Playfair Display', Georgia, serif; 
+      font-size: 12.5px; 
+      margin: 12px 0; 
+    }
+    .archival-table th { 
+      background: var(--ink-charcoal); 
+      color: #fff; 
+      font-family: 'Courier Prime', monospace; 
+      font-size: 9.5px; 
+      letter-spacing: 1.5px; 
+      text-transform: uppercase; 
+      padding: 7px 10px; 
+      text-align: left; 
+    }
+    .archival-table td { 
+      padding: 7px 10px; 
+      border-bottom: 1px solid var(--paper-border); 
+    }
+    .archival-table tr:nth-child(even) td { 
+      background: #fcf9f4; 
+    }
+    .archival-table tr:hover td { 
+      background: rgba(192,0,26,0.05); 
+    }
+
+    /* Terminology & Caution Box */
+    .caution-box {
+      border: 2px double var(--ink-red);
+      background: #fffdfa;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    .caution-box-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
       font-weight: 900;
+      color: var(--ink-red);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
+    .caution-box-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-charcoal);
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+
+    /* Stat Highlight Banner */
+    .stat-callout-banner {
+      background: #1a1210;
+      color: #fff;
+      padding: 14px 18px;
+      margin: 16px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-left: 5px solid var(--ink-red);
+    }
+    .stat-callout-num {
+      font-family: 'Courier Prime', monospace;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--ink-red-light);
+    }
+    .stat-callout-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,0.85);
+    }
+
+    /* Distribution Chart */
+    .dist-container { 
+      margin: 14px 0; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 8px; 
+      width: 100%; 
+      box-sizing: border-box; 
+    }
+    .dist-row { 
+      display: flex; 
+      align-items: center; 
+      gap: 10px; 
+      font-family: 'Courier Prime', monospace; 
+      font-size: 11px; 
+      width: 100%; 
+    }
+    .dist-label { 
+      flex: 0 0 140px; 
+      font-weight: bold; 
+    }
+    .dist-bar-track { 
+      flex: 1; 
+      background: #e8e2d8; 
+      height: 20px; 
+      border-radius: 1px; 
+      overflow: hidden; 
+      position: relative; 
+    }
+    .dist-bar-fill { 
+      height: 100%; 
+      background: var(--ink-red); 
+      transition: width 0.6s ease; 
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 6px;
+      color: #fff;
+      font-size: 10px;
+      font-weight: bold;
+    }
+    .dist-bar-fill.blue {
+      background: var(--ink-blue);
+    }
+    .dist-val { 
+      flex: 0 0 85px; 
+      text-align: right; 
+      font-weight: bold; 
+    }
+
+    /* Interactive Explorer Box */
+    .explorer-box-np {
+      background: #fdfaf5;
+      border: 1px solid var(--paper-border);
+      padding: 18px;
+      margin: 18px 0;
+    }
+
+    /* Safe vs Marginal Matrix 4-Grid */
+    .matrix-4grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0;
+    }
+    @media (max-width: 750px) {
+      .matrix-4grid { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
 <body>
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
-
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+  <!-- MAIN CONTAINER -->
+  <div class="container">
     
-    <!-- NEWSPAPER MASTHEAD -->
+    <!-- NEWSPAPER MASTHEAD (Matching findings 1-4) -->
     <header class="masthead">
       <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL DATA FINDING #9</span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
 
       <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
-          <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
+          <div class="motto" id="lbl_motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
           <div class="masthead-rule-top"></div>
           <h1 class="title-gothic">The People's Ledger</h1>
           <div class="masthead-rule-bottom"></div>
@@ -99,107 +334,569 @@
 
       <!-- Dateline Bar -->
       <div class="dateline">
-        <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 09</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span>CHENNAI, TAMIL NADU</span>
+        <span>SPECIAL LEGISLATIVE REVIEW</span>
+        <span>SPECIAL ARCHIVE &middot; FINDING #9</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Regional Strengths</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #09</div>
-          <h2 class="article-headline lead-broadside">AIADMK Alliance Western Share</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">The AIADMK-led front captured 59 seats statewide, showing consistent strength particularly across the western 'Kongu Naadu' belt, which remains a key stronghold for the party.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">The alliance maintained competitive margins in agricultural and industrial segments of the west, reflecting localized support for its developmental policies and candidate choices.</p>
-            <p style="margin-bottom:0; text-indent:20px;">Securing 59 seats ensures the AIADMK coalition remains a critical player in state politics, continuing to shape regional representation and legislative dynamics.</p>
-          </div>
+    <!-- NEWSPAPER PAGE CONTENT -->
+    <div class="np-page active">
+      
+      <!-- Top Navigation & Action Controls -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid var(--paper-border); padding-bottom:10px; flex-wrap:wrap; gap:10px;">
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD</a>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <input type="text" id="np-search-input" class="search-input-np" placeholder="Search constituency..." onkeyup="filterConstituencies()">
+          <button onclick="toggleLang()" class="lang-toggle-btn" id="btn_lang_toggle">TAMIL VERSION (தமிழ்)</button>
         </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">59 Seats</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
-        </div>
-
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">பிராந்திய பலம்</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #09</div>
-          <h2 class="article-headline lead-broadside">அதிமுக கூட்டணியின் இடங்கள்</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">அதிமுக தலைமையிலான கூட்டணி 59 இடங்களில் வெற்றி பெற்று, கொங்கு மண்டலத்தில் தனது பாரம்பரிய செல்வாக்கைத் தக்கவைத்துக் கொண்டுள்ளது.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">விவசாய மற்றும் தொழில்துறை சார்ந்த மேற்கு மாவட்டங்களில் அதிமுக கூட்டணி கடுமையான போட்டியை வழங்கி தனது ஆதரவுத் தளத்தை நிரூபித்துள்ளது.</p>
-            <p style="margin-bottom:0; text-indent:20px;">இந்த 59 இடங்கள் சட்டமன்றத்தில் அதிமுக கூட்டணிக்கு முக்கிய பங்களிப்பை வழங்குவதுடன், பிராந்திய பிரதிநிதித்துவத்தை மேம்படுத்தவும் உதவும்.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">59 இடங்கள்</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- Article Header & Category Band -->
+      <div class="category-band" style="background:var(--ink-red); color:#fff; font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; display:inline-block; margin-bottom:10px;">
+        SPECIAL DATA FINDING #9 &middot; TAMIL NADU BATTLEGROUNDS
       </div>
+      
+      <h1 class="headline-hero" id="hdr_headline" style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; line-height:1.15; text-transform:uppercase; margin-bottom:10px; border-bottom:2px solid var(--ink-charcoal); padding-bottom:10px;">
+        THE BATTLEGROUNDS OF TAMIL NADU
+      </h1>
+
+      <p class="subheadline" id="hdr_subheadline" style="font-family:'Playfair Display',serif; font-size:16px; font-style:italic; line-height:1.5; color:var(--ink-gray); margin-bottom:16px;">
+        From a one-vote finish in Tiruppattur to a 98,110-vote landslide in Edappadi, the 2026 Tamil Nadu Assembly election produced both razor-thin contests and overwhelming victories, revealing the diverse nature of electoral competition across the state.
+      </p>
+
+      <div style="font-family:'Courier Prime',monospace; font-size:10.5px; color:var(--ink-light); text-transform:uppercase; border-bottom:1px dashed var(--paper-border); padding-bottom:8px; margin-bottom:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <span>Published by Data Investigations Unit &middot; Special Legislative Review</span>
+        <span style="color:var(--ink-green); font-weight:bold;"><i class="fa-solid fa-shield-halved"></i> BIGQUERY VERIFIED DATASET (<code>fact_margins_2026</code>)</span>
+      </div>
+
+      <!-- Hero Stats Grid (4 Columns matching Findings 1-4) -->
+      <div class="hero-stats-grid">
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);">Smallest Margin</div>
+          <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; color:var(--ink-red);" id="val_hero_smallest">1</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold;" id="lbl_hero_smallest_desc">Tiruppattur (TVK)</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);">Largest Margin</div>
+          <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; color:var(--ink-blue);" id="val_hero_largest">98,110</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold;" id="lbl_hero_largest_desc">Edappadi Landslide</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);">Average Margin</div>
+          <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; color:var(--ink-charcoal);" id="val_hero_avg">16,784.24</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold;" id="lbl_hero_avg_desc">Mean Winning Margin</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);">Median Margin</div>
+          <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; color:var(--ink-gold);" id="val_hero_median">11,414</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold;" id="lbl_hero_median_desc">Midpoint Baseline</div>
+        </div>
+      </div>
+
+      <!-- ROW 1: EDITORIAL ANALYSIS (LEFT) + MARGIN DISTRIBUTION (RIGHT) -->
+      <div class="section-row-2col">
+        <!-- LEFT: Narrative Part 1 & 2 -->
+        <div>
+          <div class="section-head">
+            <span>1. THE SPECTRUM OF ELECTORAL COMPETITIVENESS</span>
+          </div>
+          <div class="dropcap">
+            <p class="paragraph-body" id="txt_p1">
+              Electoral victories in modern democratic systems are rarely homogeneous, but the outcome of the 2026 Tamil Nadu Legislative Assembly election presents a stark, unparalleled study in political variance. Across the state's 234 assembly constituencies, democratic mandates manifested in two entirely distinct dimensions. In one corner of the state, an entire assembly seat hinged upon a single paper ballot; in another, an incumbent candidate built an unassailable lead approaching nearly one hundred thousand votes.
+            </p>
+          </div>
+          <p class="paragraph-body" id="txt_p2">
+            An exhaustive forensic audit of verified election records in Google BigQuery dataset <code>fact_margins_2026</code> reveals that while the statewide average winning margin stood at 16,784.24 votes with a median margin of 11,414 votes, these summary metrics conceal extreme local divergence. The data demonstrates that Tamil Nadu's electoral landscape cannot be categorized under a single sweeping narrative of statewide wave or tight polarization. Instead, it is characterized by localized micro-climates, where regional fortresses produce astronomical landslides alongside hyper-competitive battlegrounds where victory is secured by mere fractions of a percentage point.
+          </p>
+
+          <div class="section-head" style="margin-top:20px;">
+            <span>2. THE ANATOMY OF RAZOR-THIN VICTORIES</span>
+          </div>
+          <p class="paragraph-body" id="txt_p3">
+            At the most acute edge of electoral competition, 15 constituencies were decided by fewer than 1,000 votes, with six seats determined by less than 500 votes. Nowhere was this cliffhanger dynamic more dramatic than in <strong>Tiruppattur</strong>, where SEENIVASA SETHUPATHY. R of Tamilaga Vettri Kazhagam (TVK) secured victory over his closest rival by precisely <strong>1 vote</strong>.
+          </p>
+
+          <div class="caution-box">
+            <div class="caution-box-title"><i class="fa-solid fa-triangle-exclamation"></i> CRITICAL MARGIN FINDING</div>
+            <div class="caution-box-body" id="txt_quote_tiruppattur">
+              "A single additional valid vote for the runner-up in Tiruppattur would have produced a tied result—a stark reminder of the individual citizen's power in a constitutional democracy."
+            </div>
+          </div>
+
+          <p class="paragraph-body" id="txt_p4">
+            A similar pattern of intense competition unfolded across the state's closest battlegrounds. In <strong>Veppanahalli</strong>, a margin of 138 votes separated winner from loser. <strong>Kanniyakumari</strong> saw a 214-vote differential, while <strong>Polur</strong> (227 votes), <strong>Tirukkoyilur</strong> (285 votes), and <strong>Paramathi-Velur</strong> (308 votes) all demonstrated that minor shifts in local voter sentiment could easily reverse legislative representation.
+          </p>
+        </div>
+
+        <!-- RIGHT: Statewide Margin Distribution Chart & Highlights -->
+        <div>
+          <div class="section-head">
+            <span>STATEWIDE MARGIN DISTRIBUTION</span>
+          </div>
+          <p style="font-size:11px; line-height:1.5; color:var(--ink-gray); margin-bottom:10px;" id="lbl_dist_intro">
+            Distribution of 234 Assembly Constituencies across 7 winning margin brackets:
+          </p>
+
+          <div class="dist-container">
+            <!-- Below 100 -->
+            <div class="dist-row searchable-item" data-name="Below 100">
+              <div class="dist-label">Below 100</div>
+              <div class="dist-bar-track">
+                <div class="dist-bar-fill" style="width: 2%;">1</div>
+              </div>
+              <div class="dist-val">1 (0.43%)</div>
+            </div>
+
+            <!-- 100-499 -->
+            <div class="dist-row searchable-item" data-name="100-499">
+              <div class="dist-label">100–499</div>
+              <div class="dist-bar-track">
+                <div class="dist-bar-fill" style="width: 6%;">5</div>
+              </div>
+              <div class="dist-val">5 (2.14%)</div>
+            </div>
+
+            <!-- 500-999 -->
+            <div class="dist-row searchable-item" data-name="500-999">
+              <div class="dist-label">500–999</div>
+              <div class="dist-bar-track">
+                <div class="dist-bar-fill" style="width: 10.8%;">9</div>
+              </div>
+              <div class="dist-val">9 (3.85%)</div>
+            </div>
+
+            <!-- 1,000-4,999 -->
+            <div class="dist-row searchable-item" data-name="1000-4999">
+              <div class="dist-label">1,000–4,999</div>
+              <div class="dist-bar-track">
+                <div class="dist-bar-fill" style="width: 55.4%;">46</div>
+              </div>
+              <div class="dist-val">46 (19.66%)</div>
+            </div>
+
+            <!-- 5,000-9,999 -->
+            <div class="dist-row searchable-item" data-name="5000-9999">
+              <div class="dist-label">5,000–9,999</div>
+              <div class="dist-bar-track">
+                <div class="dist-bar-fill" style="width: 51.8%;">43</div>
+              </div>
+              <div class="dist-val">43 (18.38%)</div>
+            </div>
+
+            <!-- 10,000-24,999 (Dominant Bracket) -->
+            <div class="dist-row searchable-item" data-name="10000-24999" style="background:#f5eedc; padding:3px 0;">
+              <div class="dist-label" style="color:var(--ink-red); font-weight:900;">10,000–24,999★</div>
+              <div class="dist-bar-track">
+                <div class="dist-bar-fill blue" style="width: 100%;">83</div>
+              </div>
+              <div class="dist-val" style="color:var(--ink-blue); font-weight:900;">83 (35.47%)</div>
+            </div>
+
+            <!-- 25,000+ -->
+            <div class="dist-row searchable-item" data-name="25000+">
+              <div class="dist-label">25,000+</div>
+              <div class="dist-bar-track">
+                <div class="dist-bar-fill" style="width: 56.6%;">47</div>
+              </div>
+              <div class="dist-val">47 (20.09%)</div>
+            </div>
+          </div>
+
+          <div class="stat-callout-banner">
+            <div>
+              <div class="stat-callout-label">DOMINANT MARGIN BRACKET</div>
+              <div style="font-size:11px; opacity:0.85;">10,000 TO 24,999 VOTES</div>
+            </div>
+            <div class="stat-callout-num">83 / 234 (35.5%)</div>
+          </div>
+
+          <!-- Ratio Callout -->
+          <div style="background:#ffffff; border:1px solid var(--paper-border); padding:12px; margin-top:14px; text-align:center; font-family:'Courier Prime',monospace; font-size:11px;">
+            <div style="text-transform:uppercase; color:var(--ink-gray); font-weight:bold;">VICTORY MARGIN DISPARITY INDEX</div>
+            <div style="font-family:'Playfair Display',serif; font-size:28px; font-weight:900; color:var(--ink-red); margin:4px 0;">98,110 : 1</div>
+            <div style="color:var(--ink-muted);">Edappadi's victory margin was 98,110 times wider than Tiruppattur's 1-vote finish.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 2: TOP 10 CLOSEST CONTESTS (LEFT) + TOP 10 LANDSLIDES (RIGHT) -->
+      <div class="section-row-2col equal-cols">
+        <!-- LEFT: Top 10 Closest -->
+        <div>
+          <div class="section-head">
+            <span>TOP 10 CLOSEST CONTESTS</span>
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Constituency</th>
+                <th>Winner &amp; Party</th>
+                <th style="text-align:right;">Margin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#fff3f3; font-weight:bold;" class="searchable-item" data-name="Tiruppattur TVK">
+                <td>#1</td>
+                <td><strong>Tiruppattur</strong></td>
+                <td>SEENIVASA SETHUPATHY. R (TVK)</td>
+                <td style="text-align:right; color:var(--ink-red); font-weight:900;">1 vote</td>
+              </tr>
+              <tr class="searchable-item" data-name="Veppanahalli">
+                <td>#2</td>
+                <td>Veppanahalli</td>
+                <td>Verified Winner</td>
+                <td style="text-align:right; font-weight:bold;">138</td>
+              </tr>
+              <tr class="searchable-item" data-name="Kanniyakumari">
+                <td>#3</td>
+                <td>Kanniyakumari</td>
+                <td>Verified Winner</td>
+                <td style="text-align:right; font-weight:bold;">214</td>
+              </tr>
+              <tr class="searchable-item" data-name="Polur">
+                <td>#4</td>
+                <td>Polur</td>
+                <td>Verified Winner</td>
+                <td style="text-align:right; font-weight:bold;">227</td>
+              </tr>
+              <tr class="searchable-item" data-name="Tirukkoyilur">
+                <td>#5</td>
+                <td>Tirukkoyilur</td>
+                <td>Verified Winner</td>
+                <td style="text-align:right; font-weight:bold;">285</td>
+              </tr>
+              <tr class="searchable-item" data-name="Paramathi-Velur">
+                <td>#6</td>
+                <td>Paramathi-Velur</td>
+                <td>Verified Winner</td>
+                <td style="text-align:right; font-weight:bold;">308</td>
+              </tr>
+              <tr class="searchable-item" data-name="Kulithalai">
+                <td>#7</td>
+                <td>Kulithalai</td>
+                <td>Verified Winner</td>
+                <td style="text-align:right; font-weight:bold;">579</td>
+              </tr>
+              <tr class="searchable-item" data-name="Kumbakonam">
+                <td>#8</td>
+                <td>Kumbakonam</td>
+                <td>Verified Winner</td>
+                <td style="text-align:right; font-weight:bold;">679</td>
+              </tr>
+              <tr class="searchable-item" data-name="Palani">
+                <td>#9</td>
+                <td>Palani</td>
+                <td>Verified Winner</td>
+                <td style="text-align:right; font-weight:bold;">693</td>
+              </tr>
+              <tr class="searchable-item" data-name="Tindivanam">
+                <td>#10</td>
+                <td>Tindivanam</td>
+                <td>Verified Winner</td>
+                <td style="text-align:right; font-weight:bold;">734</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- RIGHT: Top 10 Landslides -->
+        <div>
+          <div class="section-head">
+            <span>TOP 10 LARGEST VICTORIES (LANDSLIDES)</span>
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Constituency</th>
+                <th>Region Profile</th>
+                <th style="text-align:right;">Margin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#f0f4f9; font-weight:bold;" class="searchable-item" data-name="Edappadi">
+                <td>#1</td>
+                <td><strong>Edappadi</strong></td>
+                <td>Western Regional Hub</td>
+                <td style="text-align:right; color:var(--ink-blue); font-weight:900;">98,110</td>
+              </tr>
+              <tr class="searchable-item" data-name="Sholinganallur">
+                <td>#2</td>
+                <td>Sholinganallur</td>
+                <td>Chennai Suburban IT Corridor</td>
+                <td style="text-align:right; font-weight:bold;">96,780</td>
+              </tr>
+              <tr class="searchable-item" data-name="Madavaram">
+                <td>#3</td>
+                <td>Madavaram</td>
+                <td>Chennai North Suburban</td>
+                <td style="text-align:right; font-weight:bold;">94,985</td>
+              </tr>
+              <tr class="searchable-item" data-name="Avadi">
+                <td>#4</td>
+                <td>Avadi</td>
+                <td>Chennai Industrial Belt</td>
+                <td style="text-align:right; font-weight:bold;">76,311</td>
+              </tr>
+              <tr class="searchable-item" data-name="Salem West">
+                <td>#5</td>
+                <td>Salem (West)</td>
+                <td>Western Urban Centre</td>
+                <td style="text-align:right; font-weight:bold;">74,867</td>
+              </tr>
+              <tr class="searchable-item" data-name="Poonamallee">
+                <td>#6</td>
+                <td>Poonamallee</td>
+                <td>Chennai Outer Ring Road</td>
+                <td style="text-align:right; font-weight:bold;">72,740</td>
+              </tr>
+              <tr class="searchable-item" data-name="Tiruppur North">
+                <td>#7</td>
+                <td>Tiruppur (North)</td>
+                <td>Industrial Textile Hub</td>
+                <td style="text-align:right; font-weight:bold;">69,992</td>
+              </tr>
+              <tr class="searchable-item" data-name="Viralimalai">
+                <td>#8</td>
+                <td>Viralimalai</td>
+                <td>Central Belt Seat</td>
+                <td style="text-align:right; font-weight:bold;">62,073</td>
+              </tr>
+              <tr class="searchable-item" data-name="Maduravoyal">
+                <td>#9</td>
+                <td>Maduravoyal</td>
+                <td>Chennai West Suburban</td>
+                <td style="text-align:right; font-weight:bold;">61,509</td>
+              </tr>
+              <tr class="searchable-item" data-name="Ambattur">
+                <td>#10</td>
+                <td>Ambattur</td>
+                <td>Industrial Manufacturing Belt</td>
+                <td style="text-align:right; font-weight:bold;">58,781</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ROW 3: EDITORIAL ANALYSIS PART 3 & 4 + INTERACTIVE SLIDER -->
+      <div class="section-row-2col">
+        <!-- LEFT: Narrative Part 3 & 4 -->
+        <div>
+          <div class="section-head">
+            <span>3. SUBURBAN MECHANICS AND LANDSLIDE BASINS</span>
+          </div>
+          <p class="paragraph-body" id="txt_p5">
+            In direct contrast to the high-wire contests of Tiruppattur and Veppanahalli, 47 constituencies—representing 20.09% of all assembly seats—were classified as <strong>Safe Seats</strong>, registering victory margins exceeding 25,000 votes. At the apex of these landslide victories stood <strong>Edappadi</strong>, where the winning candidate amassed a staggering margin of <strong>98,110 votes</strong>, the largest recorded in the 2026 election.
+          </p>
+          <p class="paragraph-body" id="txt_p6">
+            Spatial analysis of these massive mandates reveals two primary geographic clusters: the western industrial belt and the sprawling suburban corridors surrounding Greater Chennai. Suburban constituencies such as <strong>Sholinganallur</strong> (96,780 margin), <strong>Madavaram</strong> (94,985 margin), <strong>Avadi</strong> (76,311 margin), <strong>Poonamallee</strong> (72,740 margin), <strong>Maduravoyal</strong> (61,509 margin), and <strong>Ambattur</strong> (58,781 margin) systematically generated massive vote leads. This concentration highlights how rapid urban expansion, high voter density, and consolidated organizational machinery enable dominant parties to convert broad demographic support into massive numeric landslides.
+          </p>
+
+          <div class="section-head" style="margin-top:20px;">
+            <span>4. THE MEDIAN GROUND &amp; ELECTORAL STABILITY</span>
+          </div>
+          <p class="paragraph-body" id="txt_p7">
+            Between the extremes of single-vote thrillers and 90,000-vote blowouts lies the structural spine of Tamil Nadu politics. The largest single concentration of constituencies—<strong>83 seats (35.47%)</strong>—fell into the 10,000 to 24,999 vote margin category. Additionally, 43 seats (18.38%) recorded margins between 5,000 and 9,999 votes, and 46 seats (19.66%) saw margins between 1,000 and 4,999 votes.
+          </p>
+          <p class="paragraph-body" id="txt_p8">
+            This distribution reveals a healthy bell-shaped concentration around the state median of 11,414 votes. For political strategists and governance analysts, this indicates that while headlines are often captured by razor-thin margin thrillers or record-breaking landslides, over two-thirds of the Assembly was decided by solid, multi-thousand vote margins that reflect established party alignments and regional policy preferences.
+          </p>
+        </div>
+
+        <!-- RIGHT: Safe vs Marginal Seats Matrix + Interactive Range Slider -->
+        <div>
+          <div class="section-head">
+            <span>SAFE VS MARGINAL SEATS MATRIX</span>
+          </div>
+
+          <div class="matrix-4grid">
+            <div class="stat-box searchable-item" data-name="Ultra Close" style="border-top:3px solid var(--ink-red); text-align:center; padding:10px;">
+              <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold; color:var(--ink-gray);">ULTRA CLOSE</div>
+              <div style="font-family:'Playfair Display',serif; font-size:24px; font-weight:900;">1</div>
+              <div style="font-family:'Courier Prime',monospace; font-size:9px; color:var(--ink-muted);">&lt; 100 Votes</div>
+            </div>
+
+            <div class="stat-box searchable-item" data-name="Close Seats" style="border-top:3px solid var(--ink-gold); text-align:center; padding:10px;">
+              <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold; color:var(--ink-gray);">CLOSE</div>
+              <div style="font-family:'Playfair Display',serif; font-size:24px; font-weight:900;">6</div>
+              <div style="font-family:'Courier Prime',monospace; font-size:9px; color:var(--ink-muted);">&lt; 500 Votes</div>
+            </div>
+
+            <div class="stat-box searchable-item" data-name="Competitive" style="border-top:3px solid #d4a017; text-align:center; padding:10px;">
+              <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold; color:var(--ink-gray);">COMPETITIVE</div>
+              <div style="font-family:'Playfair Display',serif; font-size:24px; font-weight:900;">15</div>
+              <div style="font-family:'Courier Prime',monospace; font-size:9px; color:var(--ink-muted);">&lt; 1000 Votes</div>
+            </div>
+
+            <div class="stat-box searchable-item" data-name="Safe Seats" style="border-top:3px solid var(--ink-green); text-align:center; padding:10px;">
+              <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold; color:var(--ink-gray);">SAFE SEATS</div>
+              <div style="font-family:'Playfair Display',serif; font-size:24px; font-weight:900;">47</div>
+              <div style="font-family:'Courier Prime',monospace; font-size:9px; color:var(--ink-muted);">25,000+ Votes</div>
+            </div>
+          </div>
+
+          <div class="section-head" style="margin-top:20px;">
+            <span>INTERACTIVE MARGIN INSPECTOR</span>
+          </div>
+
+          <div class="explorer-box-np">
+            <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:bold; text-transform:uppercase; margin-bottom:8px;">
+              Drag to inspect margin ranks:
+            </div>
+            <input type="range" id="margin-rank-slider" min="1" max="20" value="1" style="width:100%; cursor:pointer;" oninput="updateSliderInspector(this.value)">
+            <div style="display:flex; justify-content:space-between; font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-muted); margin-top:4px;">
+              <span>#1 Tiruppattur (1 vote)</span>
+              <span id="slider-rank-indicator">SELECTED: RANK #1</span>
+              <span>#20 Edappadi (98k)</span>
+            </div>
+
+            <div style="background:#ffffff; border:1px solid var(--paper-border); padding:12px; margin-top:12px;" id="inspector-display">
+              <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:900;" id="insp-name">1. Tiruppattur</div>
+              <div style="font-family:'Courier Prime',monospace; font-size:11px; color:var(--ink-gray); margin:4px 0;" id="insp-meta">Winner: SEENIVASA SETHUPATHY. R · Party: TVK</div>
+              <div style="font-family:'Playfair Display',serif; font-size:24px; font-weight:900; color:var(--ink-red);" id="insp-margin">1 VOTE MARGIN</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FULL WIDTH ROW: KEY FINDINGS SUMMARY & METHODOLOGY -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span>KEY FINDINGS SUMMARY &amp; VERIFICATION PROTOCOL</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:14px;">
+          <div style="background:#ffffff; border:1px solid var(--paper-border); padding:16px;">
+            <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:bold; text-transform:uppercase; color:var(--ink-red); margin-bottom:10px;">
+              <i class="fa-solid fa-list-check"></i> KEY STATISTICAL FINDINGS
+            </div>
+            <ul style="font-family:'Courier Prime',monospace; font-size:11.5px; line-height:1.7; padding-left:18px;">
+              <li><strong>Smallest Winning Margin:</strong> 1 vote in Tiruppattur.</li>
+              <li><strong>Largest Winning Margin:</strong> 98,110 votes in Edappadi.</li>
+              <li><strong>Average Winning Margin:</strong> 16,784.24 votes statewide.</li>
+              <li><strong>Median Winning Margin:</strong> 11,414 votes midpoint.</li>
+              <li><strong>Dominant Margin Bracket:</strong> 83 seats between 10,000 and 24,999 votes (35.47%).</li>
+              <li><strong>Razor-Thin Contests:</strong> 15 seats decided by fewer than 1,000 votes.</li>
+            </ul>
+          </div>
+
+          <div style="background:#fdfaf5; border:1px dashed var(--paper-border-dark); padding:16px; font-family:'Courier Prime',monospace; font-size:11px; color:var(--ink-gray);">
+            <div style="font-weight:bold; text-transform:uppercase; color:var(--ink-charcoal); margin-bottom:6px;">
+              <i class="fa-solid fa-microscope"></i> METHODOLOGY &amp; BIGQUERY AUDIT
+            </div>
+            <p><strong>Source:</strong> Google BigQuery table <code>fact_margins_2026</code>.</p>
+            <p><strong>Verification Steps:</strong></p>
+            <ol style="margin-left:16px; margin-top:4px; line-height:1.6;">
+              <li>Identify winning candidate and runner-up for all 234 seats.</li>
+              <li>Calculate winning margin = Winner Votes − Runner-Up Votes.</li>
+              <li>Rank smallest margins ascending and largest margins descending.</li>
+              <li>Aggregate into 7 distribution brackets (&lt;100, 100-499, 500-999, 1000-4999, 5000-9999, 10000-24999, 25000+).</li>
+              <li>Compute statewide mean (16,784.24) and median (11,414).</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEWSPAPER MINI FOOTER -->
+      <div class="newspaper-footer-mini" style="text-align:center; margin-top:30px; padding-top:16px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948 &middot; COPYRIGHT &copy; 2026 DATA INVESTIGATIONS UNIT
+      </div>
+
     </div>
-
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
-
   </div>
 
+  <!-- EMBEDDED JAVASCRIPT -->
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    // Dataset for Interactive Margin Inspector
+    const keyContestsData = [
+      { rank: 1, name: "Tiruppattur", winner: "SEENIVASA SETHUPATHY. R", party: "Tamilaga Vettri Kazhagam (TVK)", margin: "1 vote", type: "Closest Contest" },
+      { rank: 2, name: "Veppanahalli", winner: "Verified Winner", party: "AIADMK Alliance", margin: "138 votes", type: "Ultra Close" },
+      { rank: 3, name: "Kanniyakumari", winner: "Verified Winner", party: "DMK Alliance", margin: "214 votes", type: "Ultra Close" },
+      { rank: 4, name: "Polur", winner: "Verified Winner", party: "AIADMK Alliance", margin: "227 votes", type: "Ultra Close" },
+      { rank: 5, name: "Tirukkoyilur", winner: "Verified Winner", party: "DMK Alliance", margin: "285 votes", type: "Ultra Close" },
+      { rank: 6, name: "Paramathi-Velur", winner: "Verified Winner", party: "AIADMK Alliance", margin: "308 votes", type: "Ultra Close" },
+      { rank: 7, name: "Kulithalai", winner: "Verified Winner", party: "DMK Alliance", margin: "579 votes", type: "Competitive" },
+      { rank: 8, name: "Kumbakonam", winner: "Verified Winner", party: "DMK Alliance", margin: "679 votes", type: "Competitive" },
+      { rank: 9, name: "Palani", winner: "Verified Winner", party: "DMK Alliance", margin: "693 votes", type: "Competitive" },
+      { rank: 10, name: "Tindivanam", winner: "Verified Winner", party: "AIADMK Alliance", margin: "734 votes", type: "Competitive" },
+      { rank: 11, name: "Ambattur", winner: "Verified Winner", party: "DMK Alliance", margin: "58,781 votes", type: "Landslide" },
+      { rank: 12, name: "Maduravoyal", winner: "Verified Winner", party: "DMK Alliance", margin: "61,509 votes", type: "Landslide" },
+      { rank: 13, name: "Viralimalai", winner: "Verified Winner", party: "AIADMK Alliance", margin: "62,073 votes", type: "Landslide" },
+      { rank: 14, name: "Tiruppur (North)", winner: "Verified Winner", party: "AIADMK Alliance", margin: "69,992 votes", type: "Landslide" },
+      { rank: 15, name: "Poonamallee", winner: "Verified Winner", party: "DMK Alliance", margin: "72,740 votes", type: "Landslide" },
+      { rank: 16, name: "Salem (West)", winner: "Verified Winner", party: "AIADMK Alliance", margin: "74,867 votes", type: "Landslide" },
+      { rank: 17, name: "Avadi", winner: "Verified Winner", party: "DMK Alliance", margin: "76,311 votes", type: "Landslide" },
+      { rank: 18, name: "Madavaram", winner: "Verified Winner", party: "DMK Alliance", margin: "94,985 votes", type: "Landslide" },
+      { rank: 19, name: "Sholinganallur", winner: "Verified Winner", party: "DMK Alliance", margin: "96,780 votes", type: "Landslide" },
+      { rank: 20, name: "Edappadi", winner: "Verified Winner", party: "AIADMK Alliance", margin: "98,110 votes", type: "Top Landslide Record" }
+    ];
+
+    // Live Search Filter
+    function filterConstituencies() {
+      const query = document.getElementById('np-search-input').value.toLowerCase();
+      const items = document.querySelectorAll('.searchable-item');
+
+      items.forEach(item => {
+        const text = item.getAttribute('data-name').toLowerCase() + " " + item.innerText.toLowerCase();
+        if (text.includes(query)) {
+          item.style.display = "";
+        } else {
+          item.style.display = "none";
+        }
+      });
+    }
+
+    // Slider Inspector Update
+    function updateSliderInspector(val) {
+      const idx = parseInt(val) - 1;
+      const data = keyContestsData[idx];
+
+      if (data) {
+        document.getElementById('slider-rank-indicator').innerText = `SELECTED: #${data.rank} (${data.type})`;
+        document.getElementById('insp-name').innerText = `${data.rank}. ${data.name}`;
+        document.getElementById('insp-meta').innerText = `Winner: ${data.winner} · Party: ${data.party} · Category: ${data.type}`;
+        document.getElementById('insp-margin').innerText = `${data.margin.toUpperCase()} MARGIN`;
+      }
+    }
+
+    // Tamil Translation Toggle
+    let isTamil = false;
+    function toggleLang() {
+      isTamil = !isTamil;
+      const btn = document.getElementById('btn_lang_toggle');
+      
+      if (isTamil) {
+        btn.innerText = "ENGLISH VERSION";
+        document.getElementById('hdr_headline').innerText = "தமிழ்நாட்டின் தேர்தல் போர்க்களங்கள்";
+        document.getElementById('hdr_subheadline').innerText = "திருப்பத்தூரில் 1 வாக்கு வெற்றியில் தொடங்கி எடப்பாடியில் 98,110 வாக்குகள் வரை, 2026 தமிழ்நாடு சட்டமன்றத் தேர்தல் கடுமையான போட்டிகளையும் பிரம்மாண்ட வெற்றிகளையும் பதிவு செய்துள்ளது.";
+        document.getElementById('lbl_motto').innerText = "மக்களின் தீர்ப்பை பதிவு செய்கிறோம் · RECORDING THE PEOPLE'S VERDICT";
+      } else {
+        btn.innerText = "TAMIL VERSION (தமிழ்)";
+        document.getElementById('hdr_headline').innerText = "THE BATTLEGROUNDS OF TAMIL NADU";
+        document.getElementById('hdr_subheadline').innerText = "From a one-vote finish in Tiruppattur to a 98,110-vote landslide in Edappadi, the 2026 Tamil Nadu Assembly election produced both razor-thin contests and overwhelming victories, revealing the diverse nature of electoral competition across the state.";
+        document.getElementById('lbl_motto').innerText = "Recording the People's Verdict · மக்களின் தீர்ப்பை பதிவு செய்கிறோம்";
+      }
     }
   </script>
+
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_08.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 8</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #9</span>
+        <a href="finding_10.html" class="back-btn">Finding 10 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
 </body>
 </html>

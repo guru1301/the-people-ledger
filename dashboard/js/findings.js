@@ -7,228 +7,237 @@ let FINDINGS_DATA = [];
 const FINDINGS_FALLBACK = [
   {
     "id": "01",
-    "categoryEn": "Electoral Margin",
-    "categoryTa": "வாக்குப்பதிவு விளிம்பு",
-    "keyNumber": "30 Votes",
-    "keyNumberTa": "30 வாக்குகள்",
-    "titleEn": "Tiruppattur's Razor-Thin Margin",
-    "titleTa": "திருப்பத்தூரின் மிகக் குறைந்த வாக்கு வித்தியாசம்",
-    "summaryEn": "The closest contest in the state was decided by a mere 30 votes, with postal ballots proving to be the ultimate decider.",
-    "summaryTa": "மாநிலத்தின் மிக நெருக்கமான போட்டி வெறும் 30 வாக்குகள் வித்தியாசத்தில் முடிவடைந்தது, இதில் தபால் வாக்குகளே வெற்றியைத் தீர்மானித்தன."
+    "categoryEn": "Gender Voter Turnout",
+    "categoryTa": "பாலின வாக்குப்பதிவு",
+    "keyNumber": "169 Seats",
+    "keyNumberTa": "169 தொகுதிகள்",
+    "titleEn": "Women Outvoted Men Across Tamil Nadu",
+    "titleTa": "தமிழகத்தின் பெரும்பாலான தொகுதிகளில் பெண்கள் அதிக வாக்குப்பதிவு",
+    "summaryEn": "Female turnout surpassed male participation in 169 of 234 constituencies, recording an 86.20% statewide turnout against 83.77% for men—revealing a consistent gender participation advantage across the state.",
+    "summaryTa": "234 தொகுதிகளில் 169 தொகுதிகளில் பெண்களின் வாக்குப்பதிவு ஆண்களை விட அதிகமாக இருந்தது. மாநில அளவில் பெண்களின் வாக்குப்பதிவு 86.20%, ஆண்கள் 83.77% மட்டுமே."
   },
   {
     "id": "02",
-    "categoryEn": "Electoral Pulse",
-    "categoryTa": "தேர்தல் வேகம்",
-    "keyNumber": "74.00%",
-    "keyNumberTa": "74.00%",
-    "titleEn": "Statewide Average Turnout",
-    "titleTa": "மாநில சராசரி வாக்குப்பதிவு",
-    "summaryEn": "Voter turnout across Tamil Nadu's 234 assembly divisions maintained a high average of 74.00%, proving robust democratic participation.",
-    "summaryTa": "தமிழகத்தின் 234 சட்டமன்றத் தொகுதிகளிலும் சராசரியாக 74.00% வாக்குப்பதிவு பதிவாகியுள்ளது, இது மக்களின் பலமான ஈடுபாட்டைக் காட்டுகிறது."
+    "categoryEn": "FPTP & Party Mandate",
+    "categoryTa": "தேர்தல் முறைமை மற்றும் பலம்",
+    "keyNumber": "108 Seats",
+    "keyNumberTa": "108 இடங்கள்",
+    "titleEn": "TVK Won the Seats, Not the Votes",
+    "titleTa": "தவெக இடங்களைக் கைப்பற்றியது, வாக்குகளை அல்ல",
+    "summaryEn": "How First-Past-The-Post converted TVK's 35.07% vote share into 108 seats (46.15% seat share), analyzing conversion mechanics across all parties.",
+    "summaryTa": "ஃபர்ஸ்ட்-பாஸ்ட்-தி-போஸ்ட் முறைமை எவ்வாறு தவெகவின் 35.07% வாக்குகளை 108 சட்டமன்ற இடங்களாக மாற்றியது என்பதன் முழுமையான பகுப்பாய்வு."
   },
   {
     "id": "03",
-    "categoryEn": "Demography Analysis",
-    "categoryTa": "மக்கள் தொகை பகுப்பாய்வு",
-    "keyNumber": "165 Seats",
-    "keyNumberTa": "165 தொகுதிகள்",
-    "titleEn": "Female Turnout Advantage",
-    "titleTa": "பெண்களின் கூடுதல் வாக்குப்பதிவு",
-    "summaryEn": "In 165 out of 234 constituencies, the percentage of female voters who turned out exceeded the male turnout percentage.",
-    "summaryTa": "தமிழகத்தின் 234 தொகுதிகளில் 165 தொகுதிகளில் பெண் வாக்காளர்கள் ஆண்களை விட அதிக வாக்குப்பதிவு சதவீதத்தைப் பதிவு செய்துள்ளனர்."
+    "categoryEn": "Voter Discontent & NOTA",
+    "categoryTa": "நோட்டா மற்றும் வாக்காளர் அதிருப்தி",
+    "keyNumber": "199,801 Votes",
+    "keyNumberTa": "1,99,801 வாக்குகள்",
+    "titleEn": "The NOTA Vote Footprint",
+    "titleTa": "நோட்டா வாக்குகளின் தாக்கம்",
+    "summaryEn": "Across 234 assembly seats, 199,801 voters chose NOTA (0.41% avg). In 11 constituencies, NOTA votes exceeded the winning margin.",
+    "summaryTa": "தமிழகத்தில் 1,99,801 வாக்காளர்கள் நோட்டாவிற்கு வாக்களித்தனர். 11 தொகுதிகளில் வெற்றி வித்தியாசத்தை விட நோட்டா வாக்குகள் அதிகமாக இருந்தன."
   },
   {
     "id": "04",
-    "categoryEn": "ECI Dissatisfaction",
-    "categoryTa": "தேர்தல் ஆணைய அதிருப்தி",
-    "keyNumber": "52 Seats",
-    "keyNumberTa": "52 தொகுதிகள்",
-    "titleEn": "NOTA Margin Outpolls",
-    "titleTa": "வெற்றி வித்தியாசத்தை முறியடித்த நோட்டா",
-    "summaryEn": "In 52 seats, the number of NOTA (None of the Above) votes was larger than the final winning margin, serving as a decisive factor.",
-    "summaryTa": "மாநிலத்தில் 52 தொகுதிகளில் நோட்டா வாக்குகள் வெற்றி வித்தியாசத்தை விட அதிகமாகப் பதிவாகி முடிவுகளைத் தீர்மானிப்பதில் பங்கு வகித்துள்ளன."
+    "categoryEn": "Candidate Deposit Loss",
+    "categoryTa": "தேர்தல் வைப்புத் தொகை",
+    "keyNumber": "83.32%",
+    "keyNumberTa": "83.32%",
+    "titleEn": "The Price of Contesting",
+    "titleTa": "போட்டியிடுவதன் விலை: வைப்புத் தொகை இழப்பு",
+    "summaryEn": "3,352 of 4,023 contesting candidates (83.32%) lost their security deposit; 3.8 million votes went to no-hope candidates.",
+    "summaryTa": "போட்டியிட்ட 4,023 வேட்பாளர்களில் 3,352 பேர் (83.32%) வைப்புத் தொகையை இழந்தனர். 38 லட்சம் வாக்குகள் வீணாகின."
   },
   {
     "id": "05",
-    "categoryEn": "Peak Turnout",
-    "categoryTa": "அதிகபட்ச வாக்குப்பதிவு",
-    "keyNumber": "88.08%",
-    "keyNumberTa": "88.08%",
-    "titleEn": "Peak Electorate Participation",
-    "titleTa": "அதிகபட்ச வாக்குப்பதிவு",
-    "summaryEn": "Palacode constituency registered the highest overall turnout in the state, showcasing exceptional electoral mobilization.",
-    "summaryTa": "மாநிலத்திலேயே அதிகபட்ச வாக்குப்பதிவாக பாலக்கோடு தொகுதியில் 88.08% வாக்குகள் பதிவாகி புதிய சாதனை படைக்கப்பட்டுள்ளது."
+    "categoryEn": "Reserved Seat Competition",
+    "categoryTa": "தனித்தொகுதி போட்டித்தன்மை",
+    "keyNumber": "14,192 Margin",
+    "keyNumberTa": "14,192 வாக்கு விளிம்பு",
+    "titleEn": "SC-Reserved Seat Competitiveness",
+    "titleTa": "தனித்தொகுதிகளில் கடும் போட்டி",
+    "summaryEn": "SC-reserved seats recorded tighter average winning margins (14,192 votes) than General seats (17,544 votes); TVK achieved a 52.3% SC win rate.",
+    "summaryTa": "பொதுத் தொகுதிகளை விட எஸ்சி தனித்தொகுதிகளில் சராசரி வெற்றி வித்தியாசம் குறைவாகவும் (14,192) கடும் போட்டியாகவும் இருந்தது."
   },
   {
     "id": "06",
-    "categoryEn": "Urban Participation",
-    "categoryTa": "நகர்ப்புறப் பங்களிப்பு",
-    "keyNumber": "51.52%",
-    "keyNumberTa": "51.52%",
-    "titleEn": "Lowest Voter Participation",
-    "titleTa": "குறைந்தபட்ச வாக்குப்பதிவு",
-    "summaryEn": "Harbour constituency in Chennai recorded the lowest turnout in the state, indicating urban voter apathy in metropolitan areas.",
-    "summaryTa": "சென்னையின் துறைமுகம் தொகுதி 51.52% வாக்குப்பதிவுடன் மாநிலத்திலேயே மிகக் குறைந்த சதவீதத்தைப் பதிவு செய்துள்ளது."
+    "categoryEn": "Razor-Thin Contests",
+    "categoryTa": "மிக நெருக்கமான போட்டிகள்",
+    "keyNumber": "1 Vote",
+    "keyNumberTa": "1 வாக்கு",
+    "titleEn": "The One-Vote Election: Tiruppattur",
+    "titleTa": "ஒரு வாக்கு வெற்றி: திருப்பத்தூர் வழக்கு ஆய்வு",
+    "summaryEn": "TVK's 819-vote EVM lead in Tiruppattur was nearly erased by DMK's 818 postal votes, sealing a 1-vote certified victory.",
+    "summaryTa": "திருப்பத்தூரில் எலெக்ட்ரானிக் வாக்குகளின் 819 வாக்கு வித்தியாசத்தை தபால் வாக்குகள் குறைத்து 1 வாக்கு வெற்றியாக மாற்றின."
   },
   {
     "id": "07",
-    "categoryEn": "Assembly Seats",
-    "categoryTa": "சட்டமன்ற இடங்கள்",
-    "keyNumber": "107 Seats",
-    "keyNumberTa": "107 இடங்கள்",
-    "titleEn": "TVK Coalition Majority",
-    "titleTa": "தவெக கூட்டணியின் இடங்கள்",
-    "summaryEn": "The newly formed TVK coalition captured 107 seats, making it the single largest legislative block in the 234-seat assembly.",
-    "summaryTa": "234 தொகுதிகள் கொண்ட தமிழக சட்டப்பேரவையில் புதிய தவெக கூட்டணி 107 இடங்களைக் கைப்பற்றி தனிப்பெரும் கூட்டணியாக உருவெடுத்துள்ளது."
+    "categoryEn": "Statewide Voter Turnout",
+    "categoryTa": "மாநில வரலாற்று வாக்குப்பதிவு",
+    "keyNumber": "86.03%",
+    "keyNumberTa": "86.03%",
+    "titleEn": "When Tamil Nadu Voted Like Never Before",
+    "titleTa": "தமிழகம் இதுவரை காணாத வரலாற்றுச் சாதனை வாக்குப்பதிவு",
+    "summaryEn": "Tamil Nadu recorded an all-time record certified turnout of 86.03%, with 49,389,958 votes polled out of 57,411,793 electors.",
+    "summaryTa": "தமிழகத்தின் 5.74 கோடி வாக்காளர்களில் 4.93 கோடி பேர் வாக்களித்து 86.03% வரலாற்று சாதனை வாக்குப்பதிவை ஏற்படுத்தினர்."
   },
   {
     "id": "08",
-    "categoryEn": "Opposition Coalition",
-    "categoryTa": "எதிர்க்கட்சி கூட்டணி",
-    "keyNumber": "68 Seats",
-    "keyNumberTa": "68 இடங்கள்",
-    "titleEn": "DMK Alliance Opposition Bloc",
-    "titleTa": "திமுக கூட்டணியின் செயல்பாடு",
-    "summaryEn": "The DMK-led alliance secured 68 seats statewide, maintaining a strong opposition bloc with significant vote shares.",
-    "summaryTa": "திமுக தலைமையிலான கூட்டணி மாநிலம் தழுவி 68 இடங்களை வென்று, சட்டமன்றத்தில் ஒரு பலமான எதிர்க்கட்சியாக அமைகிறது."
+    "categoryEn": "District Geography",
+    "categoryTa": "மாவட்ட புவியியல் வெற்றி",
+    "keyNumber": "30 Districts",
+    "keyNumberTa": "30 மாவட்டங்கள்",
+    "titleEn": "The Geography of Victory",
+    "titleTa": "வெற்றியின் புவியியல் வரைபடம்",
+    "summaryEn": "TVK won seats across 30 of Tamil Nadu's 38 districts, capturing 108 total seats led by a 16-seat clean sweep in Chennai.",
+    "summaryTa": "தமிழகத்தின் 38 மாவட்டங்களில் 30 மாவட்டங்களில் தவெக 108 இடங்களை வென்று தன் ஆதிக்கத்தைப் பதிவு செய்துள்ளது."
   },
   {
     "id": "09",
     "categoryEn": "Regional Strengths",
-    "categoryTa": "பிராந்திய பலம்",
+    "categoryTa": "பிராந்திய கூட்டணி பலம்",
     "keyNumber": "59 Seats",
     "keyNumberTa": "59 இடங்கள்",
-    "titleEn": "AIADMK Alliance Western Share",
-    "titleTa": "அதிமுக கூட்டணியின் இடங்கள்",
-    "summaryEn": "The AIADMK-led front secured 59 seats, capturing critical constituencies across the western belt of the state.",
-    "summaryTa": "அதிமுக தலைமையிலான கூட்டணி 59 இடங்களில் வெற்றி பெற்று, கொங்கு மண்டலத்தின் பல தொகுதிகளில் தனது ஆதிக்கத்தைத் தக்கவைத்துள்ளது."
+    "titleEn": "The Battlegrounds of Tamil Nadu",
+    "titleTa": "தமிழகத்தின் தேர்தல் போர்க்களங்கள்",
+    "summaryEn": "Detailed regional breakdowns showing AIADMK's 59-seat western belt concentration and alliance performance across all major zones.",
+    "summaryTa": "கொங்கு மண்டலம் உட்பட தமிழகத்தின் பல்வேறு மண்டலங்களில் கூட்டணிகளின் வெற்றி மற்றும் பலம் குறித்த பகுப்பாய்வு."
   },
   {
     "id": "10",
-    "categoryEn": "Reserved Constituencies",
-    "categoryTa": "தனித்தொகுதிகள்",
-    "keyNumber": "14,192 Votes",
-    "keyNumberTa": "14,192 வாக்குகள்",
-    "titleEn": "Reserved Seats Competitiveness",
-    "titleTa": "தனித்தொகுதிகளின் போட்டித்தன்மை",
-    "summaryEn": "Scheduled Castes (SC) reserved seats proved significantly more competitive, returning a tighter average winning margin of 14,192 votes.",
-    "summaryTa": "பொது தொகுதிகளை விட SC தனித்தொகுதிகள் 14,192 வாக்குகள் என்ற மிகக் குறைந்த சராசரி வித்தியாசத்துடன் அதிக போட்டித்தன்மையைக் காட்டின."
+    "categoryEn": "Reserved Constituency Analysis",
+    "categoryTa": "தனித்தொகுதி பிரதிநிதித்துவம்",
+    "keyNumber": "46 Reserved Seats",
+    "keyNumberTa": "46 தனித்தொகுதிகள்",
+    "titleEn": "Reserved Voices: Reserved Constituency Analysis",
+    "titleTa": "தனித்தொகுதிகள்: யாருக்கு அதிக இடங்கள்?",
+    "summaryEn": "An analysis of representation across 46 SC/ST reserved seats (19.7% of house); TVK secured 23 SC seats (52.3%), leading all parties.",
+    "summaryTa": "46 எஸ்சி/எஸ்டி தனித்தொகுதிகளில் தவெக 23 எஸ்சி இடங்களைக் (52.3%) கைப்பற்றி மிகப்பெரிய வெற்றியைப் பெற்றுள்ளது."
   },
   {
     "id": "11",
-    "categoryEn": "Gender Voting Gap",
-    "categoryTa": "பாலின வாக்குப்பதிவு இடைவெளி",
-    "keyNumber": "+11.40%",
-    "keyNumberTa": "+11.40%",
-    "titleEn": "Highest Female Turnout Gap",
-    "titleTa": "அதிகபட்ச பெண்கள் வாக்குப்பதிவு இடைவெளி",
-    "summaryEn": "Ramanathapuram documented a record female turnout gap, with women outvoting men by a margin of 11.40 percentage points.",
-    "summaryTa": "ராமநாதபுரம் தொகுதியில் பெண் வாக்காளர்கள் ஆண்களை விட 11.40% அதிகமாக வாக்கு செலுத்தி புதிய சாதனை படைத்துள்ளனர்."
+    "categoryEn": "Electoral Realignment",
+    "categoryTa": "அரசியல் மறுசீரமைப்பு",
+    "keyNumber": "70.94%",
+    "keyNumberTa": "70.94%",
+    "titleEn": "The Great Political Realignment",
+    "titleTa": "பெரும் அரசியல் மறுசீரமைப்பு",
+    "summaryEn": "166 out of 234 assembly seats (70.94%) changed winning party hands between 2021 and 2026, documenting massive structural volatility.",
+    "summaryTa": "234 தொகுதிகளில் 166 தொகுதிகள் (70.94%) 2021-ஐ விட 2026-ல் வேறுபட்ட அரசியல் கட்சியைத் தேர்ந்தெடுத்துள்ளன."
   },
   {
     "id": "12",
-    "categoryEn": "Voter Discontent",
-    "categoryTa": "வாக்காளர் அதிருப்தி",
-    "keyNumber": "1.04%",
-    "keyNumberTa": "1.04%",
-    "titleEn": "Highest NOTA Share",
-    "titleTa": "அதிகபட்ச நோட்டா வாக்குகள்",
-    "summaryEn": "Udhagamandalam constituency recorded the highest NOTA share in the state, with 1.04% of voters rejecting all candidates.",
-    "summaryTa": "உதகமண்டலம் தொகுதியில் மாநிலத்திலேயே அதிகபட்சமாக 1.04% வாக்காளர்கள் நோட்டாவிற்கு வாக்களித்து தங்கள் அதிருப்தியைப் பதிவு செய்துள்ளனர்."
+    "categoryEn": "Third-Party Impact",
+    "categoryTa": "மூன்றாம் தரப்பு தாக்கம்",
+    "keyNumber": "89 Seats",
+    "keyNumberTa": "89 இடங்கள்",
+    "titleEn": "The Kingmaker Effect",
+    "titleTa": "கிங்மேக்கர் தாக்கம்",
+    "summaryEn": "NTK's certified vote totals exceeded the winning margin in 89 of 234 assembly constituencies (38.03%), demonstrating a major numerical footprint.",
+    "summaryTa": "89 தொகுதிகளில் (38.03%) நாம் தமிழர் கட்சியின் வாக்குகள் வெற்றி வித்தியாசத்தை விட அதிகமாக இருந்தன."
   },
   {
     "id": "13",
-    "categoryEn": "Metropolitan Laggard",
-    "categoryTa": "மாநகர சுணக்கம்",
-    "keyNumber": "58.12%",
-    "keyNumberTa": "58.12%",
-    "titleEn": "Metropolitan Turnout Lag",
-    "titleTa": "சென்னை மாநகர வாக்குப்பதிவு சுணக்கம்",
-    "summaryEn": "Chennai district logged the lowest average turnout among all districts, showing a significant metropolitan voter lag.",
-    "summaryTa": "தமிழகத்தின் அனைத்து மாவட்டங்களையும் ஒப்பிடுகையில், சென்னை மாவட்டம் 58.12% என்ற மிகக் குறைந்த சராசரி வாக்குப்பதிவைச் சந்தித்தது."
+    "categoryEn": "Demographic Shift",
+    "categoryTa": "சட்டமன்ற தலைமுறை மாற்றம்",
+    "keyNumber": "45.0 Years",
+    "keyNumberTa": "45.0 வயது",
+    "titleEn": "The Generational Shift",
+    "titleTa": "சட்டமன்றத் தலைமுறை மாற்றம்",
+    "summaryEn": "TVK entered the Assembly with the youngest delegation averaging 45.0 years (34.26% under 40), led by youngest MLA Kamali S. (age 28).",
+    "summaryTa": "தவெக சட்டமன்ற உறுப்பினர்களின் சராசரி வயது 45.0 ஆக இருந்தது. இளம் எம்.எல்.ஏ கமலி எஸ். 28 வயதில் வெற்றி பெற்றார்."
   },
   {
     "id": "14",
-    "categoryEn": "Electoral Demographics",
-    "categoryTa": "தேர்தல் புள்ளிவிவரம்",
-    "keyNumber": "6.2 Crore",
-    "keyNumberTa": "6.2 கோடி",
-    "titleEn": "Total Electorate Size",
-    "titleTa": "மொத்த வாக்காளர்களின் எண்ணிக்கை",
-    "summaryEn": "Tamil Nadu's registered voter base reached a monumental size of over 6.2 crore electors in the 2026 assembly elections.",
-    "summaryTa": "தமிழகத்தின் மொத்த பதிவுசெய்யப்பட்ட வாக்காளர்களின் எண்ணிக்கை 2026-ல் 6.2 கோடி என்ற இமாலய எல்லையைத் தாண்டியுள்ளது."
+    "categoryEn": "Executive Mandate",
+    "categoryTa": "அமைச்சரவையின் வாக்கு பலம்",
+    "keyNumber": "21,531 Margin",
+    "keyNumberTa": "21,531 வாக்கு விளிம்பு",
+    "titleEn": "The Cabinet Mandate",
+    "titleTa": "அமைச்சரவையின் வெற்றி வாக்குகள்",
+    "summaryEn": "Appointed cabinet ministers won by an average margin of 21,531 votes (+28.3% vs statewide baseline of 16,784), though 6 won by under 5,000 votes.",
+    "summaryTa": "அமைச்சர்களின் சராசரி வெற்றி வித்தியாசம் 21,531 வாக்குகளாக இருந்தது. 6 அமைச்சர்கள் 5,000க்கும் குறைவான வித்தியாசத்தில் வென்றனர்."
   },
   {
     "id": "15",
-    "categoryEn": "Postal Ballot Decider",
-    "categoryTa": "தபால் வாக்குத் தீர்ப்பு",
-    "keyNumber": "1 Seat",
-    "keyNumberTa": "1 தொகுதி",
-    "titleEn": "Postal Ballot Decisive Outcome",
-    "titleTa": "தபால் வாக்குகளால் மாறிய தொகுதி",
-    "summaryEn": "Excluding postal ballots would have changed the winning party in only one constituency across the entire state: Tiruppattur.",
-    "summaryTa": "தபால் வாக்குகளைத் தவிர்த்திருந்தால், மாநிலத்தின் திருப்பத்தூர் தொகுதியில் மட்டும் வெற்றி பெற்ற கட்சி மாறியிருக்கும்."
-  },
-  {
-    "id": "16",
-    "categoryEn": "Youth Leadership",
-    "categoryTa": "இளைய சட்டமன்ற உறுப்பினர்",
-    "keyNumber": "28 Years",
-    "keyNumberTa": "28 வயது",
-    "titleEn": "Youngest Winning Legislator",
-    "titleTa": "இளைய சட்டமன்ற உறுப்பினர்",
-    "summaryEn": "The youngest elected candidate to join the assembly in 2026 is 28 years old, representing youth representation in governance.",
-    "summaryTa": "2026 சட்டமன்றத்தில் நுழையும் மிக இளம் வயது சட்டமன்ற உறுப்பினர் 28 வயது நிரம்பியவர் ஆவார்."
-  },
-  {
-    "id": "17",
-    "categoryEn": "Veteran Experience",
-    "categoryTa": "முதுபெரும் அனுபவம்",
-    "keyNumber": "84 Years",
-    "keyNumberTa": "84 வயது",
-    "titleEn": "Oldest Legislative Member",
-    "titleTa": "முதுபெரும் சட்டமன்ற உறுப்பினர்",
-    "summaryEn": "The assembly's oldest member is 84 years old, representing decades of political experience in state governance.",
-    "summaryTa": "புதிய சட்டமன்றத்தின் மிக மூத்த உறுப்பினர் 84 வயது நிரம்பியவர் ஆவார், இவர் பல தசாப்த கால அரசியல் அனுபவம் கொண்டவர்."
-  },
-  {
-    "id": "18",
-    "categoryEn": "Independent Candidates",
-    "categoryTa": "சுயேச்சைகளின் நிலை",
-    "keyNumber": "0 Seats",
-    "keyNumberTa": "0 இடங்கள்",
-    "titleEn": "Independent Candidate Challenge",
-    "titleTa": "சுயேச்சைகளின் செயல்பாடு",
-    "summaryEn": "Despite hundreds of independent candidates contesting, zero independent candidates succeeded in winning a seat.",
-    "summaryTa": "இந்தத் தேர்தலில் போட்டியிட்ட நூற்றுக்கணக்கான சுயேச்சை வேட்பாளர்களில் ஒருவரால் கூட எந்த ஒரு தொகுதியிலும் வெற்றி பெற இயலவில்லை."
-  },
-  {
-    "id": "19",
-    "categoryEn": "Victory Margins",
-    "categoryTa": "வெற்றி வாக்குகள்",
-    "keyNumber": "16,842 Votes",
-    "keyNumberTa": "16,842 வாக்குகள்",
-    "titleEn": "Average Winning Margin",
-    "titleTa": "சராசரி வாக்கு வித்தியாசம்",
-    "summaryEn": "The average winning margin across all 234 assembly seats was 16,842 votes, highlighting moderate electoral splits.",
-    "summaryTa": "தமிழகத்தின் அனைத்து 234 தொகுதிகளின் சராசரி வெற்றி வாக்கு வித்தியாசம் 16,842 ஆகப் பதிவாகியுள்ளது."
+    "categoryEn": "Gender Representation",
+    "categoryTa": "பெண்கள் பிரதிநிதித்துவம்",
+    "keyNumber": "9.83% (23 Women)",
+    "keyNumberTa": "9.83% (23 பெண்கள்)",
+    "titleEn": "Women in the Assembly",
+    "titleTa": "சட்டமன்றத்தில் பெண்கள்",
+    "summaryEn": "Only 23 of 234 MLAs (9.83%) are women (TVK 13, AIADMK 6). Female MLAs averaged 46.3 years and a narrower turnout gap (1.54 pts vs 2.42 pts).",
+    "summaryTa": "234 உறுப்பினர்களில் 23 பெண்கள் (தவெக 13, அதிமுக 6). பெண் உறுப்பினர்கள் சராசரி 46.3 வயதில் சமமான வெற்றி வித்தியாசத்தைப் பெற்றனர்."
   }
 ];
 
 async function loadFindingsData() {
   try {
     const res = await fetch('/api/findings');
-    if (!res.ok) throw new Error(`HTTP ${res.status} fetching findings API`);
-    FINDINGS_DATA = await res.json();
-    console.log(`[Findings] Loaded ${FINDINGS_DATA.length} findings from API`);
-  } catch (err) {
-    console.error('[Findings] Could not load findings from API, using local fallback:', err);
-    FINDINGS_DATA = FINDINGS_FALLBACK;
-  } finally {
-    // Automatically trigger front page re-render once data (live or fallback) is loaded
-    if (typeof currentLang !== 'undefined' && typeof renderDynamicFrontPage === 'function') {
-      renderDynamicFrontPage(currentLang);
+    if (res.ok) {
+      const data = await res.json();
+      if (Array.isArray(data) && data.length > 0) {
+        FINDINGS_DATA = data;
+        return FINDINGS_DATA;
+      }
     }
+  } catch (err) {
+    // Expected fallback when endpoint is static
   }
+
+  FINDINGS_DATA = FINDINGS_FALLBACK;
+  return FINDINGS_DATA;
 }
+
+function createFindingCardHtml(f, lang) {
+  const fid = f.id;
+  const cat = lang === 'ta' ? (f.categoryTa || f.categoryEn) : f.categoryEn;
+  const title = lang === 'ta' ? (f.titleTa || f.titleEn) : f.titleEn;
+  const summary = lang === 'ta' ? (f.summaryTa || f.summaryEn) : f.summaryEn;
+  const keyNum = lang === 'ta' ? (f.keyNumberTa || f.keyNumber) : f.keyNumber;
+  const linkUrl = `findings/finding_${fid}.html?lang=${lang}`;
+
+  return `
+    <article class="finding-card">
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span style="font-family:'Courier Prime',monospace; font-size:10px; text-transform:uppercase; color:var(--ink-gray); font-weight:bold;">${cat}</span>
+          <span style="font-family:'Courier Prime',monospace; font-size:9.5px; background:var(--ink-charcoal); color:#ffffff; padding:2px 6px; border-radius:2px; font-weight:bold;">FINDING #${fid}</span>
+        </div>
+        <h3 class="finding-headline">
+          <a href="${linkUrl}" style="color:inherit; text-decoration:none;">${title}</a>
+        </h3>
+        <span class="finding-number">${keyNum}</span>
+        <p class="finding-summary">${summary}</p>
+      </div>
+      <div style="margin-top:12px;">
+        <a href="${linkUrl}" class="finding-link">
+          ${lang === 'ta' ? 'மேலும் படிக்க' : 'Read More'} &rarr;
+        </a>
+      </div>
+    </article>
+  `;
+}
+
+function renderFindingsCards(containerId, lang = 'en') {
+  const currentL = (typeof containerId === 'string' && (containerId === 'en' || containerId === 'ta')) ? containerId : (lang || 'en');
+  const container = document.getElementById("findingsGrid") || (typeof containerId === 'string' && document.getElementById(containerId));
+  if (!container) return;
+
+  const list = FINDINGS_DATA.length > 0 ? FINDINGS_DATA : FINDINGS_FALLBACK;
+  // Filter out first 6 findings as requested (they appear in the top hero/sidebar)
+  const remainingList = list.filter(f => parseInt(f.id, 10) > 6);
+  container.innerHTML = '';
+
+  remainingList.forEach(f => {
+    container.innerHTML += createFindingCardHtml(f, currentL);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
+  await loadFindingsData();
+  const lang = window.currentLang || 'en';
+  if (typeof renderDynamicFrontPage === 'function') renderDynamicFrontPage(lang);
+  renderFindingsCards(lang);
+});

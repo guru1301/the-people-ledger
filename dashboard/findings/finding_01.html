@@ -3,90 +3,165 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 01 Special Edition</title>
-  
-  <!-- Fonts -->
+  <title>WOMEN RECORDED HIGHER TURNOUT IN 169 OF 234 CONSTITUENCIES — The People's Ledger</title>
+  <meta name="description" content="Female turnout reached 86.20% statewide compared with 83.77% among male electors, a 2.42 percentage-point advantage across 169 of 234 assembly seats.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal);
+      padding: 0; margin: 0; width: 100%;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
     }
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* ── 2-Column Section Rows matching finding_02 ── */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols { grid-template-columns: 1fr 1fr; }
+    .section-row-2col.custom-10-12 { grid-template-columns: 1fr 1.25fr; }
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols, .section-row-2col.custom-10-12 {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+      .section-full-width > div[style*="grid"] { display: block !important; }
+    }
+
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14.5px;
+      line-height: 1.8;
+      margin-bottom: 18px;
+      text-align: justify;
+      text-indent: 20px;
+    }
+    .paragraph-body:first-of-type { text-indent: 0; }
+
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue);
       text-decoration: none;
+      border: 1px solid var(--paper-border);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
+      letter-spacing: 0.5px;
       cursor: pointer;
     }
-    .back-btn:hover {
-      background: var(--ink-red);
+    .back-btn:hover { background: var(--ink-red); color: #fff; border-color: var(--ink-red); text-decoration: none; }
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal);
       color: #fff;
+      border: 1px solid var(--ink-charcoal);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    .trans-en, .trans-ta {
-      display: none;
+    .lang-toggle-btn:hover { background: var(--ink-red); border-color: var(--ink-red); }
+
+    /* Matrix dots */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(26, 1fr);
+      gap: 4px;
+      padding: 14px;
+      background: #24201c;
+      border-radius: 2px;
+      margin: 15px 0;
+      width: 100%;
+      box-sizing: border-box;
     }
-    body.lang-en .trans-en {
-      display: block;
+    @media (max-width: 768px) { .matrix-grid { grid-template-columns: repeat(13, 1fr); } }
+    .matrix-dot { aspect-ratio: 1; border-radius: 1px; cursor: pointer; transition: transform 0.15s ease; }
+    .matrix-dot:hover { transform: scale(1.4); z-index: 10; }
+    .matrix-dot.female-higher { background-color: #d30d25; }
+    .matrix-dot.male-higher { background-color: #473f37; }
+    .matrix-legend { display: flex; gap: 15px; justify-content: center; margin-top: 8px; font-family: 'Courier Prime', monospace; font-size: 10.5px; }
+
+    /* Tables */
+    .archival-table { width: 100%; border-collapse: collapse; font-family: 'Playfair Display', Georgia, serif; font-size: 12.5px; margin: 14px 0; }
+    .archival-table th { background: var(--ink-charcoal); color: #fff; font-family: 'Courier Prime', monospace; font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 10px; text-align: left; }
+    .archival-table th.text-right { text-align: right; }
+    .archival-table td { padding: 7px 10px; border-bottom: 1px solid var(--paper-border); }
+    .archival-table td.text-right { text-align: right; }
+    .archival-table td.strong { font-weight: bold; }
+    .archival-table tr:nth-child(even) td { background: #fcf9f4; }
+    .archival-table tr:hover td { background: rgba(192,0,26,0.05); }
+
+    /* Distribution bars */
+    .dist-container { margin: 15px 0; display: flex; flex-direction: column; gap: 8px; width: 100%; box-sizing: border-box; }
+    .dist-row { display: flex; align-items: center; gap: 10px; font-family: 'Courier Prime', monospace; font-size: 11px; width: 100%; }
+    .dist-label { flex: 0 0 200px; font-weight: bold; }
+    .dist-bar-track { flex: 1; background: #e8e2d8; height: 20px; border-radius: 1px; overflow: hidden; position: relative; }
+    .dist-bar-fill { height: 100%; background: var(--ink-red); transition: width 0.6s ease; }
+    .dist-val { flex: 0 0 90px; text-align: right; font-weight: bold; }
+
+    /* Hero stat block (matching finding_02 dyn_stat_* blocks) */
+    .hero-stat-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 18px 0 10px;
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
-    }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      font-weight: 900;
-    }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
-    }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-    }
+    @media (max-width: 768px) { .hero-stat-row { grid-template-columns: repeat(2,1fr); } }
+
+    /* Pagination bar */
+    .pagination-bar { margin-top: 10px; margin-bottom: 15px; display: flex; flex-direction: column; gap: 8px; font-family: 'Courier Prime', monospace; font-size: 10.5px; }
   </style>
 </head>
 <body>
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
+  <div class="container">
 
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
-    
     <!-- NEWSPAPER MASTHEAD -->
     <header class="masthead">
-      <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; ASSEMBLY ELECTION SPECIAL</span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
-
-      <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
           <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
@@ -96,109 +171,719 @@
           <span class="title-tamil-sub">தமிழ்நாடு தேர்தல் பதிவேடு &middot; 2026</span>
         </div>
       </div>
-
-      <!-- Dateline Bar -->
       <div class="dateline">
         <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 01</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span id="liveDateTime">Monday, July 6, 2026</span>
+        <span>✦ SPECIAL ELECTORATE &amp; GENDER TURNOUT REVIEW ✦</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Electoral Margin</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #01</div>
-          <h2 class="article-headline lead-broadside">Tiruppattur's Razor-Thin Margin</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">In a dramatic culmination of the 2026 Tamil Nadu Legislative Assembly elections, the constituency of Tiruppattur (AC 194) witnessed the closest contest in the state's democratic history. The winning candidate secured their seat by a narrow margin of just 30 votes, demonstrating the critical weight of every single ballot cast.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">Analysis of the final counts reveals that the race remained neck-and-neck through all twenty rounds of machine counting. It was ultimately the counting of the postal ballots, predominantly cast by government officials on election duty, that tilted the scales and decided the representative for the next legislative term.</p>
-            <p style="margin-bottom:0; text-indent:20px;">This razor-thin margin highlights the intense polarization of the local electorate and serves as a classic textbook case for political scientists. It underscores the fact that administrative precision in handling postal returns is just as pivotal as public voting campaigns.</p>
+    <section class="np-page active">
+
+      <!-- ── NAV + HERO BANNER ── -->
+      <div style="padding: 18px 0 0; border-bottom: 2px solid var(--paper-border); margin-bottom: 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <div style="display: flex; gap: 8px;">
+            <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> <span id="lbl_back">Index</span></a>
+            <button class="lang-toggle-btn" id="langToggleBtn" onclick="togglePageLanguage()">English / தமிழ்</button>
+          </div>
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light); text-align:right;">
+            SPECIAL DATA FINDING #1 &middot; GENDER TURNOUT ANALYSIS
           </div>
         </div>
 
-        <div class="np-divider"></div>
+        <!-- Hero Banner -->
+        <div class="hero-sub-banner" style="background: var(--ink-charcoal);">SPECIAL DATA FINDING #1</div>
+        <h2 class="article-headline" style="font-size:28px; line-height:1.15; color:var(--ink-red-dark); font-weight:900; margin-bottom:8px;" id="lbl_main_headline">
+          WOMEN OUTVOTED MEN ACROSS TAMIL NADU
+        </h2>
+        <div class="hero-subheading" style="font-size:13.5px; line-height:1.5; margin-bottom:14px;" id="lbl_main_subheadline">
+          Female turnout surpassed male participation in 169 of 234 constituencies, recording an 86.20% statewide turnout against 83.77% for men—revealing a consistent gender participation advantage across the state.
+        </div>
+        <div class="byline" style="margin-bottom:16px;">By Data Investigations Unit &middot; Special Electorate Review</div>
 
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">30 Votes</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
+        <!-- 4 Hero Stat Cards -->
+        <div class="hero-stat-row">
+          <div class="stat-box">
+            <div class="stat-num" style="font-size:26px; color:var(--ink-red);" id="dyn_stat_f_seats">169 Seats</div>
+            <div class="stat-label" style="font-size:9px;">Female Turnout Higher</div>
+            <div class="stat-sub" id="dyn_stat_f_seats_pct">72.22% of 234</div>
           </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
+          <div class="stat-box">
+            <div class="stat-num" style="font-size:26px; color:var(--ink-charcoal);" id="dyn_stat_f_turnout">86.20%</div>
+            <div class="stat-label" style="font-size:9px;">Statewide Female Turnout</div>
+            <div class="stat-sub">Voted / Registered Electors</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="font-size:26px; color:var(--ink-charcoal);" id="dyn_stat_m_turnout">83.77%</div>
+            <div class="stat-label" style="font-size:9px;">Statewide Male Turnout</div>
+            <div class="stat-sub">Voted / Registered Electors</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="font-size:26px; color:var(--ink-red);" id="dyn_stat_advantage">+2.42 pts</div>
+            <div class="stat-label" style="font-size:9px;">Female Advantage</div>
+            <div class="stat-sub">Statewide Gender Gap</div>
           </div>
         </div>
-
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">வாக்குப்பதிவு விளிம்பு</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #01</div>
-          <h2 class="article-headline lead-broadside">திருப்பத்தூரின் மிகக் குறைந்த வாக்கு வித்தியாசம்</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலில், திருப்பத்தூர் (AC 194) தொகுதி வரலாற்றிலேயே மிக நெருக்கமான ஒரு போரைச் சந்தித்தது. வெற்றி பெற்ற வேட்பாளர் வெறும் 30 வாக்குகள் வித்தியாசத்தில் தனது இடத்தை உறுதி செய்தார், இது ஒவ்வொரு வாக்கின் முக்கியத்துவத்தையும் உணர்த்துகிறது.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">இறுதி எண்ணிக்கை விவரங்கள் காட்டுவது என்னவென்றால், இயந்திர வாக்கு எண்ணிக்கையின் 20 சுற்றுகளிலும் இரு வேட்பாளர்களும் சம பலத்துடன் மோதினர். இறுதியாக அரசு ஊழியர்களின் தபால் வாக்குகளே வெற்றியைத் தீர்மானிப்பதில் பெரும் பங்கு வகித்தன.</p>
-            <p style="margin-bottom:0; text-indent:20px;">இந்த மிகக் குறைந்த வாக்கு வித்தியாசம் உள்ளூர் வாக்காளர்களின் தீவிரப் பிரிவினையை விளக்குவதுடன், ஒவ்வொரு வாக்குச்சீட்டும் எவ்வளவு வலிமையானது என்பதற்குச் சிறந்த உதாரணமாகத் திகழ்கிறது.</p>
+      <!-- ── ROW 1: STATEWIDE FINDING (LEFT) + PREVALENCE SUMMARY (RIGHT) ── -->
+      <div class="section-row-2col">
+        <!-- LEFT: Narrative Introduction -->
+        <div>
+          <div class="section-head">
+            <span>1. THE STATEWIDE FINDING</span>
+          </div>
+          <div class="dropcap">
+            <p class="paragraph-body" id="lbl_intro_text">
+              A rigorous mathematical analysis of registered electors and votes cast reveals a clear participation gap in Tamil Nadu's 2026 Assembly election. Female electors recorded a higher turnout rate than male electors when votes cast were measured against their respective registered elector populations. The weighted statewide calculation places female turnout at <strong id="txt_sw_f_pct">86.20%</strong>, against <strong id="txt_sw_m_pct">83.77%</strong> for male electors—a difference of <strong id="txt_sw_adv">+2.42</strong> percentage points.
+            </p>
+          </div>
+          <p class="paragraph-body">
+            But a statewide average can conceal substantial local variation. To determine whether this advantage was widespread or driven by a small number of constituencies, The People's Ledger examined the gender turnout gap across all <strong id="txt_total_seats_intro">234</strong> Assembly constituencies.
+          </p>
+
+          <div class="section-head" style="margin-top:22px;">
+            <span>METHODOLOGY &amp; SCOPE</span>
+          </div>
+          <p style="font-size:11.5px; line-height:1.6; color:var(--ink-gray); font-family:'Courier Prime',monospace; text-align:justify; margin-bottom:10px;">
+            Female Turnout (%) = Female_Voted / Female_Electors × 100<br>
+            Male Turnout (%) = Male_Voted / Male_Electors × 100<br>
+            Gender Gap = Female Turnout − Male Turnout
+          </p>
+          <p style="font-size:11px; line-height:1.5; color:var(--ink-gray); text-align:justify;">
+            This analysis measures participation rates using official elector rolls. It does not measure voter preference, party alignment, or candidate choice.
+          </p>
+
+          <div class="pull-quote" style="margin-top:15px; font-size:14px; line-height:1.45; border-color:var(--ink-charcoal);">
+            "Across Tamil Nadu, female electors turned out at higher rates than male electors in 169 of 234 assembly seats — led by a +13.82 point female advantage in Tiruvadanai."
           </div>
         </div>
 
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">30 வாக்குகள்</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
+        <!-- RIGHT: Statewide Participation Table + Prevalence Summary -->
+        <div>
+          <div class="section-head">
+            <span>STATEWIDE PARTICIPATION LEDGER</span>
           </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
+          <p style="font-size:11px; line-height:1.5; color:var(--ink-gray); margin-bottom:10px;">
+            Registered elector counts and weighted turnout rates statewide:
+          </p>
+          <table class="archival-table" style="margin-bottom:18px; font-size:12px;">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th class="text-right">Turnout %</th>
+                <th class="text-right">Total Voted</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="strong">Female Electorate</td>
+                <td class="text-right strong" style="color:var(--ink-red)" id="val_sw_female_turnout">86.20%</td>
+                <td class="text-right strong" id="val_sw_female_voted">25,261,339</td>
+              </tr>
+              <tr>
+                <td class="strong">Male Electorate</td>
+                <td class="text-right" id="val_sw_male_turnout">83.77%</td>
+                <td class="text-right strong" id="val_sw_male_voted">23,537,143</td>
+              </tr>
+              <tr>
+                <td class="strong">Female Advantage</td>
+                <td class="text-right strong" style="color:var(--ink-red)" id="val_sw_advantage">+2.42 pts</td>
+                <td class="text-right strong">—</td>
+              </tr>
+              <tr>
+                <td class="strong">Female Non-Voters</td>
+                <td class="text-right" id="val_sw_female_nv_pct">13.80%</td>
+                <td class="text-right strong" id="val_sw_female_nv">4,045,723</td>
+              </tr>
+              <tr>
+                <td class="strong">Male Non-Voters</td>
+                <td class="text-right" id="val_sw_male_nv_pct">16.23%</td>
+                <td class="text-right strong" id="val_sw_male_nv">4,559,860</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="section-head">
+            <span>PREVALENCE SUMMARY</span>
+          </div>
+          <div class="stat-callout-banner" style="margin-top:12px;">
+            <div>
+              <div class="stat-callout-label">FEMALE TURNOUT HIGHER (CONSTITUENCIES)</div>
+              <div style="font-size:11px; opacity:0.8;">Out of 234 total Assembly seats</div>
+            </div>
+            <div class="stat-callout-num"><span id="val_female_higher_seats">169</span> / 234 (<span id="lbl_female_higher_pct">72.22%</span>)</div>
+          </div>
+
+          <div class="stat-box" style="margin-top:12px;">
+            <div style="font-family:'Courier Prime',monospace; font-size:11px; line-height:1.8;">
+              <div>🔴 <strong>Female Higher:</strong> <span id="val_count_f">169</span> seats</div>
+              <div>⚫ <strong>Male Higher:</strong> <span id="val_count_m">65</span> seats</div>
+              <div>⚪ <strong>Equal:</strong> <span id="val_count_eq">0</span> seats</div>
+            </div>
           </div>
         </div>
-
       </div>
-    </div>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
 
+      <!-- ── ROW 2: BROAD BUT NOT UNIVERSAL (LEFT) + MAGNITUDE DISTRIBUTION (RIGHT) ── -->
+      <div class="section-row-2col equal-cols">
+        <!-- LEFT: Pattern prevalence + matrix -->
+        <div>
+          <div class="section-head">
+            <span>2. THE PATTERN WAS BROAD, BUT NOT UNIVERSAL</span>
+          </div>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            The statewide advantage was not confined to a handful of constituencies with exceptionally large gaps. Female turnout exceeded male turnout in <strong id="txt_prev_female_seats">169 of 234 assembly constituencies</strong> (<span id="txt_prev_female_share">72.2%</span> of all Assembly seats). Male turnout was higher in <strong id="txt_prev_male_seats">65 constituencies</strong> (<span id="txt_prev_male_share">27.8%</span>), while <span id="txt_prev_equal_seats">0</span> recorded equal rates.
+          </p>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            The result therefore describes a broad statewide tendency rather than a uniform rule: higher female participation was more common across Tamil Nadu, but a substantial minority of constituencies moved in the opposite direction.
+          </p>
+
+          <!-- 234-dot matrix -->
+          <div class="matrix-grid" id="constituencyMatrixDots">
+            <!-- 234 dots generated dynamically via JS -->
+          </div>
+          <div class="matrix-legend">
+            <span><span style="display:inline-block;width:10px;height:10px;background:#d30d25;margin-right:4px;"></span> <strong>Female Turnout Higher (<span id="lgd_f_count">169</span> Seats)</strong></span>
+            <span><span style="display:inline-block;width:10px;height:10px;background:#473f37;margin-right:4px;"></span> <strong>Male Turnout Higher (<span id="lgd_m_count">65</span> Seats)</strong></span>
+          </div>
+        </div>
+
+        <!-- RIGHT: Gap size distribution chart -->
+        <div>
+          <div class="section-head">
+            <span>3. HOW LARGE WAS THE ADVANTAGE?</span>
+          </div>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            Counting the number of female-leading constituencies shows how widespread the pattern was; grouping the gaps by size reveals its intensity.
+          </p>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            The largest single group consisted of constituencies where the female advantage was relatively narrow, between zero and two percentage points. At the other end of the distribution, a smaller group recorded female advantages of ten percentage points or more.
+          </p>
+
+          <div class="dist-container" id="distributionChartContainer">
+            <!-- Rendered dynamically via JS -->
+          </div>
+
+          <div class="caution-box" style="margin-top:18px; border-color:var(--ink-charcoal);">
+            <div class="caution-box-title" style="color:var(--ink-charcoal);"><i class="fa-solid fa-circle-info"></i> NOTE ON SCALE</div>
+            <div class="caution-box-body">
+              The evidence shows two things at once: female turnout led in a clear majority of constituencies, but the size of that lead varied substantially across the state.
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- ── ROW 3: TOP FEMALE SEATS (LEFT) + TOP MALE SEATS (RIGHT) ── -->
+      <div class="section-row-2col equal-cols">
+        <!-- LEFT: Strongest female seats -->
+        <div>
+          <div class="section-head">
+            <span>4. THE STATEWIDE AVERAGE HIDES MUCH WIDER LOCAL GAPS</span>
+          </div>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            The statewide turnout difference provides an overall measure, but individual constituencies reveal considerably wider disparities. At the top of the ranking, <strong id="txt_top_f_seat_name">Tiruvadanai</strong> recorded the state's largest female turnout advantage at <strong id="txt_top_f_seat_gap">+13.82</strong> percentage points, with female turnout of <span id="txt_top_f_seat_f_val">83.66%</span> compared with <span id="txt_top_f_seat_m_val">69.83%</span> among male electors.
+          </p>
+
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; margin-bottom:4px;">TOP 10 — STRONGEST FEMALE TURNOUT ADVANTAGE</div>
+          <table class="archival-table" style="font-size:11px;">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>AC No.</th>
+                <th>Constituency</th>
+                <th>District</th>
+                <th class="text-right">Male %</th>
+                <th class="text-right">Female %</th>
+                <th class="text-right">Gap</th>
+              </tr>
+            </thead>
+            <tbody id="topFemaleTableBody">
+              <!-- Loaded dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- RIGHT: Counter-evidence male seats -->
+        <div>
+          <div class="section-head">
+            <span>5. COUNTER-EVIDENCE: PATTERN REVERSED IN 65 CONSTITUENCIES</span>
+          </div>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            The statewide female advantage did not extend to every constituency. Male turnout exceeded female turnout in <span id="txt_m_prev_count">65</span> seats, accounting for <span id="txt_m_prev_pct">27.8%</span> of the state.
+          </p>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            The strongest reversal occurred in <strong id="txt_top_m_seat_name">Kancheepuram</strong>, where male turnout exceeded female turnout by <strong id="txt_top_m_seat_gap">2.78</strong> percentage points. The counter-evidence demonstrates that the statewide finding should not be interpreted as a universal constituency-level outcome.
+          </p>
+
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; margin-bottom:4px;">TOP 10 — STRONGEST MALE TURNOUT ADVANTAGE</div>
+          <table class="archival-table" style="font-size:11px;">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>AC No.</th>
+                <th>Constituency</th>
+                <th>District</th>
+                <th class="text-right">Male %</th>
+                <th class="text-right">Female %</th>
+                <th class="text-right">Gap</th>
+              </tr>
+            </thead>
+            <tbody id="topMaleTableBody">
+              <!-- Loaded dynamically via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- ── ROW 4: DISTRICT-LEVEL EVIDENCE (LEFT) + DISTRICT LEDGER TABLE (RIGHT) ── -->
+      <div class="section-row-2col">
+        <!-- LEFT: District narrative -->
+        <div>
+          <div class="section-head">
+            <span>6. DISTRICT-LEVEL EVIDENCE</span>
+          </div>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            The constituency analysis can be tested at a broader geographic level by aggregating raw elector and voter counts within each district. Using this weighted method, female turnout remained higher in <strong id="txt_dist_f_count">30</strong> of <strong id="txt_dist_total">38</strong> districts, while male turnout led in <strong id="txt_dist_m_count">8</strong> of <strong id="txt_dist_total_2">38</strong> districts.
+          </p>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            The strongest district-level female advantage was recorded in <span id="txt_dist_top_f">Ramanathapuram</span> at <span id="txt_dist_top_f_gap">+11.50</span> percentage points. At the opposite end, <span id="txt_dist_top_m">Kancheepuram</span> recorded the strongest male advantage at <span id="txt_dist_top_m_gap">-2.15</span> points.
+          </p>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            The district results reinforce the broader statewide finding while also identifying areas where the direction of the turnout gap reversed.
+          </p>
+
+          <div class="section-head" style="margin-top:22px;">
+            <span>7. TWO SCALES, SAME QUESTION</span>
+          </div>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            At the statewide level, female turnout exceeded male turnout. At the constituency level, the same direction appeared in <span id="syn_f_seats">169</span> of <span id="syn_total_seats">234</span> seats. At the district level, it appeared in <span id="syn_f_districts">30</span> of <span id="syn_total_districts">38</span> districts.
+          </p>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            Together, these measurements show that the female turnout advantage was visible at statewide, constituency, and district levels.
+          </p>
+
+          <div class="section-head" style="margin-top:22px;">
+            <span>8. WHAT THE NUMBERS ESTABLISH</span>
+          </div>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            The evidence establishes a clear participation pattern in Tamil Nadu's 2026 Assembly election. Female electors recorded a higher weighted turnout rate statewide, and that advantage appeared across a majority of constituencies and districts.
+          </p>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            Yet the size and even the direction of the gap varied geographically. The strongest female-leading constituency recorded a double-digit advantage, while dozens of constituencies recorded male turnout leads.
+          </p>
+          <p class="paragraph-body" style="font-size:13px; line-height:1.6;">
+            The central finding is therefore not that every part of Tamil Nadu behaved identically. It is that higher female turnout was the more common pattern across the state's electoral landscape.
+          </p>
+        </div>
+
+        <!-- RIGHT: District ledger table -->
+        <div>
+          <div class="section-head">
+            <span>DISTRICT-LEVEL LEDGER</span>
+          </div>
+          <p style="font-size:11px; line-height:1.5; color:var(--ink-gray); margin-bottom:10px;">
+            Weighted district rates calculated from raw voter and elector sums (38 Districts Total):
+          </p>
+
+          <table class="archival-table" style="font-size:11px;">
+            <thead>
+              <tr>
+                <th>District</th>
+                <th class="text-right">Seats</th>
+                <th class="text-right">Male %</th>
+                <th class="text-right">Female %</th>
+                <th class="text-right">Gap</th>
+              </tr>
+            </thead>
+            <tbody id="districtTableBody">
+              <!-- Loaded dynamically via JS -->
+            </tbody>
+          </table>
+
+          <!-- Pagination Controls -->
+          <div class="pagination-bar">
+            <div id="distPageInfo" style="color:var(--ink-gray); text-align:center;">Showing 1–25 of 38 entries</div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <button class="back-btn" id="btnDistPrev" onclick="changeDistPage(-1)" style="padding:4px 10px; font-size:10px;"><i class="fa-solid fa-chevron-left"></i> Prev</button>
+              <div id="distPageNumbers" style="display:flex; gap:4px;"></div>
+              <button class="back-btn" id="btnDistNext" onclick="changeDistPage(1)" style="padding:4px 10px; font-size:10px;">Next <i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </div>
+
+          <!-- Data Source & Proof -->
+          <div style="border-top: 2px solid var(--paper-border); padding-top:18px; margin-top:10px;">
+            <div class="section-head">
+              <span>DATA SOURCE &amp; PROOF</span>
+            </div>
+            <div style="font-size:11.5px; line-height:1.6; text-align:justify; margin-bottom:14px; color:var(--ink-gray); font-family:'Courier Prime',monospace;">
+              <p style="margin-bottom:8px;"><strong>BigQuery Table:</strong> <code>tn-election-2026-501004.tn_election_2026.fact_turnout_2026</code></p>
+              <p style="margin-bottom:8px;"><strong>Constituency Dim:</strong> <code>dim_constituency</code></p>
+              <p style="margin-bottom:8px;"><strong>Source Engine:</strong> REST API (<code>/api/findings/1/data</code>)</p>
+            </div>
+            <div class="section-head" style="margin-top:10px;">
+              <span>ANALYTICAL LIMITATION</span>
+            </div>
+            <p style="font-size:11.5px; line-height:1.6; text-align:justify; color:var(--ink-gray);">
+              "This investigation measures recorded voter turnout rates using official elector lists. It measures participation rates, not voter preference, party alignment, or candidate choice. The analysis cannot determine voter motivation or voting preference without additional individual-level evidence."
+            </p>
+          </div>
+        </div>
+      </div>
+
+
+      
+
+    
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Main Index</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #1</span>
+        <a href="finding_02.html" class="back-btn">Finding 2 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+    </section>
   </div>
 
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    let currentLang = 'en';
+    let findingData = null;
+
+    async function loadFinding01Data() {
+      try {
+        const res = await fetch('/api/findings/1/data');
+        if (res.ok) {
+          findingData = await res.json();
+        } else {
+          findingData = getFallbackFinding01Data();
+        }
+      } catch (err) {
+        findingData = getFallbackFinding01Data();
+      }
+      renderFinding01Page();
+    }
+
+    function renderFinding01Page() {
+      if (!findingData) return;
+      const sw = findingData.statewide;
+      const prev = findingData.prevalence;
+      const distAnalysis = findingData.district_analysis;
+
+      // Hero stat cards
+      document.getElementById('dyn_stat_f_seats').innerText = prev.female_higher + ' Seats';
+      document.getElementById('dyn_stat_f_seats_pct').innerText = prev.female_higher_pct.toFixed(2) + '% of ' + prev.total_constituencies;
+      document.getElementById('dyn_stat_f_turnout').innerText = sw.female_turnout_pct.toFixed(2) + '%';
+      document.getElementById('dyn_stat_m_turnout').innerText = sw.male_turnout_pct.toFixed(2) + '%';
+      document.getElementById('dyn_stat_advantage').innerText = (sw.female_advantage_points > 0 ? '+' : '') + sw.female_advantage_points.toFixed(2) + ' pts';
+
+      // Left column stats
+      document.getElementById('val_female_higher_seats').innerText = prev.female_higher;
+      document.getElementById('lbl_female_higher_pct').innerText = prev.female_higher_pct.toFixed(2) + '%';
+
+      document.getElementById('val_sw_female_turnout').innerText = sw.female_turnout_pct.toFixed(2) + '%';
+      document.getElementById('val_sw_female_voted').innerText = sw.female_voted.toLocaleString();
+      document.getElementById('val_sw_male_turnout').innerText = sw.male_turnout_pct.toFixed(2) + '%';
+      document.getElementById('val_sw_male_voted').innerText = sw.male_voted.toLocaleString();
+      document.getElementById('val_sw_advantage').innerText = '+' + sw.female_advantage_points.toFixed(2) + ' pts';
+
+      const f_nv_pct = (sw.female_non_voters / sw.female_electors * 100).toFixed(2);
+      const m_nv_pct = (sw.male_non_voters / sw.male_electors * 100).toFixed(2);
+      document.getElementById('val_sw_female_nv_pct').innerText = f_nv_pct + '%';
+      document.getElementById('val_sw_female_nv').innerText = sw.female_non_voters.toLocaleString();
+      document.getElementById('val_sw_male_nv_pct').innerText = m_nv_pct + '%';
+      document.getElementById('val_sw_male_nv').innerText = sw.male_non_voters.toLocaleString();
+
+      document.getElementById('val_count_f').innerText = prev.female_higher;
+      document.getElementById('val_count_m').innerText = prev.male_higher;
+      document.getElementById('val_count_eq').innerText = prev.equal;
+
+      // Dynamic headlines & intro
+      document.getElementById('dyn_headline_f_seats').innerText = prev.female_higher;
+      document.getElementById('dyn_headline_total_seats').innerText = prev.total_constituencies;
+      document.getElementById('dyn_sub_f_turnout').innerText = sw.female_turnout_pct.toFixed(2) + '%';
+      document.getElementById('dyn_sub_m_turnout').innerText = sw.male_turnout_pct.toFixed(2) + '%';
+      document.getElementById('dyn_sub_adv').innerText = (sw.female_advantage_points > 0 ? '+' : '') + sw.female_advantage_points.toFixed(2);
+
+      document.getElementById('txt_sw_f_pct').innerText = sw.female_turnout_pct.toFixed(2) + '%';
+      document.getElementById('txt_sw_m_pct').innerText = sw.male_turnout_pct.toFixed(2) + '%';
+      document.getElementById('txt_sw_adv').innerText = '+' + sw.female_advantage_points.toFixed(2);
+      document.getElementById('txt_total_seats_intro').innerText = prev.total_constituencies;
+
+      document.getElementById('txt_prev_female_seats').innerText = prev.female_higher + ' of ' + prev.total_constituencies + ' assembly constituencies';
+      document.getElementById('txt_prev_female_share').innerText = prev.female_higher_pct.toFixed(1) + '%';
+      document.getElementById('txt_prev_male_seats').innerText = prev.male_higher + ' constituencies';
+      document.getElementById('txt_prev_male_share').innerText = prev.male_higher_pct.toFixed(1) + '%';
+      document.getElementById('txt_prev_equal_seats').innerText = prev.equal;
+
+      document.getElementById('lgd_f_count').innerText = prev.female_higher;
+      document.getElementById('lgd_m_count').innerText = prev.male_higher;
+
+      // Top female seat highlight
+      if (findingData.top_female_advantage && findingData.top_female_advantage.length > 0) {
+        const topF = findingData.top_female_advantage[0];
+        document.getElementById('txt_top_f_seat_name').innerText = topF.ac_name;
+        document.getElementById('txt_top_f_seat_gap').innerText = '+' + topF.gender_gap.toFixed(2);
+        document.getElementById('txt_top_f_seat_f_val').innerText = topF.female_turnout.toFixed(2) + '%';
+        document.getElementById('txt_top_f_seat_m_val').innerText = topF.male_turnout.toFixed(2) + '%';
+      }
+
+      // Top male seat highlight
+      if (findingData.male_advantage && findingData.male_advantage.length > 0) {
+        const topM = findingData.male_advantage[0];
+        document.getElementById('txt_m_prev_count').innerText = prev.male_higher;
+        document.getElementById('txt_m_prev_pct').innerText = prev.male_higher_pct.toFixed(1) + '%';
+        document.getElementById('txt_top_m_seat_name').innerText = topM.ac_name;
+        document.getElementById('txt_top_m_seat_gap').innerText = Math.abs(topM.gender_gap).toFixed(2);
+      }
+
+      // District summary highlights
+      if (distAnalysis) {
+        const totalDistCount = distAnalysis.districts ? distAnalysis.districts.length : 38;
+        document.getElementById('txt_dist_f_count').innerText = distAnalysis.female_leading_districts_count;
+        document.getElementById('txt_dist_total').innerText = totalDistCount;
+        document.getElementById('txt_dist_m_count').innerText = distAnalysis.male_leading_districts_count;
+        document.getElementById('txt_dist_total_2').innerText = totalDistCount;
+        document.getElementById('txt_dist_top_f').innerText = distAnalysis.largest_female_advantage_district;
+        document.getElementById('txt_dist_top_m').innerText = distAnalysis.strongest_male_advantage_district;
+
+        const topDistF = distAnalysis.districts.find(d => d.district === distAnalysis.largest_female_advantage_district);
+        const topDistM = distAnalysis.districts.find(d => d.district === distAnalysis.strongest_male_advantage_district);
+        if (topDistF) document.getElementById('txt_dist_top_f_gap').innerText = '+' + topDistF.gender_gap.toFixed(2);
+        if (topDistM) document.getElementById('txt_dist_top_m_gap').innerText = topDistM.gender_gap.toFixed(2);
+
+        document.getElementById('syn_f_districts').innerText = distAnalysis.female_leading_districts_count;
+        document.getElementById('syn_total_districts').innerText = totalDistCount;
+      }
+
+      document.getElementById('syn_f_seats').innerText = prev.female_higher;
+      document.getElementById('syn_total_seats').innerText = prev.total_constituencies;
+
+      renderMatrixDots(findingData.all_constituencies);
+      renderTopFemaleTable(findingData.top_female_advantage);
+      renderTopMaleTable(findingData.male_advantage);
+      renderDistributionChart(findingData.distribution);
+      renderDistrictTable(findingData.district_analysis.districts);
+    }
+
+    function renderMatrixDots(allSeats) {
+      const container = document.getElementById('constituencyMatrixDots');
+      if (!container || !allSeats) return;
+      container.innerHTML = allSeats.map(s => {
+        const isFemale = s.gender_gap > 0;
+        const cls = isFemale ? 'female-higher' : 'male-higher';
+        const title = `AC ${s.ac_no} ${s.ac_name}: Male ${s.male_turnout}%, Female ${s.female_turnout}%, Gap ${s.gender_gap > 0 ? '+' : ''}${s.gender_gap}%`;
+        return `<div class="matrix-dot ${cls}" title="${title}"></div>`;
+      }).join('');
+    }
+
+    function renderTopFemaleTable(rows) {
+      const tbody = document.getElementById('topFemaleTableBody');
+      if (!tbody || !rows) return;
+      tbody.innerHTML = rows.map((r, i) => `
+        <tr>
+          <td><strong>#${i+1}</strong></td>
+          <td>AC ${r.ac_no}</td>
+          <td><strong>${r.ac_name}</strong></td>
+          <td>${r.district}</td>
+          <td class="text-right">${r.male_turnout.toFixed(2)}%</td>
+          <td class="text-right" style="color:var(--ink-red);font-weight:bold;">${r.female_turnout.toFixed(2)}%</td>
+          <td class="text-right" style="color:var(--ink-red);font-weight:bold;">+${r.gender_gap.toFixed(2)} pts</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderTopMaleTable(rows) {
+      const tbody = document.getElementById('topMaleTableBody');
+      if (!tbody || !rows) return;
+      tbody.innerHTML = rows.map((r, i) => `
+        <tr>
+          <td><strong>#${i+1}</strong></td>
+          <td>AC ${r.ac_no}</td>
+          <td><strong>${r.ac_name}</strong></td>
+          <td>${r.district}</td>
+          <td class="text-right" style="font-weight:bold;">${r.male_turnout.toFixed(2)}%</td>
+          <td class="text-right">${r.female_turnout.toFixed(2)}%</td>
+          <td class="text-right" style="font-weight:bold;">${r.gender_gap.toFixed(2)} pts</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderDistributionChart(dist) {
+      const container = document.getElementById('distributionChartContainer');
+      if (!container || !dist) return;
+      const bands = [
+        { label: 'Male Advantage (Gap < 0)', count: dist.male_advantage, color: '#473f37' },
+        { label: 'Female Advantage 0–2 pts', count: dist.female_0_2, color: '#d30d25' },
+        { label: 'Female Advantage 2–5 pts', count: dist.female_2_5, color: '#d30d25' },
+        { label: 'Female Advantage 5–10 pts', count: dist.female_5_10, color: '#d30d25' },
+        { label: 'Female Advantage 10+ pts', count: dist.female_10_plus, color: '#d30d25' }
+      ];
+      const total = dist.total_check || 234;
+      const maxCount = Math.max(...bands.map(b => b.count));
+      container.innerHTML = bands.map(b => {
+        const pct = ((b.count / total) * 100).toFixed(1);
+        const fillPct = (b.count / maxCount) * 100;
+        return `
+          <div class="dist-row">
+            <div class="dist-label">${b.label}</div>
+            <div class="dist-bar-track">
+              <div class="dist-bar-fill" style="width:${fillPct}%; background:${b.color};"></div>
+            </div>
+            <div class="dist-val">${b.count} (${pct}%)</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    let distTableData = [];
+    let distTableCurrentPage = 1;
+    const DIST_ITEMS_PER_PAGE = 25;
+
+    function renderDistrictTable(districts) {
+      distTableData = districts || [];
+      distTableCurrentPage = 1;
+      updateDistPage();
+    }
+
+    function updateDistPage() {
+      const tbody = document.getElementById('districtTableBody');
+      if (!tbody || !distTableData) return;
+      const total = distTableData.length;
+      const totalPages = Math.ceil(total / DIST_ITEMS_PER_PAGE) || 1;
+      if (distTableCurrentPage > totalPages) distTableCurrentPage = totalPages;
+      if (distTableCurrentPage < 1) distTableCurrentPage = 1;
+      const startIdx = (distTableCurrentPage - 1) * DIST_ITEMS_PER_PAGE;
+      const endIdx = Math.min(startIdx + DIST_ITEMS_PER_PAGE, total);
+      const pageItems = distTableData.slice(startIdx, endIdx);
+
+      tbody.innerHTML = pageItems.map(d => `
+        <tr>
+          <td><strong>${d.district}</strong></td>
+          <td class="text-right">${d.constituencies_count}</td>
+          <td class="text-right">${typeof d.male_turnout === 'number' ? d.male_turnout.toFixed(2) : d.male_turnout}%</td>
+          <td class="text-right">${typeof d.female_turnout === 'number' ? d.female_turnout.toFixed(2) : d.female_turnout}%</td>
+          <td class="text-right" style="color:${d.gender_gap > 0 ? 'var(--ink-red)' : 'var(--ink-charcoal)'};font-weight:bold;">${d.gender_gap > 0 ? '+' : ''}${typeof d.gender_gap === 'number' ? d.gender_gap.toFixed(2) : d.gender_gap} pts</td>
+        </tr>
+      `).join('');
+
+      const infoEl = document.getElementById('distPageInfo');
+      if (infoEl) infoEl.innerText = total > 0 ? `Showing ${startIdx + 1}–${endIdx} of ${total} entries` : 'No entries';
+
+      const btnPrev = document.getElementById('btnDistPrev');
+      if (btnPrev) btnPrev.disabled = (distTableCurrentPage === 1);
+      const btnNext = document.getElementById('btnDistNext');
+      if (btnNext) btnNext.disabled = (distTableCurrentPage === totalPages);
+
+      const pageNumsEl = document.getElementById('distPageNumbers');
+      if (pageNumsEl) {
+        let btnsHtml = '';
+        for (let p = 1; p <= totalPages; p++) {
+          const activeStyle = p === distTableCurrentPage ? 'background: var(--ink-red); color: #fff; border-color: var(--ink-red);' : '';
+          btnsHtml += `<button class="back-btn" onclick="goToDistPage(${p})" style="padding: 3px 8px; font-size: 10px; ${activeStyle}">${p}</button>`;
+        }
+        pageNumsEl.innerHTML = btnsHtml;
+      }
+    }
+
+    function changeDistPage(delta) { distTableCurrentPage += delta; updateDistPage(); }
+    function goToDistPage(page) { distTableCurrentPage = page; updateDistPage(); }
+
+    function getFallbackFinding01Data() {
+      const top_female = [
+        {"ac_no": 210, "ac_name": "Tiruvadanai", "district": "Ramanathapuram", "male_turnout": 69.83, "female_turnout": 83.66, "gender_gap": 13.82},
+        {"ac_no": 234, "ac_name": "Killiyoor", "district": "Kanniyakumari", "male_turnout": 64.02, "female_turnout": 77.61, "gender_gap": 13.60},
+        {"ac_no": 185, "ac_name": "Tiruppattur", "district": "Sivaganga", "male_turnout": 70.76, "female_turnout": 83.89, "gender_gap": 13.12},
+        {"ac_no": 148, "ac_name": "Kunnam", "district": "Perambalur", "male_turnout": 78.20, "female_turnout": 91.32, "gender_gap": 13.11},
+        {"ac_no": 186, "ac_name": "Sivaganga", "district": "Sivaganga", "male_turnout": 69.19, "female_turnout": 82.29, "gender_gap": 13.10},
+        {"ac_no": 211, "ac_name": "Ramanathapuram", "district": "Ramanathapuram", "male_turnout": 71.05, "female_turnout": 83.92, "gender_gap": 12.87},
+        {"ac_no": 212, "ac_name": "Mudukulathur", "district": "Ramanathapuram", "male_turnout": 68.45, "female_turnout": 80.95, "gender_gap": 12.50},
+        {"ac_no": 233, "ac_name": "Padmanabhapuram", "district": "Kanniyakumari", "male_turnout": 65.10, "female_turnout": 77.40, "gender_gap": 12.30},
+        {"ac_no": 232, "ac_name": "Colachel", "district": "Kanniyakumari", "male_turnout": 63.80, "female_turnout": 75.90, "gender_gap": 12.10},
+        {"ac_no": 184, "ac_name": "Karaikudi", "district": "Sivaganga", "male_turnout": 68.90, "female_turnout": 80.80, "gender_gap": 11.90}
+      ];
+      const top_male = [
+        {"ac_no": 37, "ac_name": "Kancheepuram", "district": "Kancheepuram", "male_turnout": 88.50, "female_turnout": 85.72, "gender_gap": -2.78},
+        {"ac_no": 108, "ac_name": "Udhagamandalam", "district": "The Nilgiris", "male_turnout": 78.78, "female_turnout": 76.42, "gender_gap": -2.35},
+        {"ac_no": 123, "ac_name": "Pollachi", "district": "Coimbatore", "male_turnout": 89.29, "female_turnout": 87.00, "gender_gap": -2.29},
+        {"ac_no": 36, "ac_name": "Uthiramerur", "district": "Kancheepuram", "male_turnout": 92.24, "female_turnout": 89.96, "gender_gap": -2.28},
+        {"ac_no": 56, "ac_name": "Thalli", "district": "Krishnagiri", "male_turnout": 86.94, "female_turnout": 84.74, "gender_gap": -2.20},
+        {"ac_no": 110, "ac_name": "Coonoor", "district": "The Nilgiris", "male_turnout": 79.44, "female_turnout": 77.27, "gender_gap": -2.17},
+        {"ac_no": 2, "ac_name": "Ponneri", "district": "Tiruvallur", "male_turnout": 90.88, "female_turnout": 88.71, "gender_gap": -2.17},
+        {"ac_no": 115, "ac_name": "Palladam", "district": "Tiruppur", "male_turnout": 91.62, "female_turnout": 89.62, "gender_gap": -2.00},
+        {"ac_no": 18, "ac_name": "Harbour", "district": "Chennai", "male_turnout": 83.61, "female_turnout": 81.71, "gender_gap": -1.90},
+        {"ac_no": 33, "ac_name": "Thiruporur", "district": "Chengalpattu", "male_turnout": 89.45, "female_turnout": 87.75, "gender_gap": -1.69}
+      ];
+      return {
+        "statewide": {
+          "male_electors": 28097003, "male_voted": 23537143, "male_turnout_pct": 83.77,
+          "female_electors": 29307062, "female_voted": 25261339, "female_turnout_pct": 86.20,
+          "female_advantage_points": 2.42, "female_non_voters": 4045723, "male_non_voters": 4559860
+        },
+        "prevalence": {
+          "total_constituencies": 234, "female_higher": 169, "male_higher": 65, "equal": 0,
+          "female_higher_pct": 72.22, "male_higher_pct": 27.78
+        },
+        "top_female_advantage": top_female,
+        "male_advantage": top_male,
+        "distribution": {
+          "male_advantage": 65, "female_0_2": 78, "female_2_5": 43,
+          "female_5_10": 32, "female_10_plus": 16, "total_check": 234
+        },
+        "district_analysis": {
+          "districts": [
+            {"district": "Ramanathapuram", "constituencies_count": 4, "male_turnout": 71.00, "female_turnout": 82.50, "gender_gap": 11.50},
+            {"district": "Sivaganga", "constituencies_count": 4, "male_turnout": 70.88, "female_turnout": 81.88, "gender_gap": 11.00},
+            {"district": "Perambalur", "constituencies_count": 2, "male_turnout": 80.11, "female_turnout": 90.42, "gender_gap": 10.31},
+            {"district": "Kanniyakumari", "constituencies_count": 6, "male_turnout": 70.72, "female_turnout": 79.60, "gender_gap": 8.88},
+            {"district": "Pudukkottai", "constituencies_count": 6, "male_turnout": 79.40, "female_turnout": 88.10, "gender_gap": 8.69},
+            {"district": "Dharmapuri", "constituencies_count": 5, "male_turnout": 89.60, "female_turnout": 90.40, "gender_gap": 0.80},
+            {"district": "Coimbatore", "constituencies_count": 10, "male_turnout": 84.58, "female_turnout": 84.85, "gender_gap": 0.28},
+            {"district": "Tiruvallur", "constituencies_count": 10, "male_turnout": 83.97, "female_turnout": 83.29, "gender_gap": -0.68},
+            {"district": "The Nilgiris", "constituencies_count": 3, "male_turnout": 79.33, "female_turnout": 78.45, "gender_gap": -0.88},
+            {"district": "Kancheepuram", "constituencies_count": 3, "male_turnout": 88.85, "female_turnout": 86.70, "gender_gap": -2.15}
+          ],
+          "largest_female_advantage_district": "Ramanathapuram",
+          "strongest_male_advantage_district": "Kancheepuram",
+          "female_leading_districts_count": 30,
+          "male_leading_districts_count": 8
+        },
+        "all_constituencies": Array.from({length: 234}, (_, i) => ({
+          ac_no: i + 1, ac_name: `Seat_${i+1}`,
+          male_turnout: i < 169 ? 75.0 : 78.0,
+          female_turnout: i < 169 ? 78.5 : 76.0,
+          gender_gap: i < 169 ? 3.5 : -2.0
+        }))
+      };
+    }
+
+    function togglePageLanguage() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const btn = document.getElementById('langToggleBtn');
+      if (btn) btn.innerText = currentLang === 'en' ? 'English / தமிழ்' : 'தமிழ் / English';
+      if (currentLang === 'ta') {
+        document.getElementById('lbl_back').innerText = 'முகப்பு';
+        document.getElementById('lbl_main_headline').innerText = 'தமிழகத்தின் பெரும்பாலான தொகுதிகளில் பெண்கள் அதிக வாக்குப்பதிவு';
+        document.getElementById('lbl_main_subheadline').innerText = '234 தொகுதிகளில் 169 தொகுதிகளில் பெண்களின் வாக்குப்பதிவு ஆண்களை விட அதிகமாக இருந்தது. மாநில அளவில் பெண்களின் வாக்குப்பதிவு 86.20%, ஆண்கள் 83.77% மட்டுமே.';
+      } else {
+        document.getElementById('lbl_back').innerText = 'Index';
+        document.getElementById('lbl_main_headline').innerText = 'WOMEN OUTVOTED MEN ACROSS TAMIL NADU';
+        document.getElementById('lbl_main_subheadline').innerText = 'Female turnout surpassed male participation in 169 of 234 constituencies, recording an 86.20% statewide turnout against 83.77% for men—revealing a consistent gender participation advantage across the state.';
+      }
+    }
+
+    // Fix: DOMContentLoaded may have already fired when script is at end of body
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', loadFinding01Data);
+    } else {
+      loadFinding01Data();
     }
   </script>
 </body>

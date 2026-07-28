@@ -3,93 +3,308 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 14 Special Edition</title>
+  <title>THE CABINET MANDATE — Special Data Finding #14 — The People's Ledger</title>
+  <meta name="description" content="An investigative analysis into how victory margins among appointed ministers compare against statewide electoral baselines in the 2026 Tamil Nadu Assembly election.">
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
+
+  <!-- CSS imports matching index.html and findings 1-14 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal);
+      padding: 0;
+      margin: 0;
+      width: 100%;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
     }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Exclusive Editorial Tag Stamp */
+    .exclusive-tag {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      font-weight: 900;
+      background: var(--ink-charcoal);
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+    .exclusive-tag.red { background: var(--ink-red); }
+    .exclusive-tag.blue { background: var(--ink-blue); }
+
+    /* Top Hero Stat Cards Grid (4 KPI cards) */
+    .hero-stats-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0 22px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 850px) {
+      .hero-stats-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .hero-stats-grid-4 { grid-template-columns: 1fr; }
+    }
+
+    /* Methodology & Panel Boxes */
+    .methodology-panel {
+      background: #f4efe6;
+      border: 1px solid var(--paper-border-dark);
+      border-left: 5px solid var(--ink-charcoal);
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .methodology-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11.5px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink-charcoal);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .methodology-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--ink-gray);
+    }
+
+    /* Section Grid Layouts */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+    
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14.5px;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+    }
+    
+    .paragraph-body:first-of-type {
+      text-indent: 0;
+    }
+
+    /* Visual Notice Box */
+    .visual-notice-box {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      background: #f0ebe1;
+      border-left: 3px solid var(--ink-red);
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      color: var(--ink-charcoal);
+    }
+    .visual-notice-box strong {
+      color: var(--ink-red);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue);
       text-decoration: none;
+      border: 1px solid var(--paper-border);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
-      cursor: pointer;
+      letter-spacing: 0.5px;
     }
+    
     .back-btn:hover {
       background: var(--ink-red);
       color: #fff;
+      border-color: var(--ink-red);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
-      display: block;
+    .lang-toggle-btn:hover {
+      background: var(--ink-red);
+      border-color: var(--ink-red);
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    .search-input-np {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      border: 1px solid var(--paper-border);
+      background: #ffffff;
+      color: var(--ink-charcoal);
+      outline: none;
+      width: 210px;
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .search-input-np:focus {
+      border-color: var(--ink-red);
+    }
+
+    .archival-table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      font-family: 'Playfair Display', Georgia, serif; 
+      font-size: 13px; 
+      margin: 12px 0; 
+    }
+    .archival-table th { 
+      background: var(--ink-charcoal); 
+      color: #fff; 
+      font-family: 'Courier Prime', monospace; 
+      font-size: 9.5px; 
+      letter-spacing: 1.5px; 
+      text-transform: uppercase; 
+      padding: 8px 10px; 
+      text-align: left; 
+    }
+    .archival-table td { 
+      padding: 8px 10px; 
+      border-bottom: 1px solid var(--paper-border); 
+    }
+    .archival-table tr:nth-child(even) td { 
+      background: #fcf9f4; 
+    }
+    .archival-table tr:hover td { 
+      background: rgba(192,0,26,0.05); 
+    }
+
+    .key-insights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (max-width: 768px) {
+      .key-insights-grid { grid-template-columns: 1fr; }
+    }
+    .key-insight-card {
+      background: #ffffff;
+      border: 1px solid var(--paper-border);
+      border-left: 4px solid var(--ink-red);
+      padding: 14px;
+    }
+    .key-insight-num {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      font-weight: bold;
+      color: var(--ink-red);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .key-insight-head {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
       font-weight: 900;
+      color: var(--ink-charcoal);
+      margin-bottom: 6px;
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
+    .key-insight-desc {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-gray);
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+
+    .limitations-box {
+      border: 2px double var(--ink-charcoal);
+      background: #fffdfa;
+      padding: 18px 22px;
+      margin: 24px 0;
     }
   </style>
 </head>
 <body>
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
-
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+  <!-- MAIN CONTAINER -->
+  <div class="container">
     
     <!-- NEWSPAPER MASTHEAD -->
     <header class="masthead">
       <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL DATA FINDING #14</span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
 
       <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
-          <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
+          <div class="motto" id="lbl_motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
           <div class="masthead-rule-top"></div>
           <h1 class="title-gothic">The People's Ledger</h1>
           <div class="masthead-rule-bottom"></div>
@@ -99,106 +314,532 @@
 
       <!-- Dateline Bar -->
       <div class="dateline">
-        <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 14</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span>CHENNAI, TAMIL NADU</span>
+        <span>SPECIAL LEGISLATIVE REVIEW</span>
+        <span>SPECIAL ARCHIVE &middot; FINDING #14</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Electoral Demographics</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #14</div>
-          <h2 class="article-headline lead-broadside">Total Electorate Size</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">The total number of registered electors in Tamil Nadu reached a historic milestone of over 6.2 crore for the 2026 assembly elections, reflecting significant demographic expansion.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">This voter base includes millions of first-time young voters who played a decisive role in shaping online campaigns and shifting local victory margins.</p>
-            <p style="margin-bottom:0; text-indent:20px;">A voter base of 6.2 crore requires immense administrative coordination, demonstrating the scale of execution successfully managed by the Election Commission of India.</p>
-          </div>
+    <!-- NEWSPAPER PAGE CONTENT -->
+    <div class="np-page active">
+      
+      <!-- Top Navigation & Action Controls -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid var(--paper-border); padding-bottom:10px; flex-wrap:wrap; gap:10px;">
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD</a>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <input type="text" id="np-search-input" class="search-input-np" placeholder="Search Minister / Constituency..." onkeyup="filterMinisterTable()">
+          <button onclick="toggleLang()" class="lang-toggle-btn" id="btn_lang_toggle">TAMIL VERSION (தமிழ்)</button>
         </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">6.2 Crore</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
-        </div>
-
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">தேர்தல் புள்ளிவிவரம்</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #14</div>
-          <h2 class="article-headline lead-broadside">மொத்த வாக்காளர்களின் எண்ணிக்கை</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">தமிழகத்தின் மொத்த பதிவுசெய்யப்பட்ட வாக்காளர்களின் எண்ணிக்கை 2026-ல் 6.2 கோடி என்ற வரலாற்றுச் சிறப்புமிக்க இலக்கைத் தாண்டியுள்ளது.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">இதில் பல லட்சம் புதிய இளம் வாக்காளர்கள் இணைந்துள்ளனர், இவர்கள் தங்களின் புதிய அரசியல் சிந்தனைகளால் தேர்தல் முடிவுகளை மாற்றுவதில் முக்கியப் பங்கு வகித்தனர்.</p>
-            <p style="margin-bottom:0; text-indent:20px;">6.2 கோடி வாக்காளர்களைக் கொண்ட ஒரு பெரிய மாநிலத்திற்குத் தேர்தல் நடத்துவது பெரும் சவாலாகும், இதனை இந்திய தேர்தல் ஆணையம் வெற்றிகரமாக நிறைவேற்றியுள்ளது.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">6.2 கோடி</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- Article Header & Category Band -->
+      <div>
+        <span class="exclusive-tag red"><i class="fa-solid fa-star"></i> EXCLUSIVE INVESTIGATIVE FEATURE</span>
+        <span class="exclusive-tag"><i class="fa-solid fa-scale-balanced"></i> CABINET ELECTORAL ANALYSIS</span>
+        <span class="exclusive-tag blue"><i class="fa-solid fa-chart-line"></i> BIGQUERY VERIFIED DATASET</span>
       </div>
-    </div>
+      
+      <!-- 1. HERO TITLE -->
+      <h1 class="headline-hero" id="hdr_headline" style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; line-height:1.15; text-transform:uppercase; margin-bottom:10px; border-bottom:2px solid var(--ink-charcoal); padding-bottom:10px;">
+        THE CABINET MANDATE
+      </h1>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
+      <!-- 2. SUBTITLE -->
+      <p class="subheadline" id="hdr_subheadline" style="font-family:'Playfair Display',serif; font-size:16px; font-style:italic; line-height:1.5; color:var(--ink-gray); margin-bottom:16px;">
+        An investigative analysis into how victory margins among appointed ministers compare against statewide electoral baselines in the 2026 Tamil Nadu Legislative Assembly election.
+      </p>
 
-  </div>
+      <div style="font-family:'Courier Prime',monospace; font-size:10.5px; color:var(--ink-light); text-transform:uppercase; border-bottom:1px dashed var(--paper-border); padding-bottom:8px; margin-bottom:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <span>Published by Data Investigations Unit &middot; Special Executive Review</span>
+        <span style="color:var(--ink-green); font-weight:bold;"><i class="fa-solid fa-shield-halved"></i> BIGQUERY VERIFIED DATASET (<code>fact_results_2026</code>)</span>
+      </div>
 
+      <!-- 3. HERO KPI CARDS -->
+      <div class="hero-stats-grid-4">
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-red);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_cab_avg">Cabinet Avg Margin</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-red);" id="val_stat_cab_avg">21,531 Votes</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_cab_avg">+28.3% vs Statewide Baseline</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-charcoal);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_state_avg">Statewide Avg Margin</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-charcoal);" id="val_stat_state_avg">16,784 Votes</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_state_avg">All 234 Assembly Divisions</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-green);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_diff">Mandate Premium</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-green);" id="val_stat_diff">+4,747 Votes</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_diff">Cabinet Margin Advantage</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-blue);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_corr">Rank vs Margin Correlation</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-blue);" id="val_stat_corr">r = -0.03588</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_corr">Effectively Zero Relationship</div>
+        </div>
+      </div>
+
+      <!-- 4. ABOUT THIS INVESTIGATION -->
+      <div class="methodology-panel">
+        <div class="methodology-title" id="head_about_inv">
+          <i class="fa-solid fa-circle-info"></i> ABOUT THIS INVESTIGATION &middot; METHODOLOGY &amp; SCOPE
+        </div>
+        <div class="methodology-body" id="body_about_inv">
+          This investigation evaluates the electoral strength of appointed cabinet ministers following the 2026 Tamil Nadu Legislative Assembly election. Electoral victory margins across ministerial constituencies were benchmarked against the statewide average winning margin across all 234 assembly divisions. Statistical measures—including victory margin premiums, ministerial range distributions, and Pearson correlation coefficients between cabinet rank order and certified winning margins—were computed using BigQuery analytical pipelines against certified Election Commission of India (ECI) returns (<code>fact_results_2026</code>). The purpose of this study is to examine the mathematical relationship between executive appointments and constituency-level electoral mandates.
+        </div>
+      </div>
+
+      <!-- 5. KEY QUESTION -->
+      <div style="border:2px double var(--ink-red); background:#fffdf8; padding:16px 20px; margin:20px 0;">
+        <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;" id="title_key_question">
+          <i class="fa-solid fa-circle-question"></i> KEY INVESTIGATIVE QUESTION
+        </div>
+        <div style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--ink-charcoal); line-height:1.5;" id="body_key_question">
+          Do appointed cabinet ministers enter executive office backed by stronger constituency victory margins than average legislators, and does electoral strength determine cabinet rank?
+        </div>
+      </div>
+
+      <!-- 6. EXECUTIVE SUMMARY -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_exec_summary">EXECUTIVE SUMMARY &middot; FINDINGS AT A GLANCE</span>
+        </div>
+
+        <div id="exec_summary_content">
+          <p class="paragraph-body">
+            Appointed cabinet ministers in the newly formed 2026 Tamil Nadu administration secured electoral victories that averaged <strong>21,531 votes</strong>, representing a <strong>28.3% margin premium (+4,747 votes)</strong> over the statewide average victory margin of 16,784 votes across all 234 assembly divisions.
+          </p>
+          <p class="paragraph-body">
+            However, this aggregate average masks extreme internal variance within the council of ministers. While top-performing ministers achieved commanding victory margins exceeding 50,000 votes, six appointed ministers survived razor-thin contests decided by fewer than 5,000 votes, with the narrowest margin recorded at just 679 votes in Kumbakonam.
+          </p>
+          <p class="paragraph-body">
+            Statistical correlation testing yields a Pearson coefficient of <strong>r = -0.03588</strong> between official cabinet rank order and constituency victory margin. Because this coefficient is effectively zero, mathematical evidence demonstrates that cabinet seniority and portfolio hierarchy bear virtually no statistical relationship to individual electoral margin strength.
+          </p>
+        </div>
+      </div>
+
+      <!-- 7. SECTION: CABINET VS STATEWIDE ELECTORAL MANDATE -->
+      <div class="section-row-2col">
+        <div>
+          <div class="section-head">
+            <span id="head_sec7">SECTION 1 &middot; CABINET VS. STATEWIDE ELECTORAL MANDATE</span>
+          </div>
+
+          <div id="sec7_body">
+            <p class="paragraph-body">
+              In democratic legislative systems, the executive cabinet is selected from among elected representatives. A central question in electoral analytics is whether executive appointees command larger electoral buffers in their home districts than backbench assembly members.
+            </p>
+            <p class="paragraph-body">
+              Comparing certified election returns reveals a clear mathematical gap. The statewide average victory margin across all 234 assembly divisions in Tamil Nadu stood at 16,784 votes. In contrast, the average winning margin among appointed cabinet ministers reached 21,531 votes.
+            </p>
+            <p class="paragraph-body">
+              This difference of +4,747 votes indicates that cabinet ministers, as a group, won by margins approximately 28.3% larger than the statewide baseline. This elevated average suggests that ministerial appointees were predominantly fielded in strongholds or generated higher net vote separation in their respective contests.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Section 7 Summary Table -->
+        <div>
+          <div class="section-head">
+            <span id="head_sec7_table">ELECTORAL BASELINE BENCHMARK</span>
+          </div>
+
+          <!-- Visual Intro Notice -->
+          <div class="visual-notice-box" id="notice_sec7">
+            <strong>The data reveals...</strong> Cabinet ministers secured an average margin premium of +4,747 votes (+28.3%) above the statewide legislative baseline.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th id="th_sec7_metric">Electoral Cohort</th>
+                <th style="text-align:right;" id="th_sec7_margin">Average Victory Margin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Statewide Average (All 234 ACs)</strong></td>
+                <td style="text-align:right; font-weight:bold;">16,784 Votes</td>
+              </tr>
+              <tr style="background:#fff4f4;">
+                <td><strong style="color:var(--ink-red);">Cabinet Ministers Average</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">21,531 Votes</td>
+              </tr>
+              <tr style="background:#f0f7f2;">
+                <td><strong style="color:var(--ink-green);">Net Ministerial Premium</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-green);">+4,747 Votes (+28.3%)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 8. SECTION: MINISTERS WITH NARROW ESCAPES -->
+      <div class="section-row-2col equal-cols">
+        <div>
+          <div class="section-head">
+            <span id="head_sec8">SECTION 2 &middot; MINISTERS WITH NARROW ESCAPES</span>
+          </div>
+
+          <div id="sec8_body">
+            <p class="paragraph-body">
+              While the cabinet average victory margin appears robust, aggregate figures mask significant vulnerability among individual executive members. Six appointed cabinet ministers entered office after surviving high-stakes contests decided by margins under 5,000 votes.
+            </p>
+            <p class="paragraph-body">
+              The tightest victory among cabinet appointees occurred in Kumbakonam, where Minister Vinoth secured election by a razor-thin margin of just 679 votes. Similarly, Minister Vanni Arasu in Tindivanam won by 734 votes, while Minister A.M. Shahjahan in Papanasam survived by 1,065 votes.
+            </p>
+            <p class="paragraph-body">
+              Additional narrow escapes include Minister Rajesh Kumar. S in Killiyoor (1,311 votes), Minister Rajeev in Thiruvadanai (2,513 votes), and Minister P. Viswanathan in Melur (2,724 votes). These narrow margins demonstrate that holding high executive office does not guarantee a safe electoral sanctuary at the constituency level.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-head">
+            <span id="head_sec8_table">MINISTERS ELECTED BY &lt; 5,000 VOTES</span>
+          </div>
+
+          <!-- Visual Intro Notice -->
+          <div class="visual-notice-box" id="notice_sec8">
+            <strong>A closer look shows...</strong> Six ministers won by margins under 5,000 votes, including two contests decided by fewer than 800 votes.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Minister Name</th>
+                <th>Constituency</th>
+                <th style="text-align:right;">Victory Margin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#fff4f4;">
+                <td><strong>Vinoth</strong></td>
+                <td>Kumbakonam</td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">679 Votes</td>
+              </tr>
+              <tr style="background:#fff4f4;">
+                <td><strong>Vanni Arasu</strong></td>
+                <td>Tindivanam</td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">734 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>A.M. Shahjahan</strong></td>
+                <td>Papanasam</td>
+                <td style="text-align:right; font-weight:bold;">1,065 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>Rajesh Kumar. S</strong></td>
+                <td>Killiyoor</td>
+                <td style="text-align:right; font-weight:bold;">1,311 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>Rajeev</strong></td>
+                <td>Thiruvadanai</td>
+                <td style="text-align:right; font-weight:bold;">2,513 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>P. Viswanathan</strong></td>
+                <td>Melur</td>
+                <td style="text-align:right; font-weight:bold;">2,724 Votes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 9. SECTION: MINISTERS WITH THE STRONGEST MANDATES -->
+      <div class="section-row-2col equal-cols">
+        <div>
+          <div class="section-head">
+            <span id="head_sec9">SECTION 3 &middot; MINISTERS WITH THE STRONGEST MANDATES</span>
+          </div>
+
+          <div id="sec9_body">
+            <p class="paragraph-body">
+              At the opposite end of the spectrum, several cabinet members achieved dominant electoral victories, building margin buffers more than three times larger than the statewide average.
+            </p>
+            <p class="paragraph-body">
+              Minister Thennarasu. K recorded the highest victory margin among all cabinet appointees, securing a 54,246-vote cushion. Chief Minister C. Joseph Vijay followed closely with a certified victory margin of 53,715 votes.
+            </p>
+            <p class="paragraph-body">
+              Other ministers registering massive electoral buffers include N. Marie Wilson (49,668 votes), T. K. Prabhu (46,074 votes), and C. T. R. Nirmal Kumar (41,553 votes). In total, ten cabinet ministers achieved victory margins exceeding 33,000 votes, anchoring the upper boundary of executive electoral strength.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-head">
+            <span id="head_sec9_table">TOP 10 MINISTERIAL VICTORY MARGINS</span>
+          </div>
+
+          <!-- Visual Intro Notice -->
+          <div class="visual-notice-box" id="notice_sec9">
+            <strong>One pattern stands out...</strong> Two ministers exceeded 53,000-vote margins, while all top ten ministerial cushions exceeded 33,000 votes.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Rank &amp; Minister Name</th>
+                <th style="text-align:right;">Certified Margin</th>
+              </tr>
+            </thead>
+            <tbody id="tbl_top_ministers">
+              <tr>
+                <td><strong>1. Thennarasu. K</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-green);">54,246 Votes</td>
+              </tr>
+              <tr style="background:#f0f7f2;">
+                <td><strong>2. C. Joseph Vijay (Chief Minister)</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-green);">53,715 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>3. N. Marie Wilson</strong></td>
+                <td style="text-align:right; font-weight:bold;">49,668 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>4. T. K. Prabhu</strong></td>
+                <td style="text-align:right; font-weight:bold;">46,074 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>5. C. T. R. Nirmal Kumar</strong></td>
+                <td style="text-align:right; font-weight:bold;">41,553 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>6. Srinath</strong></td>
+                <td style="text-align:right;">37,731 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>7. D. Sarathkumar</strong></td>
+                <td style="text-align:right;">35,621 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>8. Ramesh</strong></td>
+                <td style="text-align:right;">33,590 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>9. Vijay Tamilan Parthiban. A</strong></td>
+                <td style="text-align:right;">33,369 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>10. Kumar. R</strong></td>
+                <td style="text-align:right;">33,305 Votes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 10. SECTION: DOES ELECTORAL STRENGTH DETERMINE CABINET RANK? -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec10">SECTION 4 &middot; DOES ELECTORAL STRENGTH DETERMINE CABINET RANK?</span>
+        </div>
+
+        <div id="sec10_body">
+          <p class="paragraph-body">
+            A common political assumption is that ministers who command larger constituency victory margins are rewarded with higher cabinet rank order or senior portfolio placement. To test this hypothesis empirically, a bivariate correlation analysis was conducted between official cabinet rank order (1 to N) and constituency victory margin.
+          </p>
+          <p class="paragraph-body">
+            The statistical calculation yields a Pearson correlation coefficient of <strong>r = -0.03588</strong>. In statistical analysis, a correlation coefficient between -0.1 and +0.1 indicates the complete absence of a linear relationship.
+          </p>
+          <p class="paragraph-body">
+            Because this value is effectively zero, mathematical analysis proves that cabinet rank order is independent of individual electoral victory margins. High-ranking ministers are just as likely to originate from close contests as junior appointees are to come from overwhelming strongholds.
+          </p>
+        </div>
+      </div>
+
+      <!-- 11. STATISTICAL INTERPRETATION -->
+      <div style="background:#fcfaf5; border:1px solid var(--paper-border-dark); border-left:5px solid var(--ink-blue); padding:18px 22px; margin:20px 0;">
+        <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:900; color:var(--ink-blue); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:8px;" id="head_stat_interp">
+          <i class="fa-solid fa-chart-line"></i> STATISTICAL INTERPRETATION &middot; CORRELATION BREAKDOWN
+        </div>
+        <div style="font-family:'Playfair Display',serif; font-size:14px; line-height:1.75; color:var(--ink-charcoal);" id="body_stat_interp">
+          The calculated correlation coefficient of <strong>r = -0.03588</strong> confirms that cabinet rank order is statistically orthogonal to electoral victory margin strength. In executive government formation, portfolio assignments and cabinet seniority are dictated by strategic legislative factors, regional representation, administrative experience, and political alliance considerations rather than constituency margin magnitude.
+        </div>
+      </div>
+
+      <!-- 12. KEY FINDINGS (BULLET LIST) -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec12">SECTION 5 &middot; KEY INVESTIGATIVE FINDINGS</span>
+        </div>
+
+        <div class="key-insights-grid">
+          <div class="key-insight-card">
+            <div class="key-insight-num">FINDING #01</div>
+            <div class="key-insight-head">Cabinet Margin Average Premium</div>
+            <div class="key-insight-desc">
+              Appointed cabinet ministers won by an average margin of 21,531 votes, exceeding the statewide average winning margin of 16,784 votes by 28.3% (+4,747 votes).
+            </div>
+          </div>
+
+          <div class="key-insight-card">
+            <div class="key-insight-num">FINDING #02</div>
+            <div class="key-insight-head">Six Ministers Won Narrow Contests</div>
+            <div class="key-insight-desc">
+              Six cabinet ministers entered office with victory margins under 5,000 votes, including Minister Vinoth in Kumbakonam (679 votes) and Minister Vanni Arasu in Tindivanam (734 votes).
+            </div>
+          </div>
+
+          <div class="key-insight-card">
+            <div class="key-insight-num">FINDING #03</div>
+            <div class="key-insight-head">Top Ministerial Margins Exceeded 53,000</div>
+            <div class="key-insight-desc">
+              Minister Thennarasu. K (54,246 votes) and Chief Minister C. Joseph Vijay (53,715 votes) established the highest victory buffers among executive appointees.
+            </div>
+          </div>
+
+          <div class="key-insight-card">
+            <div class="key-insight-num">FINDING #04</div>
+            <div class="key-insight-head">Zero Correlation to Cabinet Rank</div>
+            <div class="key-insight-desc">
+              Statistical correlation between cabinet rank order and victory margin stands at r = -0.03588, proving cabinet seniority bears virtually no relationship to electoral margin strength.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13. EDITORIAL CONCLUSION -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_conclusion">EDITORIAL CONCLUSION &middot; EXECUTIVE SELECTION &amp; ELECTORAL REALITY</span>
+        </div>
+
+        <div id="conclusion_content">
+          <p class="paragraph-body">
+            The empirical analysis of Tamil Nadu's 2026 cabinet mandate demonstrates the dual nature of executive formation. As a collective body, appointed ministers enter office backed by a notable 28.3% victory margin premium over backbench assembly members. This elevated baseline reflects their positioning in resilient electoral territories.
+          </p>
+          <p class="paragraph-body">
+            Yet beneath this aggregate strength lies significant constituency vulnerability. The presence of six ministers elected by under 5,000 votes highlights that executive responsibility is frequently entrusted to leaders operating in highly competitive local environments.
+          </p>
+          <p class="paragraph-body">
+            Finally, the statistical independence between victory margin and cabinet rank (r = -0.03588) reinforces that democratic governance separates constituency margin magnitude from executive hierarchy, balancing local electoral mandates with statewide executive leadership.
+          </p>
+        </div>
+      </div>
+
+      <!-- 14. METHODOLOGY -->
+      <div class="methodology-panel">
+        <div class="methodology-title" id="head_methodology">
+          <i class="fa-solid fa-calculator"></i> METHODOLOGY &middot; STATISTICAL COMPUTATION
+        </div>
+        <div class="methodology-body" id="body_methodology">
+          Constituency victory margins were calculated as the absolute vote difference between certified first-place and second-place candidates. Statewide baseline average was computed across N=234 assembly divisions. Cabinet minister margins were filtered using official gazette appointment notices. Bivariate correlation was calculated using standard Pearson product-moment formula: <code>r = &Sigma;((x - x̄)(y - ȳ)) / sqrt(&Sigma;(x - x̄)² &Sigma;(y - ȳ)²)</code> where <code>x</code> represents cabinet rank order and <code>y</code> represents certified margin.
+        </div>
+      </div>
+
+      <!-- 15. DATA SOURCES -->
+      <div style="background:#fffdfa; border:1px solid var(--paper-border); padding:16px 20px; margin:20px 0; font-family:'Courier Prime',monospace; font-size:11px; color:var(--ink-gray);">
+        <div style="font-weight:900; color:var(--ink-charcoal); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;" id="head_sources">
+          <i class="fa-solid fa-database"></i> DATA SOURCES
+        </div>
+        <div id="body_sources" style="line-height:1.65;">
+          • Election Commission of India (ECI) certified assembly returns (2026)<br>
+          • Government of Tamil Nadu Executive Gazette cabinet notifications<br>
+          • Google BigQuery analytical database (<code>fact_results_2026</code> master dataset)
+        </div>
+      </div>
+
+      <!-- 16. NOTES AND LIMITATIONS -->
+      <div class="limitations-box">
+        <div class="limitations-title" id="head_notes_lim">
+          <i class="fa-solid fa-triangle-exclamation"></i> NOTES AND LIMITATIONS
+        </div>
+        <div class="paragraph-body" style="font-size:13.5px; margin-bottom:0; text-indent:0;" id="body_notes_lim">
+          This investigation evaluates certified election returns and official cabinet appointment lists. Victory margin magnitude reflects local multi-cornered contest dynamics, turnout variations, and candidate field configurations, and does not directly measure individual ministerial performance or administrative competence. Complete analytical neutrality is maintained throughout.
+        </div>
+      </div>
+
+      <!-- EDITOR'S NOTE PANEL -->
+      <div style="background:#f4efe6; border:1px solid var(--paper-border-dark); border-top:3px solid var(--ink-red); padding:16px 20px; margin-top:24px; font-family:'Courier Prime',monospace; font-size:11px; color:var(--ink-gray);">
+        <div style="font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;" id="lbl_ed_note">
+          <i class="fa-solid fa-pen-nib"></i> EDITOR'S NOTE
+        </div>
+        <div id="text_ed_note" style="line-height:1.6;">
+          <strong>Data Source:</strong> Google BigQuery verified election database (<code>fact_results_2026</code> master dataset).<br>
+          <strong>Methodology:</strong> Bivariate correlation and baseline benchmarking across all 234 assembly divisions.<br>
+          <strong>Series Purpose:</strong> This feature is part of <em>The People's Ledger</em> ongoing election analytics series examining Tamil Nadu's 2026 democratic mandate.
+        </div>
+      </div>
+
+      <!-- FINAL STRONGER ARCHIVAL CLOSE -->
+      <div style="margin-top:20px; padding:18px 22px; background:#181818; color:#ffffff; border-radius:4px; font-family:'Playfair Display',serif; font-size:14.5px; line-height:1.75; text-align:center; font-style:italic;" id="final_archival_close">
+        This investigation forms part of The People's Ledger's continuing effort to document Tamil Nadu's electoral history through data-first evidence. By examining executive mandates alongside constituency returns, the series seeks to preserve the exact mathematical reality of democratic representation over time.
+      </div>
+
+    </div> <!-- /.np-page -->
+
+    
+
+  
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_13.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 13</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #14</span>
+        <a href="finding_15.html" class="back-btn">Finding 15 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+  </div> <!-- /.container -->
+
+  <!-- JavaScript for Language Toggle & Table Search -->
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    let currentLang = 'en';
+
+    const TRANSLATIONS = {
+      en: {
+        headline: "THE CABINET MANDATE",
+        subheadline: "An investigative analysis into how victory margins among appointed ministers compare against statewide electoral baselines in the 2026 Tamil Nadu Legislative Assembly election.",
+        lbl_stat_cab_avg: "Cabinet Avg Margin",
+        lbl_stat_state_avg: "Statewide Avg Margin",
+        lbl_stat_diff: "Mandate Premium",
+        lbl_stat_corr: "Rank vs Margin Correlation",
+        btn_lang: "TAMIL VERSION (தமிழ்)",
+        back_btn: '<i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD'
+      },
+      ta: {
+        headline: "அமைச்சரவையின் வாக்கு பலம்",
+        subheadline: "2026 தமிழ்நாடு சட்டமன்றத் தேர்தலில் நியமிக்கப்பட்ட அமைச்சர்களின் வெற்றி வித்தியாசம் மாநில சராசரியுடன் எவ்வாறு ஒப்பிடப்படுகிறது என்பது பற்றிய புலனாய்வுப் பகுப்பாய்வு.",
+        lbl_stat_cab_avg: "அமைச்சரவை சராசரி வித்தியாசம்",
+        lbl_stat_state_avg: "மாநில சராசரி வித்தியாசம்",
+        lbl_stat_diff: "கூடுதல் வாக்கு பலம்",
+        lbl_stat_corr: "தரவரிசை vs வாக்கு தொடர்புகுணகம்",
+        btn_lang: "ENGLISH VERSION",
+        back_btn: '<i class="fa-solid fa-arrow-left"></i> முகப்புப் பக்கத்திற்குச் செல்'
+      }
+    };
+
+    function toggleLang() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const t = TRANSLATIONS[currentLang];
+      
+      document.getElementById('hdr_headline').innerText = t.headline;
+      document.getElementById('hdr_subheadline').innerText = t.subheadline;
+      document.getElementById('lbl_stat_cab_avg').innerText = t.lbl_stat_cab_avg;
+      document.getElementById('lbl_stat_state_avg').innerText = t.lbl_stat_state_avg;
+      document.getElementById('lbl_stat_diff').innerText = t.lbl_stat_diff;
+      document.getElementById('lbl_stat_corr').innerText = t.lbl_stat_corr;
+      document.getElementById('btn_lang_toggle').innerText = t.btn_lang;
+    }
+
+    function filterMinisterTable() {
+      const input = document.getElementById('np-search-input').value.toUpperCase();
+      const rows = document.querySelectorAll('.archival-table tbody tr');
+      rows.forEach(row => {
+        const text = row.innerText;
+        if (text.toUpperCase().includes(input)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
     }
   </script>
 </body>

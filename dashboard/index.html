@@ -164,50 +164,15 @@
       <!-- BOTTOM STATS ROW -->
       <div class="newspaper-row bottom-stats">
         
-        <!-- LEFT PANEL: QUICK TALLIES -->
+        <!-- LEFT PANEL: PARTY CANDIDATES WON HORIZONTAL CARDS -->
         <div class="np-col">
           <div class="section-head">
-            <span data-t="quick_tallies">Official Returns</span>
-            <span class="section-head-subtitle" data-t="quick_tallies_subtitle">Final Count</span>
+            <span data-t="statewide_seats">Party Candidates Won</span>
+            <span class="section-head-subtitle" data-t="quick_tallies_subtitle">2026 Official Assembly Returns</span>
           </div>
           
-          <div class="stat-box">
-            <div class="stat-num">234</div>
-            <div class="stat-label" data-t="total_assembly_seats">Total Assembly Seats</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num">118</div>
-            <div class="stat-label" data-t="majority_mark">Majority Mark Required</div>
-            <div class="stat-sub" data-t="majority_sub">50% + 1 Seat</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-num" id="frontPageStatTurnout">74%</div>
-            <div class="stat-label" data-t="average_turnout">Statewide Turnout</div>
-            <div class="stat-sub" id="frontPageStatTurnoutSub">74.00% Turnout</div>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- CENTER PANEL: STATEWIDE SEATS -->
-        <div class="np-col">
-          <div class="section-head">
-            <span data-t="statewide_seats">Statewide Seats</span>
-          </div>
-          
-          <div class="np-table-container">
-            <table class="np-table" style="font-size:11px">
-              <thead>
-                <tr>
-                  <th data-t="col_party">Alliance / Party</th>
-                  <th class="text-right" data-t="col_seats">Seats</th>
-                  <th class="text-right" data-t="col_share">Share</th>
-                </tr>
-              </thead>
-              <tbody id="frontPageTallyBody">
-                <!-- Loaded dynamically -->
-              </tbody>
-            </table>
+          <div class="party-cards-grid" id="frontPagePartyCardsGrid">
+            <!-- Loaded dynamically via JS -->
           </div>
         </div>
 
@@ -226,12 +191,32 @@
 
       </div>
 
-      <!-- 19 FINDINGS SECTION -->
+      <!-- VACANT CONSTITUENCIES GAZETTE SECTION -->
+      <div class="newspaper-row vacant-seats-row">
+        <div class="np-col" style="grid-column: 1 / -1;">
+          <div class="section-head" style="margin-bottom: 12px;">
+            <span id="vacantSectionTitle" data-t="vacant_section_title">GAZETTE NOTICE: 7 VACANT ASSEMBLY CONSTITUENCIES</span>
+            <span class="section-head-subtitle" id="vacantSectionSubtitle" data-t="vacant_section_subtitle">By-Elections Pending | Party Tally Impact: AIADMK (-6), TVK (-1)</span>
+          </div>
+          
+          <!-- Summary Tally Bar -->
+          <div class="vacant-tally-bar" id="vacantTallyBar">
+            <!-- Loaded dynamically via JS -->
+          </div>
+          
+          <!-- Vacant Seats Cards Grid -->
+          <div class="vacant-seats-grid" id="vacantSeatsGrid">
+            <!-- Loaded dynamically via JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 15 FINDINGS SECTION (SHOWING FINDINGS 07 - 15 BELOW VACANT SEATS) -->
       <div class="newspaper-row findings-row no-bottom">
         <div class="np-col" style="grid-column: 1 / -1;">
           <div class="section-head" style="margin-bottom: 12px;">
-            <span id="findingsSectionTitle" data-t="findings_section_title">SPECIAL INVESTIGATION: 19 KEY FINDINGS</span>
-            <span class="section-head-subtitle" id="findingsSectionSubtitle" data-t="findings_section_subtitle">Electoral Data Insights</span>
+            <span id="findingsSectionTitle" data-t="findings_section_title">SPECIAL INVESTIGATION ARCHIVE: FINDINGS 07 - 15</span>
+            <span class="section-head-subtitle" id="findingsSectionSubtitle" data-t="findings_section_subtitle">Demographic, Regional & Mandate Analysis</span>
           </div>
           <div class="findings-grid" id="findingsGrid">
             <!-- Dynamically populated from js/findings.js -->
@@ -257,23 +242,15 @@
         <div class="search-title" data-t="select_constituency">Constituency Electoral Archive Lookup</div>
         <div class="search-inputs">
           <div class="input-group">
+            <label for="districtSelect" data-t="select_district_label">Select District</label>
+            <select id="districtSelect" class="vintage-input" onchange="filterConstituenciesByDistrict(this.value)">
+              <option value="ALL">All 38 Districts</option>
+            </select>
+          </div>
+          <div class="input-group">
             <label for="constituencySelect" data-t="select_constituency_label">Select Constituency Name</label>
             <select id="constituencySelect" class="vintage-input" onchange="loadConstituencyDetails(this.value)">
-              <option value="194">TIRUPPATTUR (AC 194) — Closest Race (30 Margin)</option>
-              <option value="1">GUMMIDIPOONDI (AC 001) — Vote-Split Case Study</option>
-              <option value="2">EDAPPADI (AC 153) — Biggest Landslide (98K Margin)</option>
-              <option value="12">PERAMBUR (AC 012) — CM C. Joseph Vijay's Seat</option>
-              <option value="3">SHOZHINGANALLUR (AC 027) — Large TVK Landslide</option>
-              <option value="4">MADAVARAM (AC 009) — TVK Landslide</option>
-              <option value="15">KOLATHUR (AC 013) — Stalin Lost/Flipped Seat</option>
-              <option value="13">THOUSAND LIGHTS (AC 018) — Speaker Prabhakar's Seat</option>
-              <option value="14">CHEPAUK-THIRUVALLIKENI (AC 019) — LOP Udhayanidhi Stalin's Seat</option>
-              <option value="5">UDHAGAMANDALAM (AC 108) — Highest NOTA (1.04%)</option>
-              <option value="6">BHAVANISAGAR (AC 107) — High NOTA (0.85%)</option>
-              <option value="7">VELACHERY (AC 026) — Urban NOTA (0.73%)</option>
-              <option value="8">RAMANATHAPURAM (AC 211) — Highest Female Gap (+11.4%)</option>
-              <option value="9">TIRUPPUR (AC 114) — Lowest Female Gap (-2.0%)</option>
-              <option value="10">MAILAM (AC 072) — Lowest NOTA (0.16%)</option>
+              <option value="194">Loading Constituency List...</option>
             </select>
           </div>
           <div class="input-group">
@@ -573,9 +550,12 @@
 <script src="js/findings.js"></script>
 <script src="js/frontpage.js"></script>
 <script src="js/explorer.js"></script>
+<script src="js/explorer-panels.js"></script>
 <script src="js/voters.js"></script>
 <script src="js/statistics.js"></script>
 <script src="js/map.js"></script>
+<script src="js/ministers-data.js"></script>
 <script src="js/ministers.js"></script>
 </body>
 </html>
+

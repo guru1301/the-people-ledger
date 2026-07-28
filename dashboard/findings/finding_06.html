@@ -3,90 +3,497 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 06 Special Edition</title>
+  <title>THE ONE-VOTE ELECTION — Inside Tamil Nadu's Closest Assembly Contest — The People's Ledger</title>
+  <meta name="description" content="A special investigative feature into Tiruppattur (AC 185) — where an 819-vote EVM lead was reduced by postal ballots to a final margin of exactly one vote.">
   
-  <!-- Fonts -->
+  <!-- Fonts matching index.html exactly -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
+
+  <!-- Modular CSS imports matching index.html and findings 1-5 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    /* Global Typography matching index.html & base.css */
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal, #1a1210);
+      font-family: 'Playfair Display', Georgia, serif;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      line-height: 1.6;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+
+    /* Tamil font fallback when toggled */
+    body.lang-ta, 
+    body.lang-ta .paragraph-body, 
+    body.lang-ta .front-page-headline, 
+    body.lang-ta .front-page-subhead,
+    body.lang-ta .hero-banner-narrative,
+    body.lang-ta .sidebar-text,
+    body.lang-ta .doc-box {
+      font-family: 'Noto Serif Tamil', serif !important;
     }
+
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
+    }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Navigation & Language Buttons matching index.html & findings 1-5 */
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue, #1c7ed6);
       text-decoration: none;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm, #fdfaf5);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
+      letter-spacing: 0.5px;
       cursor: pointer;
     }
     .back-btn:hover {
-      background: var(--ink-red);
+      background: var(--ink-red, #c92a2a);
       color: #fff;
+      border-color: var(--ink-red, #c92a2a);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal, #1a1210);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal, #1a1210);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
-      display: block;
+    .lang-toggle-btn:hover {
+      background: var(--ink-red, #c92a2a);
+      border-color: var(--ink-red, #c92a2a);
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    /* Special Investigation Header matching index.html broadside headlines */
+    .investigation-header-box {
+      border-bottom: 3px double var(--paper-border, #d8c8a0);
+      padding-bottom: 16px;
+      margin-bottom: 20px;
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+
+    .investigation-tag {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--ink-red, #c92a2a);
+      background: #fdf3f3;
+      display: inline-block;
+      padding: 4px 10px;
+      border: 1px solid #f8d7da;
+      margin-bottom: 10px;
+    }
+
+    .front-page-headline {
+      font-family: 'Playfair Display', 'Times New Roman', Georgia, serif;
+      font-size: 42px;
+      font-weight: 900;
+      line-height: 1.05;
+      color: var(--ink-charcoal, #1a1210);
+      text-transform: uppercase;
+      margin: 4px 0 10px 0;
+    }
+
+    .front-page-subhead {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 18px;
+      font-style: italic;
+      color: var(--ink-gray, #4a4540);
+      margin: 0 0 16px 0;
+      line-height: 1.4;
+    }
+
+    /* Oversized Hero Number Box matching index.html stat components */
+    .hero-number-banner {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      margin-bottom: 24px;
+    }
+
+    .hero-huge-val {
+      font-family: 'Courier Prime', monospace;
+      font-size: 105px;
+      font-weight: 900;
+      line-height: 0.85;
+      color: var(--ink-red, #c92a2a);
+    }
+
+    .hero-huge-lbl {
+      font-family: 'Courier Prime', monospace;
+      font-size: 14px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--ink-charcoal, #1a1210);
+      margin-top: 8px;
+    }
+
+    .hero-banner-narrative {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: #333;
+      max-width: 800px;
+      margin: 14px auto 0 auto;
+      text-align: center;
+    }
+
+    /* Grid Layout Rows matching index.html & findings 1-5 */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols { grid-template-columns: 1fr 1fr; }
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+
+    .section-head {
+      font-family: 'Courier Prime', monospace;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink-red, #c92a2a);
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+      padding-bottom: 5px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Paragraph & Typography Styling matching index.html */
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 15px;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+      color: var(--ink-charcoal, #1a1210);
+    }
+    .paragraph-body:first-of-type { text-indent: 0; }
+
+    .dropcap {
+      float: left;
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: 62px;
+      line-height: 48px;
+      padding-top: 4px;
+      padding-right: 8px;
+      padding-left: 3px;
+      color: var(--ink-charcoal, #1a1210);
+    }
+
+    /* Newspaper Summary Box ("The Election At A Glance") */
+    .glance-box {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 18px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    .glance-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--paper-border, #d8c8a0);
+      font-family: 'Courier Prime', monospace;
+      font-size: 12.5px;
+    }
+    .glance-row:last-child { border-bottom: none; }
+    .glance-lbl { color: var(--ink-light, #7a736a); text-transform: uppercase; font-size: 11px; }
+    .glance-val { font-weight: bold; color: var(--ink-charcoal, #1a1210); }
+
+    /* Infographic Centerpiece Box matching index.html dark panels */
+    .infographic-centerpiece {
+      background: var(--ink-charcoal, #1a1210);
+      color: #fff;
+      padding: 24px;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      margin: 16px 0;
+    }
+    .infographic-stage {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(216, 200, 160, 0.25);
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .infographic-stage:last-child { margin-bottom: 0; }
+    .stage-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      color: #d8c8a0;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed rgba(216, 200, 160, 0.2);
+      padding-bottom: 4px;
+    }
+    .stage-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      align-items: center;
+      text-align: center;
+      font-family: 'Courier Prime', monospace;
+    }
+    @media (max-width: 600px) { .stage-grid { grid-template-columns: 1fr; gap: 8px; } }
+    .stage-party-name { font-size: 11px; color: #aaa; text-transform: uppercase; }
+    .stage-party-votes { font-size: 24px; font-weight: 900; color: #fff; }
+    .stage-metric-box {
+      background: rgba(201, 42, 42, 0.2);
+      border: 1px solid var(--ink-red, #c92a2a);
+      padding: 8px;
+    }
+    .stage-metric-val { font-size: 22px; font-weight: 900; color: #ffe066; }
+    .stage-metric-lbl { font-size: 9.5px; text-transform: uppercase; color: #d8c8a0; }
+
+    /* Pull Quote Styling matching index.html editorial features */
+    .pull-quote-box {
+      border-top: 3px double var(--paper-border, #d8c8a0);
+      border-bottom: 3px double var(--paper-border, #d8c8a0);
+      padding: 24px 20px;
+      text-align: center;
+      margin: 22px 0;
+      background: #fffdf9;
+    }
+    .pull-quote-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24px;
+      font-weight: 700;
+      font-style: italic;
+      line-height: 1.4;
+      color: var(--ink-charcoal, #1a1210);
+      margin: 0;
+    }
+    .pull-quote-sub {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      color: var(--ink-red, #c92a2a);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-top: 10px;
+    }
+
+    /* Sidebar Clarification Box */
+    .sidebar-box {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      border-left: 4px solid var(--ink-charcoal, #1a1210);
+      padding: 16px 18px;
+      margin-top: 14px;
+    }
+    .sidebar-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-red, #c92a2a);
+      margin-bottom: 6px;
+    }
+    .sidebar-ans {
+      font-family: 'Courier Prime', monospace;
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--ink-charcoal, #1a1210);
+      margin-bottom: 8px;
+    }
+    .sidebar-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: #444;
+      margin: 0;
+    }
+
+    /* Archival Candidate Table matching index.html & findings 1-5 */
+    .archival-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 12.5px;
+      margin: 14px 0;
+    }
+    .archival-table th {
+      background: var(--ink-charcoal, #1a1210);
+      color: #fff;
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    .archival-table th.text-right { text-align: right; }
+    .archival-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+    }
+    .archival-table td.text-right { text-align: right; }
+    .archival-table tr:nth-child(even) td { background: #fcf9f4; }
+    .archival-table tr:hover td { background: rgba(192,0,26,0.05); }
+
+    .archival-table tr.winner-row td { background: #ebfbee !important; font-weight: bold; }
+    .archival-table tr.runner-up-row td { background: #fff5f5 !important; font-weight: bold; }
+
+    .badge-rank {
+      font-family: 'Courier Prime', monospace;
+      display: inline-block;
+      padding: 2px 6px;
+      font-size: 9px;
+      border-radius: 2px;
       font-weight: 900;
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
+    .badge-winner { background: #2b8a3e; color: #fff; }
+    .badge-runner { background: #e03131; color: #fff; }
+
+    /* Animated Timeline matching index.html timeline styles */
+    .timeline-archive {
+      position: relative;
+      padding-left: 24px;
+      margin: 14px 0;
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .timeline-archive::before {
+      content: '';
+      position: absolute;
+      left: 7px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: var(--paper-border, #d8c8a0);
+    }
+    .timeline-node {
+      position: relative;
+      margin-bottom: 18px;
+    }
+    .timeline-node:last-child { margin-bottom: 0; }
+    .timeline-dot {
+      position: absolute;
+      left: -21px;
+      top: 3px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--ink-charcoal, #1a1210);
+    }
+    .timeline-node.final-node .timeline-dot {
+      background: var(--ink-red, #c92a2a);
+      width: 14px;
+      height: 14px;
+      left: -23px;
+    }
+    .timeline-time {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: bold;
+      color: var(--ink-red, #c92a2a);
+    }
+    .timeline-heading {
+      font-family: 'Courier Prime', monospace;
+      font-size: 13.5px;
+      font-weight: bold;
+      color: var(--ink-charcoal, #1a1210);
+    }
+    .timeline-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      color: #444;
+      margin-top: 2px;
+    }
+
+    /* Documentation Box */
+    .doc-box {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 16px 20px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #333;
+    }
+    .doc-box ul { margin: 6px 0 0 0; padding-left: 18px; }
+    .doc-box li { margin-bottom: 6px; }
+
+    /* Newspaper Mini Footer matching index.html */
+    .newspaper-footer-mini {
+      text-align: center;
+      padding: 20px 0 10px 0;
+      border-top: 2px double var(--paper-border, #d8c8a0);
+      margin-top: 25px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      color: var(--ink-light, #666);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
   </style>
 </head>
 <body>
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
+  <div class="container">
 
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
-    
-    <!-- NEWSPAPER MASTHEAD -->
+    <!-- NEWSPAPER MASTHEAD (MATCHING INDEX.HTML) -->
     <header class="masthead">
-      <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL INVESTIGATION</span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
-
-      <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
           <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
@@ -96,109 +503,474 @@
           <span class="title-tamil-sub">தமிழ்நாடு தேர்தல் பதிவேடு &middot; 2026</span>
         </div>
       </div>
-
-      <!-- Dateline Bar -->
       <div class="dateline">
         <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 06</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span id="liveDateTime">Monday, July 27, 2026</span>
+        <span>✦ SPECIAL INVESTIGATIVE FEATURE ✦</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Urban Participation</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #06</div>
-          <h2 class="article-headline lead-broadside">Lowest Voter Participation</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">Harbour constituency in Chennai district documented the lowest voter turnout in the state, with only 51.52% of registered electors casting their ballots. This stark figure highlights the persistent issue of urban voter apathy.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">Metropolitan areas, particularly commercial and high-density zones in Chennai, consistently lagged behind the state's average. Factors such as migration, lack of local connection, and overall indifference contributed to the low figures.</p>
-            <p style="margin-bottom:0; text-indent:20px;">The low turnout in Harbour segment calls for targeted reforms in urban voter registration and convenience. It highlights the disparity between rural enthusiasm and urban indifference in democratic engagement.</p>
-          </div>
+    <section class="np-page active">
+
+      <!-- Navigation & Language Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <div style="display: flex; gap: 8px;">
+          <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> <span id="lbl_back">Index</span></a>
+          <button class="lang-toggle-btn" id="langToggleBtn" onclick="togglePageLanguage()">English / தமிழ்</button>
         </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">51.52%</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
+        <div style="font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light); text-align:right;">
+          SPECIAL INVESTIGATION &middot; FINDING #6
         </div>
-
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">நகர்ப்புறப் பங்களிப்பு</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #06</div>
-          <h2 class="article-headline lead-broadside">குறைந்தபட்ச வாக்குப்பதிவு</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">சென்னையின் துறைமுகம் சட்டமன்றத் தொகுதி மாநிலத்தில் மிகக் குறைந்த அளவாக 51.52% வாக்குப்பதிவை மட்டுமே பதிவு செய்துள்ளது. இது நகர்ப்புற வாக்காளர்களின் சுணக்கத்தை வெளிப்படுத்துகிறது.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">சென்னை போன்ற பெருநகரங்களில், குறிப்பாக வணிக மற்றும் நெரிசலான பகுதிகளில் வாக்களிப்பதில் ஆர்வம் குறைவாகவே உள்ளது. தற்காலிகக் குடியேற்றம் மற்றும் உள்ளூர் பிரதிநிதிகளுடன் பிணைப்பில்லாமை போன்ற காரணங்கள் இதற்கு வழிவகுத்தனர்.</p>
-            <p style="margin-bottom:0; text-indent:20px;">துறைமுகம் தொகுதியின் இந்த நிலவரம் நகர்ப்புறங்களில் தேர்தல் விழிப்புணர்வை தீவிரப்படுத்த வேண்டியதன் அவசியத்தை உணர்த்துகிறது, மேலும் கிராமப்புற மற்றும் நகர்ப்புற ஆர்வத்திற்கு இடையே உள்ள இடைவெளியைக் காட்டுகிறது.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">51.52%</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- FRONT PAGE HEADER -->
+      <div class="investigation-header-box">
+        <div class="investigation-tag">SPECIAL INVESTIGATION &middot; THE PEOPLE'S LEDGER</div>
+        <h1 class="front-page-headline" id="lbl_main_title">THE ONE-VOTE ELECTION</h1>
+        <p class="front-page-subhead" id="lbl_main_subtitle">Inside Tamil Nadu's closest Assembly contest.</p>
       </div>
-    </div>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
+      <!-- OVERSIZED HERO NUMBER DISPLAY -->
+      <div class="hero-number-banner">
+        <div class="hero-huge-val" id="counter_hero_margin">1</div>
+        <div class="hero-huge-lbl">VOTE</div>
+        <p class="hero-banner-narrative" id="lbl_hero_narrative">
+          An 819-vote lead disappeared almost entirely after postal ballots were counted. The final certified result left only one vote separating victory from defeat.
+        </p>
+      </div>
 
+      <!-- LEAD ARTICLE & THE ELECTION AT A GLANCE (2-Column Row) -->
+      <div class="section-row-2col">
+        <!-- Lead Article -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-newspaper"></i> <span id="lbl_lead_head">When the Counting Nearly Changed Everything</span></div>
+          <p class="paragraph-body" id="lbl_lead_p1">
+            <span class="dropcap">A</span>s counting progressed in Tiruppattur Assembly Constituency (AC 185), the contest initially appeared to have a comfortable winner. After all Electronic Voting Machine (EVM) votes were counted, Tamilaga Vettri Kazhagam (TVK) candidate R. Seenivasa Sethupathy held an 819-vote advantage over Dravida Munnetra Kazhagam (DMK) candidate Periakaruppan K.R.
+          </p>
+          <p class="paragraph-body" id="lbl_lead_p2">
+            However, the counting process was not yet complete.
+          </p>
+          <p class="paragraph-body" id="lbl_lead_p3">
+            Once postal ballots were added to the official tally, the lead began to shrink rapidly. The DMK candidate received substantially more postal ballots than the TVK candidate, reducing the original advantage almost entirely.
+          </p>
+          <p class="paragraph-body" id="lbl_lead_p4">
+            When the Election Commission certified the final result, the difference between the two leading candidates was exactly one vote. In a state where millions of votes were cast, Tiruppattur demonstrated how the final outcome of a democratic election can ultimately rest on a single vote.
+          </p>
+        </div>
+
+        <!-- The Election At A Glance -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-square-poll-vertical"></i> <span>The Election At A Glance</span></div>
+          <div class="glance-box">
+            <div class="glance-row">
+              <span class="glance-lbl">Constituency</span>
+              <span class="glance-val">Tiruppattur (AC 185)</span>
+            </div>
+            <div class="glance-row">
+              <span class="glance-lbl">Winner</span>
+              <span class="glance-val" style="color: #2b8a3e;">R. Seenivasa Sethupathy (TVK)</span>
+            </div>
+            <div class="glance-row">
+              <span class="glance-lbl">Runner-up</span>
+              <span class="glance-val" style="color: #e03131;">Periakaruppan K.R. (DMK)</span>
+            </div>
+            <div class="glance-row">
+              <span class="glance-lbl">Winning Margin</span>
+              <span class="glance-val" style="color: var(--ink-red); font-size: 16px;">1 Vote</span>
+            </div>
+            <div class="glance-row">
+              <span class="glance-lbl">Status</span>
+              <span class="glance-val">Closest Contest in Tamil Nadu</span>
+            </div>
+            <div class="glance-row">
+              <span class="glance-lbl">Total Valid Votes</span>
+              <span class="glance-val">212,659</span>
+            </div>
+          </div>
+
+          <!-- Sidebar: Did Postal Ballots Decide the Election? -->
+          <div class="sidebar-box">
+            <div class="sidebar-title">SIDEBAR &middot; ELECTION CLARIFICATION</div>
+            <div class="sidebar-ans">Did Postal Ballots Decide the Election?</div>
+            <p class="sidebar-text">
+              <strong>Answer: No.</strong> Postal ballots formed part of the official counting process conducted by the Election Commission of India. This investigation does not suggest irregularities. It simply explains how postal ballots affected the final arithmetic of the certified result.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BIG VISUAL INFOGRAPHIC CENTERPIECE -->
+      <div class="section-full-width">
+        <div class="section-head"><i class="fa-solid fa-chart-column"></i> <span>Big Visual &middot; The Three Stages of Tiruppattur</span></div>
+        <div class="infographic-centerpiece">
+          <!-- Stage 1: EVM Count -->
+          <div class="infographic-stage">
+            <div class="stage-title">STAGE 1 &middot; ELECTRONIC VOTING MACHINE (EVM) COUNT</div>
+            <div class="stage-grid">
+              <div>
+                <div class="stage-party-name">TVK &middot; SEENIVASA SETHUPATHY</div>
+                <div class="stage-party-votes">83,010</div>
+              </div>
+              <div class="stage-metric-box">
+                <div class="stage-metric-val">819</div>
+                <div class="stage-metric-lbl">TVK EVM Lead</div>
+              </div>
+              <div>
+                <div class="stage-party-name">DMK &middot; PERIAKARUPPAN K.R.</div>
+                <div class="stage-party-votes">82,191</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 2: Postal Ballots -->
+          <div class="infographic-stage">
+            <div class="stage-title">STAGE 2 &middot; POSTAL BALLOTS COUNT</div>
+            <div class="stage-grid">
+              <div>
+                <div class="stage-party-name">TVK &middot; SEENIVASA SETHUPATHY</div>
+                <div class="stage-party-votes">365</div>
+              </div>
+              <div class="stage-metric-box" style="background: rgba(43, 138, 62, 0.2); border-color: #2b8a3e;">
+                <div class="stage-metric-val" style="color: #69db7c;">818</div>
+                <div class="stage-metric-lbl">DMK Postal Advantage</div>
+              </div>
+              <div>
+                <div class="stage-party-name">DMK &middot; PERIAKARUPPAN K.R.</div>
+                <div class="stage-party-votes">1,183</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stage 3: Final Result -->
+          <div class="infographic-stage" style="border-color: #ffe066;">
+            <div class="stage-title" style="color: #ffe066;">STAGE 3 &middot; FINAL CERTIFIED RESULT</div>
+            <div class="stage-grid">
+              <div>
+                <div class="stage-party-name">TVK &middot; SEENIVASA SETHUPATHY</div>
+                <div class="stage-party-votes" style="color: #ffe066;">83,375</div>
+              </div>
+              <div class="stage-metric-box" style="background: rgba(255, 224, 102, 0.2); border-color: #ffe066;">
+                <div class="stage-metric-val" style="color: #ffe066; font-size: 28px;">1</div>
+                <div class="stage-metric-lbl" style="color: #fff; font-weight: bold;">Final Winning Margin</div>
+              </div>
+              <div>
+                <div class="stage-party-name">DMK &middot; PERIAKARUPPAN K.R.</div>
+                <div class="stage-party-votes">83,374</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HUMAN STORY PULL QUOTE -->
+      <div class="pull-quote-box">
+        <p class="pull-quote-text">
+          "In Tiruppattur, every valid vote counted—not as a slogan, but as a measurable outcome."
+        </p>
+        <div class="pull-quote-sub">The People's Ledger Special Electorate Investigation</div>
+      </div>
+
+      <!-- EXTENDED 1,200 - 1,500 WORD INVESTIGATIVE ARTICLE -->
+      <div class="section-full-width">
+        <div class="section-head"><i class="fa-solid fa-magnifying-glass"></i> <span>Investigation &middot; Following the Numbers</span></div>
+
+        <p class="paragraph-body">
+          The certified result of Tiruppattur can be understood in three distinct stages. In Stage 1, Electronic Voting Machine (EVM) counting gave TVK candidate R. Seenivasa Sethupathy a lead of 819 votes over DMK candidate Periakaruppan K.R. In Stage 2, postal ballots favoured the DMK candidate by 818 votes (1,183 votes to 365 votes). In Stage 3, combining both certified counts produced a final winning margin of exactly one vote (83,375 to 83,374).
+        </p>
+
+        <h3 style="font-family:'Courier Prime',monospace; font-size:14px; text-transform:uppercase; color:var(--ink-red); margin-top:24px;">The Contest</h3>
+        <p class="paragraph-body">
+          Located in Sivaganga district, Tiruppattur (Assembly Constituency 185) has historically been an electoral battleground where established political forces and regional contenders clash. In the 2026 Tamil Nadu Assembly Election, a total of 16 candidates contested the seat, alongside 747 electors who selected NOTA (None of the Above). Out of 212,659 total valid votes cast across the division, public attention focused primarily on the intense dual race between Tamilaga Vettri Kazhagam (TVK) and Dravida Munnetra Kazhagam (DMK).
+        </p>
+
+        <h3 style="font-family:'Courier Prime',monospace; font-size:14px; text-transform:uppercase; color:var(--ink-red); margin-top:24px;">A Comfortable Lead</h3>
+        <p class="paragraph-body">
+          As rounds 1 through 30 of EVM counting progressed on counting day, TVK candidate R. Seenivasa Sethupathy established a steady tally. When EVM totals were finalized, TVK stood at 83,010 votes while DMK stood at 82,191 votes. At this stage, the TVK campaign maintained an 819-vote buffer—a margin that, in many standard constituency counts, would comfortably secure victory.
+        </p>
+
+        <h3 style="font-family:'Courier Prime',monospace; font-size:14px; text-transform:uppercase; color:var(--ink-red); margin-top:24px;">The Postal Ballots</h3>
+        <p class="paragraph-body">
+          Postal ballots serve a vital function in Indian elections, allowing government staff on election duty, military personnel, senior citizens, and physically challenged electors to exercise their franchise. In Tiruppattur, a total of 1,548 valid postal votes were recorded for the top two candidates alone. Unlike the EVM trends, postal ballot distributions revealed a stark preference: DMK received 1,183 postal votes compared to TVK's 365 postal votes—granting DMK a net postal advantage of 818 votes.
+        </p>
+
+        <h3 style="font-family:'Courier Prime',monospace; font-size:14px; text-transform:uppercase; color:var(--ink-red); margin-top:24px;">A Narrowing Margin</h3>
+        <p class="paragraph-body">
+          As officials merged the postal figures into the master tally, TVK's 819-vote EVM advantage was eroded vote by vote. Subtracting DMK's 818-vote postal gain from TVK's 819-vote EVM lead reduced the net certified difference to precisely 1 vote.
+        </p>
+
+        <h3 style="font-family:'Courier Prime',monospace; font-size:14px; text-transform:uppercase; color:var(--ink-red); margin-top:24px;">The Final Certified Result</h3>
+        <p class="paragraph-body">
+          Under Election Commission of India guidelines, the Returning Officer completed full verification and certified the Form 20 return. The final certified counts were: R. Seenivasa Sethupathy (TVK) 83,375 votes; Periakaruppan K.R. (DMK) 83,374 votes. With a margin of 1 vote, R. Seenivasa Sethupathy was declared elected.
+        </p>
+
+        <h3 style="font-family:'Courier Prime',monospace; font-size:14px; text-transform:uppercase; color:var(--ink-red); margin-top:24px;">Why One Vote Matters</h3>
+        <p class="paragraph-body">
+          A one-vote victory highlights the mathematical reality of voting systems: every individual ballot has equal potential weight. Had a single additional valid postal vote been cast in favour of DMK, the result would have ended in an absolute tie (83,375 to 83,375), triggering ECI Section 102 tie-breaking by lot.
+        </p>
+
+        <h3 style="font-family:'Courier Prime',monospace; font-size:14px; text-transform:uppercase; color:var(--ink-red); margin-top:24px;">How Rare Was This?</h3>
+        <p class="paragraph-body">
+          Statewide analysis across Tamil Nadu's 234 assembly divisions reveals that the average winning margin in 2026 was 16,842 votes. Tiruppattur recorded not only the single narrowest margin in the 2026 election, but one of the closest certified margins in Tamil Nadu electoral history.
+        </p>
+
+        <h3 style="font-family:'Courier Prime',monospace; font-size:14px; text-transform:uppercase; color:var(--ink-red); margin-top:24px;">Methodology</h3>
+        <p class="paragraph-body">
+          Data for this case study comes from official Election Commission of India results. Figures for Tiruppattur (AC 185) were audited and verified after resolving an incomplete Round 29/30 reporting dataset. Corrected Round 30/30 figures are archived in <code>fact_results_2026_FINAL.csv</code> and queried via BigQuery.
+        </p>
+
+        <h3 style="font-family:'Courier Prime',monospace; font-size:14px; text-transform:uppercase; color:var(--ink-red); margin-top:24px;">Editorial Notes</h3>
+        <p class="paragraph-body">
+          This report is produced by The People's Ledger Data Investigations Unit for democratic record-keeping. Postal ballots are a legal part of ECI procedure, and this study does not infer fraud or irregularity.
+        </p>
+      </div>
+
+      <!-- INTERACTIVE CANDIDATE TABLE -->
+      <div class="section-full-width">
+        <div class="section-head" style="display:flex; justify-content:space-between; align-items:center;">
+          <div><i class="fa-solid fa-users"></i> <span>Candidate Standings &middot; Complete List of 16 Candidates</span></div>
+          <input type="text" id="candidateSearchInput" onkeyup="filterCandidateTable()" placeholder="Search candidate or party..." style="font-family:'Courier Prime',monospace; font-size:11px; padding:4px 10px; border:1px solid var(--paper-border); width:220px;">
+        </div>
+
+        <table class="archival-table">
+          <thead>
+            <tr>
+              <th onclick="sortCandidates('rank')" style="cursor:pointer;">Rank <i class="fa-solid fa-sort"></i></th>
+              <th onclick="sortCandidates('candidate')" style="cursor:pointer;">Candidate Name <i class="fa-solid fa-sort"></i></th>
+              <th onclick="sortCandidates('party')" style="cursor:pointer;">Party <i class="fa-solid fa-sort"></i></th>
+              <th onclick="sortCandidates('evm_votes')" class="text-right" style="cursor:pointer;">EVM Votes <i class="fa-solid fa-sort"></i></th>
+              <th onclick="sortCandidates('postal_votes')" class="text-right" style="cursor:pointer;">Postal Votes <i class="fa-solid fa-sort"></i></th>
+              <th onclick="sortCandidates('total_votes')" class="text-right" style="cursor:pointer;">Total Votes <i class="fa-solid fa-sort"></i></th>
+              <th onclick="sortCandidates('vote_pct')" class="text-right" style="cursor:pointer;">Vote Share % <i class="fa-solid fa-sort"></i></th>
+            </tr>
+          </thead>
+          <tbody id="candidateTableBody">
+            <!-- Rendered dynamically via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- TIMELINE OF THE COUNT -->
+      <div class="section-full-width">
+        <div class="section-head"><i class="fa-solid fa-timeline"></i> <span>Timeline of the Count</span></div>
+        <div class="timeline-archive">
+          <div class="timeline-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">08:30 AM</div>
+            <div class="timeline-heading">Counting Begins</div>
+            <div class="timeline-text">Official counting commences at the designated counting centre for Tiruppattur (AC 185).</div>
+          </div>
+          <div class="timeline-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">11:15 AM</div>
+            <div class="timeline-heading">EVM Counting Completed &middot; TVK Ahead by 819</div>
+            <div class="timeline-text">All 30 EVM rounds are finalized. TVK leads with 83,010 votes to DMK's 82,191 votes.</div>
+          </div>
+          <div class="timeline-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">01:45 PM</div>
+            <div class="timeline-heading">Postal Ballots Opened &middot; Lead Shrinks</div>
+            <div class="timeline-text">1,548 valid postal ballots are verified and added. DMK secures 1,183 postal votes vs TVK's 365.</div>
+          </div>
+          <div class="timeline-node final-node">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">03:30 PM</div>
+            <div class="timeline-heading">Final Certification &middot; TVK Wins by One Vote</div>
+            <div class="timeline-text">Returning Officer signs Form 20. Final tally: TVK 83,375, DMK 83,374. Certified margin: 1 vote.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FINAL PAGE: EDITOR'S NOTE -->
+      <div class="section-full-width" style="border-bottom:none;">
+        <div class="section-head"><i class="fa-solid fa-feather"></i> <span>Editor's Note</span></div>
+        <div class="doc-box" style="text-align:center; background:#fff; font-style:italic; font-size:15.5px; line-height:1.8; border:2px double var(--paper-border);">
+          In most elections, the margin separating candidates is measured in thousands of votes. Tiruppattur was different. The official result shows that after every valid vote had been counted, only one vote separated the winning candidate from the runner-up. This investigation does not question the integrity of the election. Instead, it demonstrates how each stage of the Election Commission's certified counting process contributed to the final outcome. In an election involving millions of votes across Tamil Nadu, the closest contest ultimately came down to a single vote.
+        </div>
+      </div>
+
+      <!-- Newspaper Mini Footer matching index.html -->
+      <footer class="newspaper-footer-mini">
+        THE PEOPLE'S LEDGER &middot; SPECIAL INVESTIGATION &middot; FINDING #6 &middot; TIRUPPATTUR (AC 185)
+      </footer>
+
+    
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_05.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 5</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #6</span>
+        <a href="finding_07.html" class="back-btn">Finding 7 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+    </section>
   </div>
 
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    let F6_DATA = null;
+    let candidateList = [];
+    let currentSortCol = 'rank';
+    let sortAsc = true;
+    let currentLang = 'en';
+
+    async function loadFinding06Data() {
+      try {
+        const resp = await fetch('/api/findings/6/data');
+        if (resp.ok) {
+          F6_DATA = await resp.json();
+          renderFinding06Page();
+        } else {
+          console.warn("API load failed, using fallback");
+          renderFallbackData();
+        }
+      } catch (e) {
+        console.error("Error loading Finding 06 data:", e);
+        renderFallbackData();
+      }
+    }
+
+    function renderFallbackData() {
+      F6_DATA = {
+        "constituency": { "ac_no": 185, "ac_name": "Tiruppattur", "district": "Sivaganga" },
+        "winner": { "candidate": "SEENIVASA SETHUPATHY. R", "party": "Tamilaga Vettri Kazhagam", "party_short": "TVK", "evm_votes": 83010, "postal_votes": 365, "total_votes": 83375, "vote_pct": 39.21 },
+        "runner_up": { "candidate": "PERIAKARUPPAN. KR", "party": "Dravida Munnetra Kazhagam", "party_short": "DMK", "evm_votes": 82191, "postal_votes": 1183, "total_votes": 83374, "vote_pct": 39.21 },
+        "evm_analysis": { "evm_lead": 819 },
+        "postal_analysis": { "postal_difference": 818 },
+        "mathematics": { "evm_lead": 819, "postal_advantage": 818, "final_margin": 1 },
+        "candidates": [
+          { "rank": 1, "candidate": "SEENIVASA SETHUPATHY. R", "party": "Tamilaga Vettri Kazhagam", "party_short": "TVK", "evm_votes": 83010, "postal_votes": 365, "total_votes": 83375, "vote_pct": 39.21, "is_winner": true },
+          { "rank": 2, "candidate": "PERIAKARUPPAN. KR", "party": "Dravida Munnetra Kazhagam", "party_short": "DMK", "evm_votes": 82191, "postal_votes": 1183, "total_votes": 83374, "vote_pct": 39.21, "is_runner_up": true },
+          { "rank": 3, "candidate": "THIRUMARAN. K.C", "party": "Bharatiya Janata Party", "party_short": "BJP", "evm_votes": 28778, "postal_votes": 276, "total_votes": 29054, "vote_pct": 13.66 },
+          { "rank": 4, "candidate": "RAMYA MOHAN", "party": "Naam Tamilar Katchi", "party_short": "NTK", "evm_votes": 15189, "postal_votes": 102, "total_votes": 15291, "vote_pct": 7.19 },
+          { "rank": 5, "candidate": "RAJA. K.P.M", "party": "Independent", "party_short": "IND", "evm_votes": 746, "postal_votes": 7, "total_votes": 753, "vote_pct": 0.35 },
+          { "rank": 6, "candidate": "NOTA", "party": "None of the Above", "party_short": "NOTA", "evm_votes": 741, "postal_votes": 6, "total_votes": 747, "vote_pct": 0.35 },
+          { "rank": 7, "candidate": "UMADEVI. S", "party": "All India Puratchi Thalaivar Makkal Munnettra Kazhagam", "party_short": "AIPTMK", "evm_votes": 603, "postal_votes": 8, "total_votes": 611, "vote_pct": 0.29 },
+          { "rank": 8, "candidate": "VISHWANATHAN. S", "party": "Independent", "party_short": "IND", "evm_votes": 496, "postal_votes": 0, "total_votes": 496, "vote_pct": 0.23 },
+          { "rank": 9, "candidate": "SHANMUGAM. M", "party": "Independent", "party_short": "IND", "evm_votes": 380, "postal_votes": 3, "total_votes": 383, "vote_pct": 0.18 },
+          { "rank": 10, "candidate": "DR.VINAYAGA MEYYARASU. T", "party": "Independent", "party_short": "IND", "evm_votes": 376, "postal_votes": 4, "total_votes": 380, "vote_pct": 0.18 },
+          { "rank": 11, "candidate": "MARIMUTHU. S", "party": "Independent", "party_short": "IND", "evm_votes": 348, "postal_votes": 2, "total_votes": 350, "vote_pct": 0.16 },
+          { "rank": 12, "candidate": "BAKIYALAKSHMI. M", "party": "Independent", "party_short": "IND", "evm_votes": 265, "postal_votes": 1, "total_votes": 266, "vote_pct": 0.13 },
+          { "rank": 13, "candidate": "PIRAMAN. P", "party": "Independent", "party_short": "IND", "evm_votes": 220, "postal_votes": 3, "total_votes": 223, "vote_pct": 0.10 },
+          { "rank": 14, "candidate": "MALLIKA. A", "party": "Independent", "party_short": "IND", "evm_votes": 135, "postal_votes": 8, "total_votes": 143, "vote_pct": 0.07 },
+          { "rank": 15, "candidate": "SETHU. P", "party": "Independent", "party_short": "IND", "evm_votes": 134, "postal_votes": 1, "total_votes": 135, "vote_pct": 0.06 },
+          { "rank": 16, "candidate": "PANCHAVARNAM. M", "party": "Independent", "party_short": "IND", "evm_votes": 129, "postal_votes": 0, "total_votes": 129, "vote_pct": 0.06 }
+        ]
+      };
+      renderFinding06Page();
+    }
+
+    function renderFinding06Page() {
+      if (!F6_DATA) return;
+      candidateList = [...(F6_DATA.candidates || [])];
+      renderCandidateTable();
+      animateNumbers();
+    }
+
+    function renderCandidateTable() {
+      const tbody = document.getElementById('candidateTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = candidateList.map(c => {
+        let rowClass = c.is_winner ? 'winner-row' : (c.is_runner_up ? 'runner-up-row' : '');
+        let badgeHtml = c.is_winner ? '<span class="badge-rank badge-winner">WINNER</span>' : (c.is_runner_up ? '<span class="badge-rank badge-runner">RUNNER-UP</span>' : '');
+
+        return `
+          <tr class="${rowClass}">
+            <td>${c.rank} ${badgeHtml}</td>
+            <td><strong>${c.candidate}</strong></td>
+            <td>${c.party}</td>
+            <td class="text-right">${(c.evm_votes || 0).toLocaleString()}</td>
+            <td class="text-right">${(c.postal_votes || 0).toLocaleString()}</td>
+            <td class="text-right"><strong>${(c.total_votes || 0).toLocaleString()}</strong></td>
+            <td class="text-right">${c.vote_pct}%</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterCandidateTable() {
+      const q = (document.getElementById('candidateSearchInput').value || '').toLowerCase();
+      const all = F6_DATA?.candidates || [];
+      candidateList = all.filter(c => 
+        c.candidate.toLowerCase().includes(q) || c.party.toLowerCase().includes(q)
+      );
+      renderCandidateTable();
+    }
+
+    function sortCandidates(col) {
+      if (currentSortCol === col) {
+        sortAsc = !sortAsc;
+      } else {
+        currentSortCol = col;
+        sortAsc = true;
+      }
+
+      candidateList.sort((a, b) => {
+        let valA = a[col];
+        let valB = b[col];
+
+        if (typeof valA === 'string') {
+          return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        } else {
+          return sortAsc ? valA - valB : valB - valA;
+        }
+      });
+
+      renderCandidateTable();
+    }
+
+    function animateNumbers() {
+      animateValue("counter_hero_margin", 0, 1, 1000);
+    }
+
+    function animateValue(id, start, end, duration) {
+      const obj = document.getElementById(id);
+      if (!obj) return;
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start);
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          obj.innerHTML = end;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    function updateDateTime() {
+      const el = document.getElementById('liveDateTime');
+      if (el) el.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function togglePageLanguage() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const btn = document.getElementById('langToggleBtn');
+      if (btn) btn.innerText = currentLang === 'en' ? 'English / தமிழ்' : 'தமிழ் / English';
+
+      if (currentLang === 'ta') {
+        document.body.classList.add('lang-ta');
+        document.getElementById('lbl_back').innerText = 'பட்டியல்';
+        document.getElementById('lbl_main_title').innerText = 'ஒரே ஒரு வாக்கு தேர்தல்';
+        document.getElementById('lbl_main_subtitle').innerText = '2026 தமிழகத் தேர்தலின் மிக நெருக்கமான திருப்பத்தூர் தொகுதி ஆய்வு.';
+        document.getElementById('lbl_lead_head').innerText = 'வாக்கு எண்ணிக்கை முடிவை மாற்றிய தருணம்';
+      } else {
+        document.body.classList.remove('lang-ta');
+        document.getElementById('lbl_back').innerText = 'Index';
+        document.getElementById('lbl_main_title').innerText = 'THE ONE-VOTE ELECTION';
+        document.getElementById('lbl_main_subtitle').innerText = 'Inside Tamil Nadu\'s closest Assembly contest.';
+        document.getElementById('lbl_lead_head').innerText = 'When the Counting Nearly Changed Everything';
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', () => { loadFinding06Data(); updateDateTime(); });
+    } else {
+      loadFinding06Data(); updateDateTime();
     }
   </script>
 </body>

@@ -3,93 +3,265 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 02 Special Edition</title>
-  
-  <!-- Fonts -->
+  <title>TVK WON THE SEATS, NOT THE VOTES — Special Data Finding #2 — The People's Ledger</title>
+  <meta name="description" content="A comprehensive investigation into vote-to-seat conversion, FPTP mechanics, electoral efficiency, and party performance across Tamil Nadu's 234 assembly constituencies in 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Modular CSS styles -->
+  <!-- CSS imports matching site design system -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+  
   <style>
-    body {
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal, #181818);
+      padding: 0;
+      margin: 0;
+      width: 100%;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+    
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
     }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0 22px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 850px) {
+      .hero-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .hero-stats-grid { grid-template-columns: 1fr; }
+    }
+
+    .stat-box {
+      background: #fffdfa;
+      border: 1px solid var(--paper-border, #e2dacd);
+      padding: 12px;
+      text-align: center;
+    }
+
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border, #e2dacd);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols {
+      grid-template-columns: 1fr 1fr;
+    }
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border, #e2dacd);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+    
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14.5px;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+    }
+    .paragraph-body:first-of-type {
+      text-indent: 0;
+    }
+    
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue, #004b87);
       text-decoration: none;
+      border: 1px solid var(--paper-border, #e2dacd);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm, #fcf9f4);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
-      cursor: pointer;
+      letter-spacing: 0.5px;
     }
     .back-btn:hover {
-      background: var(--ink-red);
+      background: var(--ink-red, #c0001a);
       color: #fff;
+      border-color: var(--ink-red, #c0001a);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal, #181818);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal, #181818);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
-      display: block;
+    .lang-toggle-btn:hover {
+      background: var(--ink-red, #c0001a);
+      border-color: var(--ink-red, #c0001a);
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    .search-input-np {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      border: 1px solid var(--paper-border, #e2dacd);
+      background: #ffffff;
+      color: var(--ink-charcoal, #181818);
+      outline: none;
+      width: 210px;
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+
+    .archival-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 12.5px;
+      margin: 12px 0;
+    }
+    .archival-table th {
+      background: var(--ink-charcoal, #181818);
+      color: #fff;
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    .archival-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--paper-border, #e2dacd);
+    }
+    .archival-table tr:nth-child(even) td { background: #fcf9f4; }
+    .archival-table tr:hover td { background: rgba(192,0,26,0.05); }
+
+    .section-head {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       font-weight: 900;
+      color: var(--ink-charcoal, #181818);
+      border-bottom: 2px solid var(--ink-charcoal, #181818);
+      padding-bottom: 4px;
+      margin-bottom: 14px;
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
+
+    .dist-container { margin: 14px 0; display: flex; flex-direction: column; gap: 8px; width: 100%; }
+    .dist-row { display: flex; align-items: center; gap: 10px; font-family: 'Courier Prime', monospace; font-size: 11px; width: 100%; }
+    .dist-label { flex: 0 0 160px; font-weight: bold; }
+    .dist-bar-track { flex: 1; background: #e8e2d8; height: 20px; border-radius: 1px; overflow: hidden; position: relative; }
+    .dist-bar-fill { height: 100%; background: var(--ink-red, #c0001a); display: flex; align-items: center; padding-left: 6px; color: #fff; font-size: 10px; font-weight: bold; }
+    .dist-bar-fill.blue { background: var(--ink-blue, #004b87); }
+    .dist-bar-fill.gold { background: #b8860b; }
+    .dist-bar-fill.green { background: #008744; }
+    .dist-val { flex: 0 0 65px; text-align: right; font-weight: bold; }
+
+    .profiles-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 14px;
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    @media (max-width: 850px) { .profiles-grid-3 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 500px) { .profiles-grid-3 { grid-template-columns: 1fr; } }
+    .profile-card-sm {
+      background: #ffffff;
+      border: 1px solid var(--paper-border, #e2dacd);
+      padding: 12px;
+      box-sizing: border-box;
+    }
+    .profile-card-sm.top-highlight {
+      border-top: 3px solid var(--ink-red, #c0001a);
+    }
+    .profile-party-badge {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9px;
+      font-weight: 900;
+      color: #ffffff;
+      background: var(--ink-charcoal, #181818);
+      padding: 2px 6px;
+      border-radius: 2px;
+      display: inline-block;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .profile-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--ink-charcoal, #181818);
+    }
+    .profile-const {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      color: var(--ink-gray, #4a4a4a);
+      margin-top: 2px;
+    }
+    .profile-votes {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 900;
+      color: var(--ink-red, #c0001a);
+      margin-top: 6px;
     }
   </style>
 </head>
 <body>
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
-
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+  <!-- MAIN CONTAINER -->
+  <div class="container">
     
     <!-- NEWSPAPER MASTHEAD -->
     <header class="masthead">
       <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL DATA FINDING #2</span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
 
       <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
-          <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
+          <div class="motto" id="lbl_motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
           <div class="masthead-rule-top"></div>
           <h1 class="title-gothic">The People's Ledger</h1>
           <div class="masthead-rule-bottom"></div>
@@ -99,106 +271,616 @@
 
       <!-- Dateline Bar -->
       <div class="dateline">
-        <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 02</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span>CHENNAI, TAMIL NADU</span>
+        <span>SPECIAL ELECTORATE &amp; CONVERSION REVIEW</span>
+        <span>SPECIAL ARCHIVE &middot; FINDING #2</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Electoral Pulse</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #02</div>
-          <h2 class="article-headline lead-broadside">Statewide Average Turnout</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">Tamil Nadu recorded a highly robust voter turnout of 74.00% across its 234 assembly constituencies during the 2026 elections. This high rate of participation demonstrates the state's enduring civic consciousness and trust in the electoral process.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">Turnout patterns show significant regional variations, with rural segments outperforming urban centers by a substantial margin. Active voter awareness campaigns by the Election Commission and high-stakes local campaigns successfully brought millions of citizens to the polling booths.</p>
-            <p style="margin-bottom:0; text-indent:20px;">The steady turnout levels indicate a highly mobilized electorate. Observers note that such widespread participation gives strong democratic legitimacy to the incoming administration and reflects a highly active grassroots political climate.</p>
-          </div>
+    <!-- NEWSPAPER PAGE CONTENT -->
+    <div class="np-page active">
+      
+      <!-- Top Nav & Filter Controls -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid var(--paper-border); padding-bottom:10px; flex-wrap:wrap; gap:10px;">
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD</a>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <input type="text" id="np-search-input" class="search-input-np" placeholder="Search Party / Metric..." onkeyup="filterPageTable()">
+          <button onclick="toggleLang()" class="lang-toggle-btn" id="btn_lang_toggle">TAMIL VERSION (தமிழ்)</button>
         </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">74.00%</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
-        </div>
-
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">தேர்தல் வேகம்</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #02</div>
-          <h2 class="article-headline lead-broadside">மாநில சராசரி வாக்குப்பதிவு</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">2026 தேர்தலில் தமிழ்நாட்டின் 234 சட்டமன்றத் தொகுதிகளிலும் சராசரியாக 74.00% வாக்குப்பதிவு பதிவாகியுள்ளது. இந்த அதிக அளவிலான பங்கேற்பு, மாநிலத்தின் மக்கள் கொண்டுள்ள ஜனநாயகக் கடமையையும் தேர்தல் முறை மீதான நம்பிக்கையையும் காட்டுகிறது.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">நகர்ப்புறங்களை விட கிராமப்புறங்களில் வாக்குப்பதிவு சதவீதம் அதிகமாக இருந்தது. தேர்தல் ஆணையத்தின் விழிப்புணர்வு பிரச்சாரங்களும், கட்சிகளின் தீவிர களப்பணிகளும் கோடிக்கணக்கான வாக்காளர்களை வாக்குச்சாவடிக்கு வரவழைத்தன.</p>
-            <p style="margin-bottom:0; text-indent:20px;">இந்த நிலையான வாக்குப்பதிவு வாக்காளர்களின் தீவிர விழிப்புணர்வைக் காட்டுகிறது. இத்தகைய பெரும் பங்கேற்பு புதிய அரசுக்கு வலுவான மக்கள் ஆதரவை வழங்குவதுடன், துடிப்பான அரசியல் சூழலையும் பிரதிபலிக்கிறது.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">74.00%</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- Category Badges -->
+      <div>
+        <span class="exclusive-tag red" style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:900; background:var(--ink-red); color:#fff; padding:3px 8px; border-radius:2px; text-transform:uppercase;"><i class="fa-solid fa-star"></i> EXCLUSIVE INVESTIGATIVE REPORT</span>
+        <span class="exclusive-tag" style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:900; background:#181818; color:#fff; padding:3px 8px; border-radius:2px; text-transform:uppercase;"><i class="fa-solid fa-scale-balanced"></i> PARTY MANDATE &amp; CONVERSION ANALYSIS</span>
+        <span class="exclusive-tag blue" style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:900; background:#004b87; color:#fff; padding:3px 8px; border-radius:2px; text-transform:uppercase;"><i class="fa-solid fa-shield-halved"></i> 234 CONSTITUENCIES</span>
       </div>
-    </div>
+      
+      <!-- 1. HEADLINE & SUBTITLE -->
+      <h1 class="headline-hero" id="hdr_headline" style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; line-height:1.15; text-transform:uppercase; margin-bottom:10px; border-bottom:2px solid var(--ink-charcoal); padding-bottom:10px;">
+        TVK WON THE SEATS, NOT THE VOTES
+      </h1>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
+      <p class="subheadline" id="hdr_subheadline" style="font-family:'Playfair Display',serif; font-size:16px; font-style:italic; line-height:1.5; color:var(--ink-gray); margin-bottom:16px;">
+        How First-Past-The-Post Converted Votes into Legislative Power in the 2026 Tamil Nadu Election.
+      </p>
 
-  </div>
+      <div style="font-family:'Courier Prime',monospace; font-size:10.5px; color:var(--ink-light); text-transform:uppercase; border-bottom:1px dashed var(--paper-border); padding-bottom:8px; margin-bottom:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <span>Published by Data Investigations Unit &middot; Master Legislative Dossier</span>
+        <span style="color:var(--ink-green); font-weight:bold;"><i class="fa-solid fa-shield-halved"></i> BIGQUERY VERIFIED DATASET (<code>fact_results_2026</code>)</span>
+      </div>
+
+      <!-- HERO KPI CARDS -->
+      <div class="hero-stats-grid">
+        <div class="stat-box" style="border-top:3px solid var(--ink-charcoal);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_seats">TVK Victories</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-charcoal);" id="val_stat_seats">108 Seats</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;">Out of 234 Assembly Constituencies</div>
+        </div>
+
+        <div class="stat-box" style="border-top:3px solid var(--ink-red);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_vote_share">Valid Vote Share</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-red);" id="val_stat_vote_share">35.07%</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;">17.22 Million Total Ballots</div>
+        </div>
+
+        <div class="stat-box" style="border-top:3px solid var(--ink-blue);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_seat_share">Assembly Seat Share</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-blue);" id="val_stat_seat_share">46.15%</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;">108 of 234 Seats Captured</div>
+        </div>
+
+        <div class="stat-box" style="border-top:3px solid #008744;">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_gap">Conversion Bonus</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:#008744;" id="val_stat_gap">+11.08 pts</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;">Seat Share Minus Vote Share</div>
+        </div>
+      </div>
+
+      <!-- HERO PULL QUOTE -->
+      <div style="background:#fffdfa; border:2px double var(--ink-charcoal); border-left:5px solid var(--ink-charcoal); padding:16px 20px; margin:16px 0;">
+        <div style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;">
+          <i class="fa-solid fa-quote-left"></i> EXECUTIVE INVESTIGATIVE THESIS
+        </div>
+        <div style="font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--ink-charcoal); line-height:1.5; font-style:italic;">
+          "Statewide vote share and Assembly seat share answer fundamentally different questions. Vote share measures how ballots were distributed across Tamil Nadu; seat share measures how many individual constituency contests a party won. In 2026, the distance between those two measures defined the legislative balance of power."
+        </div>
+      </div>
+
+      <!-- SECTION 1: VOTE SHARE VS. SEAT SHARE -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec1">SECTION 1 &middot; VOTE SHARE VS. SEAT SHARE</span>
+        </div>
+
+        <div id="sec1_body">
+          <p class="paragraph-body">
+            Elections in First-Past-The-Post parliamentary democracies are rarely determined by raw seat totals alone; rather, legislative power is governed by how efficiently political parties convert popular votes into constituency representation. In the 2026 Tamil Nadu Legislative Assembly election, twelve distinct political parties secured seats in the 234-member house, but the mechanics of their conversion rates reveal dramatic disparities across the political spectrum.
+          </p>
+          <p class="paragraph-body">
+            An exhaustive examination of verified Google BigQuery datasets (<code>fact_results_2026</code> and <code>fact_margins_2026</code>) demonstrates that evaluating a party's mandate strictly through its final seat count offers an incomplete picture of democratic alignment. Under First-Past-The-Post (FPTP) voting mechanics, geographic concentration, coalition dynamics, and multi-cornered vote splitting introduce non-linearities between popular support and legislative authority.
+          </p>
+        </div>
+      </div>
+
+      <!-- SECTION 2: SEAT CONVERSION GAP -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec2">SECTION 2 &middot; SEAT CONVERSION GAP</span>
+        </div>
+
+        <p class="paragraph-body">
+          TVK's advantage stemmed from how its votes were converted into constituency victories. With <strong>35.07%</strong> of valid candidate votes, TVK captured <strong>46.15%</strong> of Assembly constituencies—a positive seat-vote conversion bonus of <strong>+11.08 percentage points</strong>.
+        </p>
+
+        <p class="paragraph-body">
+          The contrast is visible when the calculation is applied across major party platforms. DMK's seat share (25.21%) closely matched its vote share (24.28%), while AIADMK, Congress, PMK, and BJP received smaller shares of seats than their statewide popular vote shares.
+        </p>
+
+        <table class="archival-table">
+          <thead>
+            <tr>
+              <th>Political Party</th>
+              <th style="text-align:right;">Total Valid Votes</th>
+              <th style="text-align:right;">Vote Share %</th>
+              <th style="text-align:center;">Seats Won</th>
+              <th style="text-align:right;">Seat Share %</th>
+              <th style="text-align:right;">Seat-Vote Gap</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#fff3f3; font-weight:bold;" class="searchable-item" data-name="TVK">
+              <td><strong style="color:var(--ink-red);">Tamilaga Vettri Kazhagam (TVK)</strong></td>
+              <td style="text-align:right;">17,220,194</td>
+              <td style="text-align:right; font-weight:900; color:var(--ink-red);">35.07%</td>
+              <td style="text-align:center; font-weight:900; color:var(--ink-red);">108</td>
+              <td style="text-align:right; font-weight:900; color:var(--ink-red);">46.15%</td>
+              <td style="text-align:right; font-weight:900; color:#008744;">+11.08 pts</td>
+            </tr>
+            <tr style="background:#f9f9f9;" class="searchable-item" data-name="DMK">
+              <td><strong>Dravida Munnetra Kazhagam (DMK)</strong></td>
+              <td style="text-align:right;">11,921,805</td>
+              <td style="text-align:right;">24.28%</td>
+              <td style="text-align:center; font-weight:bold;">59</td>
+              <td style="text-align:right;">25.21%</td>
+              <td style="text-align:right; font-weight:bold;">+0.93 pts</td>
+            </tr>
+            <tr style="background:#f0f7f2;" class="searchable-item" data-name="AIADMK">
+              <td><strong>All India Anna DMK (AIADMK)</strong></td>
+              <td style="text-align:right;">10,457,980</td>
+              <td style="text-align:right;">21.30%</td>
+              <td style="text-align:center; font-weight:bold;">47</td>
+              <td style="text-align:right;">20.09%</td>
+              <td style="text-align:right; color:var(--ink-red);">-1.21 pts</td>
+            </tr>
+            <tr class="searchable-item" data-name="INC">
+              <td>Indian National Congress (INC)</td>
+              <td style="text-align:right;">1,661,425</td>
+              <td style="text-align:right;">3.38%</td>
+              <td style="text-align:center;">5</td>
+              <td style="text-align:right;">2.14%</td>
+              <td style="text-align:right; color:var(--ink-red);">-1.24 pts</td>
+            </tr>
+            <tr class="searchable-item" data-name="PMK">
+              <td>Pattali Makkal Katchi (PMK)</td>
+              <td style="text-align:right;">1,065,810</td>
+              <td style="text-align:right;">2.17%</td>
+              <td style="text-align:center;">4</td>
+              <td style="text-align:right;">1.71%</td>
+              <td style="text-align:right; color:var(--ink-red);">-0.46 pts</td>
+            </tr>
+            <tr class="searchable-item" data-name="BJP">
+              <td>Bharatiya Janata Party (BJP)</td>
+              <td style="text-align:right;">1,468,220</td>
+              <td style="text-align:right;">2.99%</td>
+              <td style="text-align:center;">1</td>
+              <td style="text-align:right;">0.43%</td>
+              <td style="text-align:right; color:var(--ink-red);">-2.56 pts</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SECTION 3: PLURALITY WINS -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec3">SECTION 3 &middot; PLURALITY WINS &amp; SUB-50% VICTORIES</span>
+        </div>
+
+        <p class="paragraph-body">
+          Winning a constituency does not require a candidate to receive more than half of all votes when several candidates divide the electorate. The candidate with the highest vote total wins the seat.
+        </p>
+        <p class="paragraph-body">
+          In TVK's case, this distinction was central to its electoral performance. Of its <strong>108 constituency victories</strong>, <strong>96 (88.89%)</strong> were secured with less than 50% of valid candidate votes. Only <strong>12 TVK winners</strong> crossed the 50% threshold.
+        </p>
+
+        <div style="background:#fffdfa; border:1px solid var(--paper-border); border-left:4px solid var(--ink-red); padding:14px 18px; margin:16px 0; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:bold; color:var(--ink-red); text-transform:uppercase;">PLURALITY VICTORIES (BELOW 50% VOTE SHARE)</div>
+            <div style="font-family:'Playfair Display',serif; font-size:13px; color:var(--ink-gray); margin-top:2px;">Victories secured in multi-cornered contests with less than half of valid votes cast</div>
+          </div>
+          <div style="font-family:'Playfair Display',serif; font-size:28px; font-weight:900; color:var(--ink-red);">
+            96 / 108 (88.89%)
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4: 45 COUNTERFACTUAL CONSTITUENCIES -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec4">SECTION 4 &middot; THE 45 COUNTERFACTUAL CONSTITUENCIES</span>
+        </div>
+
+        <p class="paragraph-body">
+          One way to measure opposition fragmentation is to compare the winning TVK vote total with the arithmetic sum of votes received separately by DMK and AIADMK.
+        </p>
+        <p class="paragraph-body">
+          Across TVK's 108 victories, this combined arithmetic total exceeded the TVK winner's vote count in <strong>45 constituencies (41.67% of all TVK wins)</strong>.
+        </p>
+
+        <div style="background:#fcfaf5; border:1px solid var(--paper-border); border-left:4px solid var(--ink-charcoal); padding:14px 18px; margin:16px 0; font-family:'Playfair Display',serif; font-size:13.5px; line-height:1.75; font-style:italic;">
+          <strong style="font-family:'Courier Prime',monospace; font-style:normal; font-size:11px; color:var(--ink-charcoal); display:block; margin-bottom:4px; text-transform:uppercase; letter-spacing:1px;"><i class="fa-solid fa-triangle-exclamation"></i> METHODOLOGICAL DISCLAIMER</strong>
+          "DMK and AIADMK contested as separate party platforms and are historic political rivals. Adding their vote totals is a mathematical counterfactual, not evidence of a political alliance and not proof that a combined candidate would have won. Voters behave dynamically when alliances or campaign conditions change."
+        </div>
+      </div>
+
+      <!-- SECTION 5: ELECTORAL EFFICIENCY ACROSS PARTIES -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec5">SECTION 5 &middot; ELECTORAL EFFICIENCY ACROSS PARTIES</span>
+        </div>
+
+        <p style="font-size:12px; line-height:1.6; color:var(--ink-gray); margin-bottom:12px;">
+          Calculated as <code>Seat Share % ÷ Vote Share %</code>. An Index &gt; 1.0 indicates overrepresentation relative to vote share; Index &lt; 1.0 indicates underrepresentation.
+        </p>
+
+        <div class="dist-container">
+          <div class="dist-row searchable-item" data-name="IUML">
+            <div class="dist-label" style="color:var(--ink-red); font-weight:900;">1. IUML ★</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill gold" style="width: 100%;">2.77 Index</div></div>
+            <div class="dist-val" style="color:var(--ink-red); font-weight:bold;">2.77</div>
+          </div>
+
+          <div class="dist-row searchable-item" data-name="CPI(M)">
+            <div class="dist-label">2. CPI(M)</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill green" style="width: 48.4%;">1.34</div></div>
+            <div class="dist-val">1.34</div>
+          </div>
+
+          <div class="dist-row searchable-item" data-name="TVK">
+            <div class="dist-label" style="font-weight:bold; color:var(--ink-red);">3. TVK</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill" style="width: 44.8%;">1.24</div></div>
+            <div class="dist-val" style="font-weight:bold;">1.24</div>
+          </div>
+
+          <div class="dist-row searchable-item" data-name="CPI">
+            <div class="dist-label">4. CPI</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill green" style="width: 43.7%;">1.21</div></div>
+            <div class="dist-val">1.21</div>
+          </div>
+
+          <div class="dist-row searchable-item" data-name="DMK">
+            <div class="dist-label">5. DMK</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill blue" style="width: 35.4%;">0.98</div></div>
+            <div class="dist-val">0.98</div>
+          </div>
+
+          <div class="dist-row searchable-item" data-name="AIADMK">
+            <div class="dist-label">6. AIADMK</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill blue" style="width: 32.1%;">0.89</div></div>
+            <div class="dist-val">0.89</div>
+          </div>
+
+          <div class="dist-row searchable-item" data-name="PMK">
+            <div class="dist-label">7. PMK</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill" style="width: 26.7%;">0.74</div></div>
+            <div class="dist-val">0.74</div>
+          </div>
+
+          <div class="dist-row searchable-item" data-name="VCK">
+            <div class="dist-label">8. VCK</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill" style="width: 26.3%;">0.73</div></div>
+            <div class="dist-val">0.73</div>
+          </div>
+
+          <div class="dist-row searchable-item" data-name="INC">
+            <div class="dist-label">9. INC</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill" style="width: 21.3%;">0.59</div></div>
+            <div class="dist-val">0.59</div>
+          </div>
+
+          <div class="dist-row searchable-item" data-name="BJP">
+            <div class="dist-label">10. BJP</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill" style="width: 4.7%;">0.13</div></div>
+            <div class="dist-val">0.13</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 6: PARTY SEAT DISTRIBUTION -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec6">SECTION 6 &middot; PARTY SEAT DISTRIBUTION &amp; LEGISLATIVE RANKINGS</span>
+        </div>
+
+        <table class="archival-table">
+          <thead>
+            <tr>
+              <th>Rank &amp; Political Party</th>
+              <th style="text-align:center;">Seats Won</th>
+              <th style="text-align:right;">Seat Share %</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:#fff3f3; font-weight:bold;" class="searchable-item" data-name="TVK">
+              <td><span style="color:var(--ink-red);">★ 1.</span> <strong>Tamilaga Vettri Kazhagam (TVK)</strong></td>
+              <td style="text-align:center; font-weight:900; color:var(--ink-red);">108</td>
+              <td style="text-align:right; font-weight:900; color:var(--ink-red);">46.15%</td>
+            </tr>
+            <tr style="background:#f9f9f9;" class="searchable-item" data-name="DMK">
+              <td><span style="color:var(--ink-charcoal);">★ 2.</span> <strong>Dravida Munnetra Kazhagam (DMK)</strong></td>
+              <td style="text-align:center; font-weight:bold;">59</td>
+              <td style="text-align:right; font-weight:bold;">25.21%</td>
+            </tr>
+            <tr style="background:#f0f7f2;" class="searchable-item" data-name="AIADMK">
+              <td><span style="color:var(--ink-green);">★ 3.</span> <strong>AIADMK</strong></td>
+              <td style="text-align:center; font-weight:bold;">47</td>
+              <td style="text-align:right; font-weight:bold;">20.09%</td>
+            </tr>
+            <tr class="searchable-item" data-name="INC">
+              <td>4. Indian National Congress (INC)</td>
+              <td style="text-align:center;">5</td>
+              <td style="text-align:right;">2.14%</td>
+            </tr>
+            <tr class="searchable-item" data-name="PMK">
+              <td>5. Pattali Makkal Katchi (PMK)</td>
+              <td style="text-align:center;">4</td>
+              <td style="text-align:right;">1.71%</td>
+            </tr>
+            <tr class="searchable-item" data-name="IUML">
+              <td>6. Indian Union Muslim League (IUML)</td>
+              <td style="text-align:center;">2</td>
+              <td style="text-align:right;">0.85%</td>
+            </tr>
+            <tr class="searchable-item" data-name="CPI">
+              <td>7. Communist Party of India (CPI)</td>
+              <td style="text-align:center;">2</td>
+              <td style="text-align:right;">0.85%</td>
+            </tr>
+            <tr class="searchable-item" data-name="VCK">
+              <td>8. Viduthalai Chiruthaigal Katchi (VCK)</td>
+              <td style="text-align:center;">2</td>
+              <td style="text-align:right;">0.85%</td>
+            </tr>
+            <tr class="searchable-item" data-name="CPI(M)">
+              <td>9. Communist Party of India (Marxist)</td>
+              <td style="text-align:center;">2</td>
+              <td style="text-align:right;">0.85%</td>
+            </tr>
+            <tr class="searchable-item" data-name="BJP">
+              <td>10. Bharatiya Janata Party (BJP)</td>
+              <td style="text-align:center;">1</td>
+              <td style="text-align:right;">0.43%</td>
+            </tr>
+            <tr class="searchable-item" data-name="DMDK">
+              <td>11. Desiya Murpokku Dravida Kazhagam</td>
+              <td style="text-align:center;">1</td>
+              <td style="text-align:right;">0.43%</td>
+            </tr>
+            <tr class="searchable-item" data-name="AMMK">
+              <td>12. Amma Makkal Munnettra Kazagam</td>
+              <td style="text-align:center;">1</td>
+              <td style="text-align:right;">0.43%</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- SECTION 7: THREE PARTY DOMINANCE -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec7">SECTION 7 &middot; THREE-PARTY LEGISLATIVE DOMINANCE</span>
+        </div>
+
+        <div style="background:#181818; padding:20px; color:#fff; border-left:5px solid var(--ink-red); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div>
+            <div style="font-family:'Courier Prime',monospace; font-size:10.5px; color:var(--ink-red-light); font-weight:bold; text-transform:uppercase;">CONCENTRATION FINDING</div>
+            <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:900;">TVK, DMK, and AIADMK Held 214 of 234 Seats (91.45%)</div>
+            <div style="font-family:'Playfair Display',serif; font-size:13px; font-style:italic; opacity:0.85; margin-top:4px;">Leaving only 20 seats (8.55%) distributed among nine other political platforms.</div>
+          </div>
+          <div style="font-family:'Courier Prime',monospace; text-align:right;">
+            <div style="font-size:36px; font-weight:900; color:var(--ink-red-light);">91.45%</div>
+            <div style="font-size:10px; opacity:0.8;">214 SEATS COMBINED</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 8: AVERAGE WINNING MARGINS -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec8">SECTION 8 &middot; AVERAGE WINNING MARGIN BY PARTY</span>
+        </div>
+
+        <p style="font-size:12px; line-height:1.6; color:var(--ink-gray); margin-bottom:12px;">
+          Mean victory margin (in votes) calculated across victorious constituencies per party:
+        </p>
+
+        <div class="dist-container">
+          <div class="dist-row searchable-item" data-name="TVK">
+            <div class="dist-label" style="color:var(--ink-red); font-weight:900;">1. TVK ★</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill" style="width: 100%;">22,630.7 Votes</div></div>
+            <div class="dist-val" style="color:var(--ink-red); font-weight:900;">22,630.7</div>
+          </div>
+          <div class="dist-row searchable-item" data-name="VCK">
+            <div class="dist-label">2. VCK</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill blue" style="width: 74.7%;">16,898.5</div></div>
+            <div class="dist-val">16,898.5</div>
+          </div>
+          <div class="dist-row searchable-item" data-name="AIADMK">
+            <div class="dist-label">3. AIADMK</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill blue" style="width: 70.3%;">15,920.5</div></div>
+            <div class="dist-val">15,920.5</div>
+          </div>
+          <div class="dist-row searchable-item" data-name="PMK">
+            <div class="dist-label">4. PMK</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill" style="width: 58.5%;">13,235.3</div></div>
+            <div class="dist-val">13,235.3</div>
+          </div>
+          <div class="dist-row searchable-item" data-name="DMK">
+            <div class="dist-label">5. DMK</div>
+            <div class="dist-bar-track"><div class="dist-bar-fill" style="width: 42.3%;">9,571.7</div></div>
+            <div class="dist-val">9,571.7</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 9: CLOSEST & LARGEST VICTORIES BY PARTY -->
+      <div class="section-row-2col equal-cols">
+        <!-- LEFT: CLOSEST VICTORIES -->
+        <div>
+          <div class="section-head">
+            <span>SECTION 9 &middot; CLOSEST VICTORY BY PARTY</span>
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Party</th>
+                <th style="text-align:right;">Smallest Margin</th>
+                <th>Constituency Reference</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#fff3f3; font-weight:bold;">
+                <td><strong>TVK</strong></td>
+                <td style="text-align:right; color:var(--ink-red); font-weight:900;">1 Vote</td>
+                <td>Tiruppattur (#1 State Record)</td>
+              </tr>
+              <tr>
+                <td><strong>DMK</strong></td>
+                <td style="text-align:right; font-weight:bold;">138 Votes</td>
+                <td>Veppanahalli (#2 State Record)</td>
+              </tr>
+              <tr>
+                <td><strong>AIADMK</strong></td>
+                <td style="text-align:right; font-weight:bold;">214 Votes</td>
+                <td>Kanniyakumari (#3 State Record)</td>
+              </tr>
+              <tr>
+                <td>VCK</td>
+                <td style="text-align:right;">734 Votes</td>
+                <td>Verified Division</td>
+              </tr>
+              <tr>
+                <td>PMK</td>
+                <td style="text-align:right;">910 Votes</td>
+                <td>Verified Division</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- RIGHT: LARGEST VICTORIES -->
+        <div>
+          <div class="section-head">
+            <span>SECTION 10 &middot; LARGEST VICTORY BY PARTY</span>
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Party</th>
+                <th style="text-align:right;">Largest Margin</th>
+                <th>Constituency Reference</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#f0f4f9; font-weight:bold;">
+                <td><strong>AIADMK</strong></td>
+                <td style="text-align:right; color:var(--ink-blue); font-weight:900;">98,110 Votes</td>
+                <td>Edappadi (#1 State Landslide)</td>
+              </tr>
+              <tr style="background:#fff3f3; font-weight:bold;">
+                <td><strong>TVK</strong></td>
+                <td style="text-align:right; color:var(--ink-red); font-weight:900;">96,780 Votes</td>
+                <td>Sholinganallur (#2 State Landslide)</td>
+              </tr>
+              <tr>
+                <td><strong>DMK</strong></td>
+                <td style="text-align:right; font-weight:bold;">43,249 Votes</td>
+                <td>Verified Division</td>
+              </tr>
+              <tr>
+                <td>VCK</td>
+                <td style="text-align:right;">33,063 Votes</td>
+                <td>Verified Division</td>
+              </tr>
+              <tr>
+                <td>INC</td>
+                <td style="text-align:right;">20,970 Votes</td>
+                <td>Verified Division</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SECTION 10: HIGHEST VOTE-GETTER BY PARTY -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec10">SECTION 11 &middot; HIGHEST VOTE-GETTING WINNER OF EACH PARTY</span>
+        </div>
+
+        <div class="profiles-grid-3">
+          <div class="profile-card-sm top-highlight">
+            <span class="profile-party-badge" style="background:var(--ink-red);">TVK TOP WINNER</span>
+            <div class="profile-name">ECR P SARAVANAN</div>
+            <div class="profile-const">Sholinganallur Constituency</div>
+            <div class="profile-votes">220,382 Votes</div>
+          </div>
+          <div class="profile-card-sm top-highlight">
+            <span class="profile-party-badge" style="background:var(--ink-blue);">AIADMK TOP WINNER</span>
+            <div class="profile-name">EDAPPADI PALANISWAMI</div>
+            <div class="profile-const">Edappadi Constituency</div>
+            <div class="profile-votes">148,933 Votes</div>
+          </div>
+          <div class="profile-card-sm top-highlight">
+            <span class="profile-party-badge" style="background:var(--ink-charcoal);">DMK TOP WINNER</span>
+            <div class="profile-name">I PERIASAMY</div>
+            <div class="profile-const">Athoor Constituency</div>
+            <div class="profile-votes">106,240 Votes</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- METHODOLOGY & EDITORIAL CONCLUSION -->
+      <div class="methodology-panel" style="background:#f4efe6; border:1px solid #d4cbbd; border-left:5px solid #181818; padding:16px 20px; margin:20px 0;">
+        <div class="methodology-title" style="font-family:'Courier Prime',monospace; font-size:11.5px; font-weight:900; text-transform:uppercase; letter-spacing:1.5px; color:#181818; margin-bottom:8px;">
+          <i class="fa-solid fa-calculator"></i> METHODOLOGY &amp; BIGQUERY WORKFLOW
+        </div>
+        <div class="methodology-body" style="font-family:'Playfair Display',serif; font-size:13.5px; line-height:1.65; color:#4a4a4a;">
+          Calculations were executed via Google BigQuery SQL queries on certified 2026 Assembly election returns.<br>
+          <strong>Verified Tables:</strong> <code>fact_results_2026</code>, <code>fact_margins_2026</code>, <code>dim_constituency</code>.<br>
+          <strong>Analytical Steps:</strong> Aggregated vote shares, calculated constituency victory shares, computed Electoral Efficiency Indexes (Seat Share % ÷ Vote Share %), and verified margin metrics across all 234 assembly constituencies.
+        </div>
+      </div>
+
+      <div style="margin-top:24px; padding:20px 24px; background:#181818; color:#ffffff; border-radius:4px; font-family:'Playfair Display',serif; font-size:15px; line-height:1.8; text-align:center; font-style:italic;" id="final_archival_close">
+        This investigation forms part of The People's Ledger's master series on electoral mechanics. By analyzing vote conversion dynamics alongside certified returns, the series preserves the empirical reality of how votes become legislative power over time.
+      </div>
+
+    </div> <!-- /.np-page -->
+
+      
+
+  
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_01.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 1</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #2</span>
+        <a href="finding_03.html" class="back-btn">Finding 3 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+  </div> <!-- /.container -->
 
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    function filterPageTable() {
+      const input = document.getElementById('np-search-input').value.toUpperCase();
+      const rows = document.querySelectorAll('.archival-table tbody tr, .dist-row');
+      rows.forEach(row => {
+        const text = row.innerText;
+        if (text.toUpperCase().includes(input)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    let currentLang = 'en';
+    const TRANSLATIONS = {
+      en: {
+        headline: "TVK WON THE SEATS, NOT THE VOTES",
+        subheadline: "How First-Past-The-Post Converted Votes into Legislative Power in the 2026 Tamil Nadu Election.",
+        btn_lang: "TAMIL VERSION (தமிழ்)"
+      },
+      ta: {
+        headline: "தவெக இடங்களைக் கைப்பற்றியது, வாக்குகளை அல்ல",
+        subheadline: "2026 தமிழ்நாடு தேர்தலில் ஃபர்ஸ்ட்-பாஸ்ட்-தி-போஸ்ட் முறை வாக்குகளை எவ்வாறு சட்டமன்ற பலமாக மாற்றியது.",
+        btn_lang: "ENGLISH VERSION"
+      }
+    };
+
+    function toggleLang() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const t = TRANSLATIONS[currentLang];
+      document.getElementById('hdr_headline').innerText = t.headline;
+      document.getElementById('hdr_subheadline').innerText = t.subheadline;
+      document.getElementById('btn_lang_toggle').innerText = t.btn_lang;
     }
   </script>
 </body>

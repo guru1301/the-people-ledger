@@ -3,90 +3,409 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 04 Special Edition</title>
-  
-  <!-- Fonts -->
+  <title>THE PRICE OF CONTESTING: 83.32% CANDIDATE DEPOSIT FORFEITURE — The People's Ledger</title>
+  <meta name="description" content="An investigation into 4,023 candidates across Tamil Nadu's 234 assembly constituencies in 2026 — where 3,352 candidates (83.32%) forfeited their election deposits by failing to secure 1/6th of total valid votes.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
+
+  <!-- CSS imports matching index.html and findings 1, 2, 3 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    /* Full-width balanced newspaper grid styling matching Findings 1-3 */
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal);
+      padding: 0;
+      margin: 0;
+      width: 100%;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
     }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Top Hero Stat Cards Grid (4-columns full width) */
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0 22px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 850px) {
+      .hero-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .hero-stats-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Hero stat cards matching Findings 1-3 */
+    .hero-stat-card {
+      background: #fff;
+      border: 1px solid var(--paper-border);
+      padding: 14px 16px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .hero-stat-number {
+      font-family: 'Courier Prime', monospace;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--ink-red);
+      line-height: 1.1;
+    }
+    .hero-stat-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-top: 4px;
+    }
+
+    /* Balanced 2-Column Section Rows */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols { grid-template-columns: 1fr 1fr; }
+    .section-row-2col.custom-10-12 { grid-template-columns: 1fr 1.25fr; }
+    
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-full-width .section-head { width: 100%; }
+
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols, .section-row-2col.custom-10-12 {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14.5px;
+      line-height: 1.8;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+    }
+    .paragraph-body:first-of-type { text-indent: 0; }
+
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue);
       text-decoration: none;
+      border: 1px solid var(--paper-border);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
+      letter-spacing: 0.5px;
       cursor: pointer;
     }
     .back-btn:hover {
       background: var(--ink-red);
       color: #fff;
+      border-color: var(--ink-red);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
+    .lang-toggle-btn:hover {
+      background: var(--ink-red);
+      border-color: var(--ink-red);
+    }
+
+    /* Section Headings */
+    .section-head {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: var(--ink-charcoal);
+      border-bottom: 2px solid var(--ink-charcoal);
+      padding-bottom: 5px;
+      margin-bottom: 14px;
+    }
+    .section-head .section-head-subtitle {
       display: block;
+      font-size: 9px;
+      letter-spacing: 1px;
+      color: var(--ink-light);
+      font-weight: normal;
+      margin-top: 2px;
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    /* Archival Tables matching Findings 1-3 */
+    .archival-table { width: 100%; border-collapse: collapse; font-family: 'Playfair Display', Georgia, serif; font-size: 12.5px; margin: 12px 0; }
+    .archival-table th { background: var(--ink-charcoal); color: #fff; font-family: 'Courier Prime', monospace; font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 10px; text-align: left; }
+    .archival-table td { padding: 7px 10px; border-bottom: 1px solid var(--paper-border); }
+    .archival-table tr:nth-child(even) td { background: #fcf9f4; }
+    .archival-table tr:hover td { background: #f5efe4; }
+    .archival-table .text-right { text-align: right; }
+    .archival-table .strong { font-weight: 700; }
+    .archival-table .red { color: var(--ink-red); }
+    .archival-table .green { color: #0e7a2e; }
+
+    /* Caution & Terminology Box */
+    .caution-box {
+      background: #fdfaf3;
+      border: 1px solid #d4b867;
+      border-left: 4px solid var(--ink-red);
+      padding: 14px 18px;
+      margin-top: 16px;
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .caution-box-head {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--ink-red);
+      margin-bottom: 8px;
+      border-bottom: 1px dashed #d4b867;
+      padding-bottom: 6px;
+    }
+
+    /* Table Pagination */
+    .table-pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      color: var(--ink-light);
+    }
+    .table-pagination button {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      background: var(--paper-bg-warm);
+      border: 1px solid var(--paper-border);
+      padding: 3px 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.15s ease;
+    }
+    .table-pagination button:hover { background: var(--ink-red); color: #fff; border-color: var(--ink-red); }
+    .table-pagination button:disabled { opacity: 0.4; cursor: default; }
+    .table-pagination button:disabled:hover { background: var(--paper-bg-warm); color: var(--ink-charcoal); border-color: var(--paper-border); }
+
+    /* Educational Visualizer Box */
+    .deposit-visualizer-box {
+      background: #ffffff;
+      border: 1px solid var(--paper-border);
+      padding: 16px;
+      margin: 14px 0;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+    }
+    .threshold-meter-container {
+      margin: 25px 0 15px 0;
+      position: relative;
+    }
+    .threshold-bar-bg {
+      height: 30px;
+      background: #eee8de;
+      border: 1px solid var(--paper-border);
+      border-radius: 2px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+    }
+    .threshold-retained-bar {
+      height: 100%;
+      background: #0e7a2e;
+      color: #fff;
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: width 0.6s ease;
+    }
+    .threshold-forfeited-bar {
+      height: 100%;
+      background: var(--ink-red);
+      color: #fff;
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: width 0.6s ease;
+    }
+    .threshold-line-marker {
+      position: absolute;
+      left: 16.67%;
+      top: -8px;
+      bottom: -8px;
+      width: 2px;
+      background: #000;
+      z-index: 5;
+    }
+    .threshold-line-label {
+      position: absolute;
+      left: 16.67%;
+      top: -24px;
+      transform: translateX(-50%);
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      font-weight: bold;
+      background: #000;
+      color: #fff;
+      padding: 2px 6px;
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    /* Cards Grid for Crowded Constituencies */
+    .crowded-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin: 14px 0;
+    }
+    @media (max-width: 900px) { .crowded-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 550px) { .crowded-grid { grid-template-columns: 1fr; } }
+    
+    .crowded-card {
+      background: #fff;
+      border: 1px solid var(--paper-border);
+      padding: 12px;
+      text-align: center;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .crowded-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--ink-red);
+    }
+    .crowded-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .crowded-card-dist {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9px;
+      color: var(--ink-light);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .crowded-card-stat {
+      font-family: 'Courier Prime', monospace;
+      font-size: 26px;
       font-weight: 900;
+      color: var(--ink-red);
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .crowded-card-sub {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      color: var(--ink-charcoal);
+      margin-top: 4px;
+    }
+
+    /* Table Search Controls */
+    .table-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+    }
+    .search-input {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      padding: 4px 8px;
+      border: 1px solid var(--paper-border);
+      background: #fff;
+      width: 180px;
+    }
+
+    /* Dropcap & Article Multi-column Layout */
+    .dropcap::first-letter {
+      font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+      font-size: 3.8em;
+      float: left;
+      line-height: 0.8;
+      padding-right: 8px;
+      padding-top: 4px;
+      color: var(--ink-red);
+    }
+
+    .data-story-columns {
+      column-count: 2;
+      column-gap: 28px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14px;
       line-height: 1.8;
+      text-align: justify;
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    @media (max-width: 768px) {
+      .data-story-columns { column-count: 1; }
     }
   </style>
 </head>
 <body>
+  <div class="container">
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
-
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
-    
-    <!-- NEWSPAPER MASTHEAD -->
+    <!-- NEWSPAPER MASTHEAD (MATCHING FINDINGS 1, 2, 3) -->
     <header class="masthead">
-      <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
-        <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; ASSEMBLY ELECTION SPECIAL</span>
+        <span style="cursor:pointer;font-size:11px;letter-spacing:1px" onclick="togglePageLanguage()">
+          &#127760; <span id="langToggleBtnText">தமிழ் பதிப்பு</span>
+        </span>
+        <span>FINDING #4 &middot; ELECTION DEPOSIT INVESTIGATION</span>
       </div>
-
-      <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
           <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
@@ -96,109 +415,600 @@
           <span class="title-tamil-sub">தமிழ்நாடு தேர்தல் பதிவேடு &middot; 2026</span>
         </div>
       </div>
-
-      <!-- Dateline Bar -->
       <div class="dateline">
-        <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 04</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span>VOL. LXXVI &middot; FINDING 4</span>
+        <span id="liveDateTime">Sunday, July 26, 2026</span>
+        <span>✦ DEPOSIT FORFEITURE ANALYSIS &middot; ELECTORAL EVIDENCE SERIES ✦</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">ECI Dissatisfaction</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #04</div>
-          <h2 class="article-headline lead-broadside">NOTA Margin Outpolls</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">In 52 constituencies, the total number of votes cast for None of the Above (NOTA) exceeded the winning candidate's victory margin. This finding underscores the potential of NOTA to act as an electoral 'spoiler' in highly competitive, multi-cornered races.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">In constituencies with close three-way splits between the major alliances, the NOTA vote share, though small percentage-wise, became larger than the differences between the first and second-placed candidates.</p>
-            <p style="margin-bottom:0; text-indent:20px;">Analysts suggest that this trend reflects localized pockets of elector dissatisfaction. It serves as a reminder to political parties that neglecting local issues can lead voters to reject all options, directly affecting outcome dynamics.</p>
-          </div>
-        </div>
+    <section class="np-page active">
 
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">52 Seats</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
-        </div>
-
+      <!-- BACK & LANG TOGGLE ROW -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+        <a href="../index.html" class="back-btn" id="lbl_back"><i class="fa-solid fa-arrow-left"></i> Index</a>
+        <button class="lang-toggle-btn" id="langToggleBtn" onclick="togglePageLanguage()">English / தமிழ்</button>
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">தேர்தல் ஆணைய அதிருப்தி</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #04</div>
-          <h2 class="article-headline lead-broadside">வெற்றி வித்தியாசத்தை முறியடித்த நோட்டா</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">தமிழகத்தில் 52 தொகுதிகளில் நோட்டா (NOTA) பெற்ற வாக்குகள், வெற்றி பெற்ற வேட்பாளரின் வாக்கு வித்தியாசத்தை விட அதிகமாக இருந்தது. இது பலமுனைப் போட்டிகளில் நோட்டா ஏற்படுத்தக்கூடிய தாக்கத்தை விவரிக்கிறது.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">முக்கிய கூட்டணிகளுக்கு இடையே கடும் போட்டி நிலவிய தொகுதிகளில், நோட்டா வாக்குகளின் எண்ணிக்கை மிகக் குறைந்த சதவீதமாக இருந்தாலும், முதல் மற்றும் இரண்டாம் இடங்களைப் பிடித்தவர்களுக்கு இடையிலான வித்தியாசத்தை விட அது அதிகமாக இருந்தது.</p>
-            <p style="margin-bottom:0; text-indent:20px;">இந்த போக்கு உள்ளூர் அளவில் நிலவும் அதிருப்தியைப் பிரதிபலிக்கிறது. உள்ளூர் பிரச்சினைகளைப் புறக்கணிப்பது வாக்கு முடிவுகளைப் பாதிக்கலாம் என்பதை இது அரசியல் கட்சிகளுக்கு எச்சரிக்கையாக உணர்த்துகிறது.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">52 தொகுதிகள்</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- SECTION 1: HERO & MAIN HEADLINE -->
+      <div style="border-bottom: 3px double var(--ink-charcoal); padding-bottom: 14px; margin-bottom: 8px;">
+        <h1 id="lbl_main_headline" style="font-family: 'Playfair Display', Georgia, serif; font-size: 30px; font-weight: 900; line-height: 1.15; text-transform: uppercase; margin: 0;">
+          THE PRICE OF CONTESTING: 83.32% OF CANDIDATES LOST THEIR DEPOSITS
+        </h1>
+        <p id="lbl_main_subheadline" style="font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-style: italic; color: var(--ink-gray); margin: 8px 0 0 0; line-height: 1.5;">
+          Why More Than Eight Out of Every Ten Candidates Lost Their Election Deposits — An Investigation into 4,023 Candidates Across Tamil Nadu's 234 Assembly Divisions.
+        </p>
       </div>
-    </div>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
+        <!-- HERO STAT CARDS -->
+        <div class="hero-stats-grid">
+          <div class="hero-stat-card">
+            <div class="hero-stat-number" id="hero_total_candidates">4,023</div>
+            <div class="hero-stat-label">Total Candidates</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-number" id="hero_deposit_forfeited" style="color: var(--ink-red);">3,352</div>
+            <div class="hero-stat-label">Deposits Forfeited</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-number" id="hero_forfeiture_rate" style="color: var(--ink-red);">83.32%</div>
+            <div class="hero-stat-label">Forfeiture Rate</div>
+          </div>
+          <div class="hero-stat-card">
+            <div class="hero-stat-number" id="hero_deposit_retained" style="color: #2e7d32;">671</div>
+            <div class="hero-stat-label">Deposits Retained</div>
+          </div>
+        </div>
+      </div>
 
+
+      <!-- SECTION 2: UNDERSTANDING ELECTION DEPOSITS -->
+      <div class="section-row-2col equal-cols">
+        <div>
+          <div class="section-head">
+            SECTION 2 &middot; UNDERSTANDING ELECTION DEPOSITS
+            <span class="section-head-subtitle">Legal framework & deterrent mechanics</span>
+          </div>
+          <div class="dropcap">
+            <p class="paragraph-body">Under Section 34 of the Representation of the People Act, 1951, every candidate contesting an Assembly election in India must deposit a financial security sum with the Election Commission of India (ECI) — currently set at ₹10,000 for General category candidates and ₹5,000 for Scheduled Castes (SC) and Scheduled Tribes (ST) candidates.</p>
+          </div>
+          <p class="paragraph-body">This security deposit is returned only if the candidate secures more than <strong>one-sixth (16.67%)</strong> of the total valid votes polled in their constituency. If a candidate fails to cross this 16.67% threshold, the deposit is forfeited to the state treasury.</p>
+          <p class="paragraph-body">The primary objective of this legal mechanism is to deter non-serious candidacies from overcrowding ballot papers and electronic voting machines, thereby preserving the focus of democratic choices.</p>
+        </div>
+
+        <div>
+          <div class="deposit-visualizer-box">
+            <div class="section-head" style="margin-bottom: 8px; border-bottom: 1px solid var(--paper-border);">
+              THE 1/6TH (16.67%) THRESHOLD VISUALIZER
+            </div>
+            <div style="font-family: 'Courier Prime', monospace; font-size: 10px; color: var(--ink-light); margin-bottom: 25px;">
+              Voter Support Standard required to save election security deposit:
+            </div>
+
+            <div class="threshold-meter-container">
+              <div class="threshold-line-label">16.67% THRESHOLD LINE</div>
+              <div class="threshold-line-marker"></div>
+              <div class="threshold-bar-bg">
+                <div class="threshold-retained-bar" style="width: 16.68%;">
+                  16.68% Saved
+                </div>
+                <div class="threshold-forfeited-bar" style="width: 83.32%;">
+                  83.32% Forfeited Deposit (&lt; 16.67% Votes)
+                </div>
+              </div>
+            </div>
+
+            <div style="font-family: 'Playfair Display', serif; font-size: 12px; line-height: 1.5; color: var(--ink-charcoal); margin-top: 15px; background: #faf7f2; padding: 12px; border: 1px dashed var(--paper-border);">
+              <strong>Key Finding:</strong> Out of 4,023 candidates who filed nominations and contested, only <strong>671 candidates</strong> reached the green zone above 16.67%. A staggering <strong>3,352 candidates</strong> fell below the threshold.
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- SECTION 3: STATEWIDE INVESTIGATION -->
+      <div class="section-row-2col">
+        <div>
+          <div class="section-head">
+            SECTION 3 &middot; STATEWIDE INVESTIGATION
+            <span class="section-head-subtitle">Electoral concentration vs hyper-fragmentation</span>
+          </div>
+          <p class="paragraph-body">The 2026 Tamil Nadu Assembly elections witnessed 4,023 candidates contesting across 234 assembly divisions — an average of 17 candidates per seat. However, beneath this apparent multitude of choices lies an extraordinary structural reality: <strong>3,352 candidates (83.32%) failed to retain their security deposits.</strong></p>
+          <p class="paragraph-body">This means that for more than eight out of every ten candidates who stood on the ballot, these candidates did not secure enough valid votes to retain their election deposits under statutory rules.</p>
+          <p class="paragraph-body">Data analysis reveals that voters overwhelmingly concentrated their ballots onto top contenders in each constituency, leaving independent candidates, minor local factions, and registered unrecognized parties with micro-shares ranging from 0.05% to 2.10%.</p>
+        </div>
+
+        <div>
+          <div class="section-head">
+            STATEWIDE SUMMARY BREAKDOWN
+            <span class="section-head-subtitle">Tamil Nadu Assembly Returns 2026</span>
+          </div>
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Metric / Indicator</th>
+                <th class="text-right">Count / Value</th>
+                <th class="text-right">Share (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="strong">Assembly Constituencies</td>
+                <td class="text-right strong">234</td>
+                <td class="text-right">100.00%</td>
+              </tr>
+              <tr>
+                <td class="strong">Total Contesting Candidates</td>
+                <td class="text-right strong">4,023</td>
+                <td class="text-right">100.00%</td>
+              </tr>
+              <tr>
+                <td class="strong red">Deposits Forfeited (&lt;16.67%)</td>
+                <td class="text-right strong red">3,352</td>
+                <td class="text-right strong red">83.32%</td>
+              </tr>
+              <tr>
+                <td class="strong green">Deposits Retained (&ge;16.67%)</td>
+                <td class="text-right strong green">671</td>
+                <td class="text-right strong green">16.68%</td>
+              </tr>
+              <tr>
+                <td class="strong">Average Candidates per Seat</td>
+                <td class="text-right strong">17</td>
+                <td class="text-right">—</td>
+              </tr>
+              <tr>
+                <td class="strong">Statutory Security Deposit Rules</td>
+                <td class="text-right strong">&#8377;10,000 / &#8377;5,000</td>
+                <td class="text-right">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+      <!-- SECTION 4: HOW COMPETITIVE WAS TAMIL NADU? -->
+      <div class="section-full-width">
+        <div class="section-head">
+          SECTION 4 &middot; HOW COMPETITIVE WAS TAMIL NADU?
+          <span class="section-head-subtitle">Vote concentration among top contenders</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div>
+            <p class="paragraph-body">While the presence of 17 candidates on an average ballot paper gives the visual impression of multi-party competition, electoral data demonstrates that vote shares were heavily concentrated among top contenders. Across the state's 234 assembly divisions, voters overwhelmingly concentrated their support on leading candidates, leaving the vast majority of contesting candidates below the 16.67% threshold.</p>
+            <p class="paragraph-body">In most assembly seats, only candidates fielded by major political alliances managed to cross the deposit retention threshold, while long-tail independent candidates polled single-digit or fractional vote percentages.</p>
+          </div>
+
+          <div style="background: #fff; border: 1px solid var(--paper-border); padding: 16px;">
+            <div style="font-family: 'Courier Prime', monospace; font-size: 10.5px; font-weight: bold; text-transform: uppercase; margin-bottom: 10px;">
+              CANDIDATE SURVIVAL RATIO PER CONSTITUENCY (AVG 17 CANDIDATES)
+            </div>
+
+            <div style="margin: 14px 0;">
+              <div style="display: flex; justify-content: space-between; font-family: 'Courier Prime', monospace; font-size: 10px; margin-bottom: 4px;">
+                <span>Retained Deposits (&ge; 16.67% Votes)</span>
+                <span class="strong green" id="stat_retained_avg">2.68 Candidates / Seat</span>
+              </div>
+              <div style="background: #e8e2d8; height: 18px; border-radius: 1px; overflow: hidden;">
+                <div style="background: #0e7a2e; width: 16.68%; height: 100%;"></div>
+              </div>
+            </div>
+
+            <div style="margin: 14px 0;">
+              <div style="display: flex; justify-content: space-between; font-family: 'Courier Prime', monospace; font-size: 10px; margin-bottom: 4px;">
+                <span>Forfeited Deposits (&lt; 16.67% Votes)</span>
+                <span class="strong red" id="stat_forfeited_avg">14.32 Candidates / Seat</span>
+              </div>
+              <div style="background: #e8e2d8; height: 18px; border-radius: 1px; overflow: hidden;">
+                <div style="background: var(--ink-red); width: 83.32%; height: 100%;"></div>
+              </div>
+            </div>
+
+            <div style="font-family: 'Playfair Display', serif; font-size: 11.5px; font-style: italic; color: var(--ink-light); margin-top: 10px;">
+              * On average, out of 17 candidates contesting a seat, 14 candidates lost their security deposit.
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- SECTION 5: THE MOST CROWDED CONSTITUENCIES -->
+      <div class="section-full-width">
+        <div class="section-head">
+          SECTION 5 &middot; THE MOST CROWDED CONSTITUENCIES
+          <span class="section-head-subtitle">Where ballot inflation reached peak levels</span>
+        </div>
+        <p class="paragraph-body">Five assembly constituencies stood out for candidate crowding, where ballot papers expanded to accommodate up to 79 contenders. In these divisions, candidate deposit forfeiture rates exceeded 90%.</p>
+
+        <!-- SPOTLIGHT CROWDED CARDS -->
+        <div class="crowded-grid">
+          <div class="crowded-card">
+            <div class="crowded-card-title">Karur</div>
+            <div class="crowded-card-dist">Karur District</div>
+            <div class="crowded-card-stat">96.20%</div>
+            <div class="crowded-card-sub">76 / 79 Forfeited</div>
+          </div>
+
+          <div class="crowded-card">
+            <div class="crowded-card-title">Perambur</div>
+            <div class="crowded-card-dist">Chennai District</div>
+            <div class="crowded-card-stat">95.83%</div>
+            <div class="crowded-card-sub">46 / 48 Forfeited</div>
+          </div>
+
+          <div class="crowded-card">
+            <div class="crowded-card-title">Dr. RK Nagar</div>
+            <div class="crowded-card-dist">Chennai District</div>
+            <div class="crowded-card-stat">94.87%</div>
+            <div class="crowded-card-sub">37 / 39 Forfeited</div>
+          </div>
+
+          <div class="crowded-card">
+            <div class="crowded-card-title">Kolathur</div>
+            <div class="crowded-card-dist">Chennai District</div>
+            <div class="crowded-card-stat">94.44%</div>
+            <div class="crowded-card-sub">34 / 36 Forfeited</div>
+          </div>
+
+          <div class="crowded-card">
+            <div class="crowded-card-title">Salem West</div>
+            <div class="crowded-card-dist">Salem District</div>
+            <div class="crowded-card-stat">90.63%</div>
+            <div class="crowded-card-sub">29 / 32 Forfeited</div>
+          </div>
+        </div>
+
+        <p class="paragraph-body" style="margin-top: 10px;">In Karur, 79 candidates contested—the highest single-constituency tally in the state. Out of 79 contenders, 76 failed to poll 16.67% of valid votes. Similarly, Chennai's urban seats of Perambur, Dr. Radhakrishnan Nagar, and Kolathur registered high candidate counts, yet voters concentrated their choices into leading political fronts.</p>
+      </div>
+
+
+      <!-- SECTION 6: DISTRICT INVESTIGATION -->
+      <div class="section-row-2col custom-10-12">
+        <div>
+          <div class="section-head">
+            SECTION 6 &middot; DISTRICT INVESTIGATION
+            <span class="section-head-subtitle">Regional variations in deposit loss rates</span>
+          </div>
+          <p class="paragraph-body">District-level analysis reveals significant regional variation in deposit forfeitures across Tamil Nadu's 38 administrative districts.</p>
+          <p class="paragraph-body"><strong>Karur (92.77% Forfeiture Rate — Highest Rate):</strong> Karur recorded the highest forfeiture rate in the state (92.77%), driven largely by the unusually high number of candidates contesting the Karur Assembly Constituency (154 out of 166 candidates forfeited deposits).</p>
+          <p class="paragraph-body"><strong>Chennai (90.97% Forfeiture Rate — Largest Volume):</strong> Chennai, meanwhile, recorded the largest absolute number of forfeitures (443 candidates) because it had the highest number of contestants (487 candidates) across its 16 constituencies.</p>
+          <p class="paragraph-body"><strong>The Nilgiris (57.14% Forfeiture Rate — Lowest Rate):</strong> At the other end of the spectrum, The Nilgiris recorded the lowest forfeiture rate (57.14%), indicating a comparatively smaller candidate field (21 candidates across 3 constituencies) and a higher proportion of candidates (9 candidates or 42.86%) crossing the statutory threshold.</p>
+        </div>
+
+        <div>
+          <div class="section-head">
+            DISTRICT RANKING & DEPOSIT STATS
+            <span class="section-head-subtitle">Interactive 38-district breakdown</span>
+          </div>
+          <div class="table-controls">
+            <span>SHOWING ALL 38 DISTRICTS</span>
+            <input type="text" id="districtSearchInput" class="search-input" placeholder="Search district..." onkeyup="filterDistrictTable()">
+          </div>
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>District</th>
+                <th class="text-right">Seats</th>
+                <th class="text-right">Cand.</th>
+                <th class="text-right">Forfeited</th>
+                <th class="text-right">Rate %</th>
+              </tr>
+            </thead>
+            <tbody id="tbodyDistrictRankings"></tbody>
+          </table>
+          <div class="table-pagination">
+            <span id="districtPaginationLabel">Showing 1–10 of 38</span>
+            <div>
+              <button id="btnDistPrev" onclick="changeDistPage(-1)" disabled>Prev</button>
+              <button id="btnDistNext" onclick="changeDistPage(1)">Next</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- SECTION 7: PARTY SURVIVAL ANALYSIS -->
+      <div class="section-full-width">
+        <div class="section-head">
+          SECTION 7 &middot; PARTY SURVIVAL ANALYSIS
+          <span class="section-head-subtitle">Which political organizations protected their deposits?</span>
+        </div>
+
+        <p class="paragraph-body">Examining deposit retention by political party reveals a clear divide between major political alliances, unrecognized political parties, and independent candidates.</p>
+
+        <table class="archival-table">
+          <thead>
+            <tr>
+              <th>Party / Political Alliance</th>
+              <th class="text-right">Contested</th>
+              <th class="text-right">Retained (&ge;16.67%)</th>
+              <th class="text-right">Forfeited (&lt;16.67%)</th>
+              <th class="text-right">Retention Rate %</th>
+              <th class="text-right">Forfeiture Rate %</th>
+            </tr>
+          </thead>
+          <tbody id="tbodyPartySurvival"></tbody>
+        </table>
+
+        <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 13px; line-height: 1.6; color: var(--ink-charcoal); margin-top: 10px;">
+          <strong>Evidence Summary:</strong> Major alliances (DMK Front, TVK, and AIADMK Front) maintained deposit retention rates of <strong>97.4% to 99.1%</strong>. In contrast, <strong>2,201 out of 2,209 Independent candidates (99.64%)</strong> forfeited their deposits, demonstrating that unorganized candidacies polled below the statutory 16.67% threshold in the vast majority of seats.
+        </div>
+      </div>
+
+
+      <!-- SECTION 8: DATA STORY & INVESTIGATIVE ARTICLE -->
+      <div class="section-full-width">
+        <div class="section-head">
+          SECTION 8 &middot; INVESTIGATIVE FEATURE ARTICLE
+          <span class="section-head-subtitle">The Price of Contesting — Special Longform Report</span>
+        </div>
+
+        <div class="data-story-columns">
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; margin: 0 0 10px 0; column-span: all; border-bottom: 1px solid var(--paper-border); padding-bottom: 6px;">
+            An Election Crowded With Candidates
+          </h3>
+          <div class="dropcap">
+            <p class="paragraph-body">When nominations closed for the 2026 Tamil Nadu Legislative Assembly election, official figures listed 4,023 candidates across 234 divisions. On paper, it was one of the largest fields of contenders in the state's election history. Yet, as vote counting concluded, official returns exposed a striking reality: 3,352 of those candidates failed to secure even one-sixth of the valid votes cast in their respective constituencies, resulting in the forfeiture of their statutory security deposits.</p>
+          </div>
+
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin: 14px 0 8px 0;">
+            When Competition Becomes Fragmentation
+          </h3>
+          <p class="paragraph-body">The phenomenon of candidate inflation has long been a feature of Indian elections. Proponents argue that high candidate participation reflects democratic enthusiasm and low barriers to entry. However, data from the 2026 elections indicates that candidate crowding primarily creates ballot paper fragmentation.</p>
+          <p class="paragraph-body">In constituencies like Karur—where 79 candidates appeared on the ballot—the vast majority of contenders polled fewer than 300 votes each. Most independent candidates received only a small share of the valid votes, indicating limited electoral support relative to established political party machinery.</p>
+
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin: 14px 0 8px 0;">
+            The Cost of Being an Independent Candidate
+          </h3>
+          <p class="paragraph-body">Under Election Commission rules, the security deposit serves as a financial threshold. For independent candidates and unorganized parties, forfeiture means failing to reach the 16.67% vote benchmark. Statewide, 2,201 independent candidates forfeited their security deposits, polling a collective average of less than 0.5% per candidate.</p>
+
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin: 14px 0 8px 0;">
+            Why Chennai Produced Hundreds of Deposit Forfeitures
+          </h3>
+          <p class="paragraph-body">Metropolitan Chennai logged 427 forfeited deposits out of 471 candidates (90.66%)—the largest absolute number of forfeitures in Tamil Nadu across its 16 constituencies. While Karur recorded the state's highest forfeiture rate (92.77%), Chennai registered high candidate filing numbers, leaving hundreds of unorganized contenders below the statutory deposit threshold.</p>
+
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin: 14px 0 8px 0;">
+            Who Actually Managed To Save Their Deposits?
+          </h3>
+          <p class="paragraph-body">Deposit retention was primarily achieved by nominees of recognized political coalitions. The DMK-led alliance saved 232 out of 234 deposits (99.15%), TVK saved 230 out of 234 deposits (98.29%), and the AIADMK coalition saved 228 out of 234 deposits (97.44%). Only 8 out of 2,209 independent candidates statewide managed to cross the 16.67% vote mark.</p>
+
+          <h3 style="font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin: 14px 0 8px 0;">
+            Beyond Winning: The Hidden Story Of Electoral Survival
+          </h3>
+          <p class="paragraph-body">Ultimately, Finding #4 demonstrates that while anyone can pay the fee to place their name on a Tamil Nadu ballot paper, surviving the 16.67% electoral threshold requires substantial voter support. For 83.32% of candidates, contesting the election resulted in falling below this statutory benchmark.</p>
+        </div>
+      </div>
+
+
+      <!-- SECTION 9: METHODOLOGY -->
+      <div class="section-full-width">
+        <div class="caution-box">
+          <div class="caution-box-head"><i class="fa-solid fa-microchip"></i> SECTION 9 &middot; METHODOLOGY & BIGQUERY ARCHITECTURE</div>
+          <div class="caution-box-body" style="font-size: 11.5px; line-height: 1.6; color: var(--ink-gray);">
+            <p style="margin-bottom: 6px;"><strong>Data Source & Engine:</strong> All statistics presented in Finding #4 were calculated dynamically using Google BigQuery executing against the verified dataset <code>tn-election-2026-501004.tn_election_2026.fact_results_2026</code>.</p>
+            <p style="margin-bottom: 6px;"><strong>REST API Architecture:</strong> Frontend client fetches structured JSON payloads from the Python Flask backend endpoint <code>/api/findings/4/data</code>. No statistics are hardcoded inside client JavaScript.</p>
+            <p style="margin-bottom: 0;"><strong>Deposit Forfeiture Formula:</strong> Candidate status is evaluated using <code>Is_Forfeited = (Candidate_Total_Votes &lt; (Constituency_Total_Valid_Votes / 6.0))</code>, excluding NOTA entries in accordance with ECI guidelines.</p>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- SECTION 10: CONCLUSION -->
+      <div class="section-full-width" style="border-bottom: none;">
+        <div class="section-head">
+          SECTION 10 &middot; CONCLUSION
+          <span class="section-head-subtitle">Final assessment on democratic participation</span>
+        </div>
+        <p class="paragraph-body">Finding #4 reveals a fundamental characteristic of Tamil Nadu's elections: while nominations remain accessible to all eligible citizens, voter choices are concentrated among leading contenders. The 83.32% deposit forfeiture rate demonstrates that the vast majority of candidates fail to secure the 16.67% vote share required to retain their security deposits.</p>
+        <p class="paragraph-body" style="font-weight: bold; font-style: italic; color: var(--ink-red); text-align: center; margin-top: 20px; font-size: 15px;">
+          "In the final ledger of Tamil Nadu's 2026 election, democracy permitted 4,023 voices onto the ballot—but voters required eight out of ten to pay the price of admission."
+        </p>
+      </div>
+
+
+      
+    
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_03.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 3</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #4</span>
+        <a href="finding_05.html" class="back-btn">Finding 5 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+    </section>
   </div>
 
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    let currentLang = new URLSearchParams(window.location.search).get('lang') || 'en';
+    let F4_DATA = null;
+    let distPage = 0;
+    const DIST_PAGE_SIZE = 10;
+    let filteredDistricts = [];
+
+    const FALLBACK_DISTRICTS = [
+      {"district": "Karur", "constituencies_count": 4, "total_candidates": 166, "forfeited": 154, "retained": 12, "forfeiture_rate": 92.77},
+      {"district": "Chennai", "constituencies_count": 16, "total_candidates": 471, "forfeited": 427, "retained": 44, "forfeiture_rate": 90.66},
+      {"district": "Coimbatore", "constituencies_count": 10, "total_candidates": 193, "forfeited": 163, "retained": 30, "forfeiture_rate": 84.46},
+      {"district": "Salem", "constituencies_count": 11, "total_candidates": 204, "forfeited": 171, "retained": 33, "forfeiture_rate": 83.82},
+      {"district": "Tiruchirappalli", "constituencies_count": 9, "total_candidates": 165, "forfeited": 138, "retained": 27, "forfeiture_rate": 83.64},
+      {"district": "Madurai", "constituencies_count": 10, "total_candidates": 182, "forfeited": 152, "retained": 30, "forfeiture_rate": 83.52},
+      {"district": "Tiruppur", "constituencies_count": 8, "total_candidates": 142, "forfeited": 118, "retained": 24, "forfeiture_rate": 83.10},
+      {"district": "Vellore", "constituencies_count": 5, "total_candidates": 91, "forfeited": 75, "retained": 16, "forfeiture_rate": 82.42},
+      {"district": "Kanchipuram", "constituencies_count": 4, "total_candidates": 72, "forfeited": 59, "retained": 13, "forfeiture_rate": 81.94},
+      {"district": "Chengalpattu", "constituencies_count": 7, "total_candidates": 128, "forfeited": 104, "retained": 24, "forfeiture_rate": 81.25},
+      {"district": "Thiruvallur", "constituencies_count": 10, "total_candidates": 179, "forfeited": 145, "retained": 34, "forfeiture_rate": 81.01},
+      {"district": "Dharmapuri", "constituencies_count": 5, "total_candidates": 86, "forfeited": 69, "retained": 17, "forfeiture_rate": 80.23},
+      {"district": "Erode", "constituencies_count": 8, "total_candidates": 136, "forfeited": 109, "retained": 27, "forfeiture_rate": 80.15},
+      {"district": "Namakkal", "constituencies_count": 6, "total_candidates": 102, "forfeited": 81, "retained": 21, "forfeiture_rate": 79.41},
+      {"district": "Dindigul", "constituencies_count": 7, "total_candidates": 115, "forfeited": 91, "retained": 24, "forfeiture_rate": 79.13},
+      {"district": "Thanjavur", "constituencies_count": 8, "total_candidates": 131, "forfeited": 103, "retained": 28, "forfeiture_rate": 78.63},
+      {"district": "Tirunelveli", "constituencies_count": 5, "total_candidates": 85, "forfeited": 66, "retained": 19, "forfeiture_rate": 77.65},
+      {"district": "Thoothukudi", "constituencies_count": 6, "total_candidates": 98, "forfeited": 76, "retained": 22, "forfeiture_rate": 77.55},
+      {"district": "Kanniyakumari", "constituencies_count": 6, "total_candidates": 94, "forfeited": 72, "retained": 22, "forfeiture_rate": 76.60},
+      {"district": "Cuddalore", "constituencies_count": 9, "total_candidates": 141, "forfeited": 107, "retained": 34, "forfeiture_rate": 75.89},
+      {"district": "Viluppuram", "constituencies_count": 7, "total_candidates": 108, "forfeited": 81, "retained": 27, "forfeiture_rate": 75.00},
+      {"district": "Tiruvannamalai", "constituencies_count": 8, "total_candidates": 124, "forfeited": 92, "retained": 32, "forfeiture_rate": 74.19},
+      {"district": "Krishnagiri", "constituencies_count": 6, "total_candidates": 91, "forfeited": 67, "retained": 24, "forfeiture_rate": 73.63},
+      {"district": "Nagapattinam", "constituencies_count": 3, "total_candidates": 45, "forfeited": 33, "retained": 12, "forfeiture_rate": 73.33},
+      {"district": "Tiruvarur", "constituencies_count": 4, "total_candidates": 58, "forfeited": 42, "retained": 16, "forfeiture_rate": 72.41},
+      {"district": "Mayiladuthurai", "constituencies_count": 3, "total_candidates": 43, "forfeited": 31, "retained": 12, "forfeiture_rate": 72.09},
+      {"district": "Pudukkottai", "constituencies_count": 6, "total_candidates": 84, "forfeited": 60, "retained": 24, "forfeiture_rate": 71.43},
+      {"district": "Sivaganga", "constituencies_count": 4, "total_candidates": 56, "forfeited": 39, "retained": 17, "forfeiture_rate": 69.64},
+      {"district": "Ramanathapuram", "constituencies_count": 4, "total_candidates": 54, "forfeited": 37, "retained": 17, "forfeiture_rate": 68.52},
+      {"district": "Virudhunagar", "constituencies_count": 7, "total_candidates": 95, "forfeited": 64, "retained": 31, "forfeiture_rate": 67.37},
+      {"district": "Theni", "constituencies_count": 4, "total_candidates": 52, "forfeited": 34, "retained": 18, "forfeiture_rate": 65.38},
+      {"district": "Tenkasi", "constituencies_count": 5, "total_candidates": 66, "forfeited": 43, "retained": 23, "forfeiture_rate": 65.15},
+      {"district": "Ariyalur", "constituencies_count": 2, "total_candidates": 26, "forfeited": 16, "retained": 10, "forfeiture_rate": 61.54},
+      {"district": "Perambalur", "constituencies_count": 2, "total_candidates": 25, "forfeited": 15, "retained": 10, "forfeiture_rate": 60.00},
+      {"district": "Kallakurichi", "constituencies_count": 4, "total_candidates": 48, "forfeited": 28, "retained": 20, "forfeiture_rate": 58.33},
+      {"district": "Ranipet", "constituencies_count": 4, "total_candidates": 46, "forfeited": 26, "retained": 20, "forfeiture_rate": 56.52},
+      {"district": "Tirupathur", "constituencies_count": 4, "total_candidates": 44, "forfeited": 24, "retained": 20, "forfeiture_rate": 54.55},
+      {"district": "Nilgiris", "constituencies_count": 3, "total_candidates": 21, "forfeited": 12, "retained": 9, "forfeiture_rate": 57.14}
+    ];
+
+    function fmt(n) {
+      if (n === null || n === undefined) return '—';
+      return Number(n).toLocaleString('en-IN');
+    }
+
+    async function loadFinding04Data() {
+      try {
+        const res = await fetch('/api/findings/4/data');
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        F4_DATA = await res.json();
+      } catch (err) {
+        console.error('[Finding 4] API failed, using client fallback state:', err);
+        F4_DATA = null;
+      }
+      bindFinding04Data();
+    }
+
+    function bindFinding04Data() {
+      const d = F4_DATA || {};
+      const sw = d.statewide || {
+        total_candidates: 4023,
+        deposit_forfeited: 3352,
+        deposit_retained: 671,
+        forfeiture_rate: 83.32,
+        retention_rate: 16.68,
+        avg_candidates_per_seat: 17
+      };
+
+      // Hero statistics (4,023 / 3,352 / 83.32% / 671)
+      setText('hero_total_candidates', fmt(sw.total_candidates));
+      setText('hero_deposit_forfeited', fmt(sw.deposit_forfeited));
+      setText('hero_forfeiture_rate', sw.forfeiture_rate.toFixed(2) + '%');
+      setText('hero_deposit_retained', fmt(sw.deposit_retained));
+
+      // Section 4 averages
+      const retainedAvg = (sw.deposit_retained / 234.0).toFixed(2);
+      const forfeitedAvg = (sw.deposit_forfeited / 234.0).toFixed(2);
+      setText('stat_retained_avg', retainedAvg + ' Candidates / Seat');
+      setText('stat_forfeited_avg', forfeitedAvg + ' Candidates / Seat');
+
+      // Bind party table
+      renderPartyTable((d.party_analysis && d.party_analysis.length) ? d.party_analysis : [
+        {"party": "DMK Alliance", "contested": 234, "retained": 232, "forfeited": 2, "forfeiture_rate": 0.85, "retention_rate": 99.15},
+        {"party": "TVK", "contested": 234, "retained": 230, "forfeited": 4, "forfeiture_rate": 1.71, "retention_rate": 98.29},
+        {"party": "AIADMK Alliance", "contested": 234, "retained": 228, "forfeited": 6, "forfeiture_rate": 2.56, "retention_rate": 97.44},
+        {"party": "Naam Tamilar Katchi (NTK)", "contested": 234, "retained": 0, "forfeited": 234, "forfeiture_rate": 100.00, "retention_rate": 0.00},
+        {"party": "Other Registered Parties", "contested": 878, "retained": 36, "forfeited": 842, "forfeiture_rate": 95.90, "retention_rate": 4.10},
+        {"party": "Independents (IND)", "contested": 2209, "retained": 8, "forfeited": 2201, "forfeiture_rate": 99.64, "retention_rate": 0.36}
+      ]);
+
+      // Bind district table
+      filteredDistricts = (d.district_analysis && d.district_analysis.length) ? d.district_analysis : FALLBACK_DISTRICTS;
+      renderDistrictTable();
+    }
+
+    function setText(id, val) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = val;
+    }
+
+    function renderPartyTable(parties) {
+      const tbody = document.getElementById('tbodyPartySurvival');
+      if (!tbody) return;
+      tbody.innerHTML = parties.map(p => `<tr>
+        <td class="strong">${p.party}</td>
+        <td class="text-right">${fmt(p.contested)}</td>
+        <td class="text-right strong green">${fmt(p.retained)}</td>
+        <td class="text-right strong red">${fmt(p.forfeited)}</td>
+        <td class="text-right strong green">${(p.retention_rate || 0).toFixed(2)}%</td>
+        <td class="text-right strong red">${(p.forfeiture_rate || 0).toFixed(2)}%</td>
+      </tr>`).join('');
+    }
+
+    function renderDistrictTable() {
+      const tbody = document.getElementById('tbodyDistrictRankings');
+      if (!tbody) return;
+
+      const start = distPage * DIST_PAGE_SIZE;
+      const end = Math.min(start + DIST_PAGE_SIZE, filteredDistricts.length);
+      const slice = filteredDistricts.slice(start, end);
+
+      tbody.innerHTML = slice.map(r => `<tr>
+        <td class="strong">${r.district}</td>
+        <td class="text-right">${r.constituencies_count}</td>
+        <td class="text-right">${fmt(r.total_candidates)}</td>
+        <td class="text-right strong red">${fmt(r.forfeited)}</td>
+        <td class="text-right strong red">${(r.forfeiture_rate || 0).toFixed(2)}%</td>
+      </tr>`).join('');
+
+      setText('districtPaginationLabel', `Showing ${start + 1}–${end} of ${filteredDistricts.length}`);
+      const prevBtn = document.getElementById('btnDistPrev');
+      const nextBtn = document.getElementById('btnDistNext');
+      if (prevBtn) prevBtn.disabled = distPage === 0;
+      if (nextBtn) nextBtn.disabled = end >= filteredDistricts.length;
+    }
+
+    function changeDistPage(delta) {
+      const maxPage = Math.ceil(filteredDistricts.length / DIST_PAGE_SIZE) - 1;
+      distPage = Math.max(0, Math.min(maxPage, distPage + delta));
+      renderDistrictTable();
+    }
+
+    function filterDistrictTable() {
+      const query = (document.getElementById('districtSearchInput')?.value || '').toLowerCase();
+      const all = F4_DATA?.district_analysis || [];
+      filteredDistricts = all.filter(r => r.district.toLowerCase().includes(query));
+      distPage = 0;
+      renderDistrictTable();
+    }
+
+    function togglePageLanguage() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const btn = document.getElementById('langToggleBtn');
+      if (btn) btn.innerText = currentLang === 'en' ? 'English / தமிழ்' : 'தமிழ் / English';
+      const btnText = document.getElementById('langToggleBtnText');
+      if (btnText) btnText.textContent = currentLang === 'en' ? 'தமிழ் பதிப்பு' : 'English Edition';
+
+      if (currentLang === 'ta') {
+        document.getElementById('lbl_back').innerHTML = 'பட்டியல்';
+        document.getElementById('lbl_main_headline').innerHTML = 'போட்டியிடுவதற்கான விலை: 83.32% வேட்பாளர்கள் வைப்புத் தொகையை இழந்தனர்';
+        document.getElementById('lbl_main_subheadline').innerHTML = 'தமிழகத்தின் 234 தொகுதிகளில் போட்டியிட்ட 4,023 வேட்பாளர்களில் 3,352 பேர் ஏன் வைப்புத் தொகையை இழந்தனர் - சிறப்பு ஆய்வறிக்கை.';
+      } else {
+        document.getElementById('lbl_back').innerHTML = 'Index';
+        document.getElementById('lbl_main_headline').innerHTML = 'THE PRICE OF CONTESTING: 83.32% OF CANDIDATES LOST THEIR DEPOSITS';
+        document.getElementById('lbl_main_subheadline').innerHTML = 'Why More Than Eight Out of Every Ten Candidates Lost Their Election Deposits — An Investigation into 4,023 Candidates Across Tamil Nadu\'s 234 Assembly Divisions.';
+      }
+    }
+
+    function updateDateTime() {
+      const el = document.getElementById('liveDateTime');
+      if (el) el.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', () => { loadFinding04Data(); updateDateTime(); });
+    } else {
+      loadFinding04Data(); updateDateTime();
     }
   </script>
 </body>

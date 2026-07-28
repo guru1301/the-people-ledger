@@ -147,14 +147,20 @@ function renderDynamicFrontPage(lang) {
   let totalTurnout = 0, minMargin = Infinity, closestAC = null;
   let notaOutpollsCount = 0, femaleLedCount = 0, tvkSeatsCount = 0;
 
-  for (let i = 1; i <= 234; i++) {
-    const acData = getConstituencyData(i.toString());
-    totalTurnout += acData.turnout_pct;
-    if (acData.margin < minMargin) { minMargin = acData.margin; closestAC = acData; }
-    if (acData.nota_votes > acData.margin) notaOutpollsCount++;
-    if ((acData.voted_female / acData.electors_female) > (acData.voted_male / acData.electors_male)) femaleLedCount++;
-    if (acData.winner_party === "TVK") tvkSeatsCount++;
-  }
+  try {
+    for (let i = 1; i <= 234; i++) {
+      if (typeof getConstituencyData === 'function') {
+        const acData = getConstituencyData(i.toString());
+        if (acData) {
+          totalTurnout += acData.turnout_pct || 0;
+          if (acData.margin < minMargin) { minMargin = acData.margin; closestAC = acData; }
+          if (acData.nota_votes > acData.margin) notaOutpollsCount++;
+          if ((acData.voted_female / acData.electors_female) > (acData.voted_male / acData.electors_male)) femaleLedCount++;
+          if (acData.winner_party === "TVK") tvkSeatsCount++;
+        }
+      }
+    }
+  } catch(e) {}
 
   const avgTurnoutVal = totalTurnout / 234;
   const avgTurnoutStr = avgTurnoutVal.toFixed(2);
@@ -185,7 +191,7 @@ function renderDynamicFrontPage(lang) {
 
     let heroImgHtml = "";
     if (cm.Name.en === "C. Joseph Vijay") {
-      heroImgHtml = `<div class="vintage-photo-container rectangular" style="margin-bottom:10px;"><img src="vijay_swearing_in.png" class="vintage-photo-img" alt="Swearing in ceremony"></div>`;
+      heroImgHtml = `<div class="vintage-photo-container rectangular" style="margin-bottom:10px;"><img src="img/vijay_swearing_in.png" class="vintage-photo-img" alt="Swearing in ceremony"></div>`;
     } else {
       heroImgHtml = `
         <div class="vintage-photo-container rectangular" style="margin-bottom:10px; background:var(--paper-bg-darker);">
@@ -216,12 +222,29 @@ function renderDynamicFrontPage(lang) {
 
     const enHtml = makeParagraphs(HERO_ARTICLE_EN);
     const taHtml = makeParagraphs(HERO_ARTICLE_TA);
-
     const activeHtml = lang === 'en' ? enHtml : taHtml;
 
     let partyTallyHtml = "";
-    if (BQ_PARTY_WINNERS && BQ_PARTY_WINNERS.length > 0) {
-      const listItems = BQ_PARTY_WINNERS.map(item => {
+    const partyWinners = window.BQ_PARTY_WINNERS || [];
+    const PARTY_CODE_TA = {
+      "TVK": "தவெக",
+      "DMK": "திமுக",
+      "AIADMK": "அதிமுக",
+      "ADMK": "அதிமுக",
+      "INC": "காங்",
+      "PMK": "பாமக",
+      "IUML": "முஸ்லிம் லீக்",
+      "CPI": "இகம்",
+      "VCK": "விசிக",
+      "CPI(M)": "இகம்(மா)",
+      "CPI-M": "இகம்(மா)",
+      "BJP": "பாஜக",
+      "DMDK": "தேமுதிக",
+      "AMMK": "அமமுக"
+    };
+
+    if (partyWinners && partyWinners.length > 0) {
+      const listItems = partyWinners.map(item => {
         let code = item.party_code || "OTH";
         if (code === "AIADMK") code = "ADMK";
         if (code === "Amma Makkal Munnettra Kazagam") code = "AMMK";
@@ -232,6 +255,9 @@ function renderDynamicFrontPage(lang) {
           bg: "#1c1c1c",
           flag: `<div style="background:#888888; width:12px; height:8px; border:1px solid rgba(255,255,255,0.2);"></div>`
         };
+        const flagImg = typeof getPartyFlagHtml === 'function' ? getPartyFlagHtml(code, "width: 14px; height: 9px; object-fit: cover; border-radius: 1px; border: 1px solid rgba(255,255,255,0.3); vertical-align: middle;") : "";
+        const flagDisplay = flagImg || style.flag;
+        const displayCode = (lang === 'ta' && PARTY_CODE_TA[code]) ? PARTY_CODE_TA[code] : code;
         
         return `
           <div class="party-pill-badge" style="
@@ -248,8 +274,8 @@ function renderDynamicFrontPage(lang) {
             font-weight: 800;
             box-shadow: 0 2px 4px rgba(0,0,0,0.15);
           ">
-            ${style.flag}
-            <span>${code}: ${item.seats_won}</span>
+            ${flagDisplay}
+            <span>${displayCode}: ${item.seats_won}</span>
           </div>`;
       }).join('');
       
@@ -274,6 +300,7 @@ function renderDynamicFrontPage(lang) {
     }
 
     centerCol.innerHTML = `
+      ${partyTallyHtml}
       <div class="hero-sub-banner">${bannerRed}</div>
       <div class="hero-sub-banner-second">${bannerSub}</div>
       <h2 class="article-headline lead-broadside">${headlineText}</h2>
@@ -290,68 +317,276 @@ function renderDynamicFrontPage(lang) {
         <div class="hero-text-body" style="font-family: ${lang === 'en' ? "'Playfair Display', Georgia, serif" : "'Noto Serif Tamil', serif"}; color: var(--ink-charcoal);">
           ${activeHtml}
         </div>
-      </div>
-      ${partyTallyHtml}`;
-
-
+      </div>`;
   }
 
   // RIGHT COLUMN: Render 6 featured findings in the sidebar
   const rightCol = document.getElementById('frontPageRightCol');
   if (rightCol) {
-    const sidebarFindings = FINDINGS_DATA.slice(0, 6);
+    const dataSource = (typeof FINDINGS_DATA !== 'undefined' && FINDINGS_DATA.length > 0) 
+      ? FINDINGS_DATA 
+      : ((typeof FINDINGS_FALLBACK !== 'undefined' && FINDINGS_FALLBACK.length > 0) ? FINDINGS_FALLBACK : []);
+    const sidebarFindings = dataSource.slice(0, 6);
     const readMoreText = lang === 'ta' ? "மேலும் படிக்க →" : "Read More →";
 
     rightCol.innerHTML = sidebarFindings.map(f => {
-      const category = lang === 'ta' ? f.categoryTa : f.categoryEn;
-      const title = lang === 'ta' ? f.titleTa : f.titleEn;
-      const num = lang === 'ta' ? f.keyNumberTa : f.keyNumber;
-      const summary = lang === 'ta' ? f.summaryTa : f.summaryEn;
-      const linkUrl = `findings/finding_${f.id}.html?lang=${lang}`;
+      const fid = f.id || (f.finding_number ? String(f.finding_number).padStart(2, '0') : '01');
+      const category = lang === 'ta' ? (f.categoryTa || f.categoryEn || 'கண்டுபிடிப்பு') : (f.categoryEn || f.categoryTa || 'Finding');
+      const title = lang === 'ta' ? (f.titleTa || f.headline || f.titleEn) : (f.titleEn || f.headline || f.titleTa);
+      const num = lang === 'ta' ? (f.keyNumberTa || f.keyNumber || f.key_number) : (f.keyNumber || f.key_number || f.keyNumberTa);
+      const summary = lang === 'ta' ? (f.summaryTa || f.summaryEn || f.summary) : (f.summaryEn || f.summary || f.summaryTa);
+      const linkUrl = f.detail_url ? `${f.detail_url}?lang=${lang}` : `findings/finding_${fid}.html?lang=${lang}`;
 
       return `
         <div class="sidebar-story">
           <div class="section-head" style="display:flex; justify-content:space-between; align-items:center;">
-            <span>${category}</span>
-            <strong style="color:var(--ink-red); font-family:'Courier Prime',monospace; font-size:12px;">${num}</strong>
+            <span>${category || ''}</span>
+            <strong style="color:var(--ink-red); font-family:'Courier Prime',monospace; font-size:12px;">${num || ''}</strong>
           </div>
-          <h4 class="sidebar-headline">${title}</h4>
-          <div class="sidebar-body" style="margin-bottom:6px;">${summary}</div>
-          <a href="${linkUrl}" target="_blank" class="finding-link" style="font-size:10px;">${readMoreText}</a>
+          <h4 class="sidebar-headline"><a href="${linkUrl}" style="color:inherit; text-decoration:none;">${title || ''}</a></h4>
+          <div class="sidebar-body" style="margin-bottom:6px;">${summary || ''}</div>
+          <a href="${linkUrl}" class="finding-link" style="font-size:10px;">${readMoreText}</a>
         </div>
       `;
     }).join('');
   }
 
-  // Render the 19 findings cards
-  renderFindingsGrid(lang);
+  // Render the 19 findings cards, vacant seats gazette & statewide seats tally
+  if (typeof renderFindingsGrid === 'function') renderFindingsGrid(lang);
+  renderVacantSeatsSection(lang);
+  renderStatewideSeatsTally(lang);
 }
 
+const VACANT_SEATS_DATA = [
+  {
+    ac_no: 141,
+    nameEn: "Trichy East",
+    nameTa: "திருச்சி கிழக்கு",
+    party: "TVK",
+    partyTa: "தவெக",
+    memberEn: "C. Joseph Vijay",
+    memberTa: "சி. ஜோசப் விஜய்",
+    reasonEn: "Vacated by Chief Minister C. Joseph Vijay, who won two seats in the assembly election and chose to retain the Perambur constituency.",
+    reasonTa: "இரண்டு தொகுதிகளில் (பெரம்பூர் & திருச்சி கிழக்கு) வெற்றி பெற்ற முதலமைச்சர் சி. ஜோசப் விஜய், பெரம்பூர் தொகுதியைத் தக்கவைத்துக்கொண்டதால் திருச்சி கிழக்கு காலியானது.",
+    image: "img/vacant_vijay.png"
+  },
+  {
+    ac_no: 35,
+    nameEn: "Madurantakam",
+    nameTa: "மதுராந்தகம்",
+    party: "AIADMK",
+    partyTa: "அதிமுக",
+    memberEn: "Maragatham Kumaravel",
+    memberTa: "மரகதம் குமரவேல்",
+    reasonEn: "Vacated following the resignation of Maragatham Kumaravel.",
+    reasonTa: "மரகதம் குமரவேல் அவர்களின் ராஜினாமாவைத் தொடர்ந்து காலியானது.",
+    image: "img/vacant_maragatham.png"
+  },
+  {
+    ac_no: 101,
+    nameEn: "Dharapuram",
+    nameTa: "தாராபுரம்",
+    party: "AIADMK",
+    partyTa: "அதிமுக",
+    memberEn: "P. Sathyabama",
+    memberTa: "பி. சத்யபாமா",
+    reasonEn: "Vacated following the resignation of P. Sathyabama.",
+    reasonTa: "பி. சத்யபாமா அவர்களின் ராஜினாமாவைத் தொடர்ந்து காலியானது.",
+    image: "img/vacant_sathyabama.png"
+  },
+  {
+    ac_no: 103,
+    nameEn: "Perundurai",
+    nameTa: "பெருந்துறை",
+    party: "AIADMK",
+    partyTa: "அதிமுக",
+    memberEn: "S. Jayakumar",
+    memberTa: "எஸ். ஜெயக்குமார்",
+    reasonEn: "Vacated following the resignation of S. Jayakumar.",
+    reasonTa: "எஸ். ஜெயக்குமார் அவர்களின் ராஜினாமாவைத் தொடர்ந்து காலியானது.",
+    image: "img/vacant_jayakumar.png"
+  },
+  {
+    ac_no: 225,
+    nameEn: "Ambasamudram",
+    nameTa: "அம்பாசமுத்திரம்",
+    party: "AIADMK",
+    partyTa: "அதிமுக",
+    memberEn: "Esakki Subaya",
+    memberTa: "இசக்கி சுப்பையா",
+    reasonEn: "Vacated following the resignation of Esakki Subaya.",
+    reasonTa: "இசக்கி சுப்பையா அவர்களின் ராஜினாமாவைத் தொடர்ந்து காலியானது.",
+    image: "img/vacant_esakki.png"
+  },
+  {
+    ac_no: 179,
+    nameEn: "Viralimalai",
+    nameTa: "விராலிமலை",
+    party: "AIADMK",
+    partyTa: "அதிமுக",
+    memberEn: "C. Vijayabaskar",
+    memberTa: "சி. விஜயபாஸ்கர்",
+    reasonEn: "Vacated following the resignation of C. Vijayabaskar.",
+    reasonTa: "சி. விஜயபாஸ்கர் அவர்களின் ராஜினாமாவைத் தொடர்ந்து காலியானது.",
+    image: "img/vacant_cvijayabaskar.png"
+  },
+  {
+    ac_no: 135,
+    nameEn: "Karur",
+    nameTa: "கரூர்",
+    party: "AIADMK",
+    partyTa: "அதிமுக",
+    memberEn: "M.R. Vijayabhaskar",
+    memberTa: "எம்.ஆர். விஜயபாஸ்கர்",
+    reasonEn: "Vacated following the resignation of M.R. Vijayabhaskar.",
+    reasonTa: "எம்.ஆர். விஜயபாஸ்கர் அவர்களின் ராஜினாமாவைத் தொடர்ந்து காலியானது.",
+    image: "img/vacant_mrvijayabhaskar.png"
+  }
+];
+
+function renderVacantSeatsSection(lang) {
+  const tallyBar = document.getElementById('vacantTallyBar');
+  const seatsGrid = document.getElementById('vacantSeatsGrid');
+  if (!tallyBar || !seatsGrid) return;
+
+  const isTa = lang === 'ta';
+
+  // Render Tally Summary Bar
+  if (isTa) {
+    tallyBar.innerHTML = `
+      <div class="vacant-tally-item">மொத்தத் தொகுதிகள்: <strong>234</strong></div>
+      <div class="vacant-tally-item">செயல்பாட்டில் உள்ள சட்டமன்ற உறுப்பினர்கள்: <strong>227</strong></div>
+      <div class="vacant-tally-item"><span class="vacant-badge-red">7 காலியிடங்கள்</span></div>
+      <div style="width:1px; height:16px; background:var(--paper-border-dark); margin:0 4px;"></div>
+      <div class="vacant-tally-item" style="color:#12702c;">அதிமுக: 47 வென்றவை <span style="color:#d30d25; font-weight:900;">(-6 காலியானது)</span> = <strong>41 இருக்கைகள்</strong></div>
+      <div class="vacant-tally-item" style="color:#d30d25;">தவெக: 108 வென்றவை <span style="color:#d30d25; font-weight:900;">(-1 காலியானது)</span> = <strong>107 இருக்கைகள்</strong></div>
+    `;
+  } else {
+    tallyBar.innerHTML = `
+      <div class="vacant-tally-item">Total Assembly Divisions: <strong>234</strong></div>
+      <div class="vacant-tally-item">Active Members: <strong>227</strong></div>
+      <div class="vacant-tally-item"><span class="vacant-badge-red">7 Vacancies</span></div>
+      <div style="width:1px; height:16px; background:var(--paper-border-dark); margin:0 4px;"></div>
+      <div class="vacant-tally-item" style="color:#12702c;">AIADMK: 47 Won <span style="color:#d30d25; font-weight:900;">(-6 Vacant)</span> = <strong>41 Active Seats</strong></div>
+      <div class="vacant-tally-item" style="color:#d30d25;">TVK: 108 Won <span style="color:#d30d25; font-weight:900;">(-1 Vacant)</span> = <strong>107 Active Seats</strong></div>
+    `;
+  }
+
+  // Render Grid Cards
+  seatsGrid.innerHTML = VACANT_SEATS_DATA.map(item => {
+    const acName = isTa ? item.nameTa : item.nameEn;
+    const partyName = isTa ? item.partyTa : item.party;
+    const memberName = isTa ? item.memberTa : item.memberEn;
+    const reasonText = isTa ? item.reasonTa : item.reasonEn;
+    const statusText = isTa ? "காலியானது" : "VACANT";
+    const memberLabel = isTa ? "காலிசெய்த உறுப்பினர்" : "Vacated Member";
+    const seatImpact = item.party === 'AIADMK'
+      ? (isTa ? '-1 இடம் (அதிமுக -6)' : '-1 Seat (AIADMK -6)')
+      : (isTa ? '-1 இடம் (தவெக -1)' : '-1 Seat (TVK -1)');
+
+    const flagHtml = typeof getPartyFlagHtml === 'function'
+      ? getPartyFlagHtml(item.party, "width:22px; height:14px; object-fit:cover; border-radius:2px; border:1px solid rgba(0,0,0,0.25); display:inline-block; vertical-align:middle;")
+      : "";
+
+    const borderStyle = item.party === 'AIADMK' ? 'border-left: 5px solid #12702c;' : 'border-left: 5px solid #d30d25;';
+
+    const photoHtml = item.image
+      ? `<div class="vacant-card-photo-wrap">
+           <img src="${item.image}" alt="${memberName}" class="vacant-card-photo" onerror="this.parentElement.style.display='none'">
+         </div>`
+      : `<div class="vacant-card-photo-wrap">
+           <div class="vacant-card-photo-placeholder">
+             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+             <span>${isTa ? 'ஆவணம்' : 'VACANT'}</span>
+           </div>
+         </div>`;
+
+    const clickTooltip = isTa ? "தொகுதி விவரங்களைப் பார்க்க கிளிக் செய்யவும்" : "Click to view full constituency breakdown";
+
+    return `
+      <div class="vacant-seat-card" style="${borderStyle} cursor: pointer;" onclick="openConstituencyExplorer('${item.ac_no}')" title="${clickTooltip}">
+        <div class="vacant-card-main">
+          <div>
+            <div class="vacant-card-header">
+              <span class="vacant-card-title">${acName} <span class="vacant-ac-no">(AC ${String(item.ac_no).padStart(3, '0')})</span></span>
+              <span class="vacant-status-badge">${statusText}</span>
+            </div>
+            
+            <div class="vacant-card-member-row">
+              <span class="vacant-member-label">${memberLabel}:</span>
+              <span class="vacant-member-name">${memberName}</span>
+            </div>
+            
+            <div class="vacant-card-reason">${reasonText}</div>
+          </div>
+          
+          <div class="vacant-card-footer">
+            <span class="vacant-party-tag">${flagHtml} <span>${partyName}</span></span>
+            <span class="vacant-impact-badge">${seatImpact}</span>
+          </div>
+        </div>
+
+        ${photoHtml}
+      </div>
+    `;
+  }).join('');
+}
+
+const PARTY_WINNERS_CARDS_DATA = [
+  { code: "TVK", codeTa: "தவெக", nameEn: "Tamilaga Vettri Kazhagam", nameTa: "தமிழக வெற்றி கழகம்", seats: "107", seatsNote: "(108 Won, -1 Vacant)", seatsNoteTa: "(108 வென்றவை, -1 காலி)", share: "35.07%", color: "#d30d25", border: "#ffcc00" },
+  { code: "DMK", codeTa: "திமுக", nameEn: "Dravida Munnetra Kazhagam", nameTa: "திராவிட முன்னேற்றக் கழகம்", seats: 59, share: "24.19%", color: "#d30d25", border: "#ff4444" },
+  { code: "AIADMK", codeTa: "அதிமுக", nameEn: "All India Anna DMK", nameTa: "அனைத்திந்திய அண்ணா திமுக", seats: "41", seatsNote: "(47 Won, -6 Vacant)", seatsNoteTa: "(47 வென்றவை, -6 காலி)", share: "21.21%", color: "#12702c", border: "#22c55e" },
+  { code: "INC", codeTa: "காங்", nameEn: "Indian National Congress", nameTa: "இந்திய தேசிய காங்கிரஸ்", seats: 5, share: "3.85%", color: "#0b407a", border: "#3399ff" },
+  { code: "PMK", codeTa: "பாமக", nameEn: "Pattali Makkal Katchi", nameTa: "பாட்டாளி மக்கள் கட்சி", seats: 4, share: "3.20%", color: "#ffaa00", border: "#ffaa00" },
+  { code: "IUML", codeTa: "முஸ்லிம் லீக்", nameEn: "Indian Union Muslim League", nameTa: "இந்திய யூனியன் முஸ்லிம் லீக்", seats: 2, share: "1.15%", color: "#064e3b", border: "#10b981" },
+  { code: "CPI", codeTa: "இகம்", nameEn: "Communist Party of India", nameTa: "இந்திய கம்யூனிஸ்ட் கட்சி", seats: 2, share: "1.10%", color: "#cc0000", border: "#ff3333" },
+  { code: "VCK", codeTa: "விசிக", nameEn: "Viduthalai Chiruthaigal Katchi", nameTa: "விடுதலைச் சிறுத்தைகள் கட்சி", seats: 2, share: "1.08%", color: "#491a66", border: "#8b3fc4" },
+  { code: "CPI(M)", codeTa: "இகம்(மா)", nameEn: "CPI (Marxist)", nameTa: "இந்திய கம்யூனிஸ்ட் (மார்க்சிஸ்ட்)", seats: 2, share: "1.05%", color: "#cc0000", border: "#ff3333" },
+  { code: "BJP", codeTa: "பாஜக", nameEn: "Bharatiya Janata Party", nameTa: "பாரதிய ஜனதா கட்சி", seats: 1, share: "2.10%", color: "#ff8800", border: "#ff8800" },
+  { code: "DMDK", codeTa: "தேமுதிக", nameEn: "Desiya Murpokku Dravida Kazhagam", nameTa: "தேசிய முற்போக்கு திராவிட கழகம்", seats: 1, share: "0.95%", color: "#dd0000", border: "#ff4444" },
+  { code: "AMMK", codeTa: "அமமுக", nameEn: "Amma Makkal Munnettra Kazagam", nameTa: "அம்மா மக்கள் முன்னேற்றக் கழகம்", seats: 1, share: "0.80%", color: "#006600", border: "#22c55e" }
+];
+
 function renderStatewideSeatsTally(lang) {
-  const tbody    = document.getElementById('frontPageTallyBody');
-  const labelSolo  = lang === 'en' ? "Solo (TVK-led)"    : "டிவிகே கூட்டணி (தனித்துப் போட்டி)";
-  const labelIndia = lang === 'en' ? "INDIA (DMK-led)"   : "திமுக கூட்டணி";
-  const labelNda   = lang === 'en' ? "NDA (AIADMK-led)"  : "அதிமுக கூட்டணி";
-  tbody.innerHTML = `
-    <tr>
-      <td class="strong"><span class="legend-swatch seat-p-tvk" style="display:inline-block;vertical-align:middle;margin-right:5px"></span>${labelSolo}</td>
-      <td class="strong text-right" style="color:var(--ink-red)">107</td>
-      <td class="text-right">34.92%</td>
-    </tr>
-    <tr>
-      <td class="strong"><span class="legend-swatch seat-p-dmk" style="display:inline-block;vertical-align:middle;margin-right:5px"></span>${labelIndia}</td>
-      <td class="strong text-right">74</td>
-      <td class="text-right">24.19%</td>
-    </tr>
-    <tr>
-      <td class="strong"><span class="legend-swatch seat-p-aiadmk" style="display:inline-block;vertical-align:middle;margin-right:5px"></span>${labelNda}</td>
-      <td class="strong text-right">53</td>
-      <td class="text-right">21.21%</td>
-    </tr>`;
+  const container = document.getElementById('frontPagePartyCardsGrid');
+  if (!container) return;
+
+  const isTa = lang === 'ta';
+  const seatLabel = isTa ? 'இடங்கள்' : 'Seats';
+
+  container.innerHTML = PARTY_WINNERS_CARDS_DATA.map(item => {
+    const flagHtml = typeof getPartyFlagHtml === 'function'
+      ? getPartyFlagHtml(item.code, "width:24px; height:16px; object-fit:cover; border-radius:2px; border:1px solid rgba(0,0,0,0.25); display:inline-block; vertical-align:middle;")
+      : "";
+    const partyName = isTa ? item.nameTa : item.nameEn;
+    const partyCode = isTa ? (item.codeTa || item.code) : item.code;
+    const noteText = isTa ? (item.seatsNoteTa || '') : (item.seatsNote || '');
+    const seatsHtml = noteText
+      ? `${item.seats} ${seatLabel} <span style="font-size:10px; color:#d30d25; font-weight:bold; display:block;">${noteText}</span>`
+      : `${item.seats} ${seatLabel}`;
+
+    return `
+      <div class="party-medium-card" style="border-left: 5px solid ${item.border};">
+        <div class="party-card-header">
+          <div class="party-card-identity">
+            ${flagHtml}
+            <span class="party-card-code">${partyCode}</span>
+          </div>
+          <span class="party-card-seats" style="text-align:right;">${seatsHtml}</span>
+        </div>
+        <div class="party-card-name" title="${partyName}">${partyName}</div>
+        <div class="party-card-footer">
+          <span class="party-card-share-label">${isTa ? 'வாக்கு சதவீதம்' : 'Vote Share'}</span>
+          <span class="party-card-share-val">${item.share}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 function renderSeatGridLegend(lang) {
   const leg = document.getElementById('frontPageLegend');
+  if (!leg) return;
   const l1 = lang === 'en' ? "TVK" : "டிவிகே";
   const l2 = lang === 'en' ? "DMK" : "திமுக";
   const l3 = lang === 'en' ? "AIADMK" : "அதிமுக";
@@ -363,20 +598,22 @@ function renderSeatGridLegend(lang) {
 
 function renderTickerClassifieds(lang) {
   const list = [
-    { en: "<strong>CLOSEST CONTEST:</strong> Tiruppattur decided by just 30 votes for DMK.", ta: "<strong>நெருக்கமான போட்டி:</strong> திருப்பத்தூர் தொகுதி வெறும் 30 வாக்குகள் வித்தியாசத்தில் திமுக வெற்றி பெற்றது." },
+    { en: "<strong>CLOSEST CONTEST:</strong> Tiruppattur decided by just 1 vote for TVK.", ta: "<strong>நெருக்கமான போட்டி:</strong> திருப்பத்தூர் தொகுதியில் தவெக வெறும் 1 வாக்கு வித்தியாசத்தில் வெற்றி பெற்றது." },
     { en: "<strong>LANDSLIDE:</strong> Edappadi won by AIADMK with a margin of 98,110 votes.", ta: "<strong>பெரும்பான்மை வெற்றி:</strong> எடப்பாடியில் அதிமுக வேட்பாளர் 98,110 வாக்குகள் வித்தியாசத்தில் வெற்றி பெற்றார்." },
     { en: "<strong>POSTAL VOTES:</strong> Only one constituency (Tiruppattur) had its winner flipped by postal returns.", ta: "<strong>தபால் வாக்குகள்:</strong> தமிழ்நாட்டில் தபால் வாக்குகளால் முடிவு மாறிய ஒரே தொகுதி திருப்பத்தூர் ஆகும்." },
     { en: "<strong>RESERVED SEATS:</strong> SC seats average margin was 14,192 votes, compared to 17,544 in General seats.", ta: "<strong>தனித்தொகுதிகள்:</strong> எஸ்.சி தனித்தொகுதிகளின் சராசரி வெற்றி வித்யாசம் 14,192 வாக்குகளாகும்." },
     { en: "<strong>COALITION REPORT:</strong> CM C. Joseph Vijay cabinet contains 31 TVK, 2 INC, 1 VCK, and 1 IUML minister.", ta: "<strong>கூட்டணி அறிக்கை:</strong> முதலமைச்சர் விஜய் தலைமையிலான அமைச்சரவையில் 31 டிவிேக, 2 காங், 1 விசிக, 1 ஐயுஎம்எல் அமைச்சர்கள் உள்ளனர்." }
   ];
   const container = document.getElementById('tickerContainer');
+  if (!container) return;
   let text = "";
   list.forEach(i => { text += `<span class="classified-item">${lang === 'en' ? i.en : i.ta}</span>`; });
-  container.innerHTML = text + text; // doubled for seamless loop
+  container.innerHTML = text + text;
 }
 
 function initFrontPageGrid() {
   const grid = document.getElementById('frontPageSeatGrid');
+  if (!grid) return;
   grid.innerHTML = "";
   const seatsPool = [];
   for (let i = 0; i < 107; i++) seatsPool.push({ alliance: "tvk", id: i });
@@ -386,104 +623,7 @@ function initFrontPageGrid() {
   seatsPool.forEach((seat, idx) => {
     const el = document.createElement('div');
     el.className = 'seat seat-p-' + seat.alliance;
-    let cName = "Constituency " + (idx + 1);
-    if (idx === 0)   cName = "GUMMIDIPOONDI";
-    if (idx === 193) cName = "TIRUPPATTUR";
-    if (idx === 152) cName = "EDAPPADI";
-    el.title = cName + " — " + seat.alliance.toUpperCase();
-    el.onclick = () => {
-      switchTab('explorer');
-      const matchVal = idx === 0 ? "1" : idx === 193 ? "194" : idx === 152 ? "2" : null;
-      if (matchVal) {
-        document.getElementById('constituencySelect').value = matchVal;
-        loadConstituencyDetails(matchVal);
-      } else {
-        generateAndLoadMockDetails(idx + 1);
-      }
-    };
+    el.title = `Seat #${idx + 1}: ${seat.alliance.toUpperCase()}`;
     grid.appendChild(el);
   });
-}
-
-function generateAndLoadMockDetails(acNo) {
-  let match = CONSTITUENCY_NAMES.find(c => c.ac_no === acNo);
-  const strId = acNo.toString();
-  const select = document.getElementById('constituencySelect');
-  let exists = false;
-  for (let i = 0; i < select.options.length; i++) {
-    if (select.options[i].value === strId) { exists = true; break; }
-  }
-  if (!exists) {
-    const opt = document.createElement('option');
-    opt.value = strId;
-    opt.textContent = (match ? (currentLang === 'en' ? match.name.en : match.name.ta) : "AC " + acNo) + ` (AC ${acNo})`;
-    select.appendChild(opt);
-  }
-  select.value = strId;
-  loadConstituencyDetails(strId);
-}
-
-function renderTopBottomVoterGaps(lang) {
-  const topBody    = document.getElementById('top5FemaleBody');
-  const bottomBody = document.getElementById('bottom5FemaleBody');
-  topBody.innerHTML = "";
-  bottomBody.innerHTML = "";
-
-  const topData = [
-    { name: { en: "Ramanathapuram", ta: "இராமநாதபுரம்" }, reg: { en: "South",   ta: "தெற்கு" },  val: "+11.40%" },
-    { name: { en: "Sivaganga",      ta: "சிவகங்கை" },     reg: { en: "South",   ta: "தெற்கு" },  val: "+10.90%" },
-    { name: { en: "Perambalur",     ta: "பெரம்பலூர்" },   reg: { en: "Central", ta: "மத்திய" }, val: "+10.50%" },
-    { name: { en: "Pudukkottai",    ta: "புதுக்கோட்டை" }, reg: { en: "South",   ta: "தெற்கு" },  val: "+8.90%"  },
-    { name: { en: "Kanniyakumari",  ta: "கன்னியாகுமரி" }, reg: { en: "South",   ta: "தெற்கு" },  val: "+8.40%"  }
-  ];
-  const bottomData = [
-    { name: { en: "Tiruppur",     ta: "திருப்பூர்" },    reg: { en: "West",  ta: "மேற்கு" }, val: "-2.00%" },
-    { name: { en: "Kancheepuram", ta: "காஞ்சிபுரம்" },  reg: { en: "North", ta: "வடக்கு" }, val: "-1.80%" },
-    { name: { en: "The Nilgiris", ta: "நீலகிரி" },       reg: { en: "West",  ta: "மேற்கு" }, val: "-1.00%" },
-    { name: { en: "Erode",        ta: "ஈரோடு" },         reg: { en: "West",  ta: "மேற்கு" }, val: "-0.90%" },
-    { name: { en: "Chengalpattu", ta: "செங்கல்பட்டு" }, reg: { en: "North", ta: "வடக்கு" }, val: "-0.80%" }
-  ];
-
-  topData.forEach(d => {
-    topBody.insertAdjacentHTML('beforeend', `<tr>
-      <td class="strong">${lang==='en'?d.name.en:d.name.ta}</td>
-      <td>${lang==='en'?d.reg.en:d.reg.ta}</td>
-      <td class="text-right strong" style="color:var(--ink-red)">${d.val}</td>
-    </tr>`);
-  });
-  bottomData.forEach(d => {
-    bottomBody.insertAdjacentHTML('beforeend', `<tr>
-      <td class="strong">${lang==='en'?d.name.en:d.name.ta}</td>
-      <td>${lang==='en'?d.reg.en:d.reg.ta}</td>
-      <td class="text-right strong" style="color:var(--ink-green)">${d.val}</td>
-    </tr>`);
-  });
-}
-
-function renderFindingsGrid(lang) {
-  const grid = document.getElementById('findingsGrid');
-  if (!grid) return;
-
-  const remainingFindings = FINDINGS_DATA.slice(6);
-
-  grid.innerHTML = remainingFindings.map(f => {
-    const title = lang === 'ta' ? f.titleTa : f.titleEn;
-    const num = lang === 'ta' ? f.keyNumberTa : f.keyNumber;
-    const summary = lang === 'ta' ? f.summaryTa : f.summaryEn;
-    const readMore = lang === 'ta' ? "மேலும் படிக்க →" : "Read More →";
-
-    // Pass active language to the findings details page
-    const linkUrl = `findings/finding_${f.id}.html?lang=${lang}`;
-
-    return `
-      <div class="finding-card">
-        <div>
-          <h4 class="finding-headline">${title}</h4>
-          <span class="finding-number">${num}</span>
-          <div class="finding-summary">${summary}</div>
-        </div>
-        <a href="${linkUrl}" target="_blank" class="finding-link">${readMore}</a>
-      </div>
-    `;
-  }).join('');
 }

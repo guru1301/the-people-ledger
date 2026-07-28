@@ -3,90 +3,404 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 08 Special Edition</title>
+  <title>THE GEOGRAPHY OF VICTORY — TVK Wins Across 30 of 38 Districts — The People's Ledger</title>
+  <meta name="description" content="Special Data Finding #8: An investigative data analysis of TVK's statewide geographic footprint, winning 108 seats across 30 of Tamil Nadu's 38 districts.">
   
-  <!-- Fonts -->
+  <!-- Fonts matching index.html & findings 1-7 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
+  <!-- Leaflet.js for GeoJSON map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WLs=" crossorigin=""></script>
+
+  <!-- Modular CSS imports matching index.html and findings 1-7 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    /* Premium Newspaper Typography & Theme */
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal, #1a1210);
+      font-family: 'Playfair Display', Georgia, serif;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      line-height: 1.6;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+
+    body.lang-ta, 
+    body.lang-ta .paragraph-body, 
+    body.lang-ta .article-headline, 
+    body.lang-ta .hero-subheading,
+    body.lang-ta .doc-box {
+      font-family: 'Noto Serif Tamil', serif !important;
     }
+
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
+    }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Buttons matching Findings 1-7 */
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue, #1c7ed6);
       text-decoration: none;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm, #fdfaf5);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
+      letter-spacing: 0.5px;
       cursor: pointer;
     }
     .back-btn:hover {
-      background: var(--ink-red);
+      background: var(--ink-red, #c92a2a);
       color: #fff;
+      border-color: var(--ink-red, #c92a2a);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal, #1a1210);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal, #1a1210);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
-      display: block;
+    .lang-toggle-btn:hover {
+      background: var(--ink-red, #c92a2a);
+      border-color: var(--ink-red, #c92a2a);
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    /* Section Grid Layout Rows */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+      width: 100%;
+      box-sizing: border-box;
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .section-row-2col.equal-cols { grid-template-columns: 1fr 1fr; }
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+
+    .section-head {
+      font-family: 'Courier Prime', monospace;
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink-red, #c92a2a);
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+      padding-bottom: 5px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 15px;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+      color: var(--ink-charcoal, #1a1210);
+    }
+    .paragraph-body:first-of-type { text-indent: 0; }
+
+    .dropcap {
+      float: left;
+      font-family: 'UnifrakturMaguntia', cursive;
+      font-size: 62px;
+      line-height: 48px;
+      padding-top: 4px;
+      padding-right: 8px;
+      padding-left: 3px;
+      color: var(--ink-charcoal, #1a1210);
+    }
+
+    /* Hero Stat Cards Display */
+    .hero-stats-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+    @media (max-width: 800px) { .hero-stats-4col { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .hero-stats-4col { grid-template-columns: 1fr; } }
+
+    .hero-stat-card-lg {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 18px 14px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      position: relative;
+    }
+    .hero-stat-card-lg .num {
+      font-family: 'Courier Prime', monospace;
+      font-size: 38px;
       font-weight: 900;
+      color: var(--ink-red, #c92a2a);
+      line-height: 1;
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
+    .hero-stat-card-lg .lbl {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--ink-charcoal, #1a1210);
+      margin-top: 6px;
+      font-weight: bold;
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+
+    /* Interactive Leaflet Map Styling */
+    .map-container-box {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 4px;
+      position: relative;
+    }
+    #leafletMap {
+      width: 100%;
+      height: 500px;
+      background: #f9f6f1;
+    }
+    .map-legend {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      margin-top: 14px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      padding: 0 16px 8px;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-swatch {
+      width: 14px;
+      height: 14px;
+      border: 1px solid #999;
+    }
+    /* Leaflet overrides for newspaper feel */
+    .leaflet-container {
+      font-family: 'Courier Prime', monospace !important;
+    }
+    .leaflet-popup-content-wrapper {
+      background: rgba(26,18,16,0.96);
+      color: #fff;
+      border-radius: 0;
+      font-family: 'Courier Prime', monospace;
+      font-size: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    }
+    .leaflet-popup-tip { background: rgba(26,18,16,0.96); }
+    .leaflet-popup-close-button { color: #fff !important; }
+    .leaflet-control-zoom a {
+      font-family: 'Courier Prime', monospace;
+      border-radius: 0 !important;
+    }
+
+    /* District Info Modal/Card */
+    .district-modal-card {
+      background: #fffdf9;
+      border: 2px solid var(--paper-border, #d8c8a0);
+      padding: 16px 20px;
+      margin-top: 14px;
+      display: none;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    /* Chennai Spotlight Box */
+    .chennai-spotlight-box {
+      background: linear-gradient(135deg, #1a1210 0%, #2a1f1b 100%);
+      color: #fff;
+      padding: 24px;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      position: relative;
+      overflow: hidden;
+    }
+    .chennai-spotlight-box::after {
+      content: '\f64f';
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      position: absolute;
+      right: 10px;
+      bottom: -15px;
+      font-size: 140px;
+      color: rgba(255,255,255,0.05);
+      pointer-events: none;
+    }
+    .chennai-big-val {
+      font-family: 'Courier Prime', monospace;
+      font-size: 72px;
+      font-weight: 900;
+      line-height: 0.9;
+      color: #ffe066;
+    }
+
+    /* Geographic Coverage Flow Box */
+    .coverage-flow-box {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 18px;
+      text-align: center;
+      font-family: 'Courier Prime', monospace;
+    }
+
+    /* District Ranking Archival Table matching Findings 1-7 */
+    .archival-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 12.5px;
+      margin: 14px 0;
+    }
+    .archival-table th {
+      background: var(--ink-charcoal, #1a1210);
+      color: #fff;
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    .archival-table th.text-right { text-align: right; }
+    .archival-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--paper-border, #d8c8a0);
+    }
+    .archival-table td.text-right { text-align: right; }
+    .archival-table tr:nth-child(even) td { background: #fcf9f4; }
+    .archival-table tr:hover td { background: rgba(192,0,26,0.05); }
+
+    /* Mini Progress Bar in Table */
+    .mini-progress-track {
+      background: #e8e2d8;
+      height: 10px;
+      width: 100%;
+      display: block;
+      position: relative;
+    }
+    .mini-progress-fill {
+      background: var(--ink-red, #c92a2a);
+      height: 100%;
+      display: block;
+      transition: width 0.6s ease;
+    }
+
+    /* Zero Representation Cards Grid */
+    .zero-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    @media (max-width: 768px) { .zero-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .zero-grid { grid-template-columns: 1fr; } }
+
+    .zero-card {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 14px;
+      text-align: center;
+      font-family: 'Courier Prime', monospace;
+    }
+    .zero-card-name {
+      font-size: 14px;
+      font-weight: bold;
+      color: #475569;
+    }
+    .zero-card-sub {
+      font-size: 9.5px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    /* Documentation Box */
+    .doc-box {
+      background: #fff;
+      border: 1px solid var(--paper-border, #d8c8a0);
+      padding: 16px 20px;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.7;
+      color: #333;
+    }
+    .doc-box ul { margin: 6px 0 0 0; padding-left: 18px; }
+    .doc-box li { margin-bottom: 6px; }
+
+    /* Newspaper Mini Footer */
+    .newspaper-footer-mini {
+      text-align: center;
+      padding: 20px 0 10px 0;
+      border-top: 2px double var(--paper-border, #d8c8a0);
+      margin-top: 25px;
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      color: var(--ink-light, #666);
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
   </style>
 </head>
 <body>
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
+  <div class="container">
 
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
-    
-    <!-- NEWSPAPER MASTHEAD -->
+    <!-- NEWSPAPER MASTHEAD (MATCHING FINDINGS 1-7) -->
     <header class="masthead">
-      <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; GEOGRAPHIC ANALYSIS</span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
-
-      <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
           <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
@@ -96,109 +410,615 @@
           <span class="title-tamil-sub">தமிழ்நாடு தேர்தல் பதிவேடு &middot; 2026</span>
         </div>
       </div>
-
-      <!-- Dateline Bar -->
       <div class="dateline">
         <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 08</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span id="liveDateTime">Monday, July 27, 2026</span>
+        <span>✦ SPECIAL DATA FINDING #8 ✦</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Opposition Coalition</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #08</div>
-          <h2 class="article-headline lead-broadside">DMK Alliance Opposition Bloc</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">The DMK-led alliance secured 68 seats statewide, maintaining a major legislative presence and establishing a powerful, highly experienced opposition block in the legislative assembly.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">While the alliance faced significant competition from the winning coalition, it retained solid voter bases in metropolitan Chennai and northern parts of the state, ensuring balanced regional representation.</p>
-            <p style="margin-bottom:0; text-indent:20px;">With 68 seats, the opposition bloc holds substantial legislative leverage, promising active debates and keeping accountability central in the upcoming assembly sessions.</p>
-          </div>
+    <section class="np-page active">
+
+      <!-- Navigation & Language Header -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+        <div style="display: flex; gap: 8px;">
+          <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> <span id="lbl_back">Index</span></a>
+          <button class="lang-toggle-btn" id="langToggleBtn" onclick="togglePageLanguage()">English / தமிழ்</button>
         </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">68 Seats</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
+        <div style="font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light); text-align:right;">
+          SPECIAL DATA FINDING #8 &middot; GEOGRAPHY OF VICTORY
         </div>
-
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">எதிர்க்கட்சி கூட்டணி</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #08</div>
-          <h2 class="article-headline lead-broadside">திமுக கூட்டணியின் செயல்பாடு</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">திமுக தலைமையிலான கூட்டணி மாநிலம் தழுவி 68 இடங்களை வென்று சட்டமன்றத்தில் ஒரு பலமான எதிர்க்கட்சியாக உருவெடுத்துள்ளது.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">புதிய கூட்டணியின் கடும் சவால்களையும் தாண்டி, சென்னை மற்றும் வட மாவட்டங்களில் உள்ள தனது பாரம்பரிய வாக்கு வங்கிகளை இக்கூட்டணி பெருமளவில் தக்க வைத்துக் கொண்டுள்ளது.</p>
-            <p style="margin-bottom:0; text-indent:20px;">இந்த 68 இடங்களைக் கொண்டுள்ள எதிர்க்கட்சிப் பிரிவு, சட்டமன்றத்தில் மக்கள் பிரச்சினைகளுக்காக வாதிடவும், அரசின் செயல்பாடுகளைக் கண்காணிக்கவும் வலுவான குரலாக விளங்கும்.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">68 இடங்கள்</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- Header Banner matching Findings 1-7 -->
+      <div class="hero-sub-banner" style="background: var(--ink-charcoal);">SPECIAL DATA FINDING #8</div>
+      <h2 class="article-headline" style="font-size:32px; line-height:1.1; color:var(--ink-red-dark); font-weight:900; margin-bottom:8px;" id="lbl_main_headline">
+        THE GEOGRAPHY OF VICTORY
+      </h2>
+      <div class="hero-subheading" style="font-size:14px; line-height:1.5; margin-bottom:16px;" id="lbl_main_subheadline">
+        TVK established an electoral presence across 30 of Tamil Nadu's 38 districts, with Chennai emerging as the party's strongest urban base.
       </div>
-    </div>
+      <div class="byline" style="margin-bottom:18px;">By Data Investigations Unit &middot; Special Electoral Footprint Review</div>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
+      <!-- HERO SECTION: 4 ANIMATED STAT CARDS -->
+      <div class="section-full-width">
+        <div class="hero-stats-4col">
+          <div class="hero-stat-card-lg">
+            <div class="num" id="stat_seats_won">108</div>
+            <div class="lbl">Seats Won</div>
+          </div>
+          <div class="hero-stat-card-lg">
+            <div class="num" id="stat_districts_won">30</div>
+            <div class="lbl">Districts Won</div>
+          </div>
+          <div class="hero-stat-card-lg" style="border-color:#cbd5e1;">
+            <div class="num" style="color:#64748b;" id="stat_zero_districts">8</div>
+            <div class="lbl" style="color:#64748b;">Zero Representation</div>
+          </div>
+          <div class="hero-stat-card-lg" style="background:#fffdf5; border-color:#d8c8a0;">
+            <div class="num" style="color:#b8860b;" id="stat_chennai_seats">16 / 18</div>
+            <div class="lbl" style="color:#b8860b;">Chennai Fortress</div>
+          </div>
+        </div>
+      </div>
 
+      <!-- EDITORIAL INTRODUCTION ARTICLE -->
+      <div class="section-full-width">
+        <div class="section-head"><i class="fa-solid fa-newspaper"></i> <span>Editorial Analysis &middot; Electoral Expansion Across Regions</span></div>
+        <p class="paragraph-body" id="lbl_intro_p1">
+          <span class="dropcap">T</span>he political map of Tamil Nadu underwent a fundamental structural shift in the 2026 Assembly election. Beyond the aggregate seat count of 108 victories, the true story of Tamilaga Vettri Kazhagam's (TVK) legislative emergence lies in its statewide geographic distribution. Rather than concentrating its strength within isolated pockets or a single traditional stronghold, TVK secured representation in 30 out of Tamil Nadu's 38 administrative districts.
+        </p>
+        <p class="paragraph-body" id="lbl_intro_p2">
+          This 79% district coverage demonstrates broad-based electoral expansion spanning urban, suburban, and agricultural regions. From northern coastal districts like Tiruvallur (9 seats) to southern hubs like Madurai (8 seats) and western industrial centres like Coimbatore and Tiruchirappalli (6 seats each), the party established a multi-regional footprint.
+        </p>
+        <p class="paragraph-body" id="lbl_intro_p3">
+          Conversely, the data also highlights clear regional boundaries where TVK failed to elect a single MLA. In 8 districts—Ariyalur, Kanniyakumari, Mayiladuthurai, Nagapattinam, Tenkasi, The Nilgiris, Tiruvarur, and Viluppuram—the party recorded zero seats. Examining both the areas of dominance and the zones of zero representation provides an objective, evidence-based picture of the 2026 legislative outcome.
+        </p>
+      </div>
+
+      <!-- INTERACTIVE MAP & CHENNAI SPOTLIGHT (2-Column Row) -->
+      <div class="section-row-2col">
+        <!-- Interactive Tamil Nadu GeoJSON Map -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-map-location-dot"></i> <span>Interactive Tamil Nadu District Map — GeoJSON</span></div>
+          <div class="map-container-box">
+            <!-- Leaflet Map Container -->
+            <div id="leafletMap"></div>
+
+            <!-- Map Legend -->
+            <div class="map-legend">
+              <div class="legend-item"><div class="legend-swatch" style="background:#14532d;"></div> Fortress (16)</div>
+              <div class="legend-item"><div class="legend-swatch" style="background:#1a7a3e;"></div> Very High (8–15)</div>
+              <div class="legend-item"><div class="legend-swatch" style="background:#22c55e;"></div> High (4–7)</div>
+              <div class="legend-item"><div class="legend-swatch" style="background:#86efac;"></div> Moderate (2–3)</div>
+              <div class="legend-item"><div class="legend-swatch" style="background:#d1fae5;"></div> Low (1)</div>
+              <div class="legend-item"><div class="legend-swatch" style="background:#e2e8f0;"></div> Zero (0)</div>
+            </div>
+
+            <!-- District Info Display Card -->
+            <div class="district-modal-card" id="districtModalCard" style="display:none;">
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h4 style="font-family:'Courier Prime',monospace; font-size:16px; margin:0; color:var(--ink-red);" id="cardDistrictTitle">—</h4>
+                <span style="font-family:'Courier Prime',monospace; font-size:11px; background:#1a1210; color:#ffe066; padding:2px 8px;" id="cardDistrictSeats">— SEATS</span>
+              </div>
+              <p style="font-size:13.5px; color:#444; margin:8px 0 0 0;" id="cardDistrictStatus">Click a district to view details</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chennai Spotlight (Urban Fortress Feature Block) -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-city"></i> <span>Chennai Spotlight &middot; TVK's Urban Fortress</span></div>
+          <div class="chennai-spotlight-box">
+            <div style="font-family:'Courier Prime',monospace; font-size:11px; color:#ffe066; letter-spacing:2px; text-transform:uppercase;">DISTRICT SPOTLIGHT</div>
+            <h3 style="font-family:'Playfair Display',serif; font-size:26px; font-weight:900; margin:6px 0 14px 0; color:#fff;" id="lbl_spotlight_title">Chennai: TVK's Urban Fortress</h3>
+            
+            <div style="display:flex; align-items:baseline; gap:12px; margin-bottom:14px;">
+              <div class="chennai-big-val">16 / 18</div>
+              <div style="font-family:'Courier Prime',monospace; font-size:12px; color:#ddd; text-transform:uppercase;">Assembly Seats Won</div>
+            </div>
+
+            <p style="font-family:'Playfair Display',serif; font-size:14.5px; line-height:1.7; color:#e2e8f0; margin:0;" id="lbl_spotlight_text">
+              Chennai produced TVK's highest single-district seat yield in the 2026 Assembly election. Of the 18 Assembly constituencies encompassing the Greater Chennai metropolitan region, TVK candidates won 16 seats, representing an 88.89% win rate within the state capital.
+            </p>
+          </div>
+
+          <!-- Geographic Reach Flow Box -->
+          <div class="section-head" style="margin-top:24px;"><i class="fa-solid fa-chart-pie"></i> <span>Geographic Reach &middot; Statewide Spread</span></div>
+          <div class="coverage-flow-box">
+            <div style="font-size:14px; color:#666; text-transform:uppercase;">Total Administrative Districts</div>
+            <div style="font-size:28px; font-weight:900; color:var(--ink-charcoal);">38 Districts</div>
+
+            <div style="font-size:20px; color:var(--ink-red); margin:6px 0;">↓</div>
+
+            <div style="font-size:14px; color:#666; text-transform:uppercase;">Districts Electing TVK Representation</div>
+            <div style="font-size:28px; font-weight:900; color:var(--ink-red);">30 Districts Won</div>
+
+            <div style="font-size:20px; color:var(--ink-red); margin:6px 0;">↓</div>
+
+            <div style="background:var(--ink-charcoal); color:#ffe066; padding:12px; margin-top:10px;">
+              <div style="font-size:36px; font-weight:900;" id="counter_coverage_pct">79%</div>
+              <div style="font-size:10px; color:#fff; text-transform:uppercase;">Statewide Geographic Coverage</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DISTRICT RANKINGS ARCHIVAL TABLE (Top Districts Array) -->
+      <div class="section-full-width">
+        <div class="section-head" style="display:flex; justify-content:space-between; align-items:center;">
+          <div><i class="fa-solid fa-list-ol"></i> <span>District Ranking &middot; Complete Breakdown Across 30 Districts Won</span></div>
+          <input type="text" id="districtSearchInput" onkeyup="filterDistrictTable()" placeholder="Search district name..." style="font-family:'Courier Prime',monospace; font-size:11px; padding:4px 10px; border:1px solid var(--paper-border); width:200px;">
+        </div>
+
+        <table class="archival-table">
+          <thead>
+            <tr>
+              <th onclick="sortDistricts('rank')" style="cursor:pointer;">Rank <i class="fa-solid fa-sort"></i></th>
+              <th onclick="sortDistricts('district')" style="cursor:pointer;">District Name <i class="fa-solid fa-sort"></i></th>
+              <th onclick="sortDistricts('tvk_seats')" class="text-right" style="cursor:pointer;">TVK Seats Won <i class="fa-solid fa-sort"></i></th>
+              <th style="width:40%;">Visual Seat Distribution</th>
+            </tr>
+          </thead>
+          <tbody id="districtTableBody">
+            <!-- Dynamically populated via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- DISTRICTS WITHOUT REPRESENTATION (8 Grey Cards Grid) -->
+      <div class="section-full-width">
+        <div class="section-head"><i class="fa-solid fa-ban"></i> <span>Districts Without Representation &middot; 8 Districts</span></div>
+        <p class="paragraph-body" style="font-size:14px; margin-bottom:10px;" id="lbl_zero_desc">
+          These districts did not elect a TVK MLA in the 2026 Assembly election.
+        </p>
+
+        <div class="zero-grid">
+          <div class="zero-card"><div class="zero-card-name">Ariyalur</div><div class="zero-card-sub">0 TVK Seats</div></div>
+          <div class="zero-card"><div class="zero-card-name">Kanniyakumari</div><div class="zero-card-sub">0 TVK Seats</div></div>
+          <div class="zero-card"><div class="zero-card-name">Mayiladuthurai</div><div class="zero-card-sub">0 TVK Seats</div></div>
+          <div class="zero-card"><div class="zero-card-name">Nagapattinam</div><div class="zero-card-sub">0 TVK Seats</div></div>
+          <div class="zero-card"><div class="zero-card-name">Tenkasi</div><div class="zero-card-sub">0 TVK Seats</div></div>
+          <div class="zero-card"><div class="zero-card-name">The Nilgiris</div><div class="zero-card-sub">0 TVK Seats</div></div>
+          <div class="zero-card"><div class="zero-card-name">Tiruvarur</div><div class="zero-card-sub">0 TVK Seats</div></div>
+          <div class="zero-card"><div class="zero-card-name">Viluppuram</div><div class="zero-card-sub">0 TVK Seats</div></div>
+        </div>
+      </div>
+
+      <!-- KEY FINDINGS BOX & METHODOLOGY (2-Column Row) -->
+      <div class="section-row-2col equal-cols">
+        <!-- Key Findings Box -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-key"></i> <span>Key Findings Summary</span></div>
+          <div class="doc-box" style="background:#fffdf9; border-left:4px solid var(--ink-red);">
+            <ul style="list-style:none; padding-left:0;">
+              <li style="margin-bottom:10px;"><strong>✓ 108 Seats</strong> — Total Assembly seats won statewide by TVK.</li>
+              <li style="margin-bottom:10px;"><strong>✓ 30 Districts</strong> — Total administrative districts with TVK representation.</li>
+              <li style="margin-bottom:10px;"><strong>✓ 79% District Coverage</strong> — Geographic footprint across Tamil Nadu.</li>
+              <li style="margin-bottom:10px;"><strong>✓ Chennai Fortress</strong> — Led statewide yield with 16 out of 18 seats.</li>
+              <li style="margin-bottom:0;"><strong>✓ 8 Districts</strong> — Zones without TVK legislative representation.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Methodology -->
+        <div>
+          <div class="section-head"><i class="fa-solid fa-flask"></i> <span>Methodology &amp; Verification</span></div>
+          <div class="doc-box">
+            <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:bold; color:var(--ink-red); text-transform:uppercase; margin-bottom:4px;">Data Source</div>
+            <p style="font-size:12.5px; margin-bottom:8px;">Tamil Nadu Election 2026 Dataset &middot; Verified via Google BigQuery (<code>fact_results_2026</code>, <code>dim_constituency</code>).</p>
+
+            <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:bold; color:var(--ink-red); text-transform:uppercase; margin-bottom:4px;">Methodology Steps</div>
+            <ol style="font-size:12px; margin:0; padding-left:16px;">
+              <li>Determine winners by selecting highest <code>Total_Votes</code> in each constituency.</li>
+              <li>Join winners with <code>dim_constituency</code> using <code>AC_No</code>.</li>
+              <li>Aggregate winning constituencies by District.</li>
+              <li>Count districts with at least one TVK winner.</li>
+              <li>Identify districts with zero TVK winners.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mini Newspaper Footer matching Findings 1-7 -->
+      <footer class="newspaper-footer-mini">
+        THE PEOPLE'S LEDGER &middot; SPECIAL DATA FINDING #8 &middot; GEOGRAPHY OF VICTORY &middot; TAMIL NADU 2026
+      </footer>
+
+    
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_07.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 7</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #8</span>
+        <a href="finding_09.html" class="back-btn">Finding 9 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+    </section>
   </div>
 
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    let F8_DATA = null;
+    let districtList = [];
+    let currentSortCol = 'rank';
+    let sortAsc = true;
+    let currentLang = 'en';
+    let leafletMap = null;
+    let geojsonLayer = null;
+    let highlightedLayer = null;
+
+    // District seat counts keyed by DIST_NAME (uppercase, trimmed)
+    const TVK_DISTRICT_SEATS = {
+      'CHENNAI': 16,
+      'THIRUVALLUR': 9,
+      'MADURAI': 8,
+      'COIMBATORE': 6,
+      'TIRUCHIRAPPALLI': 6,
+      'ERODE': 5,
+      'NAMAKKAL': 5,
+      'CHENGALPATTU': 4,
+      'SALEM': 4,
+      'SIVAGANGA': 4,
+      'TIRUPPUR': 4,
+      'VELLORE': 4,
+      'VIRUDHUNAGAR': 4,
+      'KANCHEEPURAM': 3,
+      'RANIPET': 3,
+      'THOOTHUKKUDI': 3,
+      'TIRUNELVELI': 3,
+      'KRISHNAGIRI': 2,
+      'PUDUKKOTTAI': 2,
+      'THANJAVUR': 2,
+      'THENI': 2,
+      'CUDDALORE': 1,
+      'DHARMAPURI': 1,
+      'DINDIGUL': 1,
+      'KALLAKURICHI': 1,
+      'KARUR': 1,
+      'PERAMBALUR': 1,
+      'RAMANATHAPURAM': 1,
+      'TIRUPATHUR': 1,
+      'TIRUVANNAMALAI': 1,
+      // Zero districts
+      'ARIYALUR': 0,
+      'KANNIYAKUMARI': 0,
+      'MAYILADUTHURAI': 0,
+      'NAGAPATTINAM': 0,
+      'TENKASI': 0,
+      'THE NILGIRIS': 0,
+      'THIRUVARUR': 0,
+      'VILUPPURAM': 0
+    };
+
+    // Display name mapping (GeoJSON key -> nice display name)
+    const DIST_DISPLAY = {
+      'CHENNAI': 'Chennai',
+      'THIRUVALLUR': 'Tiruvallur',
+      'MADURAI': 'Madurai',
+      'COIMBATORE': 'Coimbatore',
+      'TIRUCHIRAPPALLI': 'Tiruchirappalli',
+      'ERODE': 'Erode',
+      'NAMAKKAL': 'Namakkal',
+      'CHENGALPATTU': 'Chengalpattu',
+      'SALEM': 'Salem',
+      'SIVAGANGA': 'Sivaganga',
+      'TIRUPPUR': 'Tiruppur',
+      'VELLORE': 'Vellore',
+      'VIRUDHUNAGAR': 'Virudhunagar',
+      'KANCHEEPURAM': 'Kancheepuram',
+      'RANIPET': 'Ranipet',
+      'THOOTHUKKUDI': 'Thoothukkudi',
+      'TIRUNELVELI': 'Tirunelveli',
+      'KRISHNAGIRI': 'Krishnagiri',
+      'PUDUKKOTTAI': 'Pudukkottai',
+      'THANJAVUR': 'Thanjavur',
+      'THENI': 'Theni',
+      'CUDDALORE': 'Cuddalore',
+      'DHARMAPURI': 'Dharmapuri',
+      'DINDIGUL': 'Dindigul',
+      'KALLAKURICHI': 'Kallakurichi',
+      'KARUR': 'Karur',
+      'PERAMBALUR': 'Perambalur',
+      'RAMANATHAPURAM': 'Ramanathapuram',
+      'TIRUPATHUR': 'Tirupathur',
+      'TIRUVANNAMALAI': 'Tiruvannamalai',
+      'ARIYALUR': 'Ariyalur',
+      'KANNIYAKUMARI': 'Kanniyakumari',
+      'MAYILADUTHURAI': 'Mayiladuthurai',
+      'NAGAPATTINAM': 'Nagapattinam',
+      'TENKASI': 'Tenkasi',
+      'THE NILGIRIS': 'The Nilgiris',
+      'THIRUVARUR': 'Tiruvarur',
+      'VILUPPURAM': 'Viluppuram'
+    };
+
+    function getDistrictSeats(distName) {
+      const key = (distName || '').toUpperCase().trim();
+      const val = TVK_DISTRICT_SEATS[key];
+      return (val !== undefined) ? val : 0;
+    }
+
+    function getDistrictColor(seats) {
+      if (seats >= 16) return '#14532d';
+      if (seats >= 8)  return '#1a7a3e';
+      if (seats >= 4)  return '#22c55e';
+      if (seats >= 2)  return '#86efac';
+      if (seats >= 1)  return '#d1fae5';
+      return '#e2e8f0';
+    }
+
+    function getDistrictStatus(seats, distKey) {
+      const name = DIST_DISPLAY[distKey] || distKey;
+      if (seats === 0) return `Zero TVK Representation`;
+      if (seats >= 16) return `Urban Fortress — ${seats} of 18 Seats`;
+      if (seats >= 8)  return `Strong — ${seats} Seats Won`;
+      if (seats >= 4)  return `Moderate — ${seats} Seats Won`;
+      if (seats >= 2)  return `Light — ${seats} Seats Won`;
+      return `Single Seat — ${seats} Seat Won`;
+    }
+
+    async function loadFinding08Data() {
+      try {
+        const resp = await fetch('/api/findings/8/data');
+        if (resp.ok) {
+          F8_DATA = await resp.json();
+          renderFinding08Page();
+        } else {
+          console.warn("API load failed, using fallback");
+          renderFallbackData();
+        }
+      } catch (e) {
+        console.error("Error loading Finding 08 data:", e);
+        renderFallbackData();
+      }
+    }
+
+    function renderFallbackData() {
+      F8_DATA = {
+        "summary": { "tvk_total_seats": 108, "total_districts": 38, "districts_won": 30, "districts_zero": 8, "geographic_coverage_pct": 78.95, "chennai_seats": 16, "chennai_total_ac": 18 },
+        "top_districts": [
+          { "rank": 1, "district": "Chennai", "tvk_seats": 16 },
+          { "rank": 2, "district": "Tiruvallur", "tvk_seats": 9 },
+          { "rank": 3, "district": "Madurai", "tvk_seats": 8 },
+          { "rank": 4, "district": "Coimbatore", "tvk_seats": 6 },
+          { "rank": 5, "district": "Tiruchirappalli", "tvk_seats": 6 },
+          { "rank": 6, "district": "Erode", "tvk_seats": 5 },
+          { "rank": 7, "district": "Namakkal", "tvk_seats": 5 },
+          { "rank": 8, "district": "Chengalpattu", "tvk_seats": 4 },
+          { "rank": 9, "district": "Salem", "tvk_seats": 4 },
+          { "rank": 10, "district": "Sivaganga", "tvk_seats": 4 },
+          { "rank": 11, "district": "Tiruppur", "tvk_seats": 4 },
+          { "rank": 12, "district": "Vellore", "tvk_seats": 4 },
+          { "rank": 13, "district": "Virudhunagar", "tvk_seats": 4 },
+          { "rank": 14, "district": "Kancheepuram", "tvk_seats": 3 },
+          { "rank": 15, "district": "Ranipet", "tvk_seats": 3 },
+          { "rank": 16, "district": "Thoothukkudi", "tvk_seats": 3 },
+          { "rank": 17, "district": "Tirunelveli", "tvk_seats": 3 },
+          { "rank": 18, "district": "Krishnagiri", "tvk_seats": 2 },
+          { "rank": 19, "district": "Pudukkottai", "tvk_seats": 2 },
+          { "rank": 20, "district": "Thanjavur", "tvk_seats": 2 },
+          { "rank": 21, "district": "Theni", "tvk_seats": 2 },
+          { "rank": 22, "district": "Cuddalore", "tvk_seats": 1 },
+          { "rank": 23, "district": "Dharmapuri", "tvk_seats": 1 },
+          { "rank": 24, "district": "Dindigul", "tvk_seats": 1 },
+          { "rank": 25, "district": "Kallakurichi", "tvk_seats": 1 },
+          { "rank": 26, "district": "Karur", "tvk_seats": 1 },
+          { "rank": 27, "district": "Perambalur", "tvk_seats": 1 },
+          { "rank": 28, "district": "Ramanathapuram", "tvk_seats": 1 },
+          { "rank": 29, "district": "Tirupathur", "tvk_seats": 1 },
+          { "rank": 30, "district": "Tiruvannamalai", "tvk_seats": 1 }
+        ]
+      };
+      renderFinding08Page();
+    }
+
+    function renderFinding08Page() {
+      if (!F8_DATA) return;
+      districtList = [...(F8_DATA.top_districts || [])];
+      renderDistrictTable();
+      initLeafletMap();
+      animateNumbers();
+    }
+
+    async function initLeafletMap() {
+      // Initialize Leaflet map centered on Tamil Nadu
+      leafletMap = L.map('leafletMap', {
+        center: [10.8, 78.5],
+        zoom: 6,
+        scrollWheelZoom: false,
+        zoomControl: true,
+        attributionControl: false
+      });
+
+      // Newspaper-style light tile layer
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; CartoDB',
+        subdomains: 'abcd',
+        maxZoom: 19
+      }).addTo(leafletMap);
+
+      // Load GeoJSON
+      try {
+        const resp = await fetch('../tn_ac_2021.geojson');
+        const geojsonData = await resp.json();
+        renderGeoJSON(geojsonData);
+      } catch (err) {
+        console.error('GeoJSON load error:', err);
+        document.getElementById('leafletMap').innerHTML =
+          '<div style="display:flex;align-items:center;justify-content:center;height:100%;font-family:Courier Prime,monospace;color:#c92a2a;">Map data could not be loaded.</div>';
+      }
+    }
+
+    function renderGeoJSON(geojsonData) {
+      geojsonLayer = L.geoJSON(geojsonData, {
+        style: function(feature) {
+          const dist = (feature.properties.DIST_NAME || '').toUpperCase().trim();
+          const seats = getDistrictSeats(dist);
+          return {
+            fillColor: getDistrictColor(seats),
+            fillOpacity: 0.85,
+            color: '#ffffff',
+            weight: 0.8,
+            opacity: 1
+          };
+        },
+        onEachFeature: function(feature, layer) {
+          const distRaw = (feature.properties.DIST_NAME || '').toUpperCase().trim();
+          const seats = getDistrictSeats(distRaw);
+          const distDisplay = DIST_DISPLAY[distRaw] || feature.properties.DIST_NAME;
+          const acName = feature.properties.AC_NAME || '';
+          const status = getDistrictStatus(seats, distRaw);
+
+          // Hover tooltip
+          layer.bindTooltip(
+            `<strong>${distDisplay} District</strong><br>` +
+            `AC: ${acName}<br>` +
+            `TVK Seats: <strong>${seats}</strong><br>` +
+            `<em>${status}</em>`,
+            {
+              sticky: true,
+              opacity: 0.96,
+              className: 'leaflet-tooltip-dark'
+            }
+          );
+
+          layer.on({
+            mouseover: function(e) {
+              const l = e.target;
+              l.setStyle({
+                weight: 2.5,
+                color: '#1a1210',
+                fillOpacity: 1
+              });
+              l.bringToFront();
+            },
+            mouseout: function(e) {
+              geojsonLayer.resetStyle(e.target);
+            },
+            click: function(e) {
+              const card = document.getElementById('districtModalCard');
+              document.getElementById('cardDistrictTitle').innerText = distDisplay + ' District';
+              document.getElementById('cardDistrictSeats').innerText = seats + ' TVK SEATS';
+              document.getElementById('cardDistrictStatus').innerText = 'Status: ' + status;
+              card.style.display = 'block';
+              leafletMap.fitBounds(e.target.getBounds(), { padding: [20, 20] });
+            }
+          });
+        }
+      }).addTo(leafletMap);
+
+      // Fit map to TN bounds
+      leafletMap.fitBounds(geojsonLayer.getBounds(), { padding: [10, 10] });
+    }
+
+    function renderDistrictTable() {
+      const tbody = document.getElementById('districtTableBody');
+      if (!tbody) return;
+
+      tbody.innerHTML = districtList.map(d => {
+        const widthPct = Math.round((d.tvk_seats / 16) * 100);
+        return `
+          <tr>
+            <td><strong>#${d.rank}</strong></td>
+            <td><strong>${d.district}</strong></td>
+            <td class="text-right"><strong>${d.tvk_seats}</strong></td>
+            <td>
+              <div class="mini-progress-track">
+                <div class="mini-progress-fill" style="width: ${widthPct}%;"></div>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function filterDistrictTable() {
+      const q = (document.getElementById('districtSearchInput').value || '').toLowerCase();
+      const all = F8_DATA?.top_districts || [];
+      districtList = all.filter(d => d.district.toLowerCase().includes(q));
+      renderDistrictTable();
+    }
+
+    function sortDistricts(col) {
+      if (currentSortCol === col) {
+        sortAsc = !sortAsc;
+      } else {
+        currentSortCol = col;
+        sortAsc = true;
+      }
+
+      districtList.sort((a, b) => {
+        let valA = a[col];
+        let valB = b[col];
+        if (typeof valA === 'string') {
+          return sortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        } else {
+          return sortAsc ? valA - valB : valB - valA;
+        }
+      });
+
+      renderDistrictTable();
+    }
+
+    // Legacy function — now handled by Leaflet GeoJSON
+    function setupMapInteractivity() {
+      // Map interactivity is handled by initLeafletMap / renderGeoJSON
+    }
+
+    function animateNumbers() {
+      animateValue("stat_seats_won", 0, 108, 1000);
+      animateValue("stat_districts_won", 0, 30, 1000);
+      animateValue("stat_zero_districts", 0, 8, 1000);
+      animateValue("counter_coverage_pct", 0, 79, 1000, "%");
+    }
+
+    function animateValue(id, start, end, duration, suffix = "") {
+      const obj = document.getElementById(id);
+      if (!obj) return;
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        obj.innerHTML = Math.floor(progress * (end - start) + start) + suffix;
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          obj.innerHTML = end + suffix;
+        }
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    function updateDateTime() {
+      const el = document.getElementById('liveDateTime');
+      if (el) el.textContent = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    }
+
+    function togglePageLanguage() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const btn = document.getElementById('langToggleBtn');
+      if (btn) btn.innerText = currentLang === 'en' ? 'English / தமிழ்' : 'தமிழ் / English';
+
+      if (currentLang === 'ta') {
+        document.body.classList.add('lang-ta');
+        document.getElementById('lbl_back').innerText = 'பட்டியல்';
+        document.getElementById('lbl_main_headline').innerText = 'வெற்றியின் புவியியல் வரைபடம்';
+        document.getElementById('lbl_main_subheadline').innerText = 'தமிழகத்தின் 38 மாவட்டங்களில் 30 மாவட்டங்களில் தவெக 108 சட்டப்பேரவை இடங்களைக் கைப்பற்றியுள்ளது.';
+      } else {
+        document.body.classList.remove('lang-ta');
+        document.getElementById('lbl_back').innerText = 'Index';
+        document.getElementById('lbl_main_headline').innerText = 'THE GEOGRAPHY OF VICTORY';
+        document.getElementById('lbl_main_subheadline').innerText = 'TVK established an electoral presence across 30 of Tamil Nadu\'s 38 districts, with Chennai emerging as the party\'s strongest urban base.';
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', () => { loadFinding08Data(); updateDateTime(); });
+    } else {
+      loadFinding08Data(); updateDateTime();
     }
   </script>
 </body>

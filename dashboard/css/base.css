@@ -91,7 +91,7 @@ body::before {
   padding-bottom: 0;
 }
 .newspaper-row.bottom-stats {
-  grid-template-columns: 1fr 1px 1.2fr 1px 1.5fr;
+  grid-template-columns: 3.2fr 1px 1.4fr;
   margin-top: 0;
   border-bottom: 1px solid var(--paper-border);
   padding-bottom: 16px;

@@ -4,6 +4,67 @@
 
 let currentLang = 'en';
 
+window.PARTY_FLAG_FILE_MAP = {
+  "TVK": "img/flag_tvk.png",
+  "DMK": "img/flag_dmk.png",
+  "AIADMK": "img/flag_aiadmk.png",
+  "ADMK": "img/flag_aiadmk.png",
+  "INC": "img/flag_inc.png",
+  "BJP": "img/flag_bjp.png",
+  "VCK": "img/flag_vck.png",
+  "CPI": "img/flag_cpi.png",
+  "CPI(M)": "img/flag_cpim.png",
+  "CPI-M": "img/flag_cpim.png",
+  "CPIM": "img/flag_cpim.png",
+  "PMK": "img/flag_pmk.png",
+  "IUML": "img/flag_iuml.png",
+  "DMDK": "img/flag_dmdk.png",
+  "AMMK": "img/flag_ammk.png"
+};
+
+function getPartyFlagHtml(party, extraStyle) {
+  if (!party) return '';
+  const p = party.trim().toUpperCase();
+  const file = window.PARTY_FLAG_FILE_MAP[p] || window.PARTY_FLAG_FILE_MAP[party.trim()];
+  if (file) {
+    const style = extraStyle || "width:16px; height:10px; object-fit:cover; border:1px solid rgba(255,255,255,0.3); display:inline-block; vertical-align:middle; margin-right:4px;";
+    return `<img src="${file}" alt="${party}" style="${style}" onerror="this.style.display='none'">`;
+  }
+  return '';
+}
+
+async function loadBQPartyWinners() {
+  try {
+    const res = await fetch('/api/party-winners');
+    if (res.ok) {
+      window.BQ_PARTY_WINNERS = await res.json();
+    } else {
+      throw new Error(`HTTP ${res.status}`);
+    }
+  } catch (err) {
+    console.warn("[Core] Could not fetch party-winners API, loading default party winners fallback:", err);
+    window.BQ_PARTY_WINNERS = [
+      {"party_code": "TVK", "party_full": "Tamilaga Vettri Kazhagam", "seats_won": 108},
+      {"party_code": "DMK", "party_full": "Dravida Munnetra Kazhagam", "seats_won": 59},
+      {"party_code": "AIADMK", "party_full": "All India Anna Dravida Munnetra Kazhagam", "seats_won": 47},
+      {"party_code": "INC", "party_full": "Indian National Congress", "seats_won": 5},
+      {"party_code": "PMK", "party_full": "Pattali Makkal Katchi", "seats_won": 4},
+      {"party_code": "IUML", "party_full": "Indian Union Muslim League", "seats_won": 2},
+      {"party_code": "CPI", "party_full": "Communist Party of India", "seats_won": 2},
+      {"party_code": "VCK", "party_full": "Viduthalai Chiruthaigal Katchi", "seats_won": 2},
+      {"party_code": "CPI(M)", "party_full": "Communist Party of India (Marxist)", "seats_won": 2},
+      {"party_code": "BJP", "party_full": "Bharatiya Janata Party", "seats_won": 1},
+      {"party_code": "DMDK", "party_full": "Desiya Murpokku Dravida Kazhagam", "seats_won": 1},
+      {"party_code": "AMMK", "party_full": "Amma Makkal Munnettra Kazagam", "seats_won": 1}
+    ];
+  } finally {
+    if (typeof renderDynamicFrontPage === 'function' && typeof currentLang !== 'undefined') {
+      renderDynamicFrontPage(currentLang);
+    }
+  }
+}
+
+
 /* Seeded random generator (deterministic mock data) */
 function seededRandom(seed) {
   let hash = 0;
@@ -28,8 +89,8 @@ const TRANSLATIONS = {
   "majority_mark": { en: "Majority Mark Required", ta: "பெரும்பான்மை பெற தேவை" },
   "majority_sub": { en: "50% + 1 Seat", ta: "50% + 1 இடம்" },
   "average_turnout": { en: "Statewide Turnout", ta: "மாநில வாக்குப்பதிவு" },
-  "statewide_seats": { en: "Statewide Seats", ta: "மாநில அளவிலான இடங்கள்" },
-  "col_party": { en: "Alliance / Party", ta: "கூட்டணி / கட்சி" },
+  "statewide_seats": { en: "Party Candidates Won", ta: "கட்சி வாரியாக வென்ற இடங்கள்" },
+  "col_party": { en: "Party Name", ta: "கட்சியின் பெயர்" },
   "col_seats": { en: "Seats", ta: "இடங்கள்" },
   "col_share": { en: "Share", ta: "வாக்கு சதவீதம்" },
   "chamber_layout": { en: "Chamber Layout (234 Seats)", ta: "அவை இருக்கை அமைப்பு (234 இடங்கள்)" },
@@ -49,6 +110,7 @@ const TRANSLATIONS = {
   "nota_title": { en: "Dissatisfaction Indexes", ta: "அதிருப்தி குறிகாட்டிகள்" },
   "nota_headline": { en: "NOTA DISCONTENT HOTSPOTS IDENTIFIED", ta: "நோட்டா அதிருப்தி அதிகமாக பதிவான தொகுதிகள்" },
   "nota_body": { en: "While the statewide average for NOTA remained low at 0.41%, certain pockets recorded notable spikes. The highest NOTA share was documented in <strong>Udhagamandalam</strong> at 1.04%.", ta: "மாநில சராசரி நோட்டா 0.41% ஆகக் குறைவாக இருந்தாலும், சில பகுதிகளில் அதிருப்தி காணப்படுகிறது. <strong>உதகமண்டலம்</strong> தொகுதியில் 1.04% நோட்டா பதிவானது." },
+  "select_district_label": { en: "Select District", ta: "மாவட்டங்களைத் தேர்ந்தெடுக்கவும்" },
   "select_constituency": { en: "Constituency Electoral Archive Lookup", ta: "தொகுதி தேர்தல் முடிவுகள் காப்பகத் தேடல்" },
   "select_constituency_label": { en: "Select Constituency Name", ta: "தொகுதியின் பெயரைத் தேர்வுசெய்யவும்" },
   "or_type_search": { en: "Or Type to Search All 234 Seats", ta: "அல்லது நேரடியாகத் தட்டச்சு செய்து தேடவும்" },
@@ -91,8 +153,14 @@ const TRANSLATIONS = {
   "hover_margin": { en: "Margin", ta: "வாக்கு வித்தியாசம்" },
   "footer_title": { en: "THE PEOPLE'S LEDGER ARCHIVE · RE-CONSTRUCTED FOR PORTFOLIO REVIEWS", ta: "மக்கள் பதிவேடு காப்பகம் · போர்ட்ஃபோலியோ மதிப்பாய்விற்காக மறுகட்டமைக்கப்பட்டது" },
   "footer_disclaimer": { en: "Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.", ta: "பொறுப்புத் துறப்பு: இது தமிழ்நாட்டின் 2026 சட்டமன்றத் தேர்தல் முடிவுகளை அடிப்படையாகக் கொண்ட பழைய செய்தித்தாள் வடிவிலான தேர்தல் முடிவுகள் காப்பகப் பதிப்பாகும்." },
-  "findings_section_title": { en: "SPECIAL INVESTIGATION: 19 KEY FINDINGS", ta: "சிறப்பு புலனாய்வு: 19 முக்கிய கண்டுபிடிப்புகள்" },
-  "findings_section_subtitle": { en: "Electoral Data Insights", ta: "தேர்தல் தரவு நுண்ணறிவுகள்" }
+  "findings_section_title": { en: "SPECIAL INVESTIGATION ARCHIVE: FINDINGS 07 - 15", ta: "சிறப்பு ஆய்வு ஆவணக் காப்பகம்: அறிக்கைகள் 07 - 15" },
+  "findings_section_subtitle": { en: "Demographic, Regional & Mandate Analysis", ta: "மக்கள் தொகை, பிராந்தியம் மற்றும் வாக்கு பலப்பகுப்பாய்வு" },
+  "findings_top_section_title": { en: "PRIMARY INVESTIGATIONS: TOP 6 FINDINGS", ta: "முக்கியத் தேர்தல் ஆய்வுகள்: முதல் 6 அறிக்கைகள்" },
+  "findings_top_section_subtitle": { en: "Core Electoral Data Dossiers", ta: "முக்கியத் தேர்தல் தரவு ஆவணங்கள்" },
+  "findings_bottom_section_title": { en: "SPECIAL INVESTIGATION ARCHIVE: FINDINGS 07 - 15", ta: "சிறப்பு ஆய்வு ஆவணக் காப்பகம்: அறிக்கைகள் 07 - 15" },
+  "findings_bottom_section_subtitle": { en: "Demographic, Regional & Mandate Analysis", ta: "மக்கள் தொகை, பிராந்தியம் மற்றும் வாக்கு பலப்பகுப்பாய்வு" },
+  "vacant_section_title": { en: "GAZETTE NOTICE: 7 VACANT ASSEMBLY CONSTITUENCIES", ta: "அரசிதழ் அறிவிப்பு: 7 காலியாக உள்ள சட்டமன்றத் தொகுதிகள்" },
+  "vacant_section_subtitle": { en: "By-Elections Pending | Party Tally Impact: AIADMK (-6), TVK (-1)", ta: "இடைத்தேர்தல் நிலுவை | கட்சி இடங்கள் மாற்றம்: அதிமுக (-6), தவெக (-1)" }
 };
 
 /* Language overlay handler */
@@ -128,33 +196,48 @@ function setLanguage(lang) {
   renderTabNavigation(lang);
   renderStatewideSeatsTally(lang);
   renderSeatGridLegend(lang);
-  renderDistrictLedger();
-  renderTopBottomVoterGaps(lang);
-  renderCharts(lang);
+  if (typeof renderFindingsGrid === 'function') renderFindingsGrid(lang);
+  if (typeof renderFindingsCards === 'function') renderFindingsCards(lang);
+  if (typeof renderVacantSeatsSection === 'function') renderVacantSeatsSection(lang);
+  if (typeof renderDistrictLedger === 'function') renderDistrictLedger();
+  if (typeof renderTopBottomVoterGaps === 'function') renderTopBottomVoterGaps(lang);
+  if (typeof renderCharts === 'function') renderCharts(lang);
 
-  const select = document.getElementById('constituencySelect');
-  if (select && select.value) loadConstituencyDetails(select.value);
+  const labels = {
+    "North":   { en: "NORTH",   ta: "வடக்கு" },
+    "West":    { en: "WEST",    ta: "மேற்கு" },
+    "Central": { en: "CENTRAL", ta: "மத்திய" },
+    "South":   { en: "SOUTH",   ta: "தெற்கு" }
+  };
+  for (const reg in labels) {
+    const el = document.getElementById('svg-label-' + reg);
+    if (el) el.textContent = lang === 'en' ? labels[reg].en : labels[reg].ta;
+  }
+
+  if (typeof populateConstituencyDropdown === 'function') {
+    populateConstituencyDropdown();
+  } else if (typeof loadConstituencyDetails === 'function') {
+    const select = document.getElementById('constituencySelect');
+    if (select && select.value) loadConstituencyDetails(select.value);
+  }
 
   const activeSvgPath = document.querySelector('.svg-region-path.active');
-  if (activeSvgPath) {
+  if (activeSvgPath && typeof updateSvgRegionPane === 'function') {
     updateSvgRegionPane(activeSvgPath.id.replace('svg-reg-', ''));
   } else {
     const pane = document.getElementById('svgRegionInfo');
-    pane.innerHTML = lang === 'en'
-      ? "<strong>Click a region</strong> on the map engraving above to view regional seat counts and average turnout patterns."
-      : "மாநிலப் பகுதிகளின் இருக்கை எண்ணிக்கையை அறிய மேலே உள்ள வரைபடத்தில் <strong>ஏதேனும் ஒரு பகுதியை அழுத்தவும்</strong>.";
+    if (pane) {
+      pane.innerHTML = lang === 'en'
+        ? "<strong>Click a region</strong> on the map engraving above to view regional seat counts and average turnout patterns."
+        : "மாநிலப் பகுதிகளின் இருக்கை எண்ணிக்கையை அறிய மேலே உள்ள வரைபடத்தில் <strong>ஏதேனும் ஒரு பகுதியை அழுத்தவும்</strong>.";
+    }
   }
 
-  renderTickerClassifieds(lang);
+  if (typeof renderTickerClassifieds === 'function') renderTickerClassifieds(lang);
 
-  document.getElementById('svg-label-North').textContent = lang === 'en' ? 'NORTH' : 'வடக்கு';
-  document.getElementById('svg-label-West').textContent = lang === 'en' ? 'WEST' : 'மேற்கு';
-  document.getElementById('svg-label-Central').textContent = lang === 'en' ? 'CENTRAL' : 'மத்திய';
-  document.getElementById('svg-label-South').textContent = lang === 'en' ? 'SOUTH' : 'தெற்கு';
-
-  renderDynamicFrontPage(lang);
-  updateLiveTime();
-  if (activeTabId === 'ministers') renderMinistersPage(lang);
+  if (typeof renderDynamicFrontPage === 'function') renderDynamicFrontPage(lang);
+  if (typeof updateLiveTime === 'function') updateLiveTime();
+  if (activeTabId === 'ministers' && typeof renderMinistersPage === 'function') renderMinistersPage(lang);
 }
 
 /* Tab navigation */
@@ -207,6 +290,21 @@ function switchTab(tabId) {
   }
 }
 
+function openConstituencyExplorer(acNo) {
+  switchTab('explorer');
+  const selectBox = document.getElementById('constituencySelect');
+  if (selectBox) {
+    selectBox.value = acNo.toString();
+  }
+  if (typeof loadConstituencyDetails === 'function') {
+    loadConstituencyDetails(acNo.toString());
+  }
+  const cardArea = document.getElementById('cardContentArea') || document.getElementById('page-explorer');
+  if (cardArea) {
+    cardArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
 function updateLiveTime() {
   const dateEl = document.getElementById('liveDateTime');
   if (!dateEl) return;
@@ -237,6 +335,39 @@ window.onload = async function() {
   updateLiveTime();
   setInterval(updateLiveTime, 1000);
   await loadFindingsData();
+  
+  // Pre-load ministers to window.MINISTERS_DATA for the explorer
+  try {
+    const res = await fetch('/api/ministers');
+    if (res.ok) {
+      window.MINISTERS_DATA = await res.json();
+    }
+  } catch(e) {}
+
+  // Pre-load officials to window.OFFICIALS_DATA for the explorer
+  try {
+    const res = await fetch('/api/officials');
+    if (res.ok) {
+      window.OFFICIALS_DATA = await res.json();
+    }
+  } catch(e) {}
+
+  // Pre-load Tamil constituency name mappings
+  try {
+    const res = await fetch('/tamil_constituencies_ac.json');
+    if (res.ok) {
+      window.TAMIL_CONSTITUENCIES_MAP = await res.json();
+    }
+  } catch(e) {}
+
+  // Pre-load Tamil candidate name mappings (winner/runner-up for all 234 seats)
+  try {
+    const res = await fetch('/tamil_candidates.json');
+    if (res.ok) {
+      window.TAMIL_CANDIDATES_MAP = await res.json();
+    }
+  } catch(e) {}
+
   await loadBQConstituencyData();
   await loadBQPartyWinners();
 };

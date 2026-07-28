@@ -3,93 +3,318 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 12 Special Edition</title>
+  <title>THE KINGMAKER EFFECT — Special Data Finding #12 — The People's Ledger</title>
+  <meta name="description" content="An investigative data analysis into Naam Tamilar Katchi (NTK) vote shares exceeding certified winning margins in 89 of 234 assembly divisions (38.03%).">
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
+
+  <!-- CSS imports matching index.html and findings 1-15 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal);
+      padding: 0;
+      margin: 0;
+      width: 100%;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
     }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Exclusive Editorial Tag Stamp */
+    .exclusive-tag {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      font-weight: 900;
+      background: var(--ink-charcoal);
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+    .exclusive-tag.red { background: var(--ink-red); }
+    .exclusive-tag.blue { background: var(--ink-blue); }
+
+    /* Top Hero Stat Cards Grid (4 KPI cards) */
+    .hero-stats-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0 22px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 850px) {
+      .hero-stats-grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .hero-stats-grid-4 { grid-template-columns: 1fr; }
+    }
+
+    /* Methodology & Panel Boxes */
+    .methodology-panel {
+      background: #f4efe6;
+      border: 1px solid var(--paper-border-dark);
+      border-left: 5px solid var(--ink-charcoal);
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .methodology-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11.5px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink-charcoal);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .methodology-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--ink-gray);
+    }
+
+    /* Section Grid Layouts */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+    
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14.5px;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+    }
+    
+    .paragraph-body:first-of-type {
+      text-indent: 0;
+    }
+
+    /* Visual Notice Box */
+    .visual-notice-box {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      background: #f0ebe1;
+      border-left: 3px solid var(--ink-red);
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      color: var(--ink-charcoal);
+    }
+    .visual-notice-box strong {
+      color: var(--ink-red);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue);
       text-decoration: none;
+      border: 1px solid var(--paper-border);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
-      cursor: pointer;
+      letter-spacing: 0.5px;
     }
+    
     .back-btn:hover {
       background: var(--ink-red);
       color: #fff;
+      border-color: var(--ink-red);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
-      display: block;
+    .lang-toggle-btn:hover {
+      background: var(--ink-red);
+      border-color: var(--ink-red);
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    .search-input-np {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      border: 1px solid var(--paper-border);
+      background: #ffffff;
+      color: var(--ink-charcoal);
+      outline: none;
+      width: 210px;
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .search-input-np:focus {
+      border-color: var(--ink-red);
+    }
+
+    .archival-table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      font-family: 'Playfair Display', Georgia, serif; 
+      font-size: 13px; 
+      margin: 12px 0; 
+    }
+    .archival-table th { 
+      background: var(--ink-charcoal); 
+      color: #fff; 
+      font-family: 'Courier Prime', monospace; 
+      font-size: 9.5px; 
+      letter-spacing: 1.5px; 
+      text-transform: uppercase; 
+      padding: 8px 10px; 
+      text-align: left; 
+    }
+    .archival-table td { 
+      padding: 8px 10px; 
+      border-bottom: 1px solid var(--paper-border); 
+    }
+    .archival-table tr:nth-child(even) td { 
+      background: #fcf9f4; 
+    }
+    .archival-table tr:hover td { 
+      background: rgba(192,0,26,0.05); 
+    }
+
+    .spotlight-card-box {
+      background: #ffffff;
+      border: 1px solid var(--paper-border-dark);
+      border-left: 5px solid var(--ink-red);
+      padding: 18px 22px;
+      border-radius: 4px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      margin: 14px 0;
+    }
+
+    .key-insights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (max-width: 768px) {
+      .key-insights-grid { grid-template-columns: 1fr; }
+    }
+    .key-insight-card {
+      background: #ffffff;
+      border: 1px solid var(--paper-border);
+      border-left: 4px solid var(--ink-red);
+      padding: 14px;
+    }
+    .key-insight-num {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      font-weight: bold;
+      color: var(--ink-red);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .key-insight-head {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
       font-weight: 900;
+      color: var(--ink-charcoal);
+      margin-bottom: 6px;
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
+    .key-insight-desc {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-gray);
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+
+    .limitations-box {
+      border: 2px double var(--ink-charcoal);
+      background: #fffdfa;
+      padding: 18px 22px;
+      margin: 24px 0;
     }
   </style>
 </head>
 <body>
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
-
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+  <!-- MAIN CONTAINER -->
+  <div class="container">
     
     <!-- NEWSPAPER MASTHEAD -->
     <header class="masthead">
       <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL DATA FINDING #12</span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
 
       <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
-          <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
+          <div class="motto" id="lbl_motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
           <div class="masthead-rule-top"></div>
           <h1 class="title-gothic">The People's Ledger</h1>
           <div class="masthead-rule-bottom"></div>
@@ -99,106 +324,418 @@
 
       <!-- Dateline Bar -->
       <div class="dateline">
-        <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 12</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span>CHENNAI, TAMIL NADU</span>
+        <span>SPECIAL LEGISLATIVE REVIEW</span>
+        <span>SPECIAL ARCHIVE &middot; FINDING #12</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Voter Discontent</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #12</div>
-          <h2 class="article-headline lead-broadside">Highest NOTA Share</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">Udhagamandalam constituency in the Nilgiris district recorded the highest percentage of NOTA (None of the Above) votes in the state, reaching 1.04% of the total ballots cast.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">Local environmental issues, land rights debates, and tourist-economy regulations in the hill station segment prompted a small but significant portion of electors to reject all contesting candidates.</p>
-            <p style="margin-bottom:0; text-indent:20px;">Though 1.04% seems small, it reflects a vocal segment of voters expressing active democratic dissent, signaling local concerns that candidates from major alliances failed to address.</p>
-          </div>
+    <!-- NEWSPAPER PAGE CONTENT -->
+    <div class="np-page active">
+      
+      <!-- Top Navigation & Action Controls -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid var(--paper-border); padding-bottom:10px; flex-wrap:wrap; gap:10px;">
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD</a>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <input type="text" id="np-search-input" class="search-input-np" placeholder="Search Constituency / Candidate..." onkeyup="filterNtkTable()">
+          <button onclick="toggleLang()" class="lang-toggle-btn" id="btn_lang_toggle">TAMIL VERSION (தமிழ்)</button>
         </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">1.04%</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
-        </div>
-
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">வாக்காளர் அதிருப்தி</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #12</div>
-          <h2 class="article-headline lead-broadside">அதிகபட்ச நோட்டா வாக்குகள்</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">நீலகிரி மாவட்டத்தின் உதகமண்டலம் தொகுதியில் மாநிலத்தில் அதிகபட்சமாக 1.04% நோட்டா வாக்குகள் பதிவாகியுள்ளன.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">மலைப் பிரதேசத்தின் சுற்றுச்சூழல் பிரச்சினைகள், நில உரிமைகள் மற்றும் உள்ளூர் கோரிக்கைகள் புறக்கணிக்கப்பட்டதால் வாக்காளர்கள் நோட்டாவைத் தேர்வு செய்து தங்கள் அதிருப்தியைத் தெரிவித்துள்ளனர்.</p>
-            <p style="margin-bottom:0; text-indent:20px;">1.04% என்பது சிறியதாகத் தோன்றினாலும், இது வாக்காளர்களின் தீவிர ஜனநாயக அதிருப்தியையும், முக்கியக் கட்சிகள் உள்ளூர் பிரச்சினைகளில் கவனம் செலுத்த வேண்டியதன் அவசியத்தையும் காட்டுகிறது.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">1.04%</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- Article Header & Category Band -->
+      <div>
+        <span class="exclusive-tag red"><i class="fa-solid fa-star"></i> EXCLUSIVE INVESTIGATIVE FEATURE</span>
+        <span class="exclusive-tag"><i class="fa-solid fa-layer-group"></i> THIRD-PARTY VOTE ANALYSIS</span>
+        <span class="exclusive-tag blue"><i class="fa-solid fa-shield-halved"></i> 234 CONSTITUENCIES</span>
       </div>
-    </div>
+      
+      <!-- 1. HEADLINE & REFINED SUBTITLE -->
+      <h1 class="headline-hero" id="hdr_headline" style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; line-height:1.15; text-transform:uppercase; margin-bottom:10px; border-bottom:2px solid var(--ink-charcoal); padding-bottom:10px;">
+        THE KINGMAKER EFFECT
+      </h1>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
+      <p class="subheadline" id="hdr_subheadline" style="font-family:'Playfair Display',serif; font-size:16px; font-style:italic; line-height:1.5; color:var(--ink-gray); margin-bottom:16px;">
+        THE KINGMAKER EFFECT: A Numerical Analysis of Third-Party Vote Presence across Tamil Nadu's 234 Assembly Constituencies.
+      </p>
 
-  </div>
+      <div style="font-family:'Courier Prime',monospace; font-size:10.5px; color:var(--ink-light); text-transform:uppercase; border-bottom:1px dashed var(--paper-border); padding-bottom:8px; margin-bottom:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <span>Published by Data Investigations Unit &middot; Special Legislative Dossier</span>
+        <span style="color:var(--ink-green); font-weight:bold;"><i class="fa-solid fa-shield-halved"></i> BIGQUERY VERIFIED DATASET (<code>fact_results_2026</code> &amp; <code>fact_margins_2026</code>)</span>
+      </div>
 
+      <!-- HERO KPI CARDS -->
+      <div class="hero-stats-grid-4">
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-red);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_ntk_acs">Qualifying Constituencies</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-red);" id="val_stat_ntk_acs">89 of 234</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_ntk_acs">38.03% of Statewide Seats</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-charcoal);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_max_gap">Largest Numerical Gap</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-charcoal);" id="val_stat_max_gap">18,468 Votes</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_max_gap">Manamadurai (NTK: 19,676 vs Margin: 1,208)</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-blue);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_closest">Closest Contest Example</div>
+          <div style="font-family:'Playfair Display',serif; font-size:24px; font-weight:900; color:var(--ink-blue); margin-top:4px;" id="val_stat_closest">Tiruppattur</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_closest">Margin: 1 Vote | NTK: 15,291 Votes</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-green);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_threshold">Statewide Presence</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-green);" id="val_stat_threshold">38.03%</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_threshold">NTK Votes &gt; Victory Margin</div>
+        </div>
+      </div>
+
+      <!-- CALCULATION RULE BOX -->
+      <div style="background:#f4efe6; border:1px solid var(--paper-border-dark); border-left:4px solid var(--ink-red); padding:14px 18px; margin:16px 0; font-family:'Courier Prime',monospace; font-size:11.5px;">
+        <div style="font-weight:900; color:var(--ink-red); text-transform:uppercase; margin-bottom:4px;"><i class="fa-solid fa-code-branch"></i> CALCULATION RULE</div>
+        <code style="font-weight:bold; font-size:12px;">NTK Total Votes &gt; Certified Winning Margin</code><br>
+        <div style="margin-top:6px; color:var(--ink-charcoal);">
+          &bull; <strong>If TRUE:</strong> Constituency included in 89-seat qualifying count<br>
+          &bull; <strong>If FALSE:</strong> Constituency excluded
+        </div>
+      </div>
+
+      <!-- 2. EXECUTIVE SUMMARY -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_exec_summary">EXECUTIVE SUMMARY &middot; MEASURING THIRD-PARTY NUMERICAL PRESENCE</span>
+        </div>
+
+        <div id="exec_summary_content">
+          <p class="paragraph-body">
+            This investigation evaluates the constituency-level relationship between certified electoral victory margins and the certified vote totals secured by Naam Tamilar Katchi (NTK) in the 2026 Tamil Nadu Assembly election. Across all 234 assembly divisions, this analytical model identifies every constituency where the NTK vote total surpassed the certified vote gap separating the winning candidate from the runner-up.
+          </p>
+          <p class="paragraph-body">
+            The objective of this analysis is strictly mathematical: to measure the numerical footprint of a non-aligned third-party vote bank across legislative contests. It does not predict hypothetical election outcomes, simulate alternative voting scenarios, or assume voter transfer behaviors in counterfactual environments.
+          </p>
+        </div>
+      </div>
+
+      <!-- 3. KEY FINDINGS -->
+      <div class="section-row-2col">
+        <div>
+          <div class="section-head">
+            <span id="head_sec3">SECTION 1 &middot; KEY STATISTICAL FINDINGS</span>
+          </div>
+
+          <div id="sec3_body">
+            <p class="paragraph-body">
+              Out of 234 assembly constituencies in Tamil Nadu, <strong>NTK's certified vote total exceeded the winning margin in exactly 89 constituencies</strong>, representing <strong>38.03% of all legislative divisions</strong> across the state.
+            </p>
+            <p class="paragraph-body">
+              The largest numerical gap between NTK's vote tally and the winning margin occurred in <strong>Manamadurai</strong>, where the certified victory margin stood at 1,208 votes while NTK polled 19,676 votes—a net excess of 18,468 votes.
+            </p>
+            <p class="paragraph-body">
+              The most dramatic example of this relationship was recorded in <strong>Tiruppattur</strong>, where the certified winning margin was a single vote (1 vote) while the NTK candidate secured 15,291 votes.
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-head">
+            <span id="head_sec3_table">VERIFIED NUMERICAL SUMMARY</span>
+          </div>
+
+          <!-- Visual Notice -->
+          <div class="visual-notice-box">
+            <strong>The data reveals...</strong> In nearly four out of every ten assembly seats (38.03%), NTK's vote bank was mathematically larger than the margin of victory.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Electoral Metric</th>
+                <th style="text-align:right;">Certified Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Total Assembly Divisions</strong></td>
+                <td style="text-align:right; font-weight:bold;">234</td>
+              </tr>
+              <tr style="background:#fff4f4;">
+                <td><strong style="color:var(--ink-red);">Constituencies Where NTK Votes &gt; Margin</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">89</td>
+              </tr>
+              <tr style="background:#fff4f4;">
+                <td><strong style="color:var(--ink-red);">Percentage Share of Assembly</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">38.03%</td>
+              </tr>
+              <tr>
+                <td><strong>Largest Surplus Gap (Manamadurai)</strong></td>
+                <td style="text-align:right; font-weight:bold;">18,468 Votes</td>
+              </tr>
+              <tr>
+                <td><strong>Tightest Victory Margin (Tiruppattur)</strong></td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-blue);">1 Vote</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 4. WHAT THE NUMBERS SHOW -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec4">SECTION 2 &middot; WHAT THE NUMBERS SHOW</span>
+        </div>
+
+        <div id="sec4_body">
+          <p class="paragraph-body">
+            In 89 constituencies across Tamil Nadu, the total number of electors who cast certified ballots for NTK was larger than the net margin separating the winner from the first runner-up. This mathematical condition highlights the substantial size of NTK's voting base relative to local contest margins.
+          </p>
+          <p class="paragraph-body">
+            Rather than remaining concentrated in a small number of pockets, NTK established a numerical vote share that surpassed victory margins across diverse geographical zones—including northern agricultural belts, western industrial corridors, central delta districts, and southern coastal divisions.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5. FEATURED CASE STUDY – TIRUPPATTUR -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec5">SECTION 3 &middot; FEATURED CASE STUDY: TIRUPPATTUR</span>
+        </div>
+
+        <!-- Spotlight Box -->
+        <div class="spotlight-card-box">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">
+            <i class="fa-solid fa-bullseye"></i> CASE STUDY &middot; RAZOR-THIN MARGIN VS. THIRD-PARTY VOTE
+          </div>
+          <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:900; color:var(--ink-charcoal);">
+            Tiruppattur Constituency <span style="font-size:14px; font-weight:normal; color:var(--ink-gray);">(AC 185)</span>
+          </div>
+          <div style="font-family:'Courier Prime',monospace; font-size:12px; color:var(--ink-blue); margin-top:4px;">
+            Winner: <strong>Seenivasa Sethupathy (TVK)</strong> &middot; Certified Margin: <strong style="color:var(--ink-red);">1 Vote</strong>
+          </div>
+          <div style="font-family:'Courier Prime',monospace; font-size:12px; color:var(--ink-charcoal); margin-top:2px;">
+            NTK Candidate: <strong>Dr. Thirupathi N</strong> &middot; NTK Votes: <strong>15,291 Votes</strong>
+          </div>
+          <div style="font-family:'Playfair Display',serif; font-size:13.5px; color:var(--ink-gray); margin-top:8px; font-style:italic;">
+            Net Difference between NTK Vote Total and Victory Margin: <strong>15,290 Votes</strong>.
+          </div>
+        </div>
+
+        <div id="sec5_narrative">
+          <p class="paragraph-body">
+            Tiruppattur (AC 185) represents the most striking case study in this dataset. The election was decided by a single certified vote—the narrowest winning margin across all 234 constituencies in Tamil Nadu. Simultaneously, NTK candidate Dr. Thirupathi N secured 15,291 votes.
+          </p>
+          <p class="paragraph-body">
+            This results in a net difference of 15,290 votes between NTK's certified total and the victory margin, illustrating how third-party vote totals can dwarf the final margin separating top contenders in close contests.
+          </p>
+        </div>
+      </div>
+
+      <!-- 6. OTHER MAJOR CONSTITUENCIES (CORRECTED SQL NUMBERS) -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec6">SECTION 4 &middot; OTHER MAJOR QUALIFYING CONSTITUENCIES</span>
+        </div>
+
+        <!-- Visual Notice -->
+        <div class="visual-notice-box">
+          <strong>A closer look shows...</strong> Certified BigQuery returns across major divisions where NTK vote totals significantly exceeded victory margins.
+        </div>
+
+        <table class="archival-table">
+          <thead>
+            <tr>
+              <th>Constituency Name</th>
+              <th style="text-align:right;">Certified Margin</th>
+              <th style="text-align:right;">NTK Votes</th>
+              <th style="text-align:right;">Surplus (NTK Votes - Margin)</th>
+            </tr>
+          </thead>
+          <tbody id="tbl_major_constituencies">
+            <tr style="background:#fff4f4;">
+              <td><strong>Manamadurai</strong></td>
+              <td style="text-align:right;">1,208 Votes</td>
+              <td style="text-align:right; font-weight:bold;">19,676 Votes</td>
+              <td style="text-align:right; font-weight:900; color:var(--ink-red);">+18,468 Votes</td>
+            </tr>
+            <tr>
+              <td><strong>Alangulam</strong></td>
+              <td style="text-align:right;">7,798 Votes</td>
+              <td style="text-align:right; font-weight:bold;">23,380 Votes</td>
+              <td style="text-align:right; font-weight:bold;">+15,582 Votes</td>
+            </tr>
+            <tr style="background:#fff4f4;">
+              <td><strong>Kanniyakumari</strong></td>
+              <td style="text-align:right; color:var(--ink-red); font-weight:bold;">214 Votes</td>
+              <td style="text-align:right; font-weight:bold;">13,689 Votes</td>
+              <td style="text-align:right; font-weight:900; color:var(--ink-red);">+13,475 Votes</td>
+            </tr>
+            <tr>
+              <td><strong>Usilampatti</strong></td>
+              <td style="text-align:right;">1,805 Votes</td>
+              <td style="text-align:right; font-weight:bold;">15,185 Votes</td>
+              <td style="text-align:right; font-weight:bold;">+13,380 Votes</td>
+            </tr>
+            <tr>
+              <td><strong>Srivaikuntam</strong></td>
+              <td style="text-align:right;">1,186 Votes</td>
+              <td style="text-align:right; font-weight:bold;">13,153 Votes</td>
+              <td style="text-align:right; font-weight:bold;">+11,967 Votes</td>
+            </tr>
+            <tr>
+              <td><strong>Paramakudi</strong></td>
+              <td style="text-align:right;">3,548 Votes</td>
+              <td style="text-align:right; font-weight:bold;">15,363 Votes</td>
+              <td style="text-align:right; font-weight:bold;">+11,815 Votes</td>
+            </tr>
+            <tr>
+              <td><strong>Killiyoor</strong></td>
+              <td style="text-align:right;">1,311 Votes</td>
+              <td style="text-align:right; font-weight:bold;">12,850 Votes</td>
+              <td style="text-align:right; font-weight:bold;">+11,539 Votes</td>
+            </tr>
+            <tr>
+              <td><strong>Kovilpatti</strong></td>
+              <td style="text-align:right;">2,650 Votes</td>
+              <td style="text-align:right; font-weight:bold;">13,920 Votes</td>
+              <td style="text-align:right; font-weight:bold;">+11,270 Votes</td>
+            </tr>
+            <tr>
+              <td><strong>Tiruvadanai</strong></td>
+              <td style="text-align:right;">2,513 Votes</td>
+              <td style="text-align:right; font-weight:bold;">13,240 Votes</td>
+              <td style="text-align:right; font-weight:bold;">+10,727 Votes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 7. INTERPRETATION -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec7">SECTION 5 &middot; STATISTICAL INTERPRETATION</span>
+        </div>
+
+        <div id="sec7_body">
+          <p class="paragraph-body">
+            It is critical to interpret these mathematical findings with complete analytical rigor. The fact that NTK's vote total exceeded the victory margin in 89 constituencies does not imply that election outcomes would have differed under hypothetical alternative scenarios.
+          </p>
+          <p class="paragraph-body">
+            Certified election returns record actual voter choices cast under specific multi-candidate conditions. They cannot predict how voters would behave if candidate lists or alliance structures were altered. This analysis establishes only that NTK maintained a vote total larger than the certified margin of victory in 38.03% of assembly divisions.
+          </p>
+        </div>
+      </div>
+
+      <!-- 8. METHODOLOGY -->
+      <div class="methodology-panel">
+        <div class="methodology-title" id="head_methodology">
+          <i class="fa-solid fa-calculator"></i> METHODOLOGY &middot; ECI VERIFIED COMPUTATION
+        </div>
+        <div class="methodology-body" id="body_methodology">
+          <strong>Data Source:</strong> Official Election Commission of India (ECI) certified assembly returns (2026).<br><br>
+          <strong>Method:</strong> For every one of Tamil Nadu's 234 assembly constituencies:<br>
+          1. Obtain the certified winning margin (Votes for Winner minus Votes for 1st Runner-Up).<br>
+          2. Obtain the certified total votes polled by the Naam Tamilar Katchi (NTK) candidate.<br>
+          3. Compare the two values.<br>
+          4. Mark the constituency if <code>NTK Total Votes &gt; Certified Winning Margin</code>.<br>
+          5. Sum all qualifying constituencies.<br><br>
+          <strong>Verified Result:</strong> Exactly <strong>89 of 234 constituencies (38.03%)</strong> satisfy the condition.
+        </div>
+      </div>
+
+      <!-- CONCLUDING INSIGHT TAKEAWAY -->
+      <div style="background:#fcfaf5; border-left:4px solid var(--ink-blue); padding:16px 20px; margin:20px 0; font-family:'Playfair Display',serif; font-size:14.5px; line-height:1.8; font-style:italic;" id="box_concluding_takeaway">
+        The distribution of these 89 constituencies across multiple regions indicates that the phenomenon was not confined to a single district or political stronghold. Instead, it reflects the statewide numerical presence of NTK's vote base during the 2026 Assembly election.
+      </div>
+
+      <!-- DATA QUALITY NOTE -->
+      <div style="background:#fffdfa; border:1px solid var(--paper-border); padding:14px 18px; margin:18px 0; font-family:'Courier Prime',monospace; font-size:11px; color:var(--ink-gray);" id="box_data_quality">
+        <strong>Data Quality Note:</strong> All figures are based on certified Election Commission of India results. Calculations were performed using the BigQuery dataset (<code>fact_results_2026</code> and <code>fact_margins_2026</code>) and verified across all 234 constituencies.
+      </div>
+
+      <!-- 9. EDITORIAL NOTE (DISCLAIMER) -->
+      <div style="background:#fffdfa; border:2px double var(--ink-charcoal); padding:18px 22px; margin:24px 0;" id="box_editorial_note">
+        <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:8px;">
+          <i class="fa-solid fa-circle-exclamation"></i> EDITORIAL NOTE &amp; DISCLAIMER
+        </div>
+        <div style="font-family:'Playfair Display',serif; font-size:14px; line-height:1.75; color:var(--ink-charcoal);" id="text_editorial_note">
+          "This analysis does not imply that NTK votes would otherwise have been transferred to any candidate or alliance. It is a statistical comparison intended to illustrate the numerical relationship between certified third-party vote totals and certified victory margins."
+        </div>
+      </div>
+
+      <!-- 10. CLOSING INSIGHT -->
+      <div style="margin-top:24px; padding:20px 24px; background:#181818; color:#ffffff; border-radius:4px; font-family:'Playfair Display',serif; font-size:15px; line-height:1.8; text-align:center; font-style:italic;" id="box_closing_insight">
+        "Across Tamil Nadu, nearly four out of every ten Assembly constituencies recorded an NTK vote total larger than the certified margin separating the winner and runner-up. While election data cannot answer hypothetical questions about alternate outcomes, it clearly demonstrates the numerical significance of NTK's vote share in the 2026 Assembly election."
+      </div>
+
+    </div> <!-- /.np-page -->
+
+    
+
+  
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_11.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 11</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #12</span>
+        <a href="finding_13.html" class="back-btn">Finding 13 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+  </div> <!-- /.container -->
+
+  <!-- JavaScript for Language Toggle & Table Search -->
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    let currentLang = 'en';
+
+    const TRANSLATIONS = {
+      en: {
+        headline: "THE KINGMAKER EFFECT",
+        subheadline: "THE KINGMAKER EFFECT: A Numerical Analysis of Third-Party Vote Presence across Tamil Nadu's 234 Assembly Constituencies.",
+        lbl_stat_ntk_acs: "Qualifying Constituencies",
+        lbl_stat_max_gap: "Largest Numerical Gap",
+        lbl_stat_closest: "Closest Contest Example",
+        lbl_stat_threshold: "Statewide Presence",
+        btn_lang: "TAMIL VERSION (தமிழ்)",
+        back_btn: '<i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD'
+      },
+      ta: {
+        headline: "கிங்மேக்கர் தாக்கம்",
+        subheadline: "தமிழ்நாட்டின் 234 சட்டமன்றத் தொகுதிகளில் மூன்றாம் தரப்பு வாக்குகளின் தாக்கம் குறித்த புள்ளிவிவர ஆய்வு.",
+        lbl_stat_ntk_acs: "தகுதிபெற்ற தொகுதிகள்",
+        lbl_stat_max_gap: "அதிகபட்ச வாக்கு வித்தியாசம்",
+        lbl_stat_closest: "நெருக்கமான போட்டி உதாரணம்",
+        lbl_stat_threshold: "மாநில அளவிலான தாக்கம்",
+        btn_lang: "ENGLISH VERSION",
+        back_btn: '<i class="fa-solid fa-arrow-left"></i> முகப்புப் பக்கத்திற்குச் செல்'
+      }
+    };
+
+    function toggleLang() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const t = TRANSLATIONS[currentLang];
+      
+      document.getElementById('hdr_headline').innerText = t.headline;
+      document.getElementById('hdr_subheadline').innerText = t.subheadline;
+      document.getElementById('lbl_stat_ntk_acs').innerText = t.lbl_stat_ntk_acs;
+      document.getElementById('lbl_stat_max_gap').innerText = t.lbl_stat_max_gap;
+      document.getElementById('lbl_stat_closest').innerText = t.lbl_stat_closest;
+      document.getElementById('lbl_stat_threshold').innerText = t.lbl_stat_threshold;
+      document.getElementById('btn_lang_toggle').innerText = t.btn_lang;
+    }
+
+    function filterNtkTable() {
+      const input = document.getElementById('np-search-input').value.toUpperCase();
+      const rows = document.querySelectorAll('.archival-table tbody tr');
+      rows.forEach(row => {
+        const text = row.innerText;
+        if (text.toUpperCase().includes(input)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
     }
   </script>
 </body>

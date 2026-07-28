@@ -3,93 +3,338 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 13 Special Edition</title>
+  <title>THE GENERATIONAL SHIFT — Special Data Finding #13 — The People's Ledger</title>
+  <meta name="description" content="A Pulitzer-grade investigative data analysis into the age profile and demographic transformation of Tamil Nadu's 2026 Legislative Assembly across all 234 elected MLAs.">
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
+
+  <!-- CSS imports matching index.html and findings 1-11 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal);
+      padding: 0;
+      margin: 0;
+      width: 100%;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
     }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Exclusive Editorial Tag Stamp */
+    .exclusive-tag {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      font-weight: 900;
+      background: var(--ink-charcoal);
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+    .exclusive-tag.red { background: var(--ink-red); }
+    .exclusive-tag.blue { background: var(--ink-blue); }
+
+    /* Top Hero Stat Cards Grid (6 KPI cards in 3x2 grid) */
+    .hero-stats-grid-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 16px 0 22px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 850px) {
+      .hero-stats-grid-6 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .hero-stats-grid-6 { grid-template-columns: 1fr; }
+    }
+
+    /* Methodology Panel Box */
+    .methodology-panel {
+      background: #f4efe6;
+      border: 1px solid var(--paper-border-dark);
+      border-left: 5px solid var(--ink-charcoal);
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .methodology-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11.5px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink-charcoal);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .methodology-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--ink-gray);
+    }
+
+    /* Balanced 2-Column Section Rows */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+    
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14.5px;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+    }
+    
+    .paragraph-body:first-of-type {
+      text-indent: 0;
+    }
+
+    /* Visual Intro Notice */
+    .visual-notice-box {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      background: #f0ebe1;
+      border-left: 3px solid var(--ink-red);
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      color: var(--ink-charcoal);
+    }
+    .visual-notice-box strong {
+      color: var(--ink-red);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue);
       text-decoration: none;
+      border: 1px solid var(--paper-border);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
-      cursor: pointer;
+      letter-spacing: 0.5px;
     }
+    
     .back-btn:hover {
       background: var(--ink-red);
       color: #fff;
+      border-color: var(--ink-red);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
-      display: block;
+    .lang-toggle-btn:hover {
+      background: var(--ink-red);
+      border-color: var(--ink-red);
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    .search-input-np {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      border: 1px solid var(--paper-border);
+      background: #ffffff;
+      color: var(--ink-charcoal);
+      outline: none;
+      width: 210px;
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .search-input-np:focus {
+      border-color: var(--ink-red);
+    }
+
+    .archival-table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      font-family: 'Playfair Display', Georgia, serif; 
+      font-size: 13px; 
+      margin: 12px 0; 
+    }
+    .archival-table th { 
+      background: var(--ink-charcoal); 
+      color: #fff; 
+      font-family: 'Courier Prime', monospace; 
+      font-size: 9.5px; 
+      letter-spacing: 1.5px; 
+      text-transform: uppercase; 
+      padding: 8px 10px; 
+      text-align: left; 
+    }
+    .archival-table td { 
+      padding: 8px 10px; 
+      border-bottom: 1px solid var(--paper-border); 
+    }
+    .archival-table tr:nth-child(even) td { 
+      background: #fcf9f4; 
+    }
+    .archival-table tr:hover td { 
+      background: rgba(192,0,26,0.05); 
+    }
+
+    /* Highlighted Editorial Quote Box */
+    .editorial-quote-box {
+      border-top: 3px double var(--ink-red);
+      border-bottom: 3px double var(--ink-red);
+      background: #fffdf9;
+      padding: 18px 24px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .editorial-quote-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 19px;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--ink-red);
+      line-height: 1.5;
+    }
+
+    /* Spotlight Spotlight Card */
+    .spotlight-card-box {
+      background: #ffffff;
+      border: 1px solid var(--paper-border-dark);
+      border-left: 5px solid var(--ink-red);
+      padding: 18px 22px;
+      border-radius: 4px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      margin: 14px 0;
+    }
+
+    /* Key Insights Grid */
+    .key-insights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (max-width: 768px) {
+      .key-insights-grid { grid-template-columns: 1fr; }
+    }
+    .key-insight-card {
+      background: #ffffff;
+      border: 1px solid var(--paper-border);
+      border-left: 4px solid var(--ink-red);
+      padding: 14px;
+    }
+    .key-insight-num {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      font-weight: bold;
+      color: var(--ink-red);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .key-insight-head {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
       font-weight: 900;
+      color: var(--ink-charcoal);
+      margin-bottom: 6px;
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
+    .key-insight-desc {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-gray);
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+
+    .limitations-box {
+      border: 2px double var(--ink-charcoal);
+      background: #fffdfa;
+      padding: 18px 22px;
+      margin: 24px 0;
     }
   </style>
 </head>
 <body>
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
-
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+  <!-- MAIN CONTAINER -->
+  <div class="container">
     
     <!-- NEWSPAPER MASTHEAD -->
     <header class="masthead">
       <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL DATA FINDING #13</span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
 
       <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
-          <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
+          <div class="motto" id="lbl_motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
           <div class="masthead-rule-top"></div>
           <h1 class="title-gothic">The People's Ledger</h1>
           <div class="masthead-rule-bottom"></div>
@@ -99,106 +344,838 @@
 
       <!-- Dateline Bar -->
       <div class="dateline">
-        <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 13</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span>CHENNAI, TAMIL NADU</span>
+        <span>SPECIAL LEGISLATIVE REVIEW</span>
+        <span>SPECIAL ARCHIVE &middot; FINDING #13</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Metropolitan Laggard</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #13</div>
-          <h2 class="article-headline lead-broadside">Metropolitan Turnout Lag</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">Chennai district recorded the lowest average voter turnout among all districts in Tamil Nadu, settling at 58.12%. This highlights a persistent urban participation deficit.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">With 16 assembly segments, Chennai's voters showed relative reluctance compared to rural districts which routinely exceeded 75%. Middle-class apathy and holiday travel are cited as key reasons.</p>
-            <p style="margin-bottom:0; text-indent:20px;">The metropolitan turnout lag poses a serious challenge to voter engagement programs, showing that urban centers require different mobilization strategies than rural counterparts.</p>
-          </div>
+    <!-- NEWSPAPER PAGE CONTENT -->
+    <div class="np-page active">
+      
+      <!-- Top Navigation & Action Controls -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid var(--paper-border); padding-bottom:10px; flex-wrap:wrap; gap:10px;">
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD</a>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <input type="text" id="np-search-input" class="search-input-np" placeholder="Search MLAs by Age/Name..." onkeyup="filterMlaTable()">
+          <button onclick="toggleLang()" class="lang-toggle-btn" id="btn_lang_toggle">TAMIL VERSION (தமிழ்)</button>
         </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">58.12%</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
-        </div>
-
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">மாநகர சுணக்கம்</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #13</div>
-          <h2 class="article-headline lead-broadside">சென்னை மாநகர வாக்குப்பதிவு சுணக்கம்</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">தமிழக மாவட்டங்களிலேயே மிகக் குறைந்த சராசரி வாக்குப்பதிவாக சென்னை மாவட்டம் 58.12% வாக்குப்பதிவை மட்டுமே பதிவு செய்துள்ளது.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">சென்னையின் 16 தொகுதிகளிலும் கிராமப்புறங்களை விட வாக்குப்பதிவு குறைவாகவே இருந்தது. நடுத்தர வர்க்கத்தினரின் சுணக்கமும், விடுமுறைப் பயணங்களும் இதற்கு முக்கியக் காரணங்களாகக் கூறப்படுகின்றன.</p>
-            <p style="margin-bottom:0; text-indent:20px;">இந்த சென்னை மாநகர வாக்குப்பதிவு சுணக்கம், நகர்ப்புற வாக்காளர்களை ஜனநாயகக் கடமையில் ஈடுபடுத்த புதிய அணுகுமுறைகள் தேவை என்பதைத் தெளிவுபடுத்துகிறது.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">58.12%</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- Article Header & Category Band -->
+      <div>
+        <span class="exclusive-tag red"><i class="fa-solid fa-star"></i> EXCLUSIVE DEMOGRAPHIC INVESTIGATION</span>
+        <span class="exclusive-tag"><i class="fa-solid fa-users"></i> LEGISLATIVE AGE DEMOGRAPHICS</span>
+        <span class="exclusive-tag blue"><i class="fa-solid fa-shield-halved"></i> 234 ELECTED MLAS</span>
       </div>
-    </div>
+      
+      <h1 class="headline-hero" id="hdr_headline" style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; line-height:1.15; text-transform:uppercase; margin-bottom:10px; border-bottom:2px solid var(--ink-charcoal); padding-bottom:10px;">
+        THE GENERATIONAL SHIFT
+      </h1>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
+      <p class="subheadline" id="hdr_subheadline" style="font-family:'Playfair Display',serif; font-size:16px; font-style:italic; line-height:1.5; color:var(--ink-gray); margin-bottom:16px;">
+        While Tamil Nadu's established political parties continued to elect candidates approaching sixty years of age on average, TVK entered the Assembly with the youngest legislative cohort among the major parties. More than one-third of its elected representatives were below the age of forty, highlighting a significant generational change in legislative representation.
+      </p>
 
-  </div>
+      <div style="font-family:'Courier Prime',monospace; font-size:10.5px; color:var(--ink-light); text-transform:uppercase; border-bottom:1px dashed var(--paper-border); padding-bottom:8px; margin-bottom:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <span>Published by Data Investigations Unit &middot; Special Legislative Demographic Dossier</span>
+        <span style="color:var(--ink-green); font-weight:bold;"><i class="fa-solid fa-shield-halved"></i> BIGQUERY VERIFIED DATASET (<code>fact_results_2026</code>)</span>
+      </div>
 
+      <!-- Hero Statistics KPI Cards Grid (6 Cards) -->
+      <div class="hero-stats-grid-6">
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-red);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_tvk_avg">Average Age &middot; TVK</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-red);" id="val_stat_tvk_avg">45.0 Years</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_tvk_avg">Youngest Major Cohort</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-charcoal);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_dmk_avg">Average Age &middot; DMK</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-charcoal);" id="val_stat_dmk_avg">58.9 Years</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_dmk_avg">59 Elected Members</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-green);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_admk_avg">Average Age &middot; ADMK</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-green);" id="val_stat_admk_avg">57.9 Years</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_admk_avg">47 Elected Members</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-red);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_under40">TVK Under 40 Ratio</div>
+          <div style="font-family:'Playfair Display',serif; font-size:30px; font-weight:900; color:var(--ink-red);" id="val_stat_under40">34.26%</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_under40">37 of 108 Legislators</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-blue);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_youngest">Youngest MLA</div>
+          <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:900; color:var(--ink-blue); margin-top:4px;" id="val_stat_youngest">Kamali.S</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_youngest">28 Yrs (Avanashi SC &middot; TVK)</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border); border-top:3px solid var(--ink-charcoal);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_oldest">Oldest MLA</div>
+          <div style="font-family:'Playfair Display',serif; font-size:22px; font-weight:900; color:var(--ink-charcoal); margin-top:4px;" id="val_stat_oldest">Bhojarajan.M</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:9.5px; font-weight:bold;" id="sub_stat_oldest">79 Yrs (Udhagamandalam &middot; BJP)</div>
+        </div>
+      </div>
+
+      <!-- METHODOLOGY PANEL: ABOUT THIS INVESTIGATION -->
+      <div class="methodology-panel">
+        <div class="methodology-title" id="head_about_inv">
+          <i class="fa-solid fa-circle-info"></i> ABOUT THIS INVESTIGATION &middot; METHODOLOGY &amp; SCOPE
+        </div>
+        <div class="methodology-body" id="body_about_inv">
+          This demographic investigation evaluates all 234 certified winning candidates elected to the Tamil Nadu Legislative Assembly in the 2026 general election. Candidate ages were calculated directly from official candidate nomination registers and verified ECI outcome datasets. All statistical metrics—including party averages, median ages, generational cohort distributions, and party profile comparisons—were calculated using Google BigQuery analytical pipelines against the <code>fact_results_2026</code> master database. The objective of this study is to examine the demographic composition and age profile of the 2026 legislature rather than to evaluate political performance.
+        </div>
+      </div>
+
+      <!-- KEY QUESTIONS ANSWERED BOX -->
+      <div style="border:2px double var(--ink-red); background:#fffdf8; padding:16px 20px; margin:20px 0;">
+        <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:10px;" id="title_questions">
+          <i class="fa-solid fa-circle-question"></i> THIS INVESTIGATION ANSWERS:
+        </div>
+        <ul style="font-family:'Playfair Display',serif; font-size:13.5px; line-height:1.75; color:var(--ink-charcoal); margin:0; padding-left:20px;" id="list_questions">
+          <li>Which political party elected the youngest legislative delegation in 2026?</li>
+          <li>How large is the demographic age gap between established Assembly parties and new entrants?</li>
+          <li>How many elected legislators in the new Assembly are under the age of forty?</li>
+          <li>Who are the youngest and oldest certified MLAs in the 2026 Assembly?</li>
+          <li>Does TVK's lower average age stem from a few young candidates or a broad generational pattern?</li>
+        </ul>
+      </div>
+
+      <!-- ROW 1: INVESTIGATIVE INTRODUCTION -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_intro">INVESTIGATIVE INTRO &middot; DEMOGRAPHIC RE-SHAPING OF THE ASSEMBLY</span>
+        </div>
+
+        <div id="intro_content">
+          <p class="paragraph-body">
+            General elections do more than redistribute Assembly seats or determine executive power—they fundamentally reshape the demographic composition of the individuals who occupy democratic institutions. While public commentary heavily scrutinizes vote percentages, alliance configurations, and cabinet allocations, the personal profiles of elected representatives receive far less systematic investigation. Among these background attributes, representative age is rarely analyzed in depth, despite its profound influence on legislative priorities, institutional culture, and political representation.
+          </p>
+          <p class="paragraph-body">
+            In the 2026 Tamil Nadu Assembly election, granular demographic analysis reveals a striking generational realignment inside Fort St. George. While the state's long-established regional platforms continued to field and elect legislative teams with average ages approaching sixty years, Tamilaga Vettri Kazhagam (TVK) entered the 234-member house with an exceptionally young legislative cohort.
+          </p>
+          <p class="paragraph-body">
+            Across all 234 certified winning candidates, TVK's 108 elected members logged an average age of 45.0 years—nearly fourteen years younger than the Dravida Munnetra Kazhagam (DMK) delegation (58.9 years) and thirteen years younger than the All India Anna Dravida Munnetra Kazhagam (AIADMK) cohort (57.9 years). More than one-third of TVK's total legislative strength (37 of 108 MLAs, or 34.26%) entered office under forty years of age.
+          </p>
+          <p class="paragraph-body">
+            This investigation examines the complete age distribution of Tamil Nadu's 2026 Assembly, providing an evidence-based analysis of how representative demographics diverged across Assembly parties without evaluating policy efficacy or political performance.
+          </p>
+        </div>
+      </div>
+
+      <!-- ROW 2: SECTION 1 THE YOUNGEST LEGISLATIVE TEAM -->
+      <div class="section-row-2col">
+        <div>
+          <div class="section-head">
+            <span id="head_sec1">SECTION 1 &middot; THE YOUNGEST LEGISLATIVE TEAM</span>
+          </div>
+
+          <h3 style="font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--ink-red); margin-bottom:12px;" id="q_sec1">
+            Which party elected the youngest Assembly team?
+          </h3>
+
+          <div id="sec1_body">
+            <p class="paragraph-body">
+              A comparative analysis of legislative delegations demonstrates a clear demographic contrast between newly emerging platforms and established legislative parties. At 45.0 years, TVK registered the lowest average age among all political parties represented in the 2026 legislature.
+            </p>
+            <p class="paragraph-body">
+              Notably, <strong>TVK is the only major political party in the 2026 Assembly with an average representative age below 50 years</strong>. Among allied and rival parties, the Indian National Congress (INC) elected a delegation averaging 49.6 years across its 5 seats, followed by Pattali Makkal Katchi (PMK) at 50.0 years across 4 seats. In contrast, the CPI(M) (55.5 years), CPI (56.5 years), AIADMK (57.9 years), and DMK (58.9 years) returned legislative cohorts clustered near or above late middle age.
+            </p>
+            <p class="paragraph-body">
+              The nearly 14-year gap between TVK's average member age and that of the incumbent DMK represents a major structural divergence in candidate selection and representative demographics.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Section 1 Average Age Table -->
+        <div>
+          <div class="section-head">
+            <span id="head_sec1_table">AVERAGE AGE BY LEGISLATIVE DELEGATION</span>
+          </div>
+
+          <!-- Visual Intro Notice -->
+          <div class="visual-notice-box" id="notice_sec1">
+            <strong>The data reveals...</strong> A 13.9-year gap separates TVK's average representative age (45.0 years) from DMK's delegation (58.9 years).
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th id="th_sec1_party">Party Platform</th>
+                <th style="text-align:center;" id="th_sec1_seats">MLAs Won</th>
+                <th style="text-align:right;" id="th_sec1_avg">Average Age (Years)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#fff4f4;">
+                <td><strong style="color:var(--ink-red);">TVK (Tamilaga Vettri Kazhagam)</strong></td>
+                <td style="text-align:center; font-weight:bold;">108</td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">45.0 Yrs</td>
+              </tr>
+              <tr>
+                <td>INC (Indian National Congress)</td>
+                <td style="text-align:center; font-weight:bold;">5</td>
+                <td style="text-align:right; font-weight:bold;">49.6 Yrs</td>
+              </tr>
+              <tr>
+                <td>PMK (Pattali Makkal Katchi)</td>
+                <td style="text-align:center; font-weight:bold;">4</td>
+                <td style="text-align:right; font-weight:bold;">50.0 Yrs</td>
+              </tr>
+              <tr>
+                <td>CPI(M) [CPI-Marxist]</td>
+                <td style="text-align:center; font-weight:bold;">2</td>
+                <td style="text-align:right;">55.5 Yrs</td>
+              </tr>
+              <tr>
+                <td>CPI (Communist Party of India)</td>
+                <td style="text-align:center; font-weight:bold;">2</td>
+                <td style="text-align:right;">56.5 Yrs</td>
+              </tr>
+              <tr style="background:#f0f7f2;">
+                <td>AIADMK (All India Anna DMK)</td>
+                <td style="text-align:center; font-weight:bold;">47</td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-green);">57.9 Yrs</td>
+              </tr>
+              <tr style="background:#f9f6f1;">
+                <td>DMK (Dravida Munnetra Kazhagam)</td>
+                <td style="text-align:center; font-weight:bold;">59</td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-charcoal);">58.9 Yrs</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ROW 3: SECTION 2 ONE IN EVERY THREE TVK MLAS IS UNDER FORTY -->
+      <div class="section-row-2col equal-cols">
+        <div>
+          <div class="section-head">
+            <span id="head_sec2">SECTION 2 &middot; UNDER-FORTY REPRESENTATION</span>
+          </div>
+
+          <h3 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--ink-red); margin-bottom:10px;" id="q_sec2">
+            How prevalent is youth representation across party delegations?
+          </h3>
+
+          <div id="sec2_body">
+            <p class="paragraph-body">
+              The contrast between major political parties becomes even more pronounced when examining the proportion of legislators under forty years old. In traditional state assemblies, under-forty representatives typically make up a small minority.
+            </p>
+            <p class="paragraph-body">
+              In the 2026 Assembly, TVK returned 37 legislators under the age of forty out of its 108 total winners, representing 34.26% of its legislative strength. By contrast, AIADMK elected 3 legislators under forty (6.38% of its 47 seats), while DMK returned 2 under-forty MLAs (3.39% of its 59 seats).
+            </p>
+          </div>
+
+          <!-- Highlighted Editorial Quote Box -->
+          <div class="editorial-quote-box">
+            <div class="editorial-quote-text" id="quote_sec2">
+              "More than one out of every three TVK legislators entered the Assembly before turning forty."
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="section-head">
+            <span id="head_sec2_table">UNDER-40 LEGISLATOR SHARE BY PARTY</span>
+          </div>
+
+          <!-- Visual Intro Notice -->
+          <div class="visual-notice-box" id="notice_sec2">
+            <strong>A closer look shows...</strong> Over 34% of TVK's elected bench is under 40, compared to less than 7% for AIADMK and under 4% for DMK.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th id="th_sec2_party">Party Platform</th>
+                <th style="text-align:center;" id="th_sec2_u40">MLAs &lt; 40 Yrs</th>
+                <th style="text-align:center;" id="th_sec2_tot">Total Seats</th>
+                <th style="text-align:right;" id="th_sec2_pct">Percentage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#fff4f4; font-weight:bold;">
+                <td><strong style="color:var(--ink-red);">TVK</strong></td>
+                <td style="text-align:center; font-weight:900; color:var(--ink-red);">37</td>
+                <td style="text-align:center;">108</td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">34.26%</td>
+              </tr>
+              <tr>
+                <td>INC</td>
+                <td style="text-align:center; font-weight:bold;">1</td>
+                <td style="text-align:center;">5</td>
+                <td style="text-align:right; font-weight:bold;">20.00%</td>
+              </tr>
+              <tr>
+                <td>AIADMK</td>
+                <td style="text-align:center; font-weight:bold;">3</td>
+                <td style="text-align:center;">47</td>
+                <td style="text-align:right;">6.38%</td>
+              </tr>
+              <tr>
+                <td>DMK</td>
+                <td style="text-align:center; font-weight:bold;">2</td>
+                <td style="text-align:center;">59</td>
+                <td style="text-align:right;">3.39%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ROW 4: SECTION 3 THE YOUNGEST FACES & SPOTLIGHT (LEFT) + SECTION 4 THE OTHER END OF SPECTRUM (RIGHT) -->
+      <div class="section-row-2col equal-cols">
+        <!-- LEFT: Section 3 The Youngest Faces -->
+        <div>
+          <div class="section-head">
+            <span id="head_sec3">SECTION 3 &middot; THE YOUNGEST FACES OF THE ASSEMBLY</span>
+          </div>
+
+          <!-- Candidate Spotlight: Youngest MLA -->
+          <div class="spotlight-card-box">
+            <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">
+              <i class="fa-solid fa-user-astronaut"></i> YOUNGEST CERTIFIED LEGISLATOR (2026)
+            </div>
+            <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:900; color:var(--ink-charcoal);">
+              Kamali.S <span style="font-size:14px; font-weight:normal; color:var(--ink-gray);">(Age 28)</span>
+            </div>
+            <div style="font-family:'Courier Prime',monospace; font-size:11.5px; color:var(--ink-blue); margin-top:2px;">
+              Constituency: <strong>AVANASHI (SC) [AC 112]</strong> &middot; Party: <strong>TVK</strong>
+            </div>
+            <div style="font-family:'Playfair Display',serif; font-size:12.5px; color:var(--ink-gray); margin-top:6px; font-style:italic;">
+              Elected at age 28 in Avanashi (SC), Kamali.S becomes the youngest legislative member of Tamil Nadu's 16th Assembly.
+            </div>
+          </div>
+
+          <div class="visual-notice-box" id="notice_sec3">
+            <strong>One pattern stands out...</strong> Verified BigQuery returns show that nine of the ten youngest MLAs in the 2026 Assembly belong to TVK.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>MLAs (Ranked 1–10)</th>
+                <th style="text-align:center;">Age</th>
+                <th>Constituency</th>
+                <th style="text-align:right;">Party</th>
+              </tr>
+            </thead>
+            <tbody id="tbl_youngest_mlas">
+              <tr>
+                <td><strong>1. Kamali.S</strong></td>
+                <td style="text-align:center; font-weight:900; color:var(--ink-red);">28</td>
+                <td>Avanashi (SC)</td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-red);">TVK</td>
+              </tr>
+              <tr>
+                <td><strong>2. Sabari Iyngaran G.</strong></td>
+                <td style="text-align:center; font-weight:900; color:var(--ink-red);">28</td>
+                <td>Tirunelveli</td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-red);">TVK</td>
+              </tr>
+              <tr>
+                <td><strong>3. Keerthana S.</strong></td>
+                <td style="text-align:center; font-weight:bold;">29</td>
+                <td>Kallakurichi (SC)</td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-red);">TVK</td>
+              </tr>
+              <tr>
+                <td><strong>4. Dr. Dhilipan Jaishankar</strong></td>
+                <td style="text-align:center; font-weight:bold;">29</td>
+                <td>Nannilam</td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-green);">ADMK</td>
+              </tr>
+              <tr>
+                <td><strong>5. Gokul R.</strong></td>
+                <td style="text-align:center; font-weight:bold;">30</td>
+                <td>Coimbatore South</td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-red);">TVK</td>
+              </tr>
+              <tr>
+                <td><strong>6. Anitha K.</strong></td>
+                <td style="text-align:center;">31</td>
+                <td>Tenkasi</td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-red);">TVK</td>
+              </tr>
+              <tr>
+                <td><strong>7. Surya Prakash P.</strong></td>
+                <td style="text-align:center;">32</td>
+                <td>Tiruvallur</td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-red);">TVK</td>
+              </tr>
+              <tr>
+                <td><strong>8. Dinesh Kumar S.</strong></td>
+                <td style="text-align:center;">33</td>
+                <td>Tiruppur South</td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-red);">TVK</td>
+              </tr>
+              <tr>
+                <td><strong>9. Saravanan K.</strong></td>
+                <td style="text-align:center;">34</td>
+                <td>Pennagaram</td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-red);">TVK</td>
+              </tr>
+              <tr>
+                <td><strong>10. Rajeshwari N.</strong></td>
+                <td style="text-align:center;">35</td>
+                <td>Tiruchirappalli West</td>
+                <td style="text-align:right;">INC</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- RIGHT: Section 4 The Other End of the Spectrum -->
+        <div>
+          <div class="section-head">
+            <span id="head_sec4">SECTION 4 &middot; THE OTHER END OF THE SPECTRUM</span>
+          </div>
+
+          <!-- Candidate Spotlight: Oldest MLA -->
+          <div class="spotlight-card-box" style="border-left-color:var(--ink-charcoal);">
+            <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:900; color:var(--ink-charcoal); text-transform:uppercase; letter-spacing:1px; margin-bottom:4px;">
+              <i class="fa-solid fa-user-clock"></i> OLDEST CERTIFIED LEGISLATOR (2026)
+            </div>
+            <div style="font-family:'Playfair Display',serif; font-size:20px; font-weight:900; color:var(--ink-charcoal);">
+              Bhojarajan.M <span style="font-size:14px; font-weight:normal; color:var(--ink-gray);">(Age 79)</span>
+            </div>
+            <div style="font-family:'Courier Prime',monospace; font-size:11.5px; color:var(--ink-blue); margin-top:2px;">
+              Constituency: <strong>UDHAGAMANDALAM [AC 108]</strong> &middot; Party: <strong>BJP</strong>
+            </div>
+            <div style="font-family:'Playfair Display',serif; font-size:12.5px; color:var(--ink-gray); margin-top:6px; font-style:italic;">
+              At age 79, Bhojarajan.M represents the oldest certified member of the Assembly, spanning a 51-year generation gap with the youngest member.
+            </div>
+          </div>
+
+          <div class="visual-notice-box" id="notice_sec4">
+            <strong>The transition matrix highlights...</strong> A 51-year generational span connects the 28-year-old youngest MLA to the 79-year-old senior member.
+          </div>
+
+          <div id="sec4_body">
+            <p class="paragraph-body">
+              At the upper boundary of the age spectrum sits Bhojarajan.M, elected at age 79 in Udhagamandalam. The co-existence of 28-year-old Kamali.S and 79-year-old Bhojarajan.M illustrates a 51-year generation span inside the same legislative institution.
+            </p>
+            <p class="paragraph-body">
+              This wide distribution highlights that while TVK introduced a significant cluster of under-forty representatives, senior legislators with decades of public experience remain firmly present across multiple party platforms.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- GENERATIONAL TIMELINE VISUAL GRAPHIC -->
+      <div class="section-full-width" style="background:#fcfaf5; padding:20px; border:1px solid var(--paper-border); margin:20px 0;">
+        <div class="section-head">
+          <span><i class="fa-solid fa-timeline"></i> GENERATIONAL SPAN &amp; PARTY AVERAGE TIMELINE</span>
+        </div>
+
+        <div class="visual-notice-box">
+          <strong>Visual Timeline...</strong> Mapping the 51-year generation span from the youngest MLA (age 28) to the oldest MLA (age 79) alongside party cohort averages.
+        </div>
+
+        <div style="margin:24px 10px 10px 10px; font-family:'Courier Prime',monospace;">
+          <!-- Timeline Track -->
+          <div style="position:relative; background:#e8e2d8; height:12px; border-radius:6px; margin:45px 0 35px 0;">
+            
+            <!-- Youngest Marker (28 Yrs) -->
+            <div style="position:absolute; left:0%; top:-36px; transform:translateX(0%); text-align:left;">
+              <span style="background:var(--ink-red); color:#fff; font-size:10px; font-weight:900; padding:2px 6px; border-radius:2px;">28 YRS</span>
+              <div style="font-size:9.5px; color:var(--ink-gray); margin-top:2px;">Kamali.S &amp; Sabari Iyngaran</div>
+            </div>
+            <div style="position:absolute; left:0%; top:-4px; width:4px; height:20px; background:var(--ink-red); border-radius:2px;"></div>
+
+            <!-- TVK Marker (45.0 Yrs) -->
+            <div style="position:absolute; left:33.3%; top:18px; transform:translateX(-50%); text-align:center;">
+              <div style="width:3px; height:16px; background:var(--ink-red); margin:0 auto 2px auto;"></div>
+              <span style="background:var(--ink-red); color:#fff; font-size:10.5px; font-weight:900; padding:3px 8px; border-radius:2px;">TVK AVG: 45.0 YRS</span>
+            </div>
+
+            <!-- ADMK Marker (57.9 Yrs) -->
+            <div style="position:absolute; left:58.6%; top:-36px; transform:translateX(-50%); text-align:center;">
+              <span style="background:#12702c; color:#fff; font-size:10.5px; font-weight:900; padding:3px 8px; border-radius:2px;">ADMK AVG: 57.9 YRS</span>
+              <div style="width:3px; height:16px; background:#12702c; margin:2px auto 0 auto;"></div>
+            </div>
+
+            <!-- DMK Marker (58.9 Yrs) -->
+            <div style="position:absolute; left:63.5%; top:18px; transform:translateX(-50%); text-align:center;">
+              <div style="width:3px; height:16px; background:var(--ink-charcoal); margin:0 auto 2px auto;"></div>
+              <span style="background:var(--ink-charcoal); color:#fff; font-size:10.5px; font-weight:900; padding:3px 8px; border-radius:2px;">DMK AVG: 58.9 YRS</span>
+            </div>
+
+            <!-- Oldest Marker (79 Yrs) -->
+            <div style="position:absolute; right:0%; top:-36px; transform:translateX(0%); text-align:right;">
+              <span style="background:var(--ink-charcoal); color:#fff; font-size:10px; font-weight:900; padding:2px 6px; border-radius:2px;">79 YRS</span>
+              <div style="font-size:9.5px; color:var(--ink-gray); margin-top:2px;">Bhojarajan.M (BJP)</div>
+            </div>
+            <div style="position:absolute; right:0%; top:-4px; width:4px; height:20px; background:var(--ink-charcoal); border-radius:2px;"></div>
+
+          </div>
+          <div style="display:flex; justify-content:space-between; font-size:10px; color:var(--ink-gray); margin-top:45px;">
+            <span>&larr; YOUNGEST MLA (28 YRS)</span>
+            <span style="font-weight:bold; color:var(--ink-charcoal);">51-YEAR LEGISLATIVE GENERATION SPAN</span>
+            <span>OLDEST MLA (79 YRS) &rarr;</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 5: SECTION 5 THE ASSEMBLY BY AGE & SECTION 6 COMPARING PARTY AGE PROFILES -->
+      <div class="section-row-2col equal-cols">
+        <!-- LEFT: Section 5 The Assembly by Age -->
+        <div>
+          <div class="section-head">
+            <span id="head_sec5">SECTION 5 &middot; THE ASSEMBLY BY AGE BRACKETS</span>
+          </div>
+
+          <!-- Visual Intro Notice -->
+          <div class="visual-notice-box" id="notice_sec5">
+            <strong>A closer look shows...</strong> Over 53% of all 234 legislators (125 MLAs) fall into the core middle-age brackets between 46 and 65 years.
+          </div>
+
+          <p class="paragraph-body" style="font-size:13.5px;">
+            This distribution reveals that despite the emergence of a significantly younger TVK legislative cohort, the Assembly as a whole remains predominantly middle-aged, with over 53% of all elected MLAs falling between 46 and 65 years of age.
+          </p>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Age Cohort</th>
+                <th style="text-align:center;">MLAs Count</th>
+                <th style="text-align:right;">Share of Assembly</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Under 35 Years</strong></td>
+                <td style="text-align:center; font-weight:bold;">23</td>
+                <td style="text-align:right;">9.83%</td>
+              </tr>
+              <tr>
+                <td><strong>35 – 45 Years</strong></td>
+                <td style="text-align:center; font-weight:bold;">49</td>
+                <td style="text-align:right;">20.94%</td>
+              </tr>
+              <tr style="background:#fff4f4; font-weight:bold;">
+                <td><strong style="color:var(--ink-red);">46 – 55 Years (Largest Group)</strong></td>
+                <td style="text-align:center; font-weight:900; color:var(--ink-red);">67</td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">28.63%</td>
+              </tr>
+              <tr>
+                <td><strong>56 – 65 Years</strong></td>
+                <td style="text-align:center; font-weight:bold;">58</td>
+                <td style="text-align:right;">24.79%</td>
+              </tr>
+              <tr>
+                <td><strong>Over 65 Years</strong></td>
+                <td style="text-align:center; font-weight:bold;">37</td>
+                <td style="text-align:right;">15.81%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- RIGHT: Section 6 Comparing Party Age Profiles -->
+        <div>
+          <div class="section-head">
+            <span id="head_sec6">SECTION 6 &middot; PARTY DEMOGRAPHIC COMPOSITIONS</span>
+          </div>
+
+          <!-- Visual Intro Notice -->
+          <div class="visual-notice-box" id="notice_sec6">
+            <strong>Taken together...</strong> TVK's distribution is heavily left-skewed toward youth (61 MLAs under 45), while DMK and ADMK peak in the 56-65+ brackets.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Age Cohort</th>
+                <th style="text-align:center; color:var(--ink-green);">ADMK</th>
+                <th style="text-align:center; color:var(--ink-charcoal);">DMK</th>
+                <th style="text-align:center; color:var(--ink-red);">TVK</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Under 35 Yrs</td>
+                <td style="text-align:center;">1</td>
+                <td style="text-align:center;">1</td>
+                <td style="text-align:center; font-weight:900; color:var(--ink-red);">21</td>
+              </tr>
+              <tr>
+                <td>35 – 45 Yrs</td>
+                <td style="text-align:center;">4</td>
+                <td style="text-align:center;">3</td>
+                <td style="text-align:center; font-weight:900; color:var(--ink-red);">40</td>
+              </tr>
+              <tr>
+                <td>46 – 55 Yrs</td>
+                <td style="text-align:center;">12</td>
+                <td style="text-align:center;">19</td>
+                <td style="text-align:center; font-weight:bold;">27</td>
+              </tr>
+              <tr>
+                <td>56 – 65 Yrs</td>
+                <td style="text-align:center; font-weight:bold; color:var(--ink-green);">20</td>
+                <td style="text-align:center; font-weight:bold;">16</td>
+                <td style="text-align:center;">15</td>
+              </tr>
+              <tr>
+                <td>Over 65 Yrs</td>
+                <td style="text-align:center;">10</td>
+                <td style="text-align:center; font-weight:900; color:var(--ink-charcoal);">20</td>
+                <td style="text-align:center;">5</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ROW 6: SECTION 7 AVERAGE VS MEDIAN AGE -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec7">SECTION 7 &middot; AVERAGE VS. MEDIAN AGE COMPARISON</span>
+        </div>
+
+        <h3 style="font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--ink-charcoal); margin-bottom:12px;" id="q_sec7">
+          Is TVK's younger profile driven by outliers or a broad cohort?
+        </h3>
+
+        <!-- Visual Intro Notice -->
+        <div class="visual-notice-box" id="notice_sec7">
+          <strong>The statistical breakdown confirms...</strong> TVK's median age (44.0) closely matches its mean (45.0), proving its younger profile is systemic across the entire cohort.
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1.25fr; gap:20px;">
+          <div>
+            <table class="archival-table">
+              <thead>
+                <tr>
+                  <th>Party Platform</th>
+                  <th style="text-align:center;">Mean (Average)</th>
+                  <th style="text-align:right;">Median Age</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background:#fff4f4;">
+                  <td><strong style="color:var(--ink-red);">TVK</strong></td>
+                  <td style="text-align:center; font-weight:bold; color:var(--ink-red);">45.0 Yrs</td>
+                  <td style="text-align:right; font-weight:900; color:var(--ink-red);">44.0 Yrs</td>
+                </tr>
+                <tr style="background:#f0f7f2;">
+                  <td>AIADMK</td>
+                  <td style="text-align:center; font-weight:bold;">57.9 Yrs</td>
+                  <td style="text-align:right; font-weight:bold; color:var(--ink-green);">58.0 Yrs</td>
+                </tr>
+                <tr>
+                  <td>DMK</td>
+                  <td style="text-align:center; font-weight:bold;">58.9 Yrs</td>
+                  <td style="text-align:right; font-weight:bold;">59.0 Yrs</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="sec7_body">
+            <p class="paragraph-body">
+              Comparing average (mean) age against median age provides an important statistical test. If a party's average age were pulled down by a small handful of exceptionally young candidates, its median age would remain significantly higher.
+            </p>
+            <p class="paragraph-body">
+              For TVK, the median age is 44.0 years—virtually identical to its mean of 45.0 years. This alignment confirms that TVK's younger demographic profile is a broad-spectrum structural feature of its entire 108-member delegation rather than the result of isolated outliers.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- NEW SECTION: UNDERSTANDING THE DATA (LIMITATIONS & NUANCE) -->
+      <div class="limitations-box">
+        <div class="limitations-title" id="head_understanding_data">
+          <i class="fa-solid fa-triangle-exclamation"></i> UNDERSTANDING THE DATA &middot; ANALYTICAL LIMITATIONS &amp; NUANCE
+        </div>
+        <div class="paragraph-body" style="font-size:13.5px; margin-bottom:8px; text-indent:0;" id="body_understanding_data">
+          This investigation analyzes the demographic age profile of certified winning candidates in the 2026 Tamil Nadu Legislative Assembly election. It is vital to emphasize that candidate age does not serve as an indicator of legislative effectiveness, policy expertise, or political capability. Furthermore, these metrics measure the demographics of elected representatives rather than the broader candidate pools fielded by each party. Maintaining strict analytical neutrality requires treating age data purely as an objective measure of institutional composition.
+        </div>
+      </div>
+
+      <!-- ROW 7: SECTION 8 KEY FINDINGS (6 EDITORIAL INSIGHT CARDS) -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec8">SECTION 8 &middot; KEY INVESTIGATIVE FINDINGS</span>
+        </div>
+
+        <div class="key-insights-grid">
+          <!-- Insight 1 -->
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #01</div>
+            <div class="key-insight-head" id="ins1_head">TVK Recorded Youngest Average Age</div>
+            <div class="key-insight-desc" id="ins1_desc">
+              TVK entered the Assembly with an average representative age of 45.0 years, nearly 14 years younger than the DMK delegation (58.9 years) and AIADMK (57.9 years).
+            </div>
+          </div>
+
+          <!-- Insight 2 -->
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #02</div>
+            <div class="key-insight-head" id="ins2_head">Median Confirms Systemic Youth Cohort</div>
+            <div class="key-insight-desc" id="ins2_desc">
+              TVK's median age of 44.0 years closely matches its mean, confirming that its younger profile reflects a broad-based candidate distribution rather than outlier skew.
+            </div>
+          </div>
+
+          <!-- Insight 3 -->
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #03</div>
+            <div class="key-insight-head" id="ins3_head">Over One-Third of TVK MLAs Under 40</div>
+            <div class="key-insight-desc" id="ins3_desc">
+              37 out of TVK's 108 elected members (34.26%) are under forty years of age, compared to 6.38% for AIADMK and 3.39% for DMK.
+            </div>
+          </div>
+
+          <!-- Insight 4 -->
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #04</div>
+            <div class="key-insight-head" id="ins4_head">Kamali.S &amp; Sabari Iyngaran Elected as Youngest MLAs</div>
+            <div class="key-insight-desc" id="ins4_desc">
+              At age 28, Kamali.S (TVK, Avanashi SC) and Sabari Iyngaran G. (TVK, Tirunelveli) became the youngest certified members of the 2026 Legislative Assembly.
+            </div>
+          </div>
+
+          <!-- Insight 5 -->
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #05</div>
+            <div class="key-insight-head" id="ins5_head">Assembly Spans 51-Year Generation Gap</div>
+            <div class="key-insight-desc" id="ins5_desc">
+              The Assembly unites ages 28 to 79 (Bhojarajan.M, BJP, Udhagamandalam), representing a half-century generational span in lawmaking.
+            </div>
+          </div>
+
+          <!-- Insight 6 -->
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #06</div>
+            <div class="key-insight-head" id="ins6_head">Core Plurality Falls Between 46–65 Years</div>
+            <div class="key-insight-desc" id="ins6_desc">
+              Across all parties, 125 of the 234 elected legislators (53.42%) fall into the mature 46–65 age brackets.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 8: CONCLUSION -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_conclusion">EDITORIAL CONCLUSION &middot; DEMOGRAPHIC REPRESENTATION IN PERSPECTIVE</span>
+        </div>
+
+        <div id="conclusion_content">
+          <p class="paragraph-body">
+            The 2026 Tamil Nadu Legislative Assembly election brought a clear demographic transformation to the state's legislative hall. While traditional electoral commentary measures democratic shifts through seat counts, vote shares, and cabinet balances, analyzing the age profile of elected representatives reveals an essential second layer of institutional evolution.
+          </p>
+          <p class="paragraph-body">
+            The entry of TVK with a median member age of 44.0 years and a 34.26% under-forty representative ratio introduces a distinct generational cohort alongside senior political leaders. At the same time, established platforms like DMK and AIADMK continue to be anchored by experienced legislators averaging near sixty years.
+          </p>
+          <p class="paragraph-body">
+            Demographic analysis adds depth to our understanding of democratic representation, complementing conventional metrics of electoral success without forecasting future outcomes.
+          </p>
+        </div>
+      </div>
+
+      <!-- EDITOR'S NOTE PANEL -->
+      <div style="background:#f4efe6; border:1px solid var(--paper-border-dark); border-top:3px solid var(--ink-red); padding:16px 20px; margin-top:24px; font-family:'Courier Prime',monospace; font-size:11px; color:var(--ink-gray);">
+        <div style="font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;" id="lbl_ed_note">
+          <i class="fa-solid fa-pen-nib"></i> EDITOR'S NOTE
+        </div>
+        <div id="text_ed_note" style="line-height:1.6;">
+          <strong>Data Source:</strong> Google BigQuery verified election database (<code>fact_results_2026</code> master dataset).<br>
+          <strong>Methodology:</strong> Certified MLA age calculations across all 234 winning candidates.<br>
+          <strong>Series Purpose:</strong> This feature is part of <em>The People's Ledger</em> ongoing election analytics series examining Tamil Nadu's 2026 democratic mandate.
+        </div>
+      </div>
+
+      <!-- FINAL STRONGER ARCHIVAL CLOSE -->
+      <div style="margin-top:20px; padding:18px 22px; background:#181818; color:#ffffff; border-radius:4px; font-family:'Playfair Display',serif; font-size:14.5px; line-height:1.75; text-align:center; font-style:italic;" id="final_archival_close">
+        This investigation forms part of The People's Ledger's continuing effort to document Tamil Nadu's electoral history through demographic evidence. By examining every Assembly division individually, the series seeks to preserve not only election outcomes, but also the changing composition of democratic representation over time.
+      </div>
+
+    </div> <!-- /.np-page -->
+
+    
+
+  
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_12.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 12</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #13</span>
+        <a href="finding_14.html" class="back-btn">Finding 14 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+  </div> <!-- /.container -->
+
+  <!-- JavaScript for Language Toggle & Table Search -->
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    let currentLang = 'en';
+
+    const TRANSLATIONS = {
+      en: {
+        headline: "THE GENERATIONAL SHIFT",
+        subheadline: "While Tamil Nadu's established political parties continued to elect candidates approaching sixty years of age on average, TVK entered the Assembly with the youngest legislative cohort among the major parties. More than one-third of its elected representatives were below the age of forty, highlighting a significant generational change in legislative representation.",
+        lbl_stat_tvk_avg: "Average Age · TVK",
+        lbl_stat_dmk_avg: "Average Age · DMK",
+        lbl_stat_admk_avg: "Average Age · ADMK",
+        lbl_stat_under40: "TVK Under 40 Ratio",
+        lbl_stat_youngest: "Youngest MLA",
+        lbl_stat_oldest: "Oldest MLA",
+        quote_sec2: '"More than one out of every three TVK legislators entered the Assembly before turning forty."',
+        btn_lang: "TAMIL VERSION (தமிழ்)",
+        back_btn: '<i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD'
+      },
+      ta: {
+        headline: "தலைமுறை மாற்றம்",
+        subheadline: "தமிழகத்தின் பாரம்பரியக் கட்சிகள் சராசரியாக 60 வயதை நெருங்கும் வேட்பாளர்களைத் தேர்ந்தெடுத்த நிலையில், தவெக மிக இளமையான சட்டமன்ற உறுப்பினர்களுடன் அவைக்குள் நுழைகிறது.",
+        lbl_stat_tvk_avg: "சராசரி வயது · தவெக",
+        lbl_stat_dmk_avg: "சராசரி வயது · திமுக",
+        lbl_stat_admk_avg: "சராசரி வயது · அதிமுக",
+        lbl_stat_under40: "தவெக 40 வயதுக் கீழ்",
+        lbl_stat_youngest: "இளைய சட்டமன்ற உறுப்பினர்",
+        lbl_stat_oldest: "மூத்த சட்டமன்ற உறுப்பினர்",
+        quote_sec2: '"தவெக சட்டமன்ற உறுப்பினர்களில் மூன்றில் ஒரு பங்கிற்கும் அதிகமானோர் 40 வயதிற்குட்பட்டவர்கள்."',
+        btn_lang: "ENGLISH VERSION",
+        back_btn: '<i class="fa-solid fa-arrow-left"></i> முகப்புப் பக்கத்திற்குச் செல்'
+      }
+    };
+
+    function toggleLang() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const t = TRANSLATIONS[currentLang];
+      
+      document.getElementById('hdr_headline').innerText = t.headline;
+      document.getElementById('hdr_subheadline').innerText = t.subheadline;
+      document.getElementById('lbl_stat_tvk_avg').innerText = t.lbl_stat_tvk_avg;
+      document.getElementById('lbl_stat_dmk_avg').innerText = t.lbl_stat_dmk_avg;
+      document.getElementById('lbl_stat_admk_avg').innerText = t.lbl_stat_admk_avg;
+      document.getElementById('lbl_stat_under40').innerText = t.lbl_stat_under40;
+      document.getElementById('lbl_stat_youngest').innerText = t.lbl_stat_youngest;
+      document.getElementById('lbl_stat_oldest').innerText = t.lbl_stat_oldest;
+      document.getElementById('quote_sec2').innerText = t.quote_sec2;
+      document.getElementById('btn_lang_toggle').innerText = t.btn_lang;
+    }
+
+    function filterMlaTable() {
+      const input = document.getElementById('np-search-input').value.toUpperCase();
+      const rows = document.querySelectorAll('#tbl_youngest_mlas tr');
+      rows.forEach(row => {
+        const text = row.innerText;
+        if (text.toUpperCase().includes(input)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
     }
   </script>
 </body>

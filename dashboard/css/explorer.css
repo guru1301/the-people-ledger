@@ -94,3 +94,125 @@
 @media (max-width: 500px) {
   .card-grid { grid-template-columns: 1fr; }
 }
+
+/* ═══════════════════════════════════════════════
+   EXPLORER EXTRA PANELS (History, Profile, NTK, Chart)
+   ═══════════════════════════════════════════════ */
+
+.explorer-panel {
+  margin-top: 22px;
+  border: 1px solid var(--paper-border);
+  border-left: 3px solid var(--ink-red);
+  background: #fff;
+  padding: 16px 18px;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+  position: relative;
+}
+.explorer-panel + .explorer-panel { margin-top: 16px; }
+
+.explorer-panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--paper-border);
+}
+.explorer-panel-title {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 13px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--ink-charcoal);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.explorer-panel-title i {
+  color: var(--ink-red);
+  font-size: 12px;
+}
+
+/* Loyalty / Minister badge */
+.loyalty-badge {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #fff;
+  padding: 3px 10px;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+/* Panel table overrides */
+.panel-table { font-size: 11.5px !important; }
+.panel-table th { font-size: 9.5px !important; }
+
+/* Party pill in history table */
+.panel-party-pill {
+  display: inline-block;
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  padding: 2px 9px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+}
+
+/* ── PANEL 2: Winner Profile Grid ── */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.profile-item {
+  text-align: center;
+  padding: 12px 6px;
+  background: linear-gradient(to bottom, rgba(253,250,245,1), rgba(247,242,235,0.6));
+  border: 1px solid var(--paper-border);
+  border-radius: 2px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.profile-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+.profile-icon {
+  font-size: 18px;
+  color: var(--ink-red);
+  margin-bottom: 6px;
+}
+.profile-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 8.5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--ink-gray);
+  margin-bottom: 3px;
+}
+.profile-value {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--ink-charcoal);
+}
+
+@media (max-width: 600px) {
+  .profile-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+
+/* ── PANEL 3: Chart Container ── */
+.margin-chart-container {
+  position: relative;
+  height: 200px;
+  padding: 4px 0;
+}

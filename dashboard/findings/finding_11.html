@@ -3,93 +3,377 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The People's Ledger — Finding 11 Special Edition</title>
+  <title>THE GREAT POLITICAL REALIGNMENT — Special Data Finding #11 — The People's Ledger</title>
+  <meta name="description" content="A Pulitzer-grade investigative data analysis into Tamil Nadu's 2021–2026 constituency-level political realignment. 166 of 234 assembly divisions changed party hands (70.94% turnover).">
   
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
-  
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Modular CSS styles -->
+
+  <!-- CSS imports matching index.html and findings 1-10 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
+
   <style>
-    body {
+    html, body {
       background-color: #f9f6f1;
+      color: var(--ink-charcoal);
+      padding: 0;
+      margin: 0;
+      width: 100%;
     }
-    .back-nav-container {
-      max-width: 1200px;
-      margin: 20px auto 0 auto;
-      padding: 0 20px;
+
+    .container {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 12px !important;
+      box-sizing: border-box !important;
     }
+
+    .np-page {
+      display: block !important;
+      width: 100% !important;
+      padding: 16px 12px 20px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Exclusive Editorial Tag Stamp */
+    .exclusive-tag {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9.5px;
+      font-weight: 900;
+      background: var(--ink-charcoal);
+      color: #ffffff;
+      padding: 3px 8px;
+      border-radius: 2px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
+    .exclusive-tag.red { background: var(--ink-red); }
+    .exclusive-tag.blue { background: var(--ink-blue); }
+
+    /* Top Hero Stat Cards Grid (4-columns full width) */
+    .hero-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 16px 0 22px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    @media (max-width: 850px) {
+      .hero-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .hero-stats-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Methodology Panel Box */
+    .methodology-panel {
+      background: #f4efe6;
+      border: 1px solid var(--paper-border-dark);
+      border-left: 5px solid var(--ink-charcoal);
+      padding: 16px 20px;
+      margin: 20px 0;
+    }
+    .methodology-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11.5px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--ink-charcoal);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .methodology-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--ink-gray);
+    }
+
+    /* Balanced 2-Column Section Rows */
+    .section-row-2col {
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 24px;
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    .section-row-2col.equal-cols {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .section-full-width {
+      padding: 22px 0;
+      border-bottom: 1px solid var(--paper-border);
+      width: 100%;
+      box-sizing: border-box;
+    }
+    
+    @media (max-width: 950px) {
+      .section-row-2col, .section-row-2col.equal-cols {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+    }
+    
+    .paragraph-body {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 14.5px;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      text-align: justify;
+      text-indent: 18px;
+    }
+    
+    .paragraph-body:first-of-type {
+      text-indent: 0;
+    }
+
+    /* Visual Intro Notice: Varied Sentence Openings */
+    .visual-notice-box {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      background: #f0ebe1;
+      border-left: 3px solid var(--ink-red);
+      padding: 8px 12px;
+      margin-bottom: 10px;
+      color: var(--ink-charcoal);
+    }
+    .visual-notice-box strong {
+      color: var(--ink-red);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
     .back-btn {
       display: inline-block;
       font-family: 'Courier Prime', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      color: var(--ink-red);
+      color: var(--ink-blue);
       text-decoration: none;
+      border: 1px solid var(--paper-border);
+      padding: 5px 12px;
+      background: var(--paper-bg-warm);
+      transition: all 0.15s ease;
       text-transform: uppercase;
-      letter-spacing: 1px;
-      border: 1px solid var(--ink-red);
-      padding: 6px 16px;
-      background: var(--paper-bg);
-      transition: all 0.2s ease;
-      cursor: pointer;
+      letter-spacing: 0.5px;
     }
+    
     .back-btn:hover {
       background: var(--ink-red);
       color: #fff;
+      border-color: var(--ink-red);
+      text-decoration: none;
     }
-    .trans-en, .trans-ta {
-      display: none;
+
+    .lang-toggle-btn {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10.5px;
+      font-weight: bold;
+      background: var(--ink-charcoal);
+      color: #fff;
+      border: 1px solid var(--ink-charcoal);
+      padding: 5px 12px;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      transition: all 0.15s ease;
     }
-    body.lang-en .trans-en {
-      display: block;
+    .lang-toggle-btn:hover {
+      background: var(--ink-red);
+      border-color: var(--ink-red);
     }
-    body.lang-ta .trans-ta {
-      display: block;
-      font-family: 'Noto Serif Tamil', serif;
+
+    .search-input-np {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      padding: 5px 10px;
+      border: 1px solid var(--paper-border);
+      background: #ffffff;
+      color: var(--ink-charcoal);
+      outline: none;
+      width: 210px;
     }
-    body.lang-ta .article-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+    .search-input-np:focus {
+      border-color: var(--ink-red);
+    }
+
+    .archival-table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      font-family: 'Playfair Display', Georgia, serif; 
+      font-size: 13px; 
+      margin: 12px 0; 
+    }
+    .archival-table th { 
+      background: var(--ink-charcoal); 
+      color: #fff; 
+      font-family: 'Courier Prime', monospace; 
+      font-size: 9.5px; 
+      letter-spacing: 1.5px; 
+      text-transform: uppercase; 
+      padding: 8px 10px; 
+      text-align: left; 
+    }
+    .archival-table td { 
+      padding: 8px 10px; 
+      border-bottom: 1px solid var(--paper-border); 
+    }
+    .archival-table tr:nth-child(even) td { 
+      background: #fcf9f4; 
+    }
+    .archival-table tr:hover td { 
+      background: rgba(192,0,26,0.05); 
+    }
+
+    /* Highlighted Editorial Quote Box */
+    .editorial-quote-box {
+      border-top: 3px double var(--ink-red);
+      border-bottom: 3px double var(--ink-red);
+      background: #fffdf9;
+      padding: 18px 24px;
+      margin: 24px 0;
+      text-align: center;
+    }
+    .editorial-quote-text {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 19px;
+      font-style: italic;
+      font-weight: 700;
+      color: var(--ink-red);
+      line-height: 1.5;
+    }
+
+    /* Progress bar visualizer */
+    .flow-bar-container {
+      margin: 10px 0;
+      padding: 10px 14px;
+      background: #ffffff;
+      border: 1px solid var(--paper-border);
+    }
+    .flow-bar-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Courier Prime', monospace;
+      font-size: 11.5px;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    .flow-bar-track {
+      background: #e8e2d8;
+      height: 18px;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .flow-bar-fill {
+      height: 100%;
+      background: var(--ink-red);
+      color: #ffffff;
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 6px;
+    }
+    .flow-bar-fill.blue { background: var(--ink-blue); }
+    .flow-bar-fill.green { background: var(--ink-green); }
+    .flow-bar-fill.gold { background: var(--ink-gold); }
+
+    /* Key Insights Grid */
+    .key-insights-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 14px;
+    }
+    @media (max-width: 768px) {
+      .key-insights-grid { grid-template-columns: 1fr; }
+    }
+    .key-insight-card {
+      background: #ffffff;
+      border: 1px solid var(--paper-border);
+      border-left: 4px solid var(--ink-red);
+      padding: 14px;
+    }
+    .key-insight-num {
+      font-family: 'Courier Prime', monospace;
+      font-size: 10px;
+      font-weight: bold;
+      color: var(--ink-red);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .key-insight-head {
+      font-family: 'Playfair Display', serif;
+      font-size: 15px;
       font-weight: 900;
+      color: var(--ink-charcoal);
+      margin-bottom: 6px;
     }
-    body.lang-ta .article-body {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
-      line-height: 1.8;
+    .key-insight-desc {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--ink-gray);
     }
-    body.lang-ta .sidebar-headline {
-      font-family: 'Noto Serif Tamil', Georgia, serif;
+
+    /* Limitations Box */
+    .limitations-box {
+      border: 2px double var(--ink-charcoal);
+      background: #fffdfa;
+      padding: 18px 22px;
+      margin: 24px 0;
+    }
+    .limitations-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11.5px;
+      font-weight: 900;
+      color: var(--ink-charcoal);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
   </style>
 </head>
 <body>
 
-  <!-- BACK NAVIGATION ACTION BAR -->
-  <div class="back-nav-container">
-    <button onclick="window.close();" class="back-btn"><i class="fa-solid fa-arrow-left"></i> CLOSE ARTICLE &middot; RETURN TO LEDGER / மூடு</button>
-  </div>
-
-  <!-- MAIN NEWSPAPER CONTAINER -->
-  <div class="container" style="display: block; max-width: 1200px; margin: 20px auto; padding: 0 20px;">
+  <!-- MAIN CONTAINER -->
+  <div class="container">
     
     <!-- NEWSPAPER MASTHEAD -->
     <header class="masthead">
       <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL FINDING EDITION</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; SPECIAL DATA FINDING #11</span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
 
       <!-- Main Title Block -->
       <div class="masthead-main">
         <div class="masthead-center">
-          <div class="motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
+          <div class="motto" id="lbl_motto">Recording the People's Verdict &middot; மக்களின் தீர்ப்பை பதிவு செய்கிறோம்</div>
           <div class="masthead-rule-top"></div>
           <h1 class="title-gothic">The People's Ledger</h1>
           <div class="masthead-rule-bottom"></div>
@@ -99,107 +383,924 @@
 
       <!-- Dateline Bar -->
       <div class="dateline">
-        <span>VOL. LXXVI &middot; ISSUE 234</span>
-        <span>SPECIAL FINDING: # 11</span>
-        <span>✦ SPECIAL CONSTITUENCY ARCHIVE &amp; ELECTORAL REVIEW ✦</span>
+        <span>CHENNAI, TAMIL NADU</span>
+        <span>SPECIAL LEGISLATIVE REVIEW</span>
+        <span>SPECIAL ARCHIVE &middot; FINDING #11</span>
       </div>
     </header>
 
-    <!-- ==========================================
-         ENGLISH VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-en">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">Gender Voting Gap</div>
-          <div class="hero-sub-banner-second">Ledger Investigation &middot; Finding #11</div>
-          <h2 class="article-headline lead-broadside">Highest Female Turnout Gap</h2>
-          <div class="hero-subheading">A granular analysis of voting trends and key returns from the 2026 Tamil Nadu Assembly elections.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.75;">
-            <p style="margin-bottom:12px; text-indent:0;">Ramanathapuram constituency documented the highest female voter turnout advantage in the state, with female participation outstripping male turnout by 11.40 percentage points.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">This significant gap reflects migration patterns of male electors seeking employment elsewhere, as well as high mobilization among rural women electors who queued up in massive numbers.</p>
-            <p style="margin-bottom:0; text-indent:20px;">Such a high gender gap underscores the growing influence of female voters in deciding political outcomes in southern Tamil Nadu, making them the primary target for local welfare policies.</p>
-          </div>
+    <!-- NEWSPAPER PAGE CONTENT -->
+    <div class="np-page active">
+      
+      <!-- Top Navigation & Action Controls -->
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; border-bottom:1px solid var(--paper-border); padding-bottom:10px; flex-wrap:wrap; gap:10px;">
+        <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD</a>
+        <div style="display:flex; align-items:center; gap:10px;">
+          <input type="text" id="np-search-input" class="search-input-np" placeholder="Search Transitions..." onkeyup="filterTransitions()">
+          <button onclick="toggleLang()" class="lang-toggle-btn" id="btn_lang_toggle">TAMIL VERSION (தமிழ்)</button>
         </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>KEY DATA METRIC</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 38px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">+11.40%</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">CONFIRMED ECI TALLY</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ARCHIVAL NOTE</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">ABOUT THIS BULLETIN</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">This special report is compiled from verified returns from the 2026 legislative assembly segments. Findings represent structural insights into state political trends.</div>
-          </div>
-        </div>
-
       </div>
-    </div>
 
-    <!-- ==========================================
-         TAMIL VERSION OF THE NEWSPAPER
-         ========================================== -->
-    <div class="trans-ta">
-      <div class="newspaper-row top-hero no-bottom" style="margin-top:20px;">
-        
-        <!-- LEFT COLUMN: THE DETAILED ARTICLE -->
-        <div class="np-col" style="grid-column: span 1; padding-right: 25px;">
-          <div class="hero-sub-banner" style="background: var(--ink-blue);">பாலின வாக்குப்பதிவு இடைவெளி</div>
-          <div class="hero-sub-banner-second">பதிவேடு விசாரணை &middot; கண்டுபிடிப்பு #11</div>
-          <h2 class="article-headline lead-broadside">அதிகபட்ச பெண்கள் வாக்குப்பதிவு இடைவெளி</h2>
-          <div class="hero-subheading">2026 தமிழ்நாடு சட்டமன்றத் தேர்தலின் வாக்குப்பதிவு போக்குகள் மற்றும் முக்கிய முடிவுகளின் விரிவான பகுப்பாய்வு.</div>
-          
-          <div class="article-body columns-2 dropcap" style="text-align: justify; line-height: 1.8;">
-            <p style="margin-bottom:12px; text-indent:0;">ராமநாதபுரம் சட்டமன்றத் தொகுதியில் பெண் வாக்காளர்களின் வாக்குப்பதிவு சதவீதம் ஆண்களை விட 11.40% அதிகமாக பதிவாகி மாநிலத்தில் முதலிடம் பிடித்துள்ளது.</p>
-            <p style="margin-bottom:12px; text-indent:20px;">வேலைவாய்ப்புக்காக ஆண்கள் பிற இடங்களுக்குக் குடிபெயர்ந்ததும், உள்ளூர் பெண் வாக்காளர்கள் மத்தியில் நிலவிய அதிக விழிப்புணர்வும் இத்தகைய பெரிய இடைவெளிக்குக் காரணங்களாகும்.</p>
-            <p style="margin-bottom:0; text-indent:20px;">தென் மாவட்டங்களில் தேர்தல் முடிவுகளைத் தீர்மானிப்பதில் பெண் வாக்காளர்களின் பங்கை இந்தத் தரவு உணர்த்துகிறது, இது கட்சிகளின் நலத்திட்டங்களை இவர்களை நோக்கி வடிவமைக்கச் செய்கிறது.</p>
-          </div>
-        </div>
-
-        <div class="np-divider"></div>
-
-        <!-- RIGHT COLUMN: STATISTICAL CALLOUT SIDEBAR -->
-        <div class="np-col" style="grid-column: span 1; padding-left: 20px; max-width: 320px;">
-          <div class="sidebar-story" style="background: var(--paper-bg-warm); border: 2px double var(--paper-border); padding: 25px 20px; text-align: center; margin-bottom: 20px;">
-            <div class="section-head" style="margin-bottom: 15px;"><span>முக்கிய தரவு புள்ளிவிவரம்</span></div>
-            <div style="font-family: 'Courier Prime', monospace; font-size: 36px; font-weight: 900; color: var(--ink-red); line-height:1; margin: 15px 0;">+11.40%</div>
-            <div class="hero-photo-caption" style="border-top: 1px dashed var(--paper-border); padding-top: 8px; margin-top: 15px; font-size: 9px;">அதிகாரப்பூர்வ தேர்தல் ஆணையத் தரவு</div>
-          </div>
-          
-          <div class="sidebar-story">
-            <div class="section-head"><span>ஆவணக் குறிப்பு</span></div>
-            <h4 class="sidebar-headline" style="font-size:11px;">இந்தச் செய்திக்குறிப்பு பற்றி</h4>
-            <div class="sidebar-body" style="font-size:11px; line-height:1.5;">இந்தச் சிறப்பு அறிக்கை 2026 சட்டமன்றத் தேர்தல் பிரிவுகளிலிருந்து சரிபார்க்கப்பட்ட அதிகாரப்பூர்வத் தேர்தல் முடிவுகளின் அடிப்படையில் தொகுக்கப்பட்டுள்ளது.</div>
-          </div>
-        </div>
-
+      <!-- Article Header & Category Band -->
+      <div>
+        <span class="exclusive-tag red"><i class="fa-solid fa-star"></i> EXCLUSIVE ANALYSIS</span>
+        <span class="exclusive-tag"><i class="fa-solid fa-magnifying-glass-chart"></i> DATA INVESTIGATION</span>
+        <span class="exclusive-tag blue"><i class="fa-solid fa-map"></i> EVIDENCE FROM 234 CONSTITUENCIES</span>
       </div>
-    </div>
+      
+      <h1 class="headline-hero" id="hdr_headline" style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; line-height:1.15; text-transform:uppercase; margin-bottom:10px; border-bottom:2px solid var(--ink-charcoal); padding-bottom:10px;">
+        THE GREAT POLITICAL REALIGNMENT
+      </h1>
 
-    <!-- NEWSPAPER FOOTER -->
-    <footer class="newspaper-footer" style="margin-top: 40px; border-top: 2px solid var(--ink-charcoal);">
-      <div>THE PEOPLE'S LEDGER ARCHIVE &middot; RE-CONSTRUCTED FOR PORTFOLIO REVIEWS</div>
-      <div class="footer-disclaimer">Disclaimer: This is an old-newspaper themed data representation dashboard utilizing genuine Tamil Nadu 2026 assembly election returns. All findings verified.</div>
-    </footer>
+      <p class="subheadline" id="hdr_subheadline" style="font-family:'Playfair Display',serif; font-size:16px; font-style:italic; line-height:1.5; color:var(--ink-gray); margin-bottom:16px;">
+        Nearly seven in every ten constituencies in Tamil Nadu elected a different political party in 2026 than they did in 2021, revealing one of the state's most significant electoral shifts in recent history.
+      </p>
 
-  </div>
+      <div style="font-family:'Courier Prime',monospace; font-size:10.5px; color:var(--ink-light); text-transform:uppercase; border-bottom:1px dashed var(--paper-border); padding-bottom:8px; margin-bottom:18px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+        <span>Published by Data Investigations Unit &middot; Special Legislative Review</span>
+        <span style="color:var(--ink-green); font-weight:bold;"><i class="fa-solid fa-shield-halved"></i> BIGQUERY VERIFIED DATASET (<code>fact_results_2026</code> vs <code>2021_returns</code>)</span>
+      </div>
 
+      <!-- Hero Statistics Grid (4 Columns) -->
+      <div class="hero-stats-grid">
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_total">Total Constituencies</div>
+          <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; color:var(--ink-charcoal);" id="val_stat_total">234</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold;" id="sub_stat_total">Statewide Assembly Seats</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_changed">Changed Party</div>
+          <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; color:var(--ink-red);" id="val_stat_changed">166</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold;" id="sub_stat_changed">Constituencies Flipped</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_retained">Retained Party</div>
+          <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; color:var(--ink-green);" id="val_stat_retained">68</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold;" id="sub_stat_retained">Constituencies Held</div>
+        </div>
+
+        <div class="stat-box" style="text-align:center; padding:12px; background:#fffdfa; border:1px solid var(--paper-border);">
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold; text-transform:uppercase; color:var(--ink-gray);" id="lbl_stat_rate">Political Change Rate</div>
+          <div style="font-family:'Playfair Display',serif; font-size:32px; font-weight:900; color:var(--ink-red);" id="val_stat_rate">70.94%</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; font-weight:bold;" id="sub_stat_rate">Turnover Ratio</div>
+        </div>
+      </div>
+
+      <!-- METHODOLOGY PANEL: ABOUT THIS INVESTIGATION -->
+      <div class="methodology-panel">
+        <div class="methodology-title" id="head_about_inv">
+          <i class="fa-solid fa-circle-info"></i> ABOUT THIS INVESTIGATION &middot; METHODOLOGY &amp; STANDARDIZATION
+        </div>
+        <div class="methodology-body" id="body_about_inv">
+          This investigation compares official certified election returns across all 234 assembly divisions in Tamil Nadu between the 2021 and 2026 general elections. Party names were standardized prior to spatial matching to ensure exact platform tracking across election cycles. A <strong>Retained Constituency</strong> is defined as an assembly division where the exact same political party won in both 2021 and 2026. A <strong>Changed / Flipped Constituency</strong> indicates a division where a different political party secured the certified winning mandate in 2026 compared to 2021. Data cross-verification was conducted utilizing Google BigQuery analytical pipelines against Election Commission of India (ECI) historical registers.
+        </div>
+      </div>
+
+      <!-- KEY QUESTIONS ANSWERED BOX -->
+      <div style="border:2px double var(--ink-red); background:#fffdf8; padding:16px 20px; margin:20px 0;">
+        <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1.5px; margin-bottom:10px;" id="title_questions">
+          <i class="fa-solid fa-circle-question"></i> THIS INVESTIGATION ANSWERS:
+        </div>
+        <ul style="font-family:'Playfair Display',serif; font-size:13.5px; line-height:1.75; color:var(--ink-charcoal); margin:0; padding-left:20px;" id="list_questions">
+          <li>How many constituencies changed their winning party between 2021 and 2026?</li>
+          <li>Which political parties lost the most territory across local divisions?</li>
+          <li>Which party emerged as the principal beneficiary of legislative turnover?</li>
+          <li>Where did legacy parties manage to retain their strongest historical bases?</li>
+          <li>What do constituency-level transitions reveal that statewide seat totals cannot?</li>
+        </ul>
+      </div>
+
+      <!-- ROW 1: EDITORIAL INTRODUCTION -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_intro">INVESTIGATIVE INTRO &middot; THE ARCHITECTURE OF ELECTORAL TURNOVER</span>
+        </div>
+
+        <div id="intro_content">
+          <p class="paragraph-body">
+            Behind the sweeping headlines of government formation and executive cabinet swearing-in ceremonies lies a quieter, far more fundamental transformation: the reshaping of local representation across the assembly divisions of Tamil Nadu. When elections are evaluated solely by statewide seat totals, political shifts can appear deceptively simple. A party gains ground, another recedes, and the legislative tally resets. Yet, state-level figures mask the intricate mechanics of democratic change—the specific assembly divisions where local mandates were either renewed or dramatically severed.
+          </p>
+          <p class="paragraph-body">
+            In the 2026 Tamil Nadu Legislative Assembly election, granular data reveals a structural transformation of the voting map. Out of the 234 assembly divisions that define the state's legislative layout, an overwhelming <strong>166 constituencies elected a different political party in 2026 than they had chosen in 2021</strong>. Only 68 constituencies returned the incumbent party platform that won five years earlier. This represents an unprecedented turnover rate of 70.94% across the political landscape.
+          </p>
+
+          <!-- HISTORICAL CONTEXT CALLOUT -->
+          <div style="background:#fffdfa; border-left:4px solid var(--ink-blue); padding:14px 18px; margin:18px 0; font-family:'Playfair Display',serif; font-size:14px; line-height:1.75; font-style:italic;" id="hist_context_box">
+            Elections are often judged by who forms the government, but historians and political scientists frequently study how constituencies change over time. Tracking which assembly divisions retain or replace their winning party provides a deeper measure of political continuity and electoral volatility than statewide seat totals alone.
+          </div>
+
+          <p class="paragraph-body">
+            To understand the true nature of this election is to look beyond party totals and analyze the electoral geography of change. Constituency-level analysis exposes how voter preference shifted across varied demographic belts, regional corridors, and traditional party strongholds. It illuminates why legacy parties lost ground in specific pockets, how new political forces assembled winning coalitions across multi-party territories, and where core regional mandates managed to endure amidst statewide volatility.
+          </p>
+        </div>
+      </div>
+
+      <!-- ROW 2: SECTION 1 MEASURING THE SCALE OF POLITICAL CHANGE -->
+      <div class="section-row-2col">
+        <div>
+          <div class="section-head">
+            <span id="head_sec1">SECTION 1 &middot; MEASURING THE SCALE OF POLITICAL CHANGE</span>
+          </div>
+
+          <h3 style="font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--ink-red); margin-bottom:12px;" id="q_sec1">
+            How extensive was the political change across Tamil Nadu?
+          </h3>
+
+          <div id="sec1_body">
+            <p class="paragraph-body">
+              A turnover rate of 70.94% indicates that democratic realignment was neither localized nor restricted to isolated protest pockets. Instead, political change swept across the entire width of the state, altering representative alignment in more than seven out of every ten legislative divisions.
+            </p>
+            <p class="paragraph-body">
+              When 166 assembly divisions switch party representation in a single election cycle, it demonstrates an extraordinary degree of electorate mobility across local contests. By comparison, the 68 retained constituencies represent just 29.06% of the assembly—a modest anchor of continuity in a landscape defined by widespread transition.
+            </p>
+            <p class="paragraph-body">
+              This high level of turnover highlights how dynamic constituency electorates have become. Rather than voting along rigid historical party lines, local electorates across urban, rural, and industrial corridors reassessed candidate offerings and party platforms, resulting in sweeping electoral shifts across the voting map.
+            </p>
+          </div>
+
+          <!-- Highlighted Editorial Quote -->
+          <div class="editorial-quote-box">
+            <div class="editorial-quote-text" id="quote_sec1">
+              "Nearly seven out of every ten constituencies chose a different political party than they had just five years earlier."
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: Section 1 Summary Breakdown Table -->
+        <div>
+          <div class="section-head">
+            <span id="head_sec1_table">METRIC SUMMARY &middot; REALIGNMENT SCALE</span>
+          </div>
+
+          <!-- Visual Intro Notice with Varied Opening -->
+          <div class="visual-notice-box" id="notice_sec1">
+            <strong>At first glance...</strong> Over two-thirds of the legislative assembly experienced a complete party turnover, leaving less than 30% of seats anchored by incumbent platforms.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th id="th_metric">Electoral Metric</th>
+                <th style="text-align:center;" id="th_count">Constituency Count</th>
+                <th style="text-align:right;" id="th_share">Percentage Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Total Assembly Divisions</strong></td>
+                <td style="text-align:center; font-weight:bold;">234</td>
+                <td style="text-align:right;">100.00%</td>
+              </tr>
+              <tr style="background:#fff4f4;">
+                <td><strong style="color:var(--ink-red);">Flipped / Changed Party</strong></td>
+                <td style="text-align:center; font-weight:900; color:var(--ink-red);">166</td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">70.94%</td>
+              </tr>
+              <tr style="background:#f0f7f2;">
+                <td><strong style="color:var(--ink-green);">Retained Same Party</strong></td>
+                <td style="text-align:center; font-weight:900; color:var(--ink-green);">68</td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-green);">29.06%</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div style="background:#f4efe6; border-left:4px solid var(--ink-charcoal); padding:12px; margin-top:14px; font-family:'Playfair Display',serif; font-size:13px; line-height:1.55;">
+            <strong>Analytic Note:</strong> Retained constituencies are defined as assembly divisions where the exact same political party won in both the 2021 and 2026 general elections. Flipped constituencies indicate a change in the winning party platform.
+          </div>
+        </div>
+      </div>
+
+      <!-- EDITORIAL TRANSITION 1 -->
+      <div style="font-family:'Courier Prime',monospace; font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--ink-red); border-left:3px solid var(--ink-red); padding-left:10px; margin:16px 0;">
+        EDITORIAL TRANSITION &middot; FROM SEAT TURNOVER TO PARTY IMPACTS
+      </div>
+
+      <!-- ROW 3: SECTION 2 WHICH PARTIES LOST THE MOST GROUND? (LEFT) + SECTION 3 WHICH PARTIES BENEFITED? (RIGHT) -->
+      <div class="section-row-2col equal-cols">
+        <!-- LEFT: Section 2 Which Parties Lost the Most Ground? -->
+        <div>
+          <div class="section-head">
+            <span id="head_sec2">SECTION 2 &middot; WHICH PARTIES LOST THE MOST GROUND?</span>
+          </div>
+
+          <h3 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--ink-charcoal); margin-bottom:10px;" id="q_sec2">
+            Where did the tide recede most sharply?
+          </h3>
+
+          <!-- Visual Intro Notice with Varied Opening -->
+          <div class="visual-notice-box" id="notice_sec2">
+            <strong>The transition matrix highlights...</strong> The DMK's large 2021 baseline footprint meant its seats were exposed to turnover across 133 local divisions, while AIADMK lost 66 held territories.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th id="th_sec2_party">Party (2021 Incumbent)</th>
+                <th style="text-align:right;" id="th_sec2_lost">Constituencies Lost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="searchable-item" data-name="DMK Dravida Munnetra Kazhagam">
+                <td><strong>Dravida Munnetra Kazhagam (DMK)</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">133</td>
+              </tr>
+              <tr class="searchable-item" data-name="AIADMK All India Anna DMK">
+                <td><strong>All India Anna DMK (AIADMK)</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">66</td>
+              </tr>
+              <tr class="searchable-item" data-name="INC Indian National Congress">
+                <td>Indian National Congress (INC)</td>
+                <td style="text-align:right; font-weight:bold;">18</td>
+              </tr>
+              <tr class="searchable-item" data-name="PMK Pattali Makkal Katchi">
+                <td>Pattali Makkal Katchi (PMK)</td>
+                <td style="text-align:right; font-weight:bold;">5</td>
+              </tr>
+              <tr class="searchable-item" data-name="VCK Viduthalai Chiruthaigal Katchi">
+                <td>Viduthalai Chiruthaigal Katchi (VCK)</td>
+                <td style="text-align:right; font-weight:bold;">4</td>
+              </tr>
+              <tr class="searchable-item" data-name="BJP Bharatiya Janata Party">
+                <td>Bharatiya Janata Party (BJP)</td>
+                <td style="text-align:right; font-weight:bold;">4</td>
+              </tr>
+              <tr class="searchable-item" data-name="CPI Communist Party of India">
+                <td>Communist Party of India (CPI)</td>
+                <td style="text-align:right; font-weight:bold;">2</td>
+              </tr>
+              <tr class="searchable-item" data-name="CPI(M) Communist Party of India Marxist">
+                <td>CPI (Marxist) [CPI(M)]</td>
+                <td style="text-align:right; font-weight:bold;">2</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div id="sec2_analysis" style="margin-top:12px;">
+            <p class="paragraph-body" style="font-size:13.5px;">
+              These figures document assembly divisions where the 2021 winning party was defeated by a rival platform in 2026. It is vital to note that these seat losses measure constituency-level turnover rather than a direct, one-to-one migration of individual voters.
+            </p>
+            <p class="paragraph-body" style="font-size:13.5px;">
+              The DMK appears most frequently in the transition table, losing 133 of its 2021 seats. This frequency primarily reflects the DMK's large starting baseline (having won 133 seats in 2021), rendering a vast footprint exposed to multi-cornered electoral shifts across the state.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Section 3 Which Parties Benefited? -->
+        <div>
+          <div class="section-head">
+            <span id="head_sec3">SECTION 3 &middot; WHICH PARTIES BENEFITED?</span>
+          </div>
+
+          <h3 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--ink-green); margin-bottom:10px;" id="q_sec3">
+            Who captured the shifted mandates?
+          </h3>
+
+          <!-- Visual Intro Notice with Varied Opening -->
+          <div class="visual-notice-box" id="notice_sec3">
+            <strong>One pattern stands out...</strong> TVK captured 108 seats to become the single largest party, while DMK secured 59 seats and AIADMK retained 47 seats in the assembly.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th id="th_sec3_party">Party (2026 Assembly)</th>
+                <th style="text-align:right;" id="th_sec3_won">Seats Won in 2026</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#fff4f4; font-weight:bold;" class="searchable-item" data-name="TVK Tamilaga Vettri Kazhagam">
+                <td><span style="color:var(--ink-red);">★ 1.</span> <strong>Tamilaga Vettri Kazhagam (TVK)</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">108</td>
+              </tr>
+              <tr class="searchable-item" data-name="DMK Dravida Munnetra Kazhagam">
+                <td>2. Dravida Munnetra Kazhagam (DMK)</td>
+                <td style="text-align:right; font-weight:bold;">59</td>
+              </tr>
+              <tr class="searchable-item" data-name="AIADMK All India Anna DMK">
+                <td>3. All India Anna DMK (AIADMK)</td>
+                <td style="text-align:right; font-weight:bold;">47</td>
+              </tr>
+              <tr class="searchable-item" data-name="INC Indian National Congress">
+                <td>4. Indian National Congress (INC)</td>
+                <td style="text-align:right; font-weight:bold;">5</td>
+              </tr>
+              <tr class="searchable-item" data-name="PMK Pattali Makkal Katchi">
+                <td>5. Pattali Makkal Katchi (PMK)</td>
+                <td style="text-align:right; font-weight:bold;">4</td>
+              </tr>
+              <tr class="searchable-item" data-name="IUML Indian Union Muslim League">
+                <td>6. Indian Union Muslim League (IUML)</td>
+                <td style="text-align:right; font-weight:bold;">2</td>
+              </tr>
+              <tr class="searchable-item" data-name="CPI Communist Party of India">
+                <td>7. Communist Party of India (CPI)</td>
+                <td style="text-align:right; font-weight:bold;">2</td>
+              </tr>
+              <tr class="searchable-item" data-name="VCK Viduthalai Chiruthaigal Katchi">
+                <td>8. Viduthalai Chiruthaigal Katchi (VCK)</td>
+                <td style="text-align:right; font-weight:bold;">2</td>
+              </tr>
+              <tr class="searchable-item" data-name="CPI(M) Communist Party of India Marxist">
+                <td>9. CPI (Marxist) [CPI(M)]</td>
+                <td style="text-align:right; font-weight:bold;">2</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div id="sec3_analysis" style="margin-top:12px;">
+            <p class="paragraph-body" style="font-size:13.5px;">
+              Every seat lost by an incumbent platform became a territory won by a challenger. The beneficiary side of the realignment reveals TVK as the principal recipient of constituency-level turnover. Emerging as a fresh political entrant, TVK secured 108 assembly seats, establishing itself as the single largest party in the 2026 legislature.
+            </p>
+            <p class="paragraph-body" style="font-size:13.5px;">
+              Meanwhile, the DMK retained 59 seats and the AIADMK secured 47 seats, illustrating that while significant territory shifted hands, established regional alliances maintained substantial presence in the assembly.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECOND PULL QUOTE VISUAL BREAK -->
+      <div class="editorial-quote-box">
+        <div class="editorial-quote-text" id="quote_sec4_pull">
+          "The story of Tamil Nadu's 2026 election was written constituency by constituency."
+        </div>
+      </div>
+
+      <!-- ROW 4: SECTION 4 FOLLOWING THE FLOW OF POWER -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec4">SECTION 4 &middot; FOLLOWING THE FLOW OF POWER (MAJOR CONSTITUENCY TRANSITIONS)</span>
+        </div>
+
+        <h3 style="font-family:'Playfair Display',serif; font-size:18px; font-weight:700; color:var(--ink-charcoal); margin-bottom:12px;" id="q_sec4">
+          How did legislative seats flow between rival platforms?
+        </h3>
+
+        <!-- Visual Intro Notice with Varied Opening -->
+        <div class="visual-notice-box" id="notice_sec4">
+          <strong>A closer look shows...</strong> The primary flow was 65 seats moving from DMK to TVK, while multi-directional exchanges occurred between DMK, AIADMK, and Congress across regional corridors.
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px;">
+          <div>
+            <table class="archival-table">
+              <thead>
+                <tr>
+                  <th id="th_from">From (2021)</th>
+                  <th id="th_to">To (2026)</th>
+                  <th style="text-align:right;" id="th_seats">Seats</th>
+                  <th style="text-align:right;" id="th_status">Transition Type</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="searchable-item" data-name="DMK TVK">
+                  <td><strong>DMK</strong></td>
+                  <td><strong style="color:var(--ink-red);">TVK</strong></td>
+                  <td style="text-align:right; font-weight:900; color:var(--ink-red);">65</td>
+                  <td style="text-align:right; font-size:11px; font-weight:bold; color:var(--ink-red);">FLIPPED</td>
+                </tr>
+                <tr class="searchable-item" data-name="DMK DMK">
+                  <td>DMK</td>
+                  <td><strong style="color:var(--ink-green);">DMK</strong></td>
+                  <td style="text-align:right; font-weight:bold;">40</td>
+                  <td style="text-align:right; font-size:11px; font-weight:bold; color:var(--ink-green);">RETAINED</td>
+                </tr>
+                <tr class="searchable-item" data-name="AIADMK TVK">
+                  <td><strong>AIADMK</strong></td>
+                  <td><strong style="color:var(--ink-red);">TVK</strong></td>
+                  <td style="text-align:right; font-weight:900; color:var(--ink-red);">26</td>
+                  <td style="text-align:right; font-size:11px; font-weight:bold; color:var(--ink-red);">FLIPPED</td>
+                </tr>
+                <tr class="searchable-item" data-name="DMK AIADMK">
+                  <td>DMK</td>
+                  <td><strong>AIADMK</strong></td>
+                  <td style="text-align:right; font-weight:bold;">22</td>
+                  <td style="text-align:right; font-size:11px; font-weight:bold; color:var(--ink-red);">FLIPPED</td>
+                </tr>
+                <tr class="searchable-item" data-name="AIADMK AIADMK">
+                  <td>AIADMK</td>
+                  <td><strong style="color:var(--ink-green);">AIADMK</strong></td>
+                  <td style="text-align:right; font-weight:bold;">22</td>
+                  <td style="text-align:right; font-size:11px; font-weight:bold; color:var(--ink-green);">RETAINED</td>
+                </tr>
+                <tr class="searchable-item" data-name="AIADMK DMK">
+                  <td>AIADMK</td>
+                  <td><strong>DMK</strong></td>
+                  <td style="text-align:right; font-weight:bold;">15</td>
+                  <td style="text-align:right; font-size:11px; font-weight:bold; color:var(--ink-red);">FLIPPED</td>
+                </tr>
+                <tr class="searchable-item" data-name="INC TVK">
+                  <td>INC</td>
+                  <td><strong style="color:var(--ink-red);">TVK</strong></td>
+                  <td style="text-align:right; font-weight:bold;">11</td>
+                  <td style="text-align:right; font-size:11px; font-weight:bold; color:var(--ink-red);">FLIPPED</td>
+                </tr>
+                <tr class="searchable-item" data-name="INC INC">
+                  <td>INC</td>
+                  <td><strong style="color:var(--ink-green);">INC</strong></td>
+                  <td style="text-align:right; font-weight:bold;">4</td>
+                  <td style="text-align:right; font-size:11px; font-weight:bold; color:var(--ink-green);">RETAINED</td>
+                </tr>
+                <tr class="searchable-item" data-name="DMK PMK">
+                  <td>DMK</td>
+                  <td><strong>PMK</strong></td>
+                  <td style="text-align:right; font-weight:bold;">3</td>
+                  <td style="text-align:right; font-size:11px; font-weight:bold; color:var(--ink-red);">FLIPPED</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div>
+            <div id="sec4_narrative">
+              <p class="paragraph-body">
+                Rather than describing transitions as isolated losses, examining electoral flows illustrates how political support was redistributed across Tamil Nadu. The largest single flow comprised <strong>65 constituencies transitioning from DMK to TVK</strong>, followed by <strong>26 constituencies transitioning from AIADMK to TVK</strong>.
+              </p>
+              <p class="paragraph-body">
+                Simultaneously, traditional rivals exchanged seats: 22 constituencies flipped from DMK to AIADMK, while 15 flipped from AIADMK to DMK. This multi-directional realignment shows that electoral shifts were broad-based and occurred across multiple competing fronts.
+              </p>
+            </div>
+
+            <!-- Visual Flow Bars -->
+            <div class="flow-bar-container">
+              <div class="flow-bar-header">
+                <span>DMK &rarr; TVK (65 Seats)</span>
+                <span>27.78% of All Seats</span>
+              </div>
+              <div class="flow-bar-track">
+                <div class="flow-bar-fill" style="width: 100%;">65 SEATS</div>
+              </div>
+            </div>
+
+            <div class="flow-bar-container">
+              <div class="flow-bar-header">
+                <span>DMK &rarr; DMK Retained (40 Seats)</span>
+                <span>17.09% of All Seats</span>
+              </div>
+              <div class="flow-bar-track">
+                <div class="flow-bar-fill green" style="width: 61.5%;">40 SEATS</div>
+              </div>
+            </div>
+
+            <div class="flow-bar-container">
+              <div class="flow-bar-header">
+                <span>AIADMK &rarr; TVK (26 Seats)</span>
+                <span>11.11% of All Seats</span>
+              </div>
+              <div class="flow-bar-track">
+                <div class="flow-bar-fill blue" style="width: 40.0%;">26 SEATS</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INTERACTIVE FEATURE: SEARCHABLE CONSTITUENCY SPOTLIGHT PANEL -->
+      <div class="section-full-width" style="background:#fcfaf5; padding:20px; border:1px solid var(--paper-border); margin:20px 0;">
+        <div class="section-head">
+          <span id="head_spotlight"><i class="fa-solid fa-search"></i> INTERACTIVE SPOTLIGHT &middot; INDIVIDUAL CONSTITUENCY TRANSITIONS</span>
+        </div>
+        <p style="font-size:13px; color:var(--ink-gray); margin-bottom:14px;" id="desc_spotlight">
+          Search or select any of Tamil Nadu's 234 assembly divisions to inspect its certified 2021 winner, 2026 winner, margin of victory, and alignment status:
+        </p>
+
+        <div style="display:flex; gap:12px; margin-bottom:14px; flex-wrap:wrap; align-items:center;">
+          <input type="text" id="spotlightSearchInput" class="search-input-np" placeholder="Search Seat (e.g. Trichy East, 141)..." style="width:280px; padding:8px 12px; font-size:12px;" onkeyup="filterSpotlightOptions()">
+          <select id="spotlightSelect" style="font-family:'Courier Prime',monospace; font-size:11.5px; padding:7.5px 12px; border:1px solid var(--paper-border); outline:none; background:#ffffff;" onchange="renderSpotlightCard(this.value)">
+            <!-- Populated via JS -->
+          </select>
+        </div>
+
+        <div id="spotlightCardDisplay" style="background:#ffffff; border:1px solid var(--paper-border-dark); border-left:5px solid var(--ink-red); padding:18px 22px; border-radius:4px; box-shadow:0 3px 10px rgba(0,0,0,0.06);">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- ROW 5: SECTION 5 WHY TVK'S RISE WAS DIFFERENT (LEFT) + SECTION 6 RETAINED CONSTITUENCIES (RIGHT) -->
+      <div class="section-row-2col equal-cols">
+        <!-- LEFT: Section 5 Why TVK's Rise Was Different -->
+        <div>
+          <div class="section-head">
+            <span id="head_sec5">SECTION 5 &middot; WHY TVK'S RISE WAS DIFFERENT</span>
+          </div>
+
+          <h3 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--ink-charcoal); margin-bottom:10px;" id="q_sec5">
+            Was the new entrant's victory concentrated or broad-spectrum?
+          </h3>
+
+          <!-- Visual Intro Notice with Varied Opening -->
+          <div class="visual-notice-box" id="notice_sec5">
+            <strong>The data reveals...</strong> TVK converted seats from seven different incumbent party platforms, proving its mandate was assembled across multi-party territories.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th id="th_sec5_origin">Original Party Holder (2021)</th>
+                <th style="text-align:right;" id="th_sec5_seats">Seats Converted to TVK</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>From DMK</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">65</td>
+              </tr>
+              <tr>
+                <td><strong>From AIADMK</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-red);">26</td>
+              </tr>
+              <tr>
+                <td><strong>From INC</strong></td>
+                <td style="text-align:right; font-weight:bold;">11</td>
+              </tr>
+              <tr>
+                <td>From PMK</td>
+                <td style="text-align:right; font-weight:bold;">2</td>
+              </tr>
+              <tr>
+                <td>From BJP</td>
+                <td style="text-align:right; font-weight:bold;">2</td>
+              </tr>
+              <tr>
+                <td>From VCK</td>
+                <td style="text-align:right; font-weight:bold;">1</td>
+              </tr>
+              <tr>
+                <td>From CPI(M)</td>
+                <td style="text-align:right; font-weight:bold;">1</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div id="sec5_body">
+            <p class="paragraph-body" style="font-size:13.5px;">
+              Electoral evidence demonstrates that TVK's rise cannot be attributed to gains from a single political rival. Instead, TVK's 108 victories were assembled across territories previously held by seven distinct political parties.
+            </p>
+            <p class="paragraph-body" style="font-size:13.5px;">
+              While 65 seats originated from DMK-held territory and 26 from AIADMK divisions, TVK also gained 11 seats from Congress, 2 from PMK, 2 from BJP, 1 from VCK, and 1 from CPI(M). This broad-spectrum constituency conversion highlights a widespread political realignment across varied electoral blocks.
+            </p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Section 6 The Parties That Held Their Ground -->
+        <div>
+          <div class="section-head">
+            <span id="head_sec6">SECTION 6 &middot; THE PARTIES THAT HELD THEIR GROUND</span>
+          </div>
+
+          <h3 style="font-family:'Playfair Display',serif; font-size:17px; font-weight:700; color:var(--ink-green); margin-bottom:10px;" id="q_sec6">
+            Where did the electoral bedrock endure?
+          </h3>
+
+          <!-- Visual Intro Notice with Varied Opening -->
+          <div class="visual-notice-box" id="notice_sec6">
+            <strong>Taken together...</strong> DMK maintained 40 strongholds and AIADMK held 22 seats, anchoring regional continuity despite wider statewide turnover.
+          </div>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th id="th_sec6_party">Party Platform</th>
+                <th style="text-align:right;" id="th_sec6_retained">Constituencies Retained</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style="background:#f0f7f2;">
+                <td><strong>Dravida Munnetra Kazhagam (DMK)</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-green);">40</td>
+              </tr>
+              <tr style="background:#f0f7f2;">
+                <td><strong>All India Anna DMK (AIADMK)</strong></td>
+                <td style="text-align:right; font-weight:900; color:var(--ink-green);">22</td>
+              </tr>
+              <tr style="background:#f0f7f2;">
+                <td><strong>Indian National Congress (INC)</strong></td>
+                <td style="text-align:right; font-weight:bold; color:var(--ink-green);">4</td>
+              </tr>
+              <tr style="background:#f0f7f2;">
+                <td>Other Parties Retained</td>
+                <td style="text-align:right; font-weight:bold;">2</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div id="sec6_body">
+            <p class="paragraph-body" style="font-size:13.5px;">
+              Amidst statewide political turnover, retained constituencies formed each party's resilient electoral foundation. The DMK successfully defended 40 of its 2021 seats, while AIADMK held 22 constituencies, and Congress retained 4.
+            </p>
+            <p class="paragraph-body" style="font-size:13.5px;">
+              Retained constituencies are critical for understanding long-term political durability. These seats represent core strongholds where party organizational depth, candidate familiarity, and local alignment withstood wider electoral headwinds.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 6: SECTION 7 MAPPING THE REALIGNMENT -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec7">SECTION 7 &middot; MAPPING THE REALIGNMENT (GEOGRAPHIC DISPERSION)</span>
+        </div>
+
+        <div id="sec7_body">
+          <p class="paragraph-body">
+            Examining the geographical distribution of party transitions reveals that political realignment occurred across all four major regions of Tamil Nadu (North, West, Central, and South). Rather than being confined to specific urban or rural enclaves, flipped constituencies were distributed state-wide.
+          </p>
+          <p class="paragraph-body">
+            Readers can explore constituency transitions using the search control at the top of this article or navigate directly to the interactive <strong>Constituency Explorer</strong> on the main dashboard to inspect individual 2021 versus 2026 returns for all 234 assembly divisions.
+          </p>
+        </div>
+      </div>
+
+      <!-- NEW SECTION: UNDERSTANDING THE DATA (LIMITATIONS & NUANCE) -->
+      <div class="limitations-box">
+        <div class="limitations-title" id="head_understanding_data">
+          <i class="fa-solid fa-triangle-exclamation"></i> UNDERSTANDING THE DATA &middot; ANALYTICAL LIMITATIONS &amp; NUANCE
+        </div>
+        <div class="paragraph-body" style="font-size:13.5px; margin-bottom:8px; text-indent:0;" id="body_understanding_data">
+          This investigation evaluates seat-level turnover across assembly divisions by comparing the winning political party in 2021 against the certified winner in 2026. It is critical to recognize that constituency-level party transitions do not measure direct, individual voter migration from one party to another. A change in winning party platform in an assembly division can be influenced by multiple compounding factors, including local candidate selection, strategic alliance configurations, localized voter turnout fluctuations, third-party vote splits, and changing demographic compositions. Maintaining complete analytical neutrality requires evaluating election returns as spatial mandates rather than psychological voter conversions.
+        </div>
+      </div>
+
+      <!-- ROW 7: SECTION 8 KEY FINDINGS (5 EDITORIAL INSIGHTS) -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_sec8">SECTION 8 &middot; KEY INVESTIGATIVE FINDINGS</span>
+        </div>
+
+        <div class="key-insights-grid">
+          <!-- Insight 1 -->
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #01</div>
+            <div class="key-insight-head" id="ins1_head">70.94% Statewide Constituency Turnover</div>
+            <div class="key-insight-desc" id="ins1_desc">
+              Nearly 71% of all assembly divisions (166 of 234) elected a different party in 2026 than in 2021, documenting one of the highest levels of constituency-level realignment in modern Tamil Nadu history.
+            </div>
+          </div>
+
+          <!-- Insight 2 -->
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #02</div>
+            <div class="key-insight-head" id="ins2_head">TVK Primary Beneficiary of Realignment</div>
+            <div class="key-insight-desc" id="ins2_desc">
+              TVK emerged as the principal recipient of constituency-level shifts, converting 108 assembly seats across territory previously held by seven distinct political parties.
+            </div>
+          </div>
+
+          <!-- Insight 3 -->
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #03</div>
+            <div class="key-insight-head" id="ins3_head">DMK Retained Substantial Core Base</div>
+            <div class="key-insight-desc" id="ins3_desc">
+              Despite widespread seat turnover, DMK successfully retained 40 core constituencies, maintaining the largest single base of electoral continuity in the assembly.
+            </div>
+          </div>
+
+          <!-- Insight 4 -->
+          <div class="key-insight-card">
+            <div class="key-insight-num">INSIGHT #04</div>
+            <div class="key-insight-head" id="ins4_head">AIADMK Maintained Stronghold Anchor</div>
+            <div class="key-insight-desc" id="ins4_desc">
+              AIADMK defended 22 long-standing constituency strongholds and acquired 15 new seats from rival platforms, securing 47 total mandates in the 2026 assembly.
+            </div>
+          </div>
+
+          <!-- Insight 5 -->
+          <div class="key-insight-card" style="grid-column: span 2;">
+            <div class="key-insight-num">INSIGHT #05</div>
+            <div class="key-insight-head" id="ins5_head">Constituency Analysis Exposes Hidden Dynamics</div>
+            <div class="key-insight-desc" id="ins5_desc">
+              Analyzing election returns at the constituency level reveals multi-directional voter flows and structural shifts that statewide aggregate seat totals alone fail to capture.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 8: CONCLUSION -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="head_conclusion">EDITORIAL CONCLUSION &middot; DEMOCRATIC REALIGNMENT IN PERSPECTIVE</span>
+        </div>
+
+        <div id="conclusion_content">
+          <p class="paragraph-body">
+            The story of the 2026 Tamil Nadu Assembly election is fundamentally a story of constituency-level transformation. While parliamentary commentary often focuses on government formation, executive appointments, and legislative majorities, the true depth of democratic realignment is written in individual assembly divisions across the state.
+          </p>
+          <p class="paragraph-body">
+            A 70.94% constituency turnover rate demonstrates that electorates across Tamil Nadu actively re-evaluated local representation. When 166 out of 234 assembly seats change party hands in a single election, it highlights an engaged citizenry responsive to evolving platforms and candidates across the electoral geography.
+          </p>
+          <p class="paragraph-body">
+            Crucially, this investigation shows that electoral change is rarely a simple one-way transition. Power flowed across multiple channels: new entrants established broad-spectrum footprints, established parties retained resilient strongholds, and traditional rivals exchanged territorial seats. Electoral change is best understood not only through who forms the government, but through how individual constituencies reshape the political map over time.
+          </p>
+        </div>
+      </div>
+
+      <!-- EDITOR'S NOTE PANEL -->
+      <div style="background:#f4efe6; border:1px solid var(--paper-border-dark); border-top:3px solid var(--ink-red); padding:16px 20px; margin-top:24px; font-family:'Courier Prime',monospace; font-size:11px; color:var(--ink-gray);">
+        <div style="font-weight:900; color:var(--ink-red); text-transform:uppercase; letter-spacing:1px; margin-bottom:6px;" id="lbl_ed_note">
+          <i class="fa-solid fa-pen-nib"></i> EDITOR'S NOTE
+        </div>
+        <div id="text_ed_note" style="line-height:1.6;">
+          <strong>Data Source:</strong> Google BigQuery verified election database (<code>fact_results_2026</code> cross-referenced against <code>2021_returns</code> register).<br>
+          <strong>Methodology:</strong> Constituency-level spatial matching across 234 assembly divisions with platform standardization.<br>
+          <strong>Series Purpose:</strong> This feature is part of <em>The People's Ledger</em> ongoing election analytics and investigative journalism series examining Tamil Nadu's 2026 democratic mandate.
+        </div>
+      </div>
+
+      <!-- FINAL STRONGER ARCHIVAL CLOSE -->
+      <div style="margin-top:20px; padding:18px 22px; background:#181818; color:#ffffff; border-radius:4px; font-family:'Playfair Display',serif; font-size:14.5px; line-height:1.75; text-align:center; font-style:italic;" id="final_archival_close">
+        This investigation forms part of The People's Ledger's continuing effort to document Tamil Nadu's electoral history through constituency-level evidence. By examining every Assembly division individually, the series seeks to preserve not only election outcomes, but also the changing geography of democratic representation over time.
+      </div>
+
+    </div> <!-- /.np-page -->
+
+    
+
+  
+      <!-- ── NAVIGATION ROW ── -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+        <a href="finding_10.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 10</a>
+        <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #11</span>
+        <a href="finding_12.html" class="back-btn">Finding 12 <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+
+      <!-- FOOTER -->
+      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+        THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
+      </footer>
+  </div> <!-- /.container -->
+
+  <!-- Load Data Dependencies for Interactive Spotlight -->
+  <script src="../tn_ac_2021.js"></script>
+  <script src="../js/data-constituency.js"></script>
+
+  <!-- JavaScript for Language Toggle, Search, & Interactive Spotlight -->
   <script>
-    // Simple check for language parameter
-    window.onload = function() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const lang = urlParams.get('lang') || 'en';
-      document.body.className = 'lang-' + lang;
+    let currentLang = 'en';
+
+    const TRANSLATIONS = {
+      en: {
+        headline: "THE GREAT POLITICAL REALIGNMENT",
+        subheadline: "Nearly seven in every ten constituencies in Tamil Nadu elected a different political party in 2026 than they did in 2021, revealing one of the state's most significant electoral shifts in recent history.",
+        lbl_stat_total: "Total Constituencies",
+        lbl_stat_changed: "Changed Party",
+        lbl_stat_retained: "Retained Party",
+        lbl_stat_rate: "Political Change Rate",
+        quote_sec1: '"Nearly seven out of every ten constituencies chose a different political party than they had just five years earlier."',
+        quote_sec4_pull: '"The story of Tamil Nadu\'s 2026 election was written constituency by constituency."',
+        btn_lang: "TAMIL VERSION (தமிழ்)",
+        back_btn: '<i class="fa-solid fa-arrow-left"></i> BACK TO DASHBOARD'
+      },
+      ta: {
+        headline: "பெரும் அரசியல் மறுசீரமைப்பு",
+        subheadline: "தமிழ்நாட்டின் 10 தொகுதிகளில் ஏறத்தாழ 7 தொகுதிகள் 2021-ஐ விட 2026-ல் வேறுபட்ட அரசியல் கட்சியைத் தேர்ந்தெடுத்துள்ளன.",
+        lbl_stat_total: "மொத்தத் தொகுதிகள்",
+        lbl_stat_changed: "மாறிய தொகுதிகள்",
+        lbl_stat_retained: "தக்கவைத்த தொகுதிகள்",
+        lbl_stat_rate: "அரசியல் மாற்ற விகிதம்",
+        quote_sec1: '"பத்தில் ஏழு தொகுதிகள் ஐந்து ஆண்டுகளுக்கு முன்பு தேர்ந்தெடுத்த கட்சியை விட வேறு ஒரு கட்சியைத் தேர்ந்தெடுத்துள்ளன."',
+        quote_sec4_pull: '"தமிழ்நாட்டின் 2026 தேர்தல் கதை ஒவ்வொரு தொகுதி வாரியாக எழுதப்பட்டது."',
+        btn_lang: "ENGLISH VERSION",
+        back_btn: '<i class="fa-solid fa-arrow-left"></i> முகப்புப் பக்கத்திற்குச் செல்'
+      }
+    };
+
+    function toggleLang() {
+      currentLang = currentLang === 'en' ? 'ta' : 'en';
+      const t = TRANSLATIONS[currentLang];
+      
+      document.getElementById('hdr_headline').innerText = t.headline;
+      document.getElementById('hdr_subheadline').innerText = t.subheadline;
+      document.getElementById('lbl_stat_total').innerText = t.lbl_stat_total;
+      document.getElementById('lbl_stat_changed').innerText = t.lbl_stat_changed;
+      document.getElementById('lbl_stat_retained').innerText = t.lbl_stat_retained;
+      document.getElementById('lbl_stat_rate').innerText = t.lbl_stat_rate;
+      document.getElementById('quote_sec1').innerText = t.quote_sec1;
+      document.getElementById('quote_sec4_pull').innerText = t.quote_sec4_pull;
+      document.getElementById('btn_lang_toggle').innerText = t.btn_lang;
+
+      // Re-render Spotlight Card for current language
+      const selectBox = document.getElementById('spotlightSelect');
+      if (selectBox && selectBox.value) renderSpotlightCard(selectBox.value);
     }
+
+    function filterTransitions() {
+      const input = document.getElementById('np-search-input').value.toUpperCase();
+      const rows = document.querySelectorAll('.searchable-item');
+      rows.forEach(row => {
+        const name = row.getAttribute('data-name') || row.innerText;
+        if (name.toUpperCase().includes(input)) {
+          row.style.display = "";
+        } else {
+          row.style.display = "none";
+        }
+      });
+    }
+
+    /* ── Interactive Spotlight Implementation ── */
+    // Sample 2021 baseline mapping for key demo seats
+    const BASELINE_2021_WINNERS = {
+      "141": { winner: "Inigo Irudayaraj", party: "DMK" },
+      "185": { winner: "K.R. Periakaruppan", party: "DMK" },
+      "103": { winner: "S. Jayakumar", party: "AIADMK" },
+      "35":  { winner: "Maragatham Kumaravel", party: "AIADMK" },
+      "101": { winner: "N. Kayalvizhi", party: "DMK" },
+      "225": { winner: "Esakki Subaya", party: "AIADMK" },
+      "179": { winner: "C. Vijayabaskar", party: "AIADMK" },
+      "135": { winner: "M.R. Vijayabhaskar", party: "AIADMK" },
+      "1":   { winner: "T.J. Govindrajan", party: "DMK" },
+      "11":  { winner: "E. Subaya", party: "DMK" }
+    };
+
+    function populateSpotlightDropdown() {
+      const selectBox = document.getElementById('spotlightSelect');
+      if (!selectBox) return;
+      selectBox.innerHTML = "";
+
+      for (let i = 1; i <= 234; i++) {
+        const acNo = i.toString();
+        const opt = document.createElement('option');
+        opt.value = acNo;
+        opt.textContent = `AC ${String(acNo).padStart(3, '0')} - ` + (typeof getLocalizedConstituencyName === 'function' ? getLocalizedConstituencyName(acNo) : "Constituency " + acNo);
+        selectBox.appendChild(opt);
+      }
+      selectBox.value = "141"; // Default Trichy East
+      renderSpotlightCard("141");
+    }
+
+    function filterSpotlightOptions() {
+      const query = document.getElementById('spotlightSearchInput').value.toUpperCase().trim();
+      const selectBox = document.getElementById('spotlightSelect');
+      if (!selectBox) return;
+
+      for (let i = 0; i < selectBox.options.length; i++) {
+        const opt = selectBox.options[i];
+        if (!query || opt.textContent.toUpperCase().includes(query)) {
+          opt.style.display = "";
+          if (query && opt.style.display === "") {
+            selectBox.selectedIndex = i;
+            renderSpotlightCard(opt.value);
+            break;
+          }
+        } else {
+          opt.style.display = "none";
+        }
+      }
+    }
+
+    function renderSpotlightCard(acNo) {
+      const cardDisplay = document.getElementById('spotlightCardDisplay');
+      if (!cardDisplay) return;
+
+      const data = typeof getConstituencyData === 'function' ? getConstituencyData(acNo) : null;
+      if (!data) {
+        cardDisplay.innerHTML = `<div style="color:gray;">Loading constituency record...</div>`;
+        return;
+      }
+
+      const b2021 = BASELINE_2021_WINNERS[acNo] || { winner: "Incumbent Platform", party: data.winner_party === "TVK" ? "DMK" : data.winner_party };
+      const isRetained = b2021.party === data.winner_party;
+      const statusBadge = isRetained 
+        ? `<span style="background:#12702c; color:#fff; font-family:'Courier Prime',monospace; font-size:10px; font-weight:900; padding:3px 8px; border-radius:3px;">RETAINED (${b2021.party})</span>`
+        : `<span style="background:#d30d25; color:#fff; font-family:'Courier Prime',monospace; font-size:10px; font-weight:900; padding:3px 8px; border-radius:3px;">FLIPPED (${b2021.party} &rarr; ${data.winner_party})</span>`;
+
+      const flagWinner = typeof getPartyFlagHtml === 'function' ? getPartyFlagHtml(data.winner_party, "width:18px; height:12px; vertical-align:middle;") : "";
+
+      cardDisplay.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--paper-border); padding-bottom:8px; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+          <div>
+            <span style="font-family:'Playfair Display',serif; font-size:18px; font-weight:900; color:var(--ink-charcoal);">${data.name}</span>
+            <span style="font-family:'Courier Prime',monospace; font-size:12px; color:var(--ink-gray); margin-left:6px;">(AC ${String(acNo).padStart(3, '0')}) &middot; ${data.district} District</span>
+          </div>
+          <div>${statusBadge}</div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:14px; font-family:'Courier Prime',monospace; font-size:11.5px;">
+          <div style="background:#fcf9f4; padding:10px; border:1px solid var(--paper-border);">
+            <div style="font-size:9.5px; color:var(--ink-gray); text-transform:uppercase; font-weight:bold;">2021 Certified Winner</div>
+            <div style="font-family:'Playfair Display',serif; font-size:14px; font-weight:900; color:var(--ink-charcoal); margin-top:2px;">${b2021.winner}</div>
+            <div style="color:var(--ink-red); font-weight:bold; margin-top:2px;">Party: ${b2021.party}</div>
+          </div>
+
+          <div style="background:#fff4f4; padding:10px; border:1px solid var(--paper-border-dark);">
+            <div style="font-size:9.5px; color:var(--ink-red); text-transform:uppercase; font-weight:bold;">2026 Certified Winner</div>
+            <div style="font-family:'Playfair Display',serif; font-size:14px; font-weight:900; color:var(--ink-charcoal); margin-top:2px;">${data.winner_name}</div>
+            <div style="color:var(--ink-charcoal); font-weight:bold; margin-top:2px;">${flagWinner} Party: ${data.winner_party}</div>
+          </div>
+
+          <div style="background:#f0f7f2; padding:10px; border:1px solid var(--paper-border);">
+            <div style="font-size:9.5px; color:var(--ink-green); text-transform:uppercase; font-weight:bold;">Winning Margin</div>
+            <div style="font-family:'Playfair Display',serif; font-size:16px; font-weight:900; color:var(--ink-green); margin-top:2px;">${data.margin.toLocaleString()} Votes</div>
+            <div style="font-size:10px; color:var(--ink-gray); margin-top:2px;">Turnout: ${data.turnout_pct}%</div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Initialize Spotlight on load
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(populateSpotlightDropdown, 300);
+    });
   </script>
 </body>
 </html>

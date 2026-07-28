@@ -7,3 +7,5 @@ step_29_view.txt
 .agents
 .gemini
 *.log
+scratch/
+

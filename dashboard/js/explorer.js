@@ -8,38 +8,150 @@ let mapMarker   = null;
 let geoJsonLayer = null;
 const geoJsonFeaturesMap = {};
 
+function getLocalizedConstituencyName(acNo) {
+  const keyC = KEY_CONSTITUENCIES[acNo];
+  if (currentLang === 'ta') {
+    if (keyC) return keyC.name.ta;
+    const nameC = CONSTITUENCY_NAMES.find(c => c.ac_no.toString() === acNo);
+    if (nameC) return nameC.name.ta;
+    
+    const bq = BQ_CONSTITUENCY_DATA[acNo];
+    if (bq && bq.ac_name) {
+      return transliterateToTamil(bq.ac_name, acNo);
+    }
+    return "தொகுதி " + acNo;
+  } else {
+    let rawName = "";
+    if (keyC) rawName = keyC.name.en;
+    else {
+      const nameC = CONSTITUENCY_NAMES.find(c => c.ac_no.toString() === acNo);
+      if (nameC) rawName = nameC.name.en;
+      else {
+        const bq = BQ_CONSTITUENCY_DATA[acNo];
+        if (bq && bq.ac_name) rawName = bq.ac_name;
+      }
+    }
+    if (rawName) {
+      return rawName.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+    }
+    return "Constituency " + acNo;
+  }
+}
+
+function populateDistrictDropdown() {
+  const distBox = document.getElementById('districtSelect');
+  if (!distBox) return;
+
+  const currentDist = distBox.value || "ALL";
+  distBox.innerHTML = '';
+
+  const defaultOpt = document.createElement('option');
+  defaultOpt.value = "ALL";
+  defaultOpt.textContent = currentLang === 'ta' ? "அனைத்து 38 மாவட்டங்கள்" : "All 38 Districts";
+  distBox.appendChild(defaultOpt);
+
+  const districts = new Set();
+  for (let i = 1; i <= 234; i++) {
+    const acNo = i.toString();
+    const bq = typeof BQ_CONSTITUENCY_DATA !== 'undefined' ? BQ_CONSTITUENCY_DATA[acNo] : null;
+    if (bq && bq.district) {
+      districts.add(bq.district);
+    }
+  }
+
+  const sortedDistricts = Array.from(districts).sort();
+  sortedDistricts.forEach(d => {
+    const opt = document.createElement('option');
+    opt.value = d;
+    opt.textContent = d;
+    distBox.appendChild(opt);
+  });
+
+  if (currentDist && distBox.querySelector(`option[value="${currentDist}"]`)) {
+    distBox.value = currentDist;
+  }
+}
+
+function filterConstituenciesByDistrict(selectedDistrict) {
+  const selectBox = document.getElementById('constituencySelect');
+  if (!selectBox) return;
+
+  const currentVal = selectBox.value;
+  selectBox.innerHTML = "";
+
+  for (let i = 1; i <= 234; i++) {
+    const acNo = i.toString();
+    const bq = typeof BQ_CONSTITUENCY_DATA !== 'undefined' ? BQ_CONSTITUENCY_DATA[acNo] : null;
+    const distName = bq ? bq.district : "";
+
+    if (!selectedDistrict || selectedDistrict === "ALL" || distName === selectedDistrict) {
+      const opt = document.createElement('option');
+      opt.value = acNo;
+      opt.textContent = getLocalizedConstituencyName(acNo) + ((!selectedDistrict || selectedDistrict === "ALL") && distName ? ` (${distName})` : "");
+      selectBox.appendChild(opt);
+    }
+  }
+
+  if (currentVal && selectBox.querySelector(`option[value="${currentVal}"]`)) {
+    selectBox.value = currentVal;
+  } else if (selectBox.options.length > 0) {
+    selectBox.value = selectBox.options[0].value;
+  }
+
+  if (selectBox.value) {
+    loadConstituencyDetails(selectBox.value);
+  }
+}
+
+function populateConstituencyDropdown() {
+  populateDistrictDropdown();
+  const distBox = document.getElementById('districtSelect');
+  const selectedDistrict = distBox ? distBox.value : "ALL";
+  filterConstituenciesByDistrict(selectedDistrict);
+}
+
 function filterConstituencySearch(val) {
   const box = document.getElementById('searchSuggestions');
   box.innerHTML = "";
   if (!val || val.length < 2) { box.style.display = "none"; return; }
 
   const cleanedVal = val.toUpperCase().trim();
-  const matches    = CONSTITUENCY_NAMES.filter(c => c.name.en.includes(cleanedVal) || c.name.ta.includes(cleanedVal));
-  const keyMatches = Object.values(KEY_CONSTITUENCIES).filter(c =>
-    c.name.en.toUpperCase().includes(cleanedVal) || c.name.ta.includes(cleanedVal)
-  );
-  const combined = [...keyMatches, ...matches];
+  const matches = [];
 
-  if (combined.length === 0) {
+  for (let i = 1; i <= 234; i++) {
+    const acNo = i.toString();
+    const localizedName = getLocalizedConstituencyName(acNo).toUpperCase();
+    if (localizedName.includes(cleanedVal) || acNo === cleanedVal) {
+      matches.push({
+        ac_no: acNo,
+        name: getLocalizedConstituencyName(acNo)
+      });
+    }
+  }
+
+  if (matches.length === 0) {
     box.innerHTML = `<div style="padding:8px;color:gray;font-style:italic">No results</div>`;
     box.style.display = "block";
     return;
   }
 
-  combined.slice(0, 8).forEach(c => {
+  matches.slice(0, 8).forEach(c => {
     const d = document.createElement('div');
     d.style.cssText = "padding:8px;cursor:pointer;border-bottom:1px solid var(--paper-bg-darker)";
-    const displayName = currentLang === 'en' ? c.name.en : c.name.ta;
-    const displayReg  = currentLang === 'en' ? (c.region.en || c.region) : (c.region.ta || c.region);
-    d.innerHTML = `<strong>${displayName}</strong> (AC ${c.ac_no}) — <span style="font-size:10px">${displayReg}</span>`;
+    
+    // Find district if available
+    const bq = BQ_CONSTITUENCY_DATA[c.ac_no];
+    const distName = bq ? bq.district : "";
+    
+    d.innerHTML = `<strong>${c.name}</strong> (AC ${c.ac_no})${distName ? ' — <span style="font-size:10px">' + distName + '</span>' : ''}`;
     d.onmouseover = () => d.style.background = "var(--paper-bg-darker)";
     d.onmouseout  = () => d.style.background = "none";
     d.onclick = () => {
       box.style.display = "none";
-      document.getElementById('constituencySearch').value = displayName;
+      document.getElementById('constituencySearch').value = c.name;
       const selectBox = document.getElementById('constituencySelect');
-      if (KEY_CONSTITUENCIES[c.ac_no]) selectBox.value = c.ac_no;
-      loadConstituencyDetails(c.ac_no.toString());
+      if (selectBox) selectBox.value = c.ac_no;
+      loadConstituencyDetails(c.ac_no);
     };
     box.appendChild(d);
   });
@@ -124,7 +236,7 @@ function loadConstituencyDetails(id) {
         <div class="section-head"><span>${L.winner}</span></div>
         <div style="font-size:18px;font-weight:900;color:var(--ink-red)">
           ${data.winner_name}
-          <span class="party-tag" style="background:${winnerColor}">${data.winner_party}</span>
+          <span class="party-tag" style="background:${winnerColor};display:inline-flex;align-items:center;">${typeof getPartyFlagHtml === 'function' ? getPartyFlagHtml(data.winner_party, "width:14px;height:9px;object-fit:cover;margin-right:4px;vertical-align:middle;") : ""}${data.winner_party}</span>
           ${governmentBadge}
         </div>
         <div style="font-size:12px;margin-top:5px;font-family:'Courier Prime',monospace">
@@ -135,7 +247,7 @@ function loadConstituencyDetails(id) {
         <div class="section-head"><span>${L.runner}</span></div>
         <div style="font-size:16px;font-weight:700">
           ${data.runner_up_name}
-          <span class="party-tag" style="background:${runnerColor}">${data.runner_up_party}</span>
+          <span class="party-tag" style="background:${runnerColor};display:inline-flex;align-items:center;">${typeof getPartyFlagHtml === 'function' ? getPartyFlagHtml(data.runner_up_party, "width:14px;height:9px;object-fit:cover;margin-right:4px;vertical-align:middle;") : ""}${data.runner_up_party}</span>
         </div>
         <div style="font-size:12px;margin-top:5px;font-family:'Courier Prime',monospace">
           ${L.votes}: <strong>${data.runner_up_votes.toLocaleString()}</strong> (${((data.runner_up_votes/data.total_votes)*100).toFixed(2)}%)
@@ -184,10 +296,15 @@ function loadConstituencyDetails(id) {
       </tbody>
     </table>`;
 
+  // ── Render the 4 extra panels (History, Profile, NTK, Chart) ──
+  if (typeof renderExplorerPanels === 'function') {
+    setTimeout(() => renderExplorerPanels(id, data), 50);
+  }
+
   // Leaflet map focus
   if (leafletMap) {
-    if (window.TN_GEOJSON && geoJsonFeaturesMap[id]) {
-      const layer = geoJsonFeaturesMap[id];
+    if (window.TN_GEOJSON && geoJsonFeaturesMap[parseInt(id)]) {
+      const layer = geoJsonFeaturesMap[parseInt(id)];
       leafletMap.fitBounds(layer.getBounds(), { maxZoom: 10, padding: [30, 30] });
       layer.bindPopup(`
         <div style="font-family:'Playfair Display',Georgia,serif;font-size:11px">
@@ -245,17 +362,16 @@ function initLeafletMap() {
             click: () => {
               switchTab('explorer');
               const selectBox = document.getElementById('constituencySelect');
-              let exists = false;
-              for (let i = 0; i < selectBox.options.length; i++) if (selectBox.options[i].value === acNo.toString()) { exists = true; break; }
-              if (!exists) { const opt = document.createElement('option'); opt.value = acNo.toString(); opt.textContent = cName + ` (AC ${acNo})`; selectBox.appendChild(opt); }
-              selectBox.value = acNo.toString();
-              loadConstituencyDetails(acNo.toString());
+              if (selectBox) {
+                selectBox.value = acNo.toString();
+                loadConstituencyDetails(acNo.toString());
+              }
             }
           });
         }
       }).addTo(leafletMap);
     } else {
-      L.circleMarker([9.68, 78.6], { color:'var(--ink-red)', radius:8 }).addTo(leafletMap).bindPopup("<strong>Tiruppattur</strong><br>Closest race: Won by 30 votes");
+      L.circleMarker([9.68, 78.6], { color:'var(--ink-red)', radius:8 }).addTo(leafletMap).bindPopup("<strong>Tiruppattur</strong><br>Closest race: Won by 1 vote");
       L.circleMarker([11.6, 77.8], { color:'var(--ink-green)', radius:10 }).addTo(leafletMap).bindPopup("<strong>Edappadi</strong><br>Landslide: Won by 98,110 votes");
     }
   } catch(e) { console.log("Map load failed", e); }
