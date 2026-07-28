@@ -359,28 +359,76 @@ function loadConstituencyDetails(id) {
 /* Leaflet side-panel map (explorer tab) */
 function initLeafletMap() {
   try {
-    leafletMap = L.map('leafletMap', { zoomControl: true, attributionControl: false }).setView([11.1271, 78.6569], 7);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', { maxZoom: 19 }).addTo(leafletMap);
+    const container = document.getElementById('leafletMap');
+    if (!container) return;
+
+    if (leafletMap) {
+      leafletMap.remove();
+      leafletMap = null;
+    }
+
+    leafletMap = L.map('leafletMap', {
+      zoomControl: true,
+      attributionControl: false,
+      maxBoundsViscosity: 1.0,
+      minZoom: 6,
+      maxZoom: 12
+    });
+
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
+      maxZoom: 19,
+      opacity: 0.35
+    }).addTo(leafletMap);
+
+    const tnBounds = L.latLngBounds(
+      L.latLng(7.8, 76.0),
+      L.latLng(13.6, 80.6)
+    );
+    leafletMap.fitBounds(tnBounds, { padding: [5, 5] });
+    leafletMap.setMaxBounds(tnBounds.pad(0.08));
 
     if (window.TN_GEOJSON) {
       geoJsonLayer = L.geoJSON(window.TN_GEOJSON, {
         style: function(feature) {
-          const acNo = feature.properties.AC_NO;
-          const cData = getConstituencyData(acNo.toString());
-          const pColors = { "TVK":"#d4a72c","DMK":"#a82727","AIADMK":"#277239","INC":"#2c7da0","VCK":"#6b3f87","IUML":"#2b7051" };
-          return { fillColor: (cData && pColors[cData.winner_party]) || "#706757", weight:0.6, opacity:1, color:'#1e1a15', fillOpacity:0.6 };
+          const acNoStr = (feature.properties.AC_NO || feature.properties.ac_no || "").toString();
+          const cData = getConstituencyData(acNoStr);
+          const pColors = {
+            "TVK":    "#d4a72c",
+            "DMK":    "#c0001a",
+            "AIADMK": "#277239",
+            "INC":    "#2c7da0",
+            "BJP":    "#e67e22",
+            "PMK":    "#f39c12",
+            "VCK":    "#6b3f87",
+            "IUML":   "#0d6b45",
+            "DMDK":   "#dd0000",
+            "AMMK":   "#006600",
+            "Others": "#706757"
+          };
+          return {
+            fillColor: (cData && pColors[cData.winner_party]) || "#706757",
+            fillOpacity: 0.85,
+            weight: 0.7,
+            color: '#2b2318',
+            opacity: 0.95
+          };
         },
         onEachFeature: function(feature, layer) {
-          const acNo = feature.properties.AC_NO;
-          const cName = feature.properties.AC_NAME;
-          geoJsonFeaturesMap[acNo] = layer;
+          const acNo = feature.properties.AC_NO || feature.properties.ac_no;
+          const cName = feature.properties.AC_NAME || feature.properties.ac_name;
+          if (acNo) geoJsonFeaturesMap[acNo] = layer;
           layer.on({
-            mouseover: e => { e.target.setStyle({ weight:1.5, color:'#801d1d', fillOpacity:0.8 }); e.target.bringToFront(); },
-            mouseout:  e => geoJsonLayer.resetStyle(e.target),
+            mouseover: e => {
+              e.target.setStyle({ weight: 2.2, color: '#ffffff', fillOpacity: 0.95 });
+              e.target.bringToFront();
+            },
+            mouseout: e => {
+              if (geoJsonLayer) geoJsonLayer.resetStyle(e.target);
+            },
             click: () => {
               switchTab('explorer');
               const selectBox = document.getElementById('constituencySelect');
-              if (selectBox) {
+              if (selectBox && acNo) {
                 selectBox.value = acNo.toString();
                 loadConstituencyDetails(acNo.toString());
               }
@@ -388,11 +436,10 @@ function initLeafletMap() {
           });
         }
       }).addTo(leafletMap);
-    } else {
-      L.circleMarker([9.68, 78.6], { color:'var(--ink-red)', radius:8 }).addTo(leafletMap).bindPopup("<strong>Tiruppattur</strong><br>Closest race: Won by 1 vote");
-      L.circleMarker([11.6, 77.8], { color:'var(--ink-green)', radius:10 }).addTo(leafletMap).bindPopup("<strong>Edappadi</strong><br>Landslide: Won by 98,110 votes");
     }
-  } catch(e) { console.log("Map load failed", e); }
+  } catch(e) {
+    console.error("Leaflet mini map load failed:", e);
+  }
 }
 
 /* SVG Regional Overview Pane */
