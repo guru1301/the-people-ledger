@@ -224,6 +224,24 @@ function loadConstituencyDetails(id) {
     rollTitle:   currentLang==='en'?"Electoral Roll & Turnout Ledger":"வாக்காளர் பதிவு & வாக்குப்பதிவு விபரம்"
   };
 
+  const winnerDisplayName = (function(n) {
+    if (!n) return "";
+    let s = n.trim();
+    ["AIADMK", "DMK", "TVK", "INC", "BJP", "PMK", "DMDK", "VCK", "CPI(M)", "CPI", "IUML", "AMMK", "NTK", "IND"].forEach(p => {
+      s = s.replace(new RegExp(`\\s+${p}$`, 'i'), '');
+    });
+    return s;
+  })(data.winner_name);
+
+  const runnerDisplayName = (function(n) {
+    if (!n) return "";
+    let s = n.trim();
+    ["AIADMK", "DMK", "TVK", "INC", "BJP", "PMK", "DMDK", "VCK", "CPI(M)", "CPI", "IUML", "AMMK", "NTK", "IND"].forEach(p => {
+      s = s.replace(new RegExp(`\\s+${p}$`, 'i'), '');
+    });
+    return s;
+  })(data.runner_up_name);
+
   area.innerHTML = `
     <div class="card-header-vintage">
       <div class="ac-number-badge">${L.acLbl} ${data.ac_no.toString().padStart(3,'0')}</div>
@@ -235,7 +253,7 @@ function loadConstituencyDetails(id) {
       <div style="border-right:1px dashed var(--ink-charcoal);padding-right:15px">
         <div class="section-head"><span>${L.winner}</span></div>
         <div style="font-size:18px;font-weight:900;color:var(--ink-red)">
-          ${data.winner_name}
+          ${winnerDisplayName}
           <span class="party-tag" style="background:${winnerColor};display:inline-flex;align-items:center;">${typeof getPartyFlagHtml === 'function' ? getPartyFlagHtml(data.winner_party, "width:14px;height:9px;object-fit:cover;margin-right:4px;vertical-align:middle;") : ""}${data.winner_party}</span>
           ${governmentBadge}
         </div>
@@ -246,7 +264,7 @@ function loadConstituencyDetails(id) {
       <div>
         <div class="section-head"><span>${L.runner}</span></div>
         <div style="font-size:16px;font-weight:700">
-          ${data.runner_up_name}
+          ${runnerDisplayName}
           <span class="party-tag" style="background:${runnerColor};display:inline-flex;align-items:center;">${typeof getPartyFlagHtml === 'function' ? getPartyFlagHtml(data.runner_up_party, "width:14px;height:9px;object-fit:cover;margin-right:4px;vertical-align:middle;") : ""}${data.runner_up_party}</span>
         </div>
         <div style="font-size:12px;margin-top:5px;font-family:'Courier Prime',monospace">
