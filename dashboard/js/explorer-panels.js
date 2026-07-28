@@ -13,41 +13,55 @@
 const DYNAMIC_ELECTION_HISTORY = {};
 
 const KNOWN_EXACT_HISTORY_STORE = {
-  11: {
+  11: { // Kolathur
     "2011": { "winner": "M. K. Stalin", "party": "DMK", "margin": 2734 },
     "2016": { "winner": "M. K. Stalin", "party": "DMK", "margin": 37730 },
-    "2021": { "winner": "M. K. Stalin", "party": "DMK", "margin": 60384 },
-    "2026": { "winner": "M. K. Stalin", "party": "DMK", "margin": 45120 }
+    "2021": { "winner": "M. K. Stalin", "party": "DMK", "margin": 60384 }
   },
-  86: {
+  86: { // Edappadi
     "2011": { "winner": "K. Palaniswami", "party": "AIADMK", "margin": 34738 },
     "2016": { "winner": "K. Palaniswami", "party": "AIADMK", "margin": 42022 },
-    "2021": { "winner": "K. Palaniswami", "party": "AIADMK", "margin": 93802 },
-    "2026": { "winner": "K. Palaniswami", "party": "AIADMK", "margin": 98110 }
+    "2021": { "winner": "K. Palaniswami", "party": "AIADMK", "margin": 93802 }
   },
-  40: {
+  40: { // Katpadi
     "2011": { "winner": "Duraimurugan", "party": "DMK", "margin": 2973 },
     "2016": { "winner": "Duraimurugan", "party": "DMK", "margin": 23946 },
-    "2021": { "winner": "Duraimurugan", "party": "DMK", "margin": 746 },
-    "2026": { "winner": "Duraimurugan", "party": "DMK", "margin": 5210 }
+    "2021": { "winner": "Duraimurugan", "party": "DMK", "margin": 746 }
   },
-  198: {
+  198: { // Bodinayakanur
     "2011": { "winner": "O. Panneerselvam", "party": "AIADMK", "margin": 29906 },
     "2016": { "winner": "O. Panneerselvam", "party": "AIADMK", "margin": 15608 },
-    "2021": { "winner": "O. Panneerselvam", "party": "AIADMK", "margin": 11021 },
-    "2026": { "winner": "O. Panneerselvam", "party": "AIADMK", "margin": 14200 }
+    "2021": { "winner": "O. Panneerselvam", "party": "AIADMK", "margin": 11021 }
   },
-  19: {
+  19: { // Chepauk-Thiruvallikeni
     "2011": { "winner": "J. Anbazhagan", "party": "DMK", "margin": 9203 },
     "2016": { "winner": "J. Anbazhagan", "party": "DMK", "margin": 12574 },
-    "2021": { "winner": "Udhayanidhi Stalin", "party": "DMK", "margin": 69555 },
-    "2026": { "winner": "Udhayanidhi Stalin", "party": "DMK", "margin": 54200 }
+    "2021": { "winner": "Udhayanidhi Stalin", "party": "DMK", "margin": 69555 }
   },
-  185: {
+  185: { // Tiruppattur
     "2011": { "winner": "K. R. Periakaruppan", "party": "DMK", "margin": 15885 },
     "2016": { "winner": "K. R. Periakaruppan", "party": "DMK", "margin": 4204 },
-    "2021": { "winner": "K. R. Periakaruppan", "party": "DMK", "margin": 37774 },
-    "2026": { "winner": "R. Seenivasa Sethupathy", "party": "TVK", "margin": 1 }
+    "2021": { "winner": "K. R. Periakaruppan", "party": "DMK", "margin": 37774 }
+  },
+  141: { // Trichy East
+    "2011": { "winner": "R. Manoharan", "party": "AIADMK", "margin": 20626 },
+    "2016": { "winner": "S. Vellamandi Natarajan", "party": "AIADMK", "margin": 21894 },
+    "2021": { "winner": "Inigo S. Irudayaraj", "party": "DMK", "margin": 53797 }
+  },
+  18: { // Harbour
+    "2011": { "winner": "Pala. Karuppiah", "party": "AIADMK", "margin": 20317 },
+    "2016": { "winner": "P. K. Sekar Babu", "party": "DMK", "margin": 4836 },
+    "2021": { "winner": "P. K. Sekar Babu", "party": "DMK", "margin": 27274 }
+  },
+  123: { // Pollachi
+    "2011": { "winner": "M. K. Muthukaruppannasamy", "party": "AIADMK", "margin": 30208 },
+    "2016": { "winner": "A. Pollachi V. Jayaraman", "party": "AIADMK", "margin": 13368 },
+    "2021": { "winner": "A. Pollachi V. Jayaraman", "party": "AIADMK", "margin": 1725 }
+  },
+  25: { // Saidapet
+    "2011": { "winner": "G. Senthamizhan", "party": "AIADMK", "margin": 12042 },
+    "2016": { "winner": "Ma. Subramanian", "party": "DMK", "margin": 16255 },
+    "2021": { "winner": "Ma. Subramanian", "party": "DMK", "margin": 41088 }
   }
 };
 
@@ -55,25 +69,14 @@ function getLocalHistoryFallbackJS(acNo) {
   const ac = parseInt(acNo, 10);
   if (KNOWN_EXACT_HISTORY_STORE[ac]) return KNOWN_EXACT_HISTORY_STORE[ac];
 
-  const initials = ["K.", "S.", "R.", "M.", "P.", "V.", "N.", "A.", "T.", "C."];
-  const surnames = ["Murugesan", "Palanisamy", "Vijayakumar", "Ganesan", "Selvam", "Arumugam", "Rajendran", "Kaliappan", "Pandian", "Thangavelu"];
-
-  function gen_name(yr, num) {
-    const idx_i = (num * 7 + parseInt(yr, 10)) % initials.length;
-    const idx_s = (num * 13 + parseInt(yr, 10)) % surnames.length;
-    return `${initials[idx_i]} ${surnames[idx_s]}`;
-  }
-
   const p11 = (ac % 3 !== 0) ? "AIADMK" : "DMK";
   const p16 = (ac % 2 === 0) ? "AIADMK" : "DMK";
   const p21 = (ac % 4 !== 0) ? "DMK" : "AIADMK";
-  const p26 = (ac % 2 !== 0) ? "TVK" : (ac % 4 === 0 ? "DMK" : "AIADMK");
 
   return {
-    "2011": { "winner": gen_name("2011", ac), "party": p11, "margin": 5000 + (ac * 137) % 25000 },
-    "2016": { "winner": gen_name("2016", ac), "party": p16, "margin": 4000 + (ac * 211) % 22000 },
-    "2021": { "winner": gen_name("2021", ac), "party": p21, "margin": 6000 + (ac * 313) % 28000 },
-    "2026": { "winner": gen_name("2026", ac), "party": p26, "margin": 3000 + (ac * 401) % 20000 }
+    "2011": { "winner": `${p11} Representative`, "party": p11, "margin": 5000 + (ac * 137) % 25000 },
+    "2016": { "winner": `${p16} Representative`, "party": p16, "margin": 4000 + (ac * 211) % 22000 },
+    "2021": { "winner": `${p21} Representative`, "party": p21, "margin": 6000 + (ac * 313) % 28000 }
   };
 }
 
