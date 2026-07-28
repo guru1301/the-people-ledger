@@ -6,121 +6,27 @@
      Panel 4: Historical Margin Chart (2011–2026)
    ============================================================= */
 
-/* ── COMPREHENSIVE ELECTION HISTORY DATA ──
-   Source: Election Commission of India public records for
-   Tamil Nadu Assembly Elections 2011, 2016, 2021, 2026.
-   Each entry: { winner, party, margin }
+/* ── DYNAMIC ELECTION HISTORY DATA ──
+   Fetched dynamically from Flask BigQuery API (/api/history/<ac_no>).
    Keyed by AC number (1–234). */
 
-const ELECTION_HISTORY = {};
+const DYNAMIC_ELECTION_HISTORY = {};
 
-// Verified historical records for landmark seats
-const KNOWN_EXACT_HISTORY = {
-  "11": { // Kolathur
-    "2011": { party: "DMK", winner: "M. K. Stalin", margin: 2734 },
-    "2016": { party: "DMK", winner: "M. K. Stalin", margin: 37730 },
-    "2021": { party: "DMK", winner: "M. K. Stalin", margin: 60384 }
-  },
-  "86": { // Edappadi
-    "2011": { party: "AIADMK", winner: "K. Palaniswami", margin: 34738 },
-    "2016": { party: "AIADMK", winner: "K. Palaniswami", margin: 42022 },
-    "2021": { party: "AIADMK", winner: "K. Palaniswami", margin: 93802 }
-  },
-  "40": { // Katpadi
-    "2011": { party: "DMK", winner: "Duraimurugan", margin: 2973 },
-    "2016": { party: "DMK", winner: "Duraimurugan", margin: 23946 },
-    "2021": { party: "DMK", winner: "Duraimurugan", margin: 746 }
-  },
-  "198": { // Bodinayakanur
-    "2011": { party: "AIADMK", winner: "O. Panneerselvam", margin: 29906 },
-    "2016": { party: "AIADMK", winner: "O. Panneerselvam", margin: 15608 },
-    "2021": { party: "AIADMK", winner: "O. Panneerselvam", margin: 11021 }
-  },
-  "19": { // Chepauk-Thiruvallikeni
-    "2011": { party: "DMK", winner: "J. Anbazhagan", margin: 9203 },
-    "2016": { party: "DMK", winner: "J. Anbazhagan", margin: 12574 },
-    "2021": { party: "DMK", winner: "Udhayanidhi Stalin", margin: 69555 }
-  },
-  "185": { // Tiruppattur
-    "2011": { party: "DMK", winner: "K. R. Periakaruppan", margin: 15885 },
-    "2016": { party: "DMK", winner: "K. R. Periakaruppan", margin: 4204 },
-    "2021": { party: "DMK", winner: "K. R. Periakaruppan", margin: 37774 }
-  },
-  "141": { // Trichy East
-    "2011": { party: "AIADMK", winner: "R. Manoharan", margin: 20626 },
-    "2016": { party: "AIADMK", winner: "S. Vellamandi Natarajan", margin: 21894 },
-    "2021": { party: "DMK", winner: "Inigo S. Irudayaraj", margin: 53797 }
-  },
-  "18": { // Harbour
-    "2011": { party: "AIADMK", winner: "Pala. Karuppiah", margin: 20317 },
-    "2016": { party: "DMK", winner: "P. K. Sekar Babu", margin: 4836 },
-    "2021": { party: "DMK", winner: "P. K. Sekar Babu", margin: 27274 }
-  },
-  "123": { // Pollachi
-    "2011": { party: "AIADMK", winner: "M. K. Muthukaruppannasamy", margin: 30208 },
-    "2016": { party: "AIADMK", winner: "A. Pollachi V. Jayaraman", margin: 13368 },
-    "2021": { party: "AIADMK", winner: "A. Pollachi V. Jayaraman", margin: 1725 }
-  },
-  "25": { // Saidapet
-    "2011": { party: "AIADMK", winner: "G. Senthamizhan", margin: 12042 },
-    "2016": { party: "DMK", winner: "Ma. Subramanian", margin: 16255 },
-    "2021": { party: "DMK", winner: "Ma. Subramanian", margin: 41088 }
+async function fetchConstituencyHistory(acNo) {
+  if (DYNAMIC_ELECTION_HISTORY[acNo]) {
+    return DYNAMIC_ELECTION_HISTORY[acNo];
   }
-};
-
-(function buildHistoryData() {
-  const genericInitials = ["K.","S.","R.","M.","P.","V.","N.","A.","T.","C."];
-  const genericSurnames = ["Murugesan","Palanisamy","Vijayakumar","Ganesan","Selvam","Arumugam","Rajendran","Kaliappan","Pandian","Thangavelu","Srinivasan","Kannan","Sundaram","Shanmugam"];
-
-  function seededR(seed) {
-    let h = 0;
-    for (let i = 0; i < seed.length; i++) { h = ((h << 5) - h) + seed.charCodeAt(i); h |= 0; }
-    return Math.abs(h % 10000) / 10000;
+  try {
+    const res = await fetch(`/api/history/${acNo}`);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const data = await res.json();
+    DYNAMIC_ELECTION_HISTORY[acNo] = data;
+    return data;
+  } catch (err) {
+    console.error('[History API] Failed to fetch history for AC', acNo, err);
+    return null;
   }
-
-  function generateGenericName(ac, year) {
-    const initIdx = Math.floor(seededR("init_" + year + "_" + ac) * genericInitials.length);
-    const surIdx = Math.floor(seededR("sur_" + year + "_" + ac) * genericSurnames.length);
-    return `${genericInitials[initIdx]} ${genericSurnames[surIdx]}`;
-  }
-
-  for (let ac = 1; ac <= 234; ac++) {
-    const s = ac.toString();
-
-    if (KNOWN_EXACT_HISTORY[s]) {
-      ELECTION_HISTORY[s] = KNOWN_EXACT_HISTORY[s];
-      continue;
-    }
-
-    const r11 = seededR("h2011_" + s);
-    const r16 = seededR("h2016_" + s);
-    const r21 = seededR("h2021_" + s);
-
-    // 2011 — AIADMK dominant wave
-    let p11 = "AIADMK";
-    if (r11 < 0.12) p11 = "DMK";
-    else if (r11 < 0.15) p11 = "DMDK";
-    else if (r11 < 0.17) p11 = "INC";
-    else if (r11 < 0.19) p11 = "CPI(M)";
-
-    // 2016 — AIADMK retained
-    let p16 = "AIADMK";
-    if (r16 < 0.38) p16 = "DMK";
-    else if (r16 < 0.41) p16 = "INC";
-
-    // 2021 — DMK wave
-    let p21 = "DMK";
-    if (r21 < 0.30) p21 = "AIADMK";
-    else if (r21 < 0.34) p21 = "INC";
-    else if (r21 < 0.36) p21 = "VCK";
-
-    ELECTION_HISTORY[s] = {
-      "2011": { party: p11, winner: generateGenericName(ac, "2011"), margin: Math.floor(5000 + r11 * 35000) },
-      "2016": { party: p16, winner: generateGenericName(ac, "2016"), margin: Math.floor(3000 + r16 * 30000) },
-      "2021": { party: p21, winner: generateGenericName(ac, "2021"), margin: Math.floor(4000 + r21 * 35000) }
-    };
-  }
-})();
+}
 
 /* ── WINNER PROFILE DATA ──
    Age, Gender, Category generated from known demographic patterns.
@@ -138,13 +44,10 @@ const WINNER_PROFILES = {};
     const r = seededR("profile_" + s);
     const age = Math.floor(35 + r * 40); // 35-75
     const gender = r < 0.12 ? "F" : "M"; // ~12% women winners
-    // First-time winner if random < 0.45
     const firstTime = seededR("first_" + s) < 0.45;
     WINNER_PROFILES[s] = { age, gender, firstTime };
   }
 })();
-
-
 
 
 /* ── PARTY COLOR MAP ── */
@@ -169,11 +72,19 @@ function getPanelPartyColor(party) {
 }
 
 /* ── LOYALTY BADGE LOGIC ── */
-function getLoyaltyBadge(acNo, currentWinnerParty) {
-  const hist = ELECTION_HISTORY[acNo];
-  if (!hist) return { type: "unknown", label: { en: "No Data", ta: "தரவு இல்லை" } };
+function getLoyaltyBadge(acNo, currentWinnerParty, hist) {
+  if (!hist) return { type: "unknown", label: { en: "Data Not Available", ta: "தரவு இல்லை" }, color: "#706757", icon: "fa-circle-question" };
 
-  const parties = [hist["2011"].party, hist["2016"].party, hist["2021"].party, currentWinnerParty];
+  const p11 = hist["2011"] ? hist["2011"].party : null;
+  const p16 = hist["2016"] ? hist["2016"].party : null;
+  const p21 = hist["2021"] ? hist["2021"].party : null;
+  const p26 = currentWinnerParty || (hist["2026"] ? hist["2026"].party : null);
+
+  const parties = [p11, p16, p21, p26].filter(Boolean);
+  if (parties.length < 2) {
+    return { type: "unknown", label: { en: "Data Not Available", ta: "தரவு இல்லை" }, color: "#706757", icon: "fa-circle-question" };
+  }
+
   const uniqueParties = [...new Set(parties)];
   const changes = parties.filter((p, i) => i > 0 && p !== parties[i - 1]).length;
 
@@ -194,10 +105,13 @@ function getLoyaltyBadge(acNo, currentWinnerParty) {
 
 let marginChartInstance = null; // Chart.js instance for cleanup
 
-function renderExplorerPanels(acNo, data) {
+async function renderExplorerPanels(acNo, data) {
   const lang = (typeof currentLang !== 'undefined') ? currentLang : 'en';
   const area = document.getElementById('cardContentArea');
   if (!area) return;
+
+  // Fetch dynamic history from API
+  const hist = await fetchConstituencyHistory(acNo);
 
   // Create panels container
   const panelsDiv = document.createElement('div');
@@ -208,7 +122,7 @@ function renderExplorerPanels(acNo, data) {
   panelsDiv.innerHTML += renderWinnerProfilePanel(acNo, data, lang);
 
   // ── PANEL 2: ELECTION HISTORY ──
-  panelsDiv.innerHTML += renderElectionHistoryPanel(acNo, data, lang);
+  panelsDiv.innerHTML += renderElectionHistoryPanel(acNo, data, lang, hist);
 
   // ── PANEL 3: HISTORICAL MARGIN CHART (canvas placeholder) ──
   panelsDiv.innerHTML += renderMarginChartPanel(lang);
@@ -220,34 +134,43 @@ function renderExplorerPanels(acNo, data) {
   area.appendChild(panelsDiv);
 
   // Now render Chart.js bar chart into the canvas
-  renderMarginChart(acNo, data);
+  renderMarginChart(acNo, data, hist);
 }
 
 
 /* ── PANEL 1: ELECTION HISTORY ── */
-function renderElectionHistoryPanel(acNo, data, lang) {
-  const hist = ELECTION_HISTORY[acNo] || {};
-  const badge = getLoyaltyBadge(acNo, data.winner_party);
+function renderElectionHistoryPanel(acNo, data, lang, hist) {
+  const badge = getLoyaltyBadge(acNo, data.winner_party, hist);
 
   const L = {
     title: lang === 'en' ? 'Election History' : 'தேர்தல் வரலாறு',
     year: lang === 'en' ? 'Year' : 'ஆண்டு',
     winner: lang === 'en' ? 'Winner' : 'வெற்றியாளர்',
     party: lang === 'en' ? 'Party' : 'கட்சி',
-    margin: lang === 'en' ? 'Margin' : 'வித்தியாசம்'
+    margin: lang === 'en' ? 'Margin' : 'வித்தியாசம்',
+    noData: lang === 'en' ? 'Data Not Available' : 'தரவு இல்லை'
   };
 
   const years = ["2011", "2016", "2021"];
   const rows = years.map(yr => {
-    const h = hist[yr];
-    if (!h) return '';
+    const h = hist ? hist[yr] : null;
+    if (!h || !h.winner || h.winner === "Data Not Available") {
+      return `
+        <tr>
+          <td style="font-weight:700; font-family:'Courier Prime',monospace; letter-spacing:1px">${yr}</td>
+          <td style="font-size:11px; font-style:italic; color:gray">${L.noData}</td>
+          <td><span class="panel-party-pill" style="background:#706757">—</span></td>
+          <td class="text-right" style="font-family:'Courier Prime',monospace;">—</td>
+        </tr>`;
+    }
     const color = getPanelPartyColor(h.party);
+    const formattedMargin = (h.margin && typeof h.margin === 'number') ? h.margin.toLocaleString('en-IN') : '—';
     return `
       <tr>
         <td style="font-weight:700; font-family:'Courier Prime',monospace; letter-spacing:1px">${yr}</td>
         <td style="font-size:11px; font-weight:600">${h.winner}</td>
         <td><span class="panel-party-pill" style="background:${color}">${h.party}</span></td>
-        <td class="text-right" style="font-family:'Courier Prime',monospace; font-weight:600">${h.margin.toLocaleString()}</td>
+        <td class="text-right" style="font-family:'Courier Prime',monospace; font-weight:600">${formattedMargin}</td>
       </tr>`;
   }).join('');
 
@@ -414,7 +337,7 @@ function renderMarginChartPanel(lang) {
 }
 
 /* ── Render Chart.js Bar Chart ── */
-function renderMarginChart(acNo, data) {
+function renderMarginChart(acNo, data, hist) {
   const canvas = document.getElementById('marginHistoryChart');
   if (!canvas || typeof Chart === 'undefined') return;
 
@@ -424,7 +347,7 @@ function renderMarginChart(acNo, data) {
     marginChartInstance = null;
   }
 
-  const hist = ELECTION_HISTORY[acNo] || {};
+  const hData = hist || {};
   const years = ['2011', '2016', '2021', '2026'];
   const margins = [];
   const colors = [];
@@ -435,9 +358,9 @@ function renderMarginChart(acNo, data) {
     if (yr === '2026') {
       margins.push(data.margin || 0);
       colors.push(getPanelPartyColor(data.winner_party));
-    } else if (hist[yr]) {
-      margins.push(hist[yr].margin);
-      colors.push(getPanelPartyColor(hist[yr].party));
+    } else if (hData[yr] && hData[yr].margin && typeof hData[yr].margin === 'number') {
+      margins.push(hData[yr].margin);
+      colors.push(getPanelPartyColor(hData[yr].party));
     } else {
       margins.push(0);
       colors.push('#706757');
