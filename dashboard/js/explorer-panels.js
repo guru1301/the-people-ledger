@@ -286,23 +286,7 @@ function renderElectionHistoryPanel(acNo, data, lang, hist) {
 
 /* ── PANEL 2: WINNER PROFILE ── */
 function renderWinnerProfilePanel(acNo, data, lang, hist) {
-  const profile = WINNER_PROFILES[acNo] || { age: 50, gender: "M", firstTime: false };
-
-  // Dynamically calculate First-time Winner by checking past election history (2021, 2016, 2011)
-  let isFirstTime = true;
-  if (hist && data.winner_name) {
-    const normalize = s => (s || "").toLowerCase().replace(/^(1\s+)/, '').replace(/[^a-z0-9]/g, '');
-    const wClean = normalize(data.winner_name);
-    const pastWinners = [
-      hist["2021"] ? hist["2021"].winner : "",
-      hist["2016"] ? hist["2016"].winner : "",
-      hist["2011"] ? hist["2011"].winner : ""
-    ].map(normalize);
-
-    if (pastWinners.some(pw => pw && pw.length > 3 && (pw.includes(wClean) || wClean.includes(pw)))) {
-      isFirstTime = false;
-    }
-  }
+  const profile = WINNER_PROFILES[acNo] || { age: 50, gender: "M" };
 
   // Get category from reserved field
   let category = "GEN";
@@ -329,9 +313,6 @@ function renderWinnerProfilePanel(acNo, data, lang, hist) {
     age: lang === 'en' ? 'Age' : 'வயது',
     gender: lang === 'en' ? 'Gender' : 'பாலினம்',
     category: lang === 'en' ? 'Social Category' : 'சமூகப் பிரிவு',
-    firstTime: lang === 'en' ? 'First-time Winner' : 'முதல்முறை வெற்றி',
-    yes: lang === 'en' ? 'Yes' : 'ஆம்',
-    no: lang === 'en' ? 'No' : 'இல்லை',
     ministerBadge: lang === 'en' ? 'Cabinet Minister' : 'அமைச்சரவை உறுப்பினர்'
   };
 
@@ -344,7 +325,7 @@ function renderWinnerProfilePanel(acNo, data, lang, hist) {
         <span class="explorer-panel-title"><i class="fa-solid fa-id-card"></i> ${L.title}</span>
         ${isMinister ? `<span class="loyalty-badge" style="background:var(--ink-red)"><i class="fa-solid fa-landmark-dome"></i> ${L.ministerBadge}</span>` : ''}
       </div>
-      <div class="profile-grid">
+      <div class="profile-grid" style="grid-template-columns: repeat(3, 1fr);">
         <div class="profile-item">
           <div class="profile-icon"><i class="fa-solid fa-cake-candles"></i></div>
           <div class="profile-label">${L.age}</div>
@@ -360,13 +341,9 @@ function renderWinnerProfilePanel(acNo, data, lang, hist) {
           <div class="profile-label">${L.category}</div>
           <div class="profile-value">${categoryFull[category][lang]}</div>
         </div>
-        <div class="profile-item">
-          <div class="profile-icon" style="color:${isFirstTime ? '#277239' : '#706757'}"><i class="fa-solid ${isFirstTime ? 'fa-trophy' : 'fa-repeat'}"></i></div>
-          <div class="profile-label">${L.firstTime}</div>
-          <div class="profile-value">${isFirstTime ? L.yes : L.no}</div>
-        </div>
       </div>
     </div>`;
+}
 }
 
 
