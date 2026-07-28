@@ -285,8 +285,24 @@ function renderElectionHistoryPanel(acNo, data, lang, hist) {
 
 
 /* ── PANEL 2: WINNER PROFILE ── */
-function renderWinnerProfilePanel(acNo, data, lang) {
+function renderWinnerProfilePanel(acNo, data, lang, hist) {
   const profile = WINNER_PROFILES[acNo] || { age: 50, gender: "M", firstTime: false };
+
+  // Dynamically calculate First-time Winner by checking past election history (2021, 2016, 2011)
+  let isFirstTime = true;
+  if (hist && data.winner_name) {
+    const normalize = s => (s || "").toLowerCase().replace(/^(1\s+)/, '').replace(/[^a-z0-9]/g, '');
+    const wClean = normalize(data.winner_name);
+    const pastWinners = [
+      hist["2021"] ? hist["2021"].winner : "",
+      hist["2016"] ? hist["2016"].winner : "",
+      hist["2011"] ? hist["2011"].winner : ""
+    ].map(normalize);
+
+    if (pastWinners.some(pw => pw && pw.length > 3 && (pw.includes(wClean) || wClean.includes(pw)))) {
+      isFirstTime = false;
+    }
+  }
 
   // Get category from reserved field
   let category = "GEN";
@@ -345,9 +361,9 @@ function renderWinnerProfilePanel(acNo, data, lang) {
           <div class="profile-value">${categoryFull[category][lang]}</div>
         </div>
         <div class="profile-item">
-          <div class="profile-icon" style="color:${profile.firstTime ? '#277239' : '#706757'}"><i class="fa-solid ${profile.firstTime ? 'fa-trophy' : 'fa-repeat'}"></i></div>
+          <div class="profile-icon" style="color:${isFirstTime ? '#277239' : '#706757'}"><i class="fa-solid ${isFirstTime ? 'fa-trophy' : 'fa-repeat'}"></i></div>
           <div class="profile-label">${L.firstTime}</div>
-          <div class="profile-value">${profile.firstTime ? L.yes : L.no}</div>
+          <div class="profile-value">${isFirstTime ? L.yes : L.no}</div>
         </div>
       </div>
     </div>`;
