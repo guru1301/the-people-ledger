@@ -1,9 +1,10 @@
 /* =============================================================
-   voters.js — District ECI ledger, sort, top/bottom voter gaps
+   voters.js — Statewide Voter Archives & 38-District ECI Registry
    ============================================================= */
 
 let currentSortCol = "";
 let sortAscending  = true;
+let currentSearchQuery = "";
 
 const DISTRICT_NAME_MAP = {
   "Ariyalur": { en: "Ariyalur", ta: "அரியலூர்" },
@@ -54,26 +55,60 @@ const DISTRICT_NAME_MAP = {
 
 function renderDistrictLedger() {
   const tbody = document.getElementById('districtLedgerBody');
+  if (!tbody) return;
   tbody.innerHTML = "";
 
-  document.getElementById('ledger-head-dist').innerHTML     = `${currentLang==='en'?'District':'மாவட்டம்'} <i class="fa-solid fa-sort"></i>`;
-  document.getElementById('ledger-head-electors').innerHTML = `${currentLang==='en'?'Total Electors':'மொத்த வாக்காளர்கள்'} <i class="fa-solid fa-sort"></i>`;
-  document.getElementById('ledger-head-turnout').innerHTML  = `${currentLang==='en'?'Turnout %':'வாக்குப்பதிவு %'} <i class="fa-solid fa-sort"></i>`;
-  document.getElementById('ledger-head-gap').innerHTML      = `${currentLang==='en'?'Gender Gap':'பாலின இடைவெளி'} <i class="fa-solid fa-sort"></i>`;
+  const distHead = document.getElementById('ledger-head-dist');
+  if (distHead) distHead.innerHTML = `${typeof currentLang !== 'undefined' && currentLang==='ta'?'மாவட்டம்':'District'} <i class="fa-solid fa-sort"></i>`;
+  
+  const electHead = document.getElementById('ledger-head-electors');
+  if (electHead) electHead.innerHTML = `${typeof currentLang !== 'undefined' && currentLang==='ta'?'மொத்த வாக்காளர்கள்':'Total Electors'} <i class="fa-solid fa-sort"></i>`;
+  
+  const turnHead = document.getElementById('ledger-head-turnout');
+  if (turnHead) turnHead.innerHTML = `${typeof currentLang !== 'undefined' && currentLang==='ta'?'வாக்குப்பதிவு %':'Turnout %'} <i class="fa-solid fa-sort"></i>`;
+  
+  const gapHead = document.getElementById('ledger-head-gap');
+  if (gapHead) gapHead.innerHTML = `${typeof currentLang !== 'undefined' && currentLang==='ta'?'பாலின இடைவெளி':'Gender Gap'} <i class="fa-solid fa-sort"></i>`;
 
-  DISTRICT_DATA.forEach(d => {
+  const query = currentSearchQuery.toLowerCase().trim();
+
+  const filtered = DISTRICT_DATA.filter(d => {
+    const nameObj = DISTRICT_NAME_MAP[d.name] || { en: d.name, ta: d.name };
+    return (
+      d.name.toLowerCase().includes(query) ||
+      nameObj.en.toLowerCase().includes(query) ||
+      nameObj.ta.toLowerCase().includes(query)
+    );
+  });
+
+  filtered.forEach(d => {
     const row      = document.createElement('tr');
-    const gapColor = d.gap < 0 ? "var(--ink-green)" : "var(--ink-red)";
-    const gapSign  = d.gap > 0 ? "+" : "";
+    const isFemale = d.gap > 0;
+    const gapColor = isFemale ? "var(--ink-green)" : "var(--ink-red)";
+    const gapIcon  = isFemale ? "♀ +" : "♂ ";
     const nameObj  = DISTRICT_NAME_MAP[d.name] || { en: d.name, ta: d.name };
-    const dName    = currentLang === 'en' ? nameObj.en : nameObj.ta;
+    const dName    = (typeof currentLang !== 'undefined' && currentLang === 'ta') ? nameObj.ta : nameObj.en;
+    
     row.innerHTML = `
       <td class="strong">${dName}</td>
-      <td class="text-right">${d.electors.toLocaleString()}</td>
-      <td class="text-right strong">${d.turnout}%</td>
-      <td class="text-right strong" style="color:${gapColor}">${gapSign}${d.gap.toFixed(2)}%</td>`;
+      <td class="text-right" style="font-family:'Courier Prime',monospace">${d.electors.toLocaleString()}</td>
+      <td class="text-right strong" style="font-family:'Courier Prime',monospace">${d.turnout}%</td>
+      <td class="text-right strong" style="color:${gapColor}; font-family:'Courier Prime',monospace">
+        <span style="font-size:10px; border:1px solid ${gapColor}; padding:1px 4px; border-radius:2px">${gapIcon}${d.gap.toFixed(2)}%</span>
+      </td>`;
     tbody.appendChild(row);
   });
+
+  if (filtered.length === 0) {
+    const emptyRow = document.createElement('tr');
+    emptyRow.innerHTML = `<td colspan="4" class="text-center" style="font-style:italic; padding:15px; color:gray">No matching district records found.</td>`;
+    tbody.appendChild(emptyRow);
+  }
+}
+
+function filterDistrictLedger(query) {
+  currentSearchQuery = query;
+  renderDistrictLedger();
 }
 
 function sortDistrictLedger(col) {
@@ -91,4 +126,20 @@ function sortDistrictLedger(col) {
     return 0;
   });
   renderDistrictLedger();
+}
+
+function exportDistrictLedgerCSV() {
+  let csv = "District Name,Total Electors,Turnout %,Gender Advantage Gap %\n";
+  DISTRICT_DATA.forEach(d => {
+    csv += `"${d.name}",${d.electors},${d.turnout},${d.gap}\n`;
+  });
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement("a");
+  const url = URL.createObjectURL(blob);
+  link.setAttribute("href", url);
+  link.setAttribute("download", "Tamil_Nadu_ECI_Voter_Registry_2026.csv");
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
