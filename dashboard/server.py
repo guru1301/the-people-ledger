@@ -364,65 +364,58 @@ def get_constituency_history(ac_no):
     }
 
     if bq_client:
-        year_table_configs = [
-            ("2026", [
-                "tn-election-2026-501004.tn_election_2026.fact_results_2026",
-                "tn-election-2026-501004.tn_election_2026.fact_winners_2026"
-            ]),
-            ("2021", [
-                "tn-election-2026-501004.tn_election_2026.fact_winners_2021",
-                "tn-election-2026-501004.tn_election_2026.fact_results_2021"
-            ]),
-            ("2016", [
-                "tn-election-2026-501004.tn_election_2026.fact_results_2016",
-                "tn-election-2026-501004.tn_election_2026.fact_winners_2016"
-            ]),
-            ("2011", [
-                "tn-election-2026-501004.tn_election_2026.fact_results_2011",
-                "tn-election-2026-501004.tn_election_2026.fact_winners_2011"
-            ])
+        queries = [
+            ("2026", f"""
+                WITH Ranked AS (
+                  SELECT Candidate, Party, CAST(Total_Votes AS INT64) AS Total_Votes,
+                         ROW_NUMBER() OVER (PARTITION BY AC_No ORDER BY Total_Votes DESC) as rank
+                  FROM `tn-election-2026-501004.tn_election_2026.fact_results_2026`
+                  WHERE AC_No = {ac_int}
+                )
+                SELECT w.Candidate AS winner_name, w.Party AS winner_party,
+                       CAST(w.Total_Votes - COALESCE(r.Total_Votes, 0) AS INT64) AS victory_margin
+                FROM Ranked w LEFT JOIN Ranked r ON r.rank = 2 WHERE w.rank = 1
+            """),
+            ("2021", f"""
+                WITH Ranked AS (
+                  SELECT Candidate, Party, CAST(Total_Votes AS INT64) AS Total_Votes,
+                         ROW_NUMBER() OVER (PARTITION BY AC_No ORDER BY Total_Votes DESC) as rank
+                  FROM `tn-election-2026-501004.tn_election_2026.fact_winners_2021`
+                  WHERE AC_No = {ac_int}
+                )
+                SELECT w.Candidate AS winner_name, w.Party AS winner_party,
+                       CAST(w.Total_Votes - COALESCE(r.Total_Votes, 0) AS INT64) AS victory_margin
+                FROM Ranked w LEFT JOIN Ranked r ON r.rank = 2 WHERE w.rank = 1
+            """),
+            ("2016", f"""
+                WITH Ranked AS (
+                  SELECT Candidate, PARTY AS Party, CAST(TOTAL AS INT64) AS Total_Votes,
+                         ROW_NUMBER() OVER (PARTITION BY AC_No ORDER BY TOTAL DESC) as rank
+                  FROM `tn-election-2026-501004.tn_election_2026.fact_results_2016`
+                  WHERE AC_No = {ac_int}
+                )
+                SELECT w.Candidate AS winner_name, w.Party AS winner_party,
+                       CAST(w.Total_Votes - COALESCE(r.Total_Votes, 0) AS INT64) AS victory_margin
+                FROM Ranked w LEFT JOIN Ranked r ON r.rank = 2 WHERE w.rank = 1
+            """)
         ]
 
-        for yr, table_list in year_table_configs:
-            for table_name in table_list:
-                try:
-                    query = f"""
-                    WITH Ranked AS (
-                      SELECT 
-                        Candidate,
-                        Party,
-                        Total_Votes,
-                        ROW_NUMBER() OVER (PARTITION BY AC_No ORDER BY Total_Votes DESC) as rank
-                      FROM `{table_name}`
-                      WHERE AC_No = @ac_no
-                    )
-                    SELECT 
-                      w.Candidate AS winner_name,
-                      w.Party AS winner_party,
-                      (w.Total_Votes - COALESCE(r.Total_Votes, 0)) AS victory_margin
-                    FROM Ranked w
-                    LEFT JOIN Ranked r ON r.rank = 2
-                    WHERE w.rank = 1
-                    """
-                    job_config = bigquery.QueryJobConfig(
-                        query_parameters=[bigquery.ScalarQueryParameter("ac_no", "INT64", ac_int)]
-                    )
-                    query_job = bq_client.query(query, job_config=job_config)
-                    results = list(query_job.result())
-                    if results:
-                        row = results[0]
-                        history_data[yr] = {
-                            "winner": str(row.winner_name or "Data Not Available"),
-                            "party": str(row.winner_party or "—"),
-                            "margin": int(row.victory_margin or 0)
-                        }
-                        break
-                except Exception as ex:
-                    logger.debug(f"BigQuery query failed for year {yr} table {table_name}: {ex}")
+        for yr, sql in queries:
+            try:
+                results = list(bq_client.query(sql).result())
+                if results:
+                    row = results[0]
+                    history_data[yr] = {
+                        "winner": str(row.winner_name or "Data Not Available"),
+                        "party": str(row.winner_party or "—"),
+                        "margin": int(row.victory_margin or 0)
+                    }
+            except Exception as ex:
+                logger.debug(f"BigQuery query failed for year {yr}: {ex}")
 
-    # Merge local fallback data if BigQuery is offline or a specific year record is missing
+    # Fallback to verified local history dataset if BigQuery client is unavailable or forbidden
     local_fallback = get_local_history_fallback(ac_int)
-    for yr in ["2011", "2016", "2021", "2026"]:
+    for yr in ["2011", "2016", "2021"]:
         if not history_data[yr] and yr in local_fallback:
             history_data[yr] = local_fallback[yr]
 
