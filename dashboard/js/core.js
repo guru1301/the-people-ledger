@@ -288,6 +288,9 @@ function switchTab(tabId) {
   if (tabId === 'ministers') {
     renderMinistersPage(currentLang);
   }
+  if (tabId === 'statistics' && typeof statisticsModule !== 'undefined') {
+    statisticsModule.init();
+  }
 }
 
 function openConstituencyExplorer(acNo) {

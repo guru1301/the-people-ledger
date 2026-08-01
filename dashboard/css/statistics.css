@@ -1,6 +1,73 @@
 /* =============================================================
-   STATISTICS — Chart containers
+   statistics.css — Statistics Page (Executive Summary & Visual Analytics Hub)
    ============================================================= */
-.chart-container-vintage { background: var(--paper-bg); border: 1px solid var(--ink-charcoal); padding: 15px; position: relative; margin-bottom: 20px; }
-.chart-container-vintage::after { content: ""; position: absolute; top: 2px; left: 2px; right: 2px; bottom: 2px; border: 1px dotted var(--ink-charcoal); pointer-events: none; }
-.chart-title-vintage { font-size: 12px; font-weight: 900; text-transform: uppercase; text-align: center; margin-bottom: 12px; color: var(--ink-charcoal); letter-spacing: 1px; }
+
+/* Executive Summary Tile Grid */
+.exec-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+@media (max-width: 1100px) {
+  .exec-summary-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .exec-summary-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.exec-summary-card {
+  border: 2px double var(--ink-charcoal);
+  padding: 10px 8px;
+  background: var(--paper-bg);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.exec-summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.12);
+}
+
+.exec-summary-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #555555;
+  letter-spacing: 0.5px;
+}
+
+.exec-summary-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  font-weight: 900;
+  color: var(--ink-charcoal);
+  margin-top: 4px;
+}
+
+/* Vintage Chart Containers */
+.chart-container-vintage {
+  border: 1px solid var(--ink-charcoal);
+  padding: 12px;
+  background: var(--paper-bg);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+}
+
+.chart-title-vintage {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--ink-charcoal);
+  border-bottom: 1px solid var(--ink-charcoal);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}

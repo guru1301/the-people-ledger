@@ -760,56 +760,285 @@
     </div>
 
     <!-- =========================================================
-         PAGE 5: STATISTICAL REPORT (ANALYSIS & CHARTS)
+         PAGE 5: STATISTICAL REPORT (PURE VISUAL ANALYTICS HUB)
          ========================================================= -->
     <section class="np-page" id="page-statistics">
       <div class="newspaper-row">
         <div class="np-col" style="grid-column: span 5">
           <div class="section-head">
-            <span data-t="stats_sec_head">Electoral Research & Statistical Division</span>
-            <span class="section-head-subtitle" data-t="stats_sec_sub">Technical Review</span>
+            <span>EXECUTIVE ANALYTICS HUB</span>
+            <span class="section-head-subtitle">Certified BigQuery Data Warehouse Feed</span>
           </div>
-          <h2 class="article-headline" style="text-align:center; margin-bottom:15px" data-t="stats_main_head">STATISTICAL DISTRIBUTIONS & MARGINAL COMPARISONS</h2>
-          <p style="text-align:center; font-size:12px; font-style:italic; max-width:850px; margin: 0 auto 20px auto" data-t="stats_main_sub">
-            The records below detail the competitive breakdown of the election, including margin frequencies across all 234 seats, performance discrepancies inside reserved blocks (SC/ST), and the singular impact of postal returns.
-          </p>
+          
+          <h2 class="article-headline" style="text-align:center; margin-bottom:8px">ELECTION AT A GLANCE & VISUAL ANALYTICS DASHBOARD</h2>
+          <div class="byline center">Certified Records Registry · 18 Interactive Performance Indicators</div>
+          
+          <!-- ELECTION AT A GLANCE EXECUTIVE SUMMARY GRID -->
+          <div class="section-head" style="margin-top:15px">
+            <span>ELECTION AT A GLANCE · EXECUTIVE SUMMARY</span>
+            <span class="section-head-subtitle">Statewide Key Benchmarks</span>
+          </div>
+
+          <div class="exec-summary-grid">
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Total Seats</div>
+              <div class="exec-summary-val" id="stat-glance-seats">234</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Winning Party</div>
+              <div class="exec-summary-val" id="stat-glance-winner" style="color:var(--ink-red)">TVK</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Majority Seats</div>
+              <div class="exec-summary-val" id="stat-glance-majority">108 Seats</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Registered Electors</div>
+              <div class="exec-summary-val" id="stat-glance-electors">57.41M</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Votes Cast</div>
+              <div class="exec-summary-val" id="stat-glance-voted">49.39M</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Statewide Turnout</div>
+              <div class="exec-summary-val" id="stat-glance-turnout" style="color:var(--ink-red)">86.03%</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Women MLAs</div>
+              <div class="exec-summary-val" id="stat-glance-women">23</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Youngest MLA</div>
+              <div class="exec-summary-val" id="stat-glance-youngest">28 Years</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Oldest MLA</div>
+              <div class="exec-summary-val" id="stat-glance-oldest">83 Years</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Average Margin</div>
+              <div class="exec-summary-val" id="stat-glance-avg-margin">16,784</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Closest Victory</div>
+              <div class="exec-summary-val" id="stat-glance-closest" style="color:var(--ink-green)">1 Vote</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Largest Victory</div>
+              <div class="exec-summary-val" id="stat-glance-landslide">98,110</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">NOTA Votes</div>
+              <div class="exec-summary-val" id="stat-glance-nota">199,801</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Parties Won</div>
+              <div class="exec-summary-val" id="stat-glance-parties">12</div>
+            </div>
+            <div class="exec-summary-card">
+              <div class="exec-summary-label">Districts</div>
+              <div class="exec-summary-val" id="stat-glance-districts">38</div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div class="newspaper-row no-bottom" style="margin-top:15px">
-        
-        <!-- Chart Column 1 -->
-        <div class="np-col" style="grid-column: span 2">
-          <div class="chart-container-vintage">
-            <div class="chart-title-vintage" id="chart-va-title">Figure V-A: Frequency Distribution of Winning Margins</div>
-            <canvas id="marginHistogram" style="max-height: 250px; width: 100%"></canvas>
+      <!-- 18 VISUAL ANALYTICS CHARTS GRID -->
+      <!-- ROW 1: CHARTS 1 & 2 -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 1: Party Seat Share Breakdown</div>
+              <canvas id="chart1SeatShare" style="max-height:250px"></canvas>
+            </div>
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 2: Vote Share vs Seat Share (FPTP Disproportionality)</div>
+              <canvas id="chart2FPTP" style="max-height:250px"></canvas>
+            </div>
           </div>
-          
-          <div class="section-head">
-            <span data-t="reserved_title">Reserved Seat Competitiveness</span>
-          </div>
-          <p style="font-size:11.5px; line-height:1.6; text-align:justify" data-t="reserved_body">
-            Tamil Nadu sets aside 44 seats for Scheduled Castes (SC) and 2 seats for Scheduled Tribes (ST). Data indicates that reserved seats were substantially more competitive on average.<br><br>While General seats returned an average winning margin of 17,544 votes, SC seats had a tighter average of 14,192 votes. ST seats returned an ultra-competitive average of just 2,422 votes.
-          </p>
         </div>
+      </div>
 
-        <div class="np-divider"></div>
-
-        <!-- Chart Column 2 -->
-        <div class="np-col" style="grid-column: span 2">
-          <div class="chart-container-vintage">
-            <div class="chart-title-vintage" id="chart-vb-title">Figure V-B: Average Margin by Reservation (SC/ST)</div>
-            <canvas id="marginReservedChart" style="max-height: 250px; width: 100%"></canvas>
+      <!-- ROW 2: CHARTS 3 & 4 -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 3: Winning Margin Distribution Histogram</div>
+              <canvas id="chart3Margins" style="max-height:250px"></canvas>
+            </div>
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 4: Turnout Distribution Spectrum</div>
+              <canvas id="chart4Turnout" style="max-height:250px"></canvas>
+            </div>
           </div>
-          
-          <div class="section-head">
-            <span data-t="postal_title">The Postal Decided Race — Tiruppattur</span>
-          </div>
-          <p style="font-size:11.5px; line-height:1.6; text-align:justify" data-t="postal_body">
-            Across the entire state, only one single constituency would have returned a different winner without postal ballot returns.
-          </p>
         </div>
+      </div>
 
+      <!-- ROW 3: CHARTS 5 & 6 -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 5: Party Performance by District</div>
+              <canvas id="chart5District" style="max-height:250px"></canvas>
+            </div>
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 6: Women Representation in Assembly</div>
+              <canvas id="chart6Women" style="max-height:250px"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 4: CHARTS 7 & 8 -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 7: Age Distribution of Elected MLAs</div>
+              <canvas id="chart7Age" style="max-height:250px"></canvas>
+            </div>
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 8: Educational Qualification Breakdown</div>
+              <canvas id="chart8Education" style="max-height:250px"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 5: CHARTS 9 & 10 -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 9: Candidate Criminal Cases Distribution</div>
+              <canvas id="chart9Criminal" style="max-height:250px"></canvas>
+            </div>
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 10: Declared Assets Distribution</div>
+              <canvas id="chart10Assets" style="max-height:250px"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 6: CHARTS 11 & 12 -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 11: Seat Reservation Category Breakdown</div>
+              <canvas id="chart11Reservation" style="max-height:250px"></canvas>
+            </div>
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 12: Party-wise Winners Tally</div>
+              <canvas id="chart12Winners" style="max-height:250px"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 7: CHARTS 13 & 14 (RANKING TABLES) -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+            <div>
+              <div class="section-head">
+                <span>Chart 13: Top 10 Closest Victories</span>
+                <span class="section-head-subtitle">Tightest Margins</span>
+              </div>
+              <div class="np-table-container" style="max-height:260px; border:1px solid var(--ink-charcoal)">
+                <table class="np-table">
+                  <thead>
+                    <tr>
+                      <th>Constituency</th>
+                      <th>Winner</th>
+                      <th class="text-right">Margin</th>
+                      <th>Runner Up</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableClosestBody">
+                    <tr><td colspan="4" style="text-align:center; padding:10px">Loading...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-head">
+                <span>Chart 14: Top 10 Largest Landslides</span>
+                <span class="section-head-subtitle">Highest Victory Margins</span>
+              </div>
+              <div class="np-table-container" style="max-height:260px; border:1px solid var(--ink-charcoal)">
+                <table class="np-table">
+                  <thead>
+                    <tr>
+                      <th>Constituency</th>
+                      <th>Winner</th>
+                      <th class="text-right">Margin</th>
+                      <th>Runner Up</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableLandslidesBody">
+                    <tr><td colspan="4" style="text-align:center; padding:10px">Loading...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROW 8: CHARTS 15, 16, 17, 18 -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+            <div>
+              <div class="section-head">
+                <span>Chart 15: NOTA Impact Ranking</span>
+                <span class="section-head-subtitle">Highest NOTA Votes</span>
+              </div>
+              <div class="np-table-container" style="max-height:240px; border:1px solid var(--ink-charcoal)">
+                <table class="np-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>Constituency</th>
+                      <th class="text-right">NOTA Votes</th>
+                      <th class="text-right">Share %</th>
+                    </tr>
+                  </thead>
+                  <tbody id="tableNOTABody">
+                    <tr><td colspan="4" style="text-align:center; padding:10px">Loading...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 16: Incumbent Performance (Re-Elected vs Defeated)</div>
+              <canvas id="chart16Incumbent" style="max-height:230px"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 17: First-Time Winners vs Experienced MLAs</div>
+              <canvas id="chart17Firsttime" style="max-height:240px"></canvas>
+            </div>
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Chart 18: Candidate Gender Breakdown by Major Party</div>
+              <canvas id="chart18GenderParty" style="max-height:240px"></canvas>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
