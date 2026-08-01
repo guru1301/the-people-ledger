@@ -355,70 +355,72 @@
       </div>
 
       <div class="newspaper-row no-bottom" style="margin-top:15px">
-        <!-- Top 5 and Bottom 5 lists -->
-        <div class="np-col" style="grid-column: span 2">
-          <div class="section-head">
-            <span data-t="top_5_female_gap">Top 5 Female Turnout Advantages</span>
-          </div>
-          <table class="np-table" style="margin-bottom:25px">
-            <thead>
-              <tr>
-                <th data-t="col_district">District Name</th>
-                <th data-t="col_region">Region</th>
-                <th class="text-right" data-t="col_gap">Female Advantage</th>
-              </tr>
-            </thead>
-            <tbody id="top5FemaleBody">
-              <!-- Loaded dynamically -->
-            </tbody>
-          </table>
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
+            <!-- Top 5 and Bottom 5 lists -->
+            <div>
+              <div class="section-head">
+                <span data-t="top_5_female_gap">Top 5 Female Turnout Advantages</span>
+              </div>
+              <table class="np-table" style="margin-bottom:25px">
+                <thead>
+                  <tr>
+                    <th data-t="col_district">District Name</th>
+                    <th data-t="col_region">Region</th>
+                    <th class="text-right" data-t="col_gap">Female Advantage</th>
+                  </tr>
+                </thead>
+                <tbody id="top5FemaleBody">
+                  <!-- Loaded dynamically -->
+                </tbody>
+              </table>
 
-          <div class="section-head">
-            <span data-t="bottom_5_female_gap">Lowest / Reversed Turnout Gaps</span>
-          </div>
-          <table class="np-table">
-            <thead>
-              <tr>
-                <th data-t="col_district">District Name</th>
-                <th data-t="col_region">Region</th>
-                <th class="text-right" data-t="col_gap">Female Advantage</th>
-              </tr>
-            </thead>
-            <tbody id="bottom5FemaleBody">
-              <!-- Loaded dynamically -->
-            </tbody>
-          </table>
-        </div>
+              <div class="section-head">
+                <span data-t="bottom_5_female_gap">Lowest / Reversed Turnout Gaps</span>
+              </div>
+              <table class="np-table">
+                <thead>
+                  <tr>
+                    <th data-t="col_district">District Name</th>
+                    <th data-t="col_region">Region</th>
+                    <th class="text-right" data-t="col_gap">Female Advantage</th>
+                  </tr>
+                </thead>
+                <tbody id="bottom5FemaleBody">
+                  <!-- Loaded dynamically -->
+                </tbody>
+              </table>
+            </div>
 
-        <div class="np-divider"></div>
+            <!-- Interactive District Ledger -->
+            <div>
+              <div class="section-head">
+                <span data-t="district_ledger_title">38-District ECI Ledger</span>
+                <span style="font-size:9px; text-transform:none" data-t="click_to_sort">Click headers to sort</span>
+              </div>
+              
+              <!-- Search & Export Controls -->
+              <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center">
+                <input type="text" class="vintage-input" placeholder="Search District (e.g. Madurai, Salem...)" oninput="filterDistrictLedger(this.value)" style="flex:1; padding:6px 10px; font-size:11px">
+                <button onclick="exportDistrictLedgerCSV()" class="vintage-input" style="cursor:pointer; background:var(--ink-charcoal); color:#ffffff; font-weight:700; padding:6px 12px; font-size:10.5px; text-transform:uppercase; border:none"><i class="fa-solid fa-download"></i> CSV</button>
+              </div>
 
-        <!-- Interactive District Ledger -->
-        <div class="np-col" style="grid-column: span 2">
-          <div class="section-head">
-            <span data-t="district_ledger_title">38-District ECI Ledger</span>
-            <span style="font-size:9px; text-transform:none" data-t="click_to_sort">Click headers to sort</span>
-          </div>
-          
-          <!-- Search & Export Controls -->
-          <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center">
-            <input type="text" class="vintage-input" placeholder="Search District (e.g. Madurai, Salem...)" oninput="filterDistrictLedger(this.value)" style="flex:1; padding:6px 10px; font-size:11px">
-            <button onclick="exportDistrictLedgerCSV()" class="vintage-input" style="cursor:pointer; background:var(--ink-charcoal); color:#ffffff; font-weight:700; padding:6px 12px; font-size:10.5px; text-transform:uppercase; border:none"><i class="fa-solid fa-download"></i> CSV</button>
-          </div>
-
-          <div class="np-table-container" style="max-height: 420px; border: 1px solid var(--ink-charcoal)">
-            <table class="np-table" id="districtLedgerTable">
-              <thead>
-                <tr>
-                  <th onclick="sortDistrictLedger('name')" style="cursor:pointer" id="ledger-head-dist">District <i class="fa-solid fa-sort"></i></th>
-                  <th onclick="sortDistrictLedger('electors')" style="cursor:pointer" class="text-right" id="ledger-head-electors">Total Electors <i class="fa-solid fa-sort"></i></th>
-                  <th onclick="sortDistrictLedger('turnout')" style="cursor:pointer" class="text-right" id="ledger-head-turnout">Turnout % <i class="fa-solid fa-sort"></i></th>
-                  <th onclick="sortDistrictLedger('gap')" style="cursor:pointer" class="text-right" id="ledger-head-gap">Gender Gap <i class="fa-solid fa-sort"></i></th>
-                </tr>
-              </thead>
-              <tbody id="districtLedgerBody">
-                <!-- Loaded dynamically -->
-              </tbody>
-            </table>
+              <div class="np-table-container" style="max-height: 420px; border: 1px solid var(--ink-charcoal)">
+                <table class="np-table" id="districtLedgerTable">
+                  <thead>
+                    <tr>
+                      <th onclick="sortDistrictLedger('name')" style="cursor:pointer" id="ledger-head-dist">District <i class="fa-solid fa-sort"></i></th>
+                      <th onclick="sortDistrictLedger('electors')" style="cursor:pointer" class="text-right" id="ledger-head-electors">Total Electors <i class="fa-solid fa-sort"></i></th>
+                      <th onclick="sortDistrictLedger('turnout')" style="cursor:pointer" class="text-right" id="ledger-head-turnout">Turnout % <i class="fa-solid fa-sort"></i></th>
+                      <th onclick="sortDistrictLedger('gap')" style="cursor:pointer" class="text-right" id="ledger-head-gap">Gender Gap <i class="fa-solid fa-sort"></i></th>
+                    </tr>
+                  </thead>
+                  <tbody id="districtLedgerBody">
+                    <!-- Loaded dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
           </div>
         </div>
       </div>
