@@ -319,104 +319,149 @@
          ========================================================= -->
     <section class="np-page" id="page-voters">
       <div class="newspaper-row">
-        <div class="np-col" style="grid-column: span 5;">
+        <div class="np-col" style="grid-column: span 5">
           <div class="section-head">
-            <span data-t="district_ledger">Statewide Voter Archives</span>
-            <span class="section-head-subtitle" data-t="district_ledger_sub">Official 2026 Turnout Ledger</span>
+            <span>OFFICIAL ECI STATISTICAL ARCHIVE</span>
+            <span class="section-head-subtitle">Statewide Electorate & Participation Archive</span>
           </div>
           
-          <h2 class="article-headline" style="text-align:center;margin-bottom:15px" data-t="voter_archives_headline">DEMOCRATIC RECORD: FEMALE ELECTORS OUTVOTE MALES</h2>
-          <div class="byline center" data-t="voter_archives_byline">Compiled by the ECI Records Registry · Special Report</div>
+          <h2 class="article-headline" style="text-align:center; margin-bottom:8px">THE OFFICIAL STATISTICAL ARCHIVE OF TAMIL NADU'S ELECTORATE</h2>
+          <div class="byline center">Certified Records Registry · Election Commission of India Feed</div>
           
-          <div class="article-body" style="margin-bottom:15px; text-align:center; max-width:800px; margin-left:auto; margin-right:auto" data-t="voter_archives_desc">
-            Of Tamil Nadu's 234 assembly seats, women turned out to vote at higher percentages in 165 seats (≈70%). The tables below document the stark regional contrasts.
-          </div>
+          <p class="article-body" style="text-align:center; max-width:850px; margin:10px auto 20px auto">
+            A comprehensive digital encyclopedia documenting registered voters, participation rates, gender distributions, postal ballot accounts, and district ledgers across all 234 Assembly Constituencies and 38 Districts of Tamil Nadu.
+          </p>
 
-          <!-- Voter Archives Summary KPI Grid -->
-          <div style="display:grid; grid-template-columns: repeat(4, 1fr); gap:12px; margin-bottom:20px; text-align:center">
-            <div style="border:2px double var(--ink-charcoal); padding:10px; background:var(--paper-bg)">
-              <div style="font-family:'Courier Prime',monospace; font-size:10px; text-transform:uppercase; font-weight:700; color:gray">Total Electors</div>
-              <div style="font-family:'Playfair Display',serif; font-size:18px; font-weight:900; color:var(--ink-red)">6.36 Crore</div>
+          <!-- SECTION 1: HERO STATISTICS (8 DYNAMIC KPI CARDS) -->
+          <div class="voter-kpi-grid">
+            <div class="voter-kpi-card">
+              <div class="voter-kpi-label">Registered Electors</div>
+              <div class="voter-kpi-val" id="voter-hero-electors">--</div>
+              <div class="voter-kpi-sub">Total Voters</div>
             </div>
-            <div style="border:2px double var(--ink-charcoal); padding:10px; background:var(--paper-bg)">
-              <div style="font-family:'Courier Prime',monospace; font-size:10px; text-transform:uppercase; font-weight:700; color:gray">Statewide Turnout</div>
-              <div style="font-family:'Playfair Display',serif; font-size:18px; font-weight:900; color:var(--ink-charcoal)">72.84%</div>
+            <div class="voter-kpi-card">
+              <div class="voter-kpi-label">Votes Cast</div>
+              <div class="voter-kpi-val" id="voter-hero-voted">--</div>
+              <div class="voter-kpi-sub">Total Polled</div>
             </div>
-            <div style="border:2px double var(--ink-charcoal); padding:10px; background:var(--paper-bg)">
-              <div style="font-family:'Courier Prime',monospace; font-size:10px; text-transform:uppercase; font-weight:700; color:gray">Female-Led Seats</div>
-              <div style="font-family:'Playfair Display',serif; font-size:18px; font-weight:900; color:var(--ink-green)">165 / 234</div>
+            <div class="voter-kpi-card">
+              <div class="voter-kpi-label">Overall Turnout %</div>
+              <div class="voter-kpi-val" id="voter-hero-turnout" style="color:var(--ink-red)">--</div>
+              <div class="voter-kpi-sub">Certified Average</div>
             </div>
-            <div style="border:2px double var(--ink-charcoal); padding:10px; background:var(--paper-bg)">
-              <div style="font-family:'Courier Prime',monospace; font-size:10px; text-transform:uppercase; font-weight:700; color:gray">Highest Turnout</div>
-              <div style="font-family:'Playfair Display',serif; font-size:18px; font-weight:900; color:var(--ink-charcoal)">Dharmapuri (85.2%)</div>
+            <div class="voter-kpi-card">
+              <div class="voter-kpi-label">Male Electors</div>
+              <div class="voter-kpi-val" id="voter-hero-male">--</div>
+              <div class="voter-kpi-sub">Registered Males</div>
+            </div>
+            <div class="voter-kpi-card">
+              <div class="voter-kpi-label">Female Electors</div>
+              <div class="voter-kpi-val" id="voter-hero-female">--</div>
+              <div class="voter-kpi-sub">Registered Females</div>
+            </div>
+            <div class="voter-kpi-card">
+              <div class="voter-kpi-label">Third Gender</div>
+              <div class="voter-kpi-val" id="voter-hero-tg">--</div>
+              <div class="voter-kpi-sub">Registered TG</div>
+            </div>
+            <div class="voter-kpi-card">
+              <div class="voter-kpi-label">Assembly Seats</div>
+              <div class="voter-kpi-val" id="voter-hero-acs">234</div>
+              <div class="voter-kpi-sub">Constituencies</div>
+            </div>
+            <div class="voter-kpi-card">
+              <div class="voter-kpi-label">Districts</div>
+              <div class="voter-kpi-val" id="voter-hero-districts">38</div>
+              <div class="voter-kpi-sub">Administrative Units</div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="newspaper-row no-bottom" style="margin-top:15px">
+      <!-- SECTION 2: DISTRICT ELECTOR LEDGER -->
+      <div class="newspaper-row">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="section-head">
+            <span>SECTION 2: 38-District Elector Ledger</span>
+            <span class="section-head-subtitle">Click table headers to sort</span>
+          </div>
+
+          <div style="display:flex; gap:10px; margin-bottom:12px; align-items:center; flex-wrap:wrap">
+            <input type="text" id="district-ledger-search" class="vintage-input" placeholder="Search District name (e.g. Madurai, Salem...)" oninput="voterArchiveModule.filterDistrictLedger(this.value)" style="flex:1; min-width:240px; padding:7px 12px; font-size:12px">
+            <button onclick="voterArchiveModule.exportDistrictLedgerCSV()" class="vintage-btn"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+            <button onclick="voterArchiveModule.exportDistrictLedgerExcel()" class="vintage-btn" style="background:#1b4332; color:#ffffff"><i class="fa-solid fa-file-excel"></i> Export Excel</button>
+          </div>
+
+          <div class="np-table-container" style="max-height: 480px; border: 1px solid var(--ink-charcoal)">
+            <table class="np-table" id="districtLedgerTable">
+              <thead>
+                <tr>
+                  <th onclick="voterArchiveModule.sortDistrictLedger('district')" style="cursor:pointer">District <i class="fa-solid fa-sort"></i></th>
+                  <th onclick="voterArchiveModule.sortDistrictLedger('assembly_seats')" style="cursor:pointer" class="text-right">Seats <i class="fa-solid fa-sort"></i></th>
+                  <th onclick="voterArchiveModule.sortDistrictLedger('registered_electors')" style="cursor:pointer" class="text-right">Total Electors <i class="fa-solid fa-sort"></i></th>
+                  <th onclick="voterArchiveModule.sortDistrictLedger('male')" style="cursor:pointer" class="text-right">Male <i class="fa-solid fa-sort"></i></th>
+                  <th onclick="voterArchiveModule.sortDistrictLedger('female')" style="cursor:pointer" class="text-right">Female <i class="fa-solid fa-sort"></i></th>
+                  <th onclick="voterArchiveModule.sortDistrictLedger('third_gender')" style="cursor:pointer" class="text-right">Third Gender <i class="fa-solid fa-sort"></i></th>
+                  <th onclick="voterArchiveModule.sortDistrictLedger('votes_cast')" style="cursor:pointer" class="text-right">Votes Cast <i class="fa-solid fa-sort"></i></th>
+                  <th onclick="voterArchiveModule.sortDistrictLedger('turnout_pct')" style="cursor:pointer" class="text-right">Turnout % <i class="fa-solid fa-sort"></i></th>
+                </tr>
+              </thead>
+              <tbody id="districtLedgerBody">
+                <tr><td colspan="8" style="text-align:center; padding:20px; font-style:italic">Loading District Ledger...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div id="district-ledger-pagination" style="display:flex; justify-content:space-between; align-items:center; margin-top:10px; font-size:11px; font-family:'Courier Prime',monospace">
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTIONS 3 & 4: LARGEST & SMALLEST ELECTORATES -->
+      <div class="newspaper-row" style="margin-top:20px">
         <div class="np-col" style="grid-column: span 5">
           <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
-            <!-- Top 5 and Bottom 5 lists -->
             <div>
               <div class="section-head">
-                <span data-t="top_5_female_gap">Top 5 Female Turnout Advantages</span>
+                <span>SECTION 3: Largest Electorates</span>
+                <span class="section-head-subtitle">Top 20 Assembly Constituencies</span>
               </div>
-              <table class="np-table" style="margin-bottom:25px">
-                <thead>
-                  <tr>
-                    <th data-t="col_district">District Name</th>
-                    <th data-t="col_region">Region</th>
-                    <th class="text-right" data-t="col_gap">Female Advantage</th>
-                  </tr>
-                </thead>
-                <tbody id="top5FemaleBody">
-                  <!-- Loaded dynamically -->
-                </tbody>
-              </table>
-
-              <div class="section-head">
-                <span data-t="bottom_5_female_gap">Lowest / Reversed Turnout Gaps</span>
-              </div>
-              <table class="np-table">
-                <thead>
-                  <tr>
-                    <th data-t="col_district">District Name</th>
-                    <th data-t="col_region">Region</th>
-                    <th class="text-right" data-t="col_gap">Female Advantage</th>
-                  </tr>
-                </thead>
-                <tbody id="bottom5FemaleBody">
-                  <!-- Loaded dynamically -->
-                </tbody>
-              </table>
-            </div>
-
-            <!-- Interactive District Ledger -->
-            <div>
-              <div class="section-head">
-                <span data-t="district_ledger_title">38-District ECI Ledger</span>
-                <span style="font-size:9px; text-transform:none" data-t="click_to_sort">Click headers to sort</span>
-              </div>
-              
-              <!-- Search & Export Controls -->
-              <div style="display:flex; gap:10px; margin-bottom:10px; align-items:center">
-                <input type="text" class="vintage-input" placeholder="Search District (e.g. Madurai, Salem...)" oninput="filterDistrictLedger(this.value)" style="flex:1; padding:6px 10px; font-size:11px">
-                <button onclick="exportDistrictLedgerCSV()" class="vintage-input" style="cursor:pointer; background:var(--ink-charcoal); color:#ffffff; font-weight:700; padding:6px 12px; font-size:10.5px; text-transform:uppercase; border:none"><i class="fa-solid fa-download"></i> CSV</button>
-              </div>
-
-              <div class="np-table-container" style="max-height: 420px; border: 1px solid var(--ink-charcoal)">
-                <table class="np-table" id="districtLedgerTable">
+              <div class="np-table-container" style="max-height: 380px; border: 1px solid var(--ink-charcoal)">
+                <table class="np-table">
                   <thead>
                     <tr>
-                      <th onclick="sortDistrictLedger('name')" style="cursor:pointer" id="ledger-head-dist">District <i class="fa-solid fa-sort"></i></th>
-                      <th onclick="sortDistrictLedger('electors')" style="cursor:pointer" class="text-right" id="ledger-head-electors">Total Electors <i class="fa-solid fa-sort"></i></th>
-                      <th onclick="sortDistrictLedger('turnout')" style="cursor:pointer" class="text-right" id="ledger-head-turnout">Turnout % <i class="fa-solid fa-sort"></i></th>
-                      <th onclick="sortDistrictLedger('gap')" style="cursor:pointer" class="text-right" id="ledger-head-gap">Gender Gap <i class="fa-solid fa-sort"></i></th>
+                      <th style="width:40px">Rank</th>
+                      <th>Constituency</th>
+                      <th>District</th>
+                      <th class="text-right">Electors</th>
+                      <th class="text-right">Turnout %</th>
                     </tr>
                   </thead>
-                  <tbody id="districtLedgerBody">
-                    <!-- Loaded dynamically -->
+                  <tbody id="largestElectoratesBody">
+                    <tr><td colspan="5" style="text-align:center; padding:15px">Loading...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-head">
+                <span>SECTION 4: Smallest Electorates</span>
+                <span class="section-head-subtitle">Top 20 Smallest Assembly Seats</span>
+              </div>
+              <div class="np-table-container" style="max-height: 380px; border: 1px solid var(--ink-charcoal)">
+                <table class="np-table">
+                  <thead>
+                    <tr>
+                      <th style="width:40px">Rank</th>
+                      <th>Constituency</th>
+                      <th>District</th>
+                      <th class="text-right">Electors</th>
+                      <th class="text-right">Turnout %</th>
+                    </tr>
+                  </thead>
+                  <tbody id="smallestElectoratesBody">
+                    <tr><td colspan="5" style="text-align:center; padding:15px">Loading...</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -424,7 +469,295 @@
           </div>
         </div>
       </div>
+
+      <!-- SECTIONS 5 & 6: HIGHEST & LOWEST TURNOUT -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
+            <div>
+              <div class="section-head">
+                <span>SECTION 5: Highest Turnout</span>
+                <span class="section-head-subtitle">Top 20 Record Voting Seats</span>
+              </div>
+              <div class="np-table-container" style="max-height: 380px; border: 1px solid var(--ink-charcoal)">
+                <table class="np-table">
+                  <thead>
+                    <tr>
+                      <th style="width:40px">Rank</th>
+                      <th>Constituency</th>
+                      <th>District</th>
+                      <th class="text-right">Turnout %</th>
+                      <th class="text-right">Votes Cast</th>
+                    </tr>
+                  </thead>
+                  <tbody id="topTurnoutBody">
+                    <tr><td colspan="5" style="text-align:center; padding:15px">Loading...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-head">
+                <span>SECTION 6: Lowest Turnout</span>
+                <span class="section-head-subtitle">Top 20 Lowest Participation Seats</span>
+              </div>
+              <div class="np-table-container" style="max-height: 380px; border: 1px solid var(--ink-charcoal)">
+                <table class="np-table">
+                  <thead>
+                    <tr>
+                      <th style="width:40px">Rank</th>
+                      <th>Constituency</th>
+                      <th>District</th>
+                      <th class="text-right">Turnout %</th>
+                      <th class="text-right">Votes Cast</th>
+                    </tr>
+                  </thead>
+                  <tbody id="lowestTurnoutBody">
+                    <tr><td colspan="5" style="text-align:center; padding:15px">Loading...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTIONS 7 & 8: GENDER ELECTOR STATISTICS & FEMALE MAJORITY CONSTITUENCIES -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="section-head">
+            <span>SECTION 7: Gender Elector Statistics & Demographics</span>
+            <span class="section-head-subtitle">Statewide Gender Composition</span>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-bottom:15px">
+            <div class="voter-stat-box">
+              <div class="voter-stat-title">Male Share</div>
+              <div class="voter-stat-num" id="gender-stat-male-pct">--</div>
+              <div class="voter-stat-sub">Statewide Elector Share</div>
+            </div>
+            <div class="voter-stat-box">
+              <div class="voter-stat-title">Female Share</div>
+              <div class="voter-stat-num" id="gender-stat-female-pct" style="color:var(--ink-red)">--</div>
+              <div class="voter-stat-sub">Statewide Elector Share</div>
+            </div>
+            <div class="voter-stat-box">
+              <div class="voter-stat-title">Third Gender Share</div>
+              <div class="voter-stat-num" id="gender-stat-tg-pct">--</div>
+              <div class="voter-stat-sub">Statewide Elector Share</div>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:12px; margin-bottom:20px">
+            <div class="voter-mini-card">
+              <div style="font-size:10px; font-weight:700; color:gray; text-transform:uppercase">Highest Female %</div>
+              <div id="highest-female-constituency" style="font-weight:700; font-size:13px; margin-top:4px">--</div>
+            </div>
+            <div class="voter-mini-card">
+              <div style="font-size:10px; font-weight:700; color:gray; text-transform:uppercase">Highest Male %</div>
+              <div id="highest-male-constituency" style="font-weight:700; font-size:13px; margin-top:4px">--</div>
+            </div>
+            <div class="voter-mini-card">
+              <div style="font-size:10px; font-weight:700; color:gray; text-transform:uppercase">Highest Third Gender Count</div>
+              <div id="highest-tg-constituency" style="font-weight:700; font-size:13px; margin-top:4px">--</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 8: FEMALE MAJORITY CONSTITUENCIES -->
+      <div class="newspaper-row">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="section-head">
+            <span>SECTION 8: Female Majority Constituencies (Female > Male Electors)</span>
+            <span class="section-head-subtitle" id="female-majority-title-count">Constituencies List</span>
+          </div>
+
+          <div class="np-table-container" style="max-height: 380px; border: 1px solid var(--ink-charcoal)">
+            <table class="np-table">
+              <thead>
+                <tr>
+                  <th>AC No</th>
+                  <th>Constituency</th>
+                  <th>District</th>
+                  <th class="text-right">Male Electors</th>
+                  <th class="text-right">Female Electors</th>
+                  <th class="text-right">Female Lead</th>
+                  <th class="text-right">Female %</th>
+                </tr>
+              </thead>
+              <tbody id="femaleMajorityBody">
+                <tr><td colspan="7" style="text-align:center; padding:15px">Loading...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 9: POSTAL BALLOT ARCHIVE -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:24px">
+            <div>
+              <div class="section-head">
+                <span>SECTION 9: Postal Ballot Archive</span>
+                <span class="section-head-subtitle">Official Returns</span>
+              </div>
+
+              <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:10px; margin-bottom:15px">
+                <div class="voter-kpi-card">
+                  <div class="voter-kpi-label">Received</div>
+                  <div class="voter-kpi-val" id="postal-stat-received">--</div>
+                </div>
+                <div class="voter-kpi-card">
+                  <div class="voter-kpi-label">Accepted</div>
+                  <div class="voter-kpi-val" id="postal-stat-accepted">--</div>
+                </div>
+                <div class="voter-kpi-card">
+                  <div class="voter-kpi-label">Rejected</div>
+                  <div class="voter-kpi-val" id="postal-stat-rejected" style="color:var(--ink-red)">--</div>
+                </div>
+                <div class="voter-kpi-card">
+                  <div class="voter-kpi-label">Rejection %</div>
+                  <div class="voter-kpi-val" id="postal-stat-rejection-pct">--</div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="section-head">
+                <span>Top Districts by Postal Ballots</span>
+                <span class="section-head-subtitle">Highest Volume</span>
+              </div>
+              <div class="np-table-container" style="max-height: 250px; border: 1px solid var(--ink-charcoal)">
+                <table class="np-table">
+                  <thead>
+                    <tr>
+                      <th>Rank</th>
+                      <th>District</th>
+                      <th class="text-right">Postal Votes</th>
+                    </tr>
+                  </thead>
+                  <tbody id="topPostalDistrictsBody">
+                    <tr><td colspan="3" style="text-align:center; padding:10px">Loading...</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 10: TURNOUT DISTRIBUTION -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="section-head">
+            <span>SECTION 10: Turnout Distribution Histogram</span>
+            <span class="section-head-subtitle">Frequency Spectrum</span>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 2fr 1fr; gap:20px; align-items:center">
+            <div class="chart-container-vintage">
+              <canvas id="chartTurnoutDistribution" style="max-height:260px"></canvas>
+            </div>
+            <div class="np-table-container">
+              <table class="np-table">
+                <thead>
+                  <tr>
+                    <th>Turnout Range</th>
+                    <th class="text-right">Seats</th>
+                    <th class="text-right">Share %</th>
+                  </tr>
+                </thead>
+                <tbody id="turnoutDistributionBody">
+                  <tr><td colspan="3" style="text-align:center; padding:10px">Loading...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 11: SEARCH EXPLORER -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="section-head">
+            <span>SECTION 11: Constituency Search Explorer</span>
+            <span class="section-head-subtitle">Search by District or Constituency</span>
+          </div>
+
+          <div style="margin-bottom:15px">
+            <input type="text" id="searchExplorerInput" class="vintage-input" placeholder="Type Constituency or District name (e.g. Harbour, Shozhinganallur, Salem)..." oninput="voterArchiveModule.handleSearchExplorer(this.value)" style="width:100%; padding:10px 14px; font-size:13px">
+          </div>
+
+          <div id="searchExplorerResults">
+            <p style="font-style:italic; text-align:center; color:gray; padding:20px">Type in the box above to explore detailed constituency electorate metrics...</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 12: INTERACTIVE 38-DISTRICT CARDS GRID -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="section-head">
+            <span>SECTION 12: Interactive 38-District Elector Cards</span>
+            <span class="section-head-subtitle">Click any district card to view detailed modal</span>
+          </div>
+
+          <div class="district-cards-grid" id="districtCardsGrid">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 13: QUICK FACTS & CHARTS GRID -->
+      <div class="newspaper-row" style="margin-top:20px">
+        <div class="np-col" style="grid-column: span 5">
+          <div class="section-head">
+            <span>SECTION 13: Quick Facts & Interactive Analytics Charts</span>
+            <span class="section-head-subtitle">Statewide Statistical Summary</span>
+          </div>
+
+          <div class="quick-facts-grid" id="quickFactsGrid" style="margin-bottom:20px">
+            <!-- Dynamically populated -->
+          </div>
+
+          <!-- Charts Quadrant Grid -->
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:20px">
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">District-wise Average Turnout %</div>
+              <canvas id="chartDistrictTurnout" style="max-height:240px"></canvas>
+            </div>
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Statewide Gender Composition</div>
+              <canvas id="chartGenderDistribution" style="max-height:240px"></canvas>
+            </div>
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Top 10 Largest Assembly Electorates</div>
+              <canvas id="chartTopElectorates" style="max-height:240px"></canvas>
+            </div>
+            <div class="chart-container-vintage">
+              <div class="chart-title-vintage">Top Districts by Postal Votes</div>
+              <canvas id="chartPostalVotes" style="max-height:240px"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
+
+    <!-- DISTRICT DETAIL MODAL OVERLAY -->
+    <div id="districtModal" class="vintage-modal-overlay" style="display:none">
+      <div class="vintage-modal-content">
+        <div class="vintage-modal-header">
+          <div id="districtModalTitle" style="font-family:'Playfair Display',serif; font-size:18px; font-weight:900">District Detail Profile</div>
+          <span class="vintage-modal-close" onclick="voterArchiveModule.closeDistrictModal()">&times;</span>
+        </div>
+        <div id="districtModalBody" class="vintage-modal-body">
+          <!-- Loaded dynamically -->
+        </div>
+      </div>
+    </div>
 
     <!-- =========================================================
          PAGE 5: STATISTICAL REPORT (ANALYSIS & CHARTS)

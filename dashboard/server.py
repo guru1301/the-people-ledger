@@ -2134,6 +2134,445 @@ def get_finding_08_data():
 
     return jsonify(get_canonical_finding_08_payload())
 
+# =============================================================
+# VOTER ARCHIVE API ENDPOINTS (Google BigQuery Data Warehouse)
+# =============================================================
+
+_voters_df_cache = None
+
+def _get_voters_merged_dataframe():
+    global _voters_df_cache
+    if _voters_df_cache is not None:
+        return _voters_df_cache
+
+    # 1. Try BigQuery
+    if bq_client:
+        try:
+            sql = """
+            SELECT 
+                t.AC_No,
+                t.AC_Name,
+                t.District_Name AS `District Name`,
+                t.Total_Electors,
+                t.Male_Electors,
+                t.Female_Electors,
+                t.TG_Electors,
+                t.Total_Voted,
+                t.Male_Voted,
+                t.Female_Voted,
+                t.TG_Voted,
+                t.Postal_Voted,
+                t.Poll_Pct,
+                t.Male_Poll_Pct,
+                t.Female_Poll_Pct,
+                t.Male_Elector_Pct,
+                t.Female_Elector_Pct,
+                e.Valid_Votes,
+                e.Rejected_Votes,
+                e.NOTA_Votes
+            FROM `tn-election-2026-501004.tn_election_2026.fact_turnout_2026` t
+            LEFT JOIN `tn-election-2026-501004.tn_election_2026.dim_electors_2026` e
+            ON t.AC_No = e.`AC No.`
+            """
+            df = bq_client.query(sql).to_dataframe()
+            if not df.empty:
+                _voters_df_cache = df
+                return df
+        except Exception as e:
+            logger.warning(f"BigQuery voters query failed: {e}. Using local dataset fallback.")
+
+    # 2. Fallback to local CSVs
+    try:
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        cleaned_dir = os.path.join(os.path.dirname(script_dir), "cleaned data")
+        if not os.path.exists(cleaned_dir):
+            cleaned_dir = os.path.join(script_dir, "cleaned data")
+
+        f_turnout = os.path.join(cleaned_dir, "fact_turnout_2026_FINAL.csv")
+        f_electors = os.path.join(cleaned_dir, "dim_electors_2026_FINAL.csv")
+
+        if os.path.exists(f_turnout) and os.path.exists(f_electors):
+            df_t = pd.read_csv(f_turnout)
+            df_e = pd.read_csv(f_electors)
+            df = pd.merge(df_t, df_e, left_on='AC_No', right_on='AC No.', how='left')
+            if 'Female_Elector_Pct' not in df.columns:
+                df['Female_Elector_Pct'] = (df['Female_Electors'] * 100.0 / df['Total_Electors']).round(2)
+            if 'Male_Elector_Pct' not in df.columns:
+                df['Male_Elector_Pct'] = (df['Male_Electors'] * 100.0 / df['Total_Electors']).round(2)
+            _voters_df_cache = df
+            return df
+    except Exception as e:
+        logger.error(f"Failed to load local voter fallback data: {e}")
+
+    return pd.DataFrame()
+
+
+@app.route('/api/voters/overview', methods=['GET'])
+def api_voters_overview():
+    df = _get_voters_merged_dataframe()
+    if not df.empty:
+        total_electors = int(df['Total_Electors'].sum())
+        total_voted = int(df['Total_Voted'].sum())
+        turnout_pct = round(total_voted * 100.0 / total_electors, 2) if total_electors > 0 else 0
+        male_electors = int(df['Male_Electors'].sum())
+        female_electors = int(df['Female_Electors'].sum())
+        tg_electors = int(df['TG_Electors'].sum())
+        total_acs = len(df)
+        total_districts = df['District Name'].nunique()
+
+        return jsonify({
+            "registered_electors": total_electors,
+            "votes_cast": total_voted,
+            "overall_turnout_pct": turnout_pct,
+            "male_electors": male_electors,
+            "female_electors": female_electors,
+            "third_gender_electors": tg_electors,
+            "assembly_constituencies": total_acs,
+            "districts": total_districts
+        })
+    return jsonify({})
+
+
+@app.route('/api/voters/districts', methods=['GET'])
+def api_voters_districts():
+    df = _get_voters_merged_dataframe()
+    if not df.empty:
+        g = df.groupby('District Name').agg(
+            assembly_seats=('AC_No', 'count'),
+            registered_electors=('Total_Electors', 'sum'),
+            male=('Male_Electors', 'sum'),
+            female=('Female_Electors', 'sum'),
+            third_gender=('TG_Electors', 'sum'),
+            votes_cast=('Total_Voted', 'sum')
+        ).reset_index()
+
+        g['turnout_pct'] = (g['votes_cast'] * 100.0 / g['registered_electors']).round(2)
+        g['district'] = g['District Name']
+
+        records = g[['district', 'assembly_seats', 'registered_electors', 'male', 'female', 'third_gender', 'votes_cast', 'turnout_pct']].to_dict(orient='records')
+        return jsonify(records)
+    return jsonify([])
+
+
+@app.route('/api/voters/largest-electorates', methods=['GET'])
+def api_voters_largest_electorates():
+    limit = request.args.get('limit', default=20, type=int)
+    df = _get_voters_merged_dataframe()
+    if not df.empty:
+        sorted_df = df.sort_values(by='Total_Electors', ascending=False).head(limit)
+        res = []
+        for idx, r in enumerate(sorted_df.to_dict(orient='records'), 1):
+            res.append({
+                "rank": idx,
+                "ac_no": int(r['AC_No']),
+                "constituency": r['AC_Name'],
+                "district": r['District Name'],
+                "registered_electors": int(r['Total_Electors']),
+                "votes_cast": int(r['Total_Voted']),
+                "turnout_pct": float(r['Poll_Pct'])
+            })
+        return jsonify(res)
+    return jsonify([])
+
+
+@app.route('/api/voters/smallest-electorates', methods=['GET'])
+def api_voters_smallest_electorates():
+    limit = request.args.get('limit', default=20, type=int)
+    df = _get_voters_merged_dataframe()
+    if not df.empty:
+        sorted_df = df.sort_values(by='Total_Electors', ascending=True).head(limit)
+        res = []
+        for idx, r in enumerate(sorted_df.to_dict(orient='records'), 1):
+            res.append({
+                "rank": idx,
+                "ac_no": int(r['AC_No']),
+                "constituency": r['AC_Name'],
+                "district": r['District Name'],
+                "registered_electors": int(r['Total_Electors']),
+                "votes_cast": int(r['Total_Voted']),
+                "turnout_pct": float(r['Poll_Pct'])
+            })
+        return jsonify(res)
+    return jsonify([])
+
+
+@app.route('/api/voters/top-turnout', methods=['GET'])
+def api_voters_top_turnout():
+    limit = request.args.get('limit', default=20, type=int)
+    df = _get_voters_merged_dataframe()
+    if not df.empty:
+        sorted_df = df.sort_values(by='Poll_Pct', ascending=False).head(limit)
+        res = []
+        for idx, r in enumerate(sorted_df.to_dict(orient='records'), 1):
+            res.append({
+                "rank": idx,
+                "ac_no": int(r['AC_No']),
+                "constituency": r['AC_Name'],
+                "district": r['District Name'],
+                "turnout_pct": float(r['Poll_Pct']),
+                "votes_cast": int(r['Total_Voted']),
+                "electors": int(r['Total_Electors'])
+            })
+        return jsonify(res)
+    return jsonify([])
+
+
+@app.route('/api/voters/lowest-turnout', methods=['GET'])
+def api_voters_lowest_turnout():
+    limit = request.args.get('limit', default=20, type=int)
+    df = _get_voters_merged_dataframe()
+    if not df.empty:
+        sorted_df = df.sort_values(by='Poll_Pct', ascending=True).head(limit)
+        res = []
+        for idx, r in enumerate(sorted_df.to_dict(orient='records'), 1):
+            res.append({
+                "rank": idx,
+                "ac_no": int(r['AC_No']),
+                "constituency": r['AC_Name'],
+                "district": r['District Name'],
+                "turnout_pct": float(r['Poll_Pct']),
+                "votes_cast": int(r['Total_Voted']),
+                "electors": int(r['Total_Electors'])
+            })
+        return jsonify(res)
+    return jsonify([])
+
+
+@app.route('/api/voters/gender', methods=['GET'])
+def api_voters_gender():
+    df = _get_voters_merged_dataframe()
+    if not df.empty:
+        total_m = int(df['Male_Electors'].sum())
+        total_f = int(df['Female_Electors'].sum())
+        total_tg = int(df['TG_Electors'].sum())
+        grand_total = total_m + total_f + total_tg
+
+        m_pct = round(total_m * 100.0 / grand_total, 2) if grand_total > 0 else 0
+        f_pct = round(total_f * 100.0 / grand_total, 2) if grand_total > 0 else 0
+        tg_pct = round(total_tg * 100.0 / grand_total, 4) if grand_total > 0 else 0
+
+        hi_female = df.sort_values(by='Female_Elector_Pct', ascending=False).iloc[0]
+        hi_male = df.sort_values(by='Male_Elector_Pct', ascending=False).iloc[0]
+        hi_tg = df.sort_values(by='TG_Electors', ascending=False).iloc[0]
+
+        # Female Majority Constituencies (Female > Male Electors)
+        fm_df = df[df['Female_Electors'] > df['Male_Electors']].copy()
+        fm_df['difference'] = fm_df['Female_Electors'] - fm_df['Male_Electors']
+        fm_df['female_pct'] = (fm_df['Female_Electors'] * 100.0 / fm_df['Total_Electors']).round(2)
+        fm_df_sorted = fm_df.sort_values(by='difference', ascending=False)
+
+        fm_list = []
+        for r in fm_df_sorted.to_dict(orient='records'):
+            fm_list.append({
+                "ac_no": int(r['AC_No']),
+                "constituency": r['AC_Name'],
+                "district": r['District Name'],
+                "male": int(r['Male_Electors']),
+                "female": int(r['Female_Electors']),
+                "difference": int(r['difference']),
+                "female_pct": float(r['female_pct'])
+            })
+
+        return jsonify({
+            "male_electors": total_m,
+            "female_electors": total_f,
+            "third_gender_electors": total_tg,
+            "male_pct": m_pct,
+            "female_pct": f_pct,
+            "third_gender_pct": tg_pct,
+            "highest_female_elector_pct": {
+                "constituency": hi_female['AC_Name'],
+                "district": hi_female['District Name'],
+                "percentage": float(hi_female['Female_Elector_Pct'])
+            },
+            "highest_male_elector_pct": {
+                "constituency": hi_male['AC_Name'],
+                "district": hi_male['District Name'],
+                "percentage": float(hi_male['Male_Elector_Pct'])
+            },
+            "highest_third_gender_count": {
+                "constituency": hi_tg['AC_Name'],
+                "district": hi_tg['District Name'],
+                "count": int(hi_tg['TG_Electors'])
+            },
+            "female_majority_count": len(fm_list),
+            "female_majority_constituencies": fm_list
+        })
+    return jsonify({})
+
+
+@app.route('/api/voters/postal', methods=['GET'])
+def api_voters_postal():
+    df = _get_voters_merged_dataframe()
+    if not df.empty:
+        total_postal = int(df['Postal_Voted'].sum())
+        total_valid = int(df['Valid_Votes'].sum()) if 'Valid_Votes' in df else 0
+        total_rejected = int(df['Rejected_Votes'].sum()) if 'Rejected_Votes' in df else 0
+
+        total_returns = total_valid + total_rejected
+        rejected_pct = round(total_rejected * 100.0 / total_returns, 2) if total_returns > 0 else 0
+
+        # Top Districts by Postal Ballots
+        g = df.groupby('District Name')['Postal_Voted'].sum().reset_index()
+        g_sorted = g.sort_values(by='Postal_Voted', ascending=False).head(10)
+
+        top_districts = []
+        for r in g_sorted.to_dict(orient='records'):
+            top_districts.append({
+                "district": r['District Name'],
+                "postal_votes": int(r['Postal_Voted'])
+            })
+
+        return jsonify({
+            "postal_ballots_received": total_postal,
+            "accepted": total_valid,
+            "rejected": total_rejected,
+            "rejection_pct": rejected_pct,
+            "top_districts": top_districts
+        })
+    return jsonify({})
+
+
+@app.route('/api/voters/turnout-distribution', methods=['GET'])
+def api_voters_turnout_distribution():
+    df = _get_voters_merged_dataframe()
+    if not df.empty:
+        ranges = [
+            ("Below 70", lambda x: x < 70),
+            ("70-75", lambda x: (x >= 70) & (x < 75)),
+            ("75-80", lambda x: (x >= 75) & (x < 80)),
+            ("80-85", lambda x: (x >= 80) & (x < 85)),
+            ("85-90", lambda x: (x >= 85) & (x < 90)),
+            ("90+", lambda x: x >= 90)
+        ]
+
+        total_acs = len(df)
+        dist = []
+        for label, cond in ranges:
+            cnt = len(df[cond(df['Poll_Pct'])])
+            pct = round(cnt * 100.0 / total_acs, 2) if total_acs > 0 else 0
+            dist.append({
+                "range": label,
+                "constituencies_count": cnt,
+                "percentage": pct
+            })
+
+        return jsonify({
+            "total_constituencies": total_acs,
+            "distribution": dist
+        })
+    return jsonify({})
+
+
+@app.route('/api/voters/search', methods=['GET'])
+def api_voters_search():
+    query = request.args.get('q', '').strip().lower()
+    df = _get_voters_merged_dataframe()
+    if not df.empty and query:
+        matched = df[
+            df['AC_Name'].str.lower().str.contains(query) | 
+            df['District Name'].str.lower().str.contains(query)
+        ]
+        res = []
+        for r in matched.head(30).to_dict(orient='records'):
+            res.append({
+                "ac_no": int(r['AC_No']),
+                "constituency": r['AC_Name'],
+                "district": r['District Name'],
+                "registered_electors": int(r['Total_Electors']),
+                "male": int(r['Male_Electors']),
+                "female": int(r['Female_Electors']),
+                "third_gender": int(r['TG_Electors']),
+                "votes_cast": int(r['Total_Voted']),
+                "turnout_pct": float(r['Poll_Pct']),
+                "postal_votes": int(r['Postal_Voted']),
+                "nota_votes": int(r.get('NOTA_Votes', 0)),
+                "valid_votes": int(r.get('Valid_Votes', 0)),
+                "rejected_votes": int(r.get('Rejected_Votes', 0))
+            })
+        return jsonify(res)
+    return jsonify([])
+
+
+@app.route('/api/voters/district-detail/<district_name>', methods=['GET'])
+def api_voters_district_detail(district_name):
+    df = _get_voters_merged_dataframe()
+    if not df.empty:
+        sub = df[df['District Name'].str.lower() == district_name.lower()]
+        if not sub.empty:
+            seats = len(sub)
+            reg = int(sub['Total_Electors'].sum())
+            voted = int(sub['Total_Voted'].sum())
+            to_pct = round(voted * 100.0 / reg, 2) if reg > 0 else 0
+            m_el = int(sub['Male_Electors'].sum())
+            f_el = int(sub['Female_Electors'].sum())
+            tg_el = int(sub['TG_Electors'].sum())
+
+            top_to = sub.sort_values(by='Poll_Pct', ascending=False).iloc[0]
+            low_to = sub.sort_values(by='Poll_Pct', ascending=True).iloc[0]
+            top_el = sub.sort_values(by='Total_Electors', ascending=False).iloc[0]
+            low_el = sub.sort_values(by='Total_Electors', ascending=True).iloc[0]
+
+            acs = []
+            for r in sub.to_dict(orient='records'):
+                acs.append({
+                    "ac_no": int(r['AC_No']),
+                    "constituency": r['AC_Name'],
+                    "electors": int(r['Total_Electors']),
+                    "votes_cast": int(r['Total_Voted']),
+                    "turnout_pct": float(r['Poll_Pct'])
+                })
+
+            return jsonify({
+                "district": sub.iloc[0]['District Name'],
+                "summary": {
+                    "assembly_seats": seats,
+                    "registered_electors": reg,
+                    "votes_cast": voted,
+                    "turnout_pct": to_pct,
+                    "male_electors": m_el,
+                    "female_electors": f_el,
+                    "third_gender_electors": tg_el
+                },
+                "extremes": {
+                    "top_turnout": {"constituency": top_to['AC_Name'], "turnout_pct": float(top_to['Poll_Pct'])},
+                    "lowest_turnout": {"constituency": low_to['AC_Name'], "turnout_pct": float(low_to['Poll_Pct'])},
+                    "largest_electorate": {"constituency": top_el['AC_Name'], "electors": int(top_el['Total_Electors'])},
+                    "smallest_electorate": {"constituency": low_el['AC_Name'], "electors": int(low_el['Total_Electors'])}
+                },
+                "constituencies": acs
+            })
+    return jsonify({"error": "District not found"}), 404
+
+
+@app.route('/api/voters/statistics', methods=['GET'])
+def api_voters_statistics():
+    df = _get_voters_merged_dataframe()
+    if not df.empty:
+        largest = df.sort_values(by='Total_Electors', ascending=False).iloc[0]
+        smallest = df.sort_values(by='Total_Electors', ascending=True).iloc[0]
+        hi_turnout = df.sort_values(by='Poll_Pct', ascending=False).iloc[0]
+        lo_turnout = df.sort_values(by='Poll_Pct', ascending=True).iloc[0]
+        hi_female = df.sort_values(by='Female_Elector_Pct', ascending=False).iloc[0]
+        hi_male = df.sort_values(by='Male_Elector_Pct', ascending=False).iloc[0]
+        hi_tg = df.sort_values(by='TG_Electors', ascending=False).iloc[0]
+        most_postal = df.sort_values(by='Postal_Voted', ascending=False).iloc[0]
+        least_postal = df.sort_values(by='Postal_Voted', ascending=True).iloc[0]
+
+        return jsonify({
+            "largest_electorate": {"constituency": largest['AC_Name'], "district": largest['District Name'], "value": int(largest['Total_Electors'])},
+            "smallest_electorate": {"constituency": smallest['AC_Name'], "district": smallest['District Name'], "value": int(smallest['Total_Electors'])},
+            "highest_turnout": {"constituency": hi_turnout['AC_Name'], "district": hi_turnout['District Name'], "value": float(hi_turnout['Poll_Pct'])},
+            "lowest_turnout": {"constituency": lo_turnout['AC_Name'], "district": lo_turnout['District Name'], "value": float(lo_turnout['Poll_Pct'])},
+            "highest_female_pct": {"constituency": hi_female['AC_Name'], "district": hi_female['District Name'], "value": float(hi_female['Female_Elector_Pct'])},
+            "highest_male_pct": {"constituency": hi_male['AC_Name'], "district": hi_male['District Name'], "value": float(hi_male['Male_Elector_Pct'])},
+            "highest_third_gender": {"constituency": hi_tg['AC_Name'], "district": hi_tg['District Name'], "value": int(hi_tg['TG_Electors'])},
+            "most_postal_votes": {"constituency": most_postal['AC_Name'], "district": most_postal['District Name'], "value": int(most_postal['Postal_Voted'])},
+            "least_postal_votes": {"constituency": least_postal['AC_Name'], "district": least_postal['District Name'], "value": int(least_postal['Postal_Voted'])}
+        })
+    return jsonify({})
+
+
 if __name__ == '__main__':
     script_dir = os.path.dirname(os.path.abspath(__file__))
     if script_dir:
@@ -2142,4 +2581,5 @@ if __name__ == '__main__':
     PORT = 8000
     print(f"Serving election dashboard at http://localhost:{PORT}")
     app.run(host='0.0.0.0', port=PORT, debug=False)
+
 

@@ -1,7 +1,297 @@
 /* =============================================================
-   voters.css — Voter archive page (no unique components beyond
-   base tables; kept for future page-specific overrides)
+   voters.css — Official ECI Voter Archive Page Vintage Newspaper Styles
    ============================================================= */
 
-/* Voter Archives page uses .np-table from base.css.
-   Add any page-specific styles here. */
+/* Hero KPI Grid */
+.voter-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+@media (max-width: 900px) {
+  .voter-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.voter-kpi-card {
+  border: 2px double var(--ink-charcoal);
+  padding: 12px 10px;
+  background: var(--paper-bg);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.06);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.voter-kpi-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0px rgba(0,0,0,0.12);
+}
+
+.voter-kpi-label {
+  font-family: 'Courier Prime', monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #555555;
+  letter-spacing: 0.5px;
+}
+
+.voter-kpi-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--ink-charcoal);
+  margin: 4px 0 2px 0;
+}
+
+.voter-kpi-sub {
+  font-size: 10px;
+  color: #777777;
+  font-style: italic;
+}
+
+/* Stat Box & Mini Cards */
+.voter-stat-box {
+  border: 1px solid var(--ink-charcoal);
+  padding: 14px;
+  background: var(--paper-bg);
+  text-align: center;
+}
+
+.voter-stat-title {
+  font-family: 'Courier Prime', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #555555;
+}
+
+.voter-stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  font-weight: 900;
+  margin: 6px 0;
+  color: var(--ink-charcoal);
+}
+
+.voter-stat-sub {
+  font-size: 10px;
+  color: #777777;
+}
+
+.voter-mini-card {
+  border: 1px solid var(--ink-charcoal);
+  padding: 10px;
+  background: var(--paper-bg);
+}
+
+/* Vintage Buttons & Controls */
+.vintage-btn {
+  cursor: pointer;
+  background: var(--ink-charcoal);
+  color: #ffffff;
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+  padding: 7px 14px;
+  font-size: 11px;
+  text-transform: uppercase;
+  border: 1px solid var(--ink-charcoal);
+  transition: background 0.15s ease;
+}
+
+.vintage-btn:hover {
+  background: #333333;
+}
+
+.vintage-btn-sm {
+  cursor: pointer;
+  background: var(--paper-bg);
+  color: var(--ink-charcoal);
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+  padding: 4px 10px;
+  font-size: 10.5px;
+  border: 1px solid var(--ink-charcoal);
+}
+
+.vintage-btn-sm:hover:not(:disabled) {
+  background: var(--ink-charcoal);
+  color: #ffffff;
+}
+
+.vintage-btn-sm:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.vintage-input {
+  border: 1px solid var(--ink-charcoal);
+  background: #ffffff;
+  font-family: 'Courier Prime', monospace;
+  color: var(--ink-charcoal);
+  outline: none;
+}
+
+.vintage-input:focus {
+  border-color: var(--ink-red);
+  box-shadow: 0 0 0 1px var(--ink-red);
+}
+
+/* Search Cards */
+.voter-search-card {
+  border: 1px solid var(--ink-charcoal);
+  padding: 12px;
+  background: var(--paper-bg);
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.05);
+}
+
+.voter-search-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+  font-size: 11px;
+  font-family: 'Courier Prime', monospace;
+  margin-top: 6px;
+  border-top: 1px dashed var(--ink-charcoal);
+  padding-top: 6px;
+}
+
+/* District Interactive Cards Grid */
+.district-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+}
+
+.district-interactive-card {
+  border: 1px solid var(--ink-charcoal);
+  padding: 10px 12px;
+  background: var(--paper-bg);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.district-interactive-card:hover {
+  border-color: var(--ink-red);
+  background: #fdfbf7;
+  transform: translateY(-2px);
+  box-shadow: 3px 3px 0px rgba(139,0,0,0.15);
+}
+
+.district-card-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 14px;
+  color: var(--ink-charcoal);
+}
+
+.district-card-sub {
+  font-size: 10px;
+  color: gray;
+  font-family: 'Courier Prime', monospace;
+  margin-bottom: 6px;
+}
+
+.district-card-metrics {
+  font-size: 11px;
+  font-family: 'Courier Prime', monospace;
+  line-height: 1.5;
+  border-top: 1px dotted var(--ink-charcoal);
+  padding-top: 4px;
+}
+
+/* Quick Facts Grid */
+.quick-facts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .quick-facts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.quick-fact-card {
+  border: 1px solid var(--ink-charcoal);
+  padding: 10px;
+  background: var(--paper-bg);
+}
+
+.quick-fact-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: gray;
+  font-family: 'Courier Prime', monospace;
+}
+
+.quick-fact-val {
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 13px;
+  color: var(--ink-charcoal);
+  margin: 4px 0;
+}
+
+.quick-fact-sub {
+  font-size: 10px;
+  color: #666666;
+  font-style: italic;
+}
+
+/* Vintage Modal Overlay */
+.vintage-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.vintage-modal-content {
+  background: #f4efe6;
+  border: 3px double var(--ink-charcoal);
+  width: 100%;
+  max-width: 780px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.vintage-modal-header {
+  padding: 12px 18px;
+  border-bottom: 2px solid var(--ink-charcoal);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--paper-bg);
+}
+
+.vintage-modal-close {
+  font-size: 24px;
+  font-weight: 900;
+  cursor: pointer;
+  line-height: 1;
+  color: var(--ink-charcoal);
+}
+
+.vintage-modal-close:hover {
+  color: var(--ink-red);
+}
+
+.vintage-modal-body {
+  padding: 18px;
+  overflow-y: auto;
+}
