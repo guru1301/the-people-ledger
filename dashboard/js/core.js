@@ -199,6 +199,7 @@ function setLanguage(lang) {
   if (typeof renderFindingsGrid === 'function') renderFindingsGrid(lang);
   if (typeof renderFindingsCards === 'function') renderFindingsCards(lang);
   if (typeof renderVacantSeatsSection === 'function') renderVacantSeatsSection(lang);
+  if (typeof renderGovtFormationBox === 'function') renderGovtFormationBox(lang);
   if (typeof renderDistrictLedger === 'function') renderDistrictLedger();
   if (typeof renderTopBottomVoterGaps === 'function') renderTopBottomVoterGaps(lang);
   if (typeof renderCharts === 'function') renderCharts(lang);

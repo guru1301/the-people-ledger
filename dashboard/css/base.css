@@ -371,3 +371,10 @@ body:not(.lang-ta) .lang-ta { display: none !important; }
 
 /* ── Utility ── */
 .strong { font-weight: 700; }
+
+/* ── Temporary Language Selector Hide ── */
+.lang-overlay,
+.lang-toggle-btn,
+.lang-select-btn {
+  display: none !important;
+}

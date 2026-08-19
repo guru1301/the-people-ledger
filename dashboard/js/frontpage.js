@@ -355,6 +355,7 @@ function renderDynamicFrontPage(lang) {
   if (typeof renderFindingsGrid === 'function') renderFindingsGrid(lang);
   renderVacantSeatsSection(lang);
   renderStatewideSeatsTally(lang);
+  renderGovtFormationBox(lang);
 }
 
 const VACANT_SEATS_DATA = [
@@ -458,8 +459,8 @@ function renderVacantSeatsSection(lang) {
       <div class="vacant-tally-item">செயல்பாட்டில் உள்ள சட்டமன்ற உறுப்பினர்கள்: <strong>227</strong></div>
       <div class="vacant-tally-item"><span class="vacant-badge-red">7 காலியிடங்கள்</span></div>
       <div style="width:1px; height:16px; background:var(--paper-border-dark); margin:0 4px;"></div>
-      <div class="vacant-tally-item" style="color:#12702c;">அதிமுக: 47 வென்றவை <span style="color:#d30d25; font-weight:900;">(-6 காலியானது)</span> = <strong>41 இருக்கைகள்</strong></div>
-      <div class="vacant-tally-item" style="color:#d30d25;">தவெக: 108 வென்றவை <span style="color:#d30d25; font-weight:900;">(-1 காலியானது)</span> = <strong>107 இருக்கைகள்</strong></div>
+      <div class="vacant-tally-item" style="color:#4ade80;">அதிமுக: 47 வென்றவை <span style="color:#f87171; font-weight:900;">(-6 காலியானது)</span> = <strong style="color:#ffffff;">41 இருக்கைகள்</strong></div>
+      <div class="vacant-tally-item" style="color:#facc15;">தவெக: 108 வென்றவை <span style="color:#f87171; font-weight:900;">(-1 காலியானது)</span> = <strong style="color:#ffffff;">107 இருக்கைகள்</strong></div>
     `;
   } else {
     tallyBar.innerHTML = `
@@ -467,8 +468,8 @@ function renderVacantSeatsSection(lang) {
       <div class="vacant-tally-item">Active Members: <strong>227</strong></div>
       <div class="vacant-tally-item"><span class="vacant-badge-red">7 Vacancies</span></div>
       <div style="width:1px; height:16px; background:var(--paper-border-dark); margin:0 4px;"></div>
-      <div class="vacant-tally-item" style="color:#12702c;">AIADMK: 47 Won <span style="color:#d30d25; font-weight:900;">(-6 Vacant)</span> = <strong>41 Active Seats</strong></div>
-      <div class="vacant-tally-item" style="color:#d30d25;">TVK: 108 Won <span style="color:#d30d25; font-weight:900;">(-1 Vacant)</span> = <strong>107 Active Seats</strong></div>
+      <div class="vacant-tally-item" style="color:#4ade80;">AIADMK: 47 Won <span style="color:#f87171; font-weight:900;">(-6 Vacant)</span> = <strong style="color:#ffffff;">41 Active Seats</strong></div>
+      <div class="vacant-tally-item" style="color:#facc15;">TVK: 108 Won <span style="color:#f87171; font-weight:900;">(-1 Vacant)</span> = <strong style="color:#ffffff;">107 Active Seats</strong></div>
     `;
   }
 
@@ -488,15 +489,16 @@ function renderVacantSeatsSection(lang) {
       ? getPartyFlagHtml(item.party, "width:22px; height:14px; object-fit:cover; border-radius:2px; border:1px solid rgba(0,0,0,0.25); display:inline-block; vertical-align:middle;")
       : "";
 
-    const borderStyle = item.party === 'AIADMK' ? 'border-left: 5px solid #12702c;' : 'border-left: 5px solid #d30d25;';
+    const borderStyle = item.party === 'AIADMK' ? 'border-top: 4.5px solid #277239;' : 'border-top: 4.5px solid #eab308;';
 
     const photoHtml = item.image
       ? `<div class="vacant-card-photo-wrap">
            <img src="${item.image}" alt="${memberName}" class="vacant-card-photo" onerror="this.parentElement.style.display='none'">
+           <span class="vacant-photo-caption">${isTa ? 'அதிகாரப்பூர்வ படம்' : 'OFFICIAL PORTRAIT'}</span>
          </div>`
       : `<div class="vacant-card-photo-wrap">
            <div class="vacant-card-photo-placeholder">
-             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+             <i class="fa-solid fa-user-tie" style="font-size:22px; color:var(--ink-gray)"></i>
              <span>${isTa ? 'ஆவணம்' : 'VACANT'}</span>
            </div>
          </div>`;
@@ -506,23 +508,27 @@ function renderVacantSeatsSection(lang) {
     return `
       <div class="vacant-seat-card" style="${borderStyle} cursor: pointer;" onclick="openConstituencyExplorer('${item.ac_no}')" title="${clickTooltip}">
         <div class="vacant-card-main">
+          <div class="vacant-card-watermark"><i class="fa-solid fa-landmark"></i> ${isTa ? 'சட்டமன்றக் வர்த்தமானி அறிவிப்பு' : 'OFFICIAL GAZETTE EXTRAORDINARY'}</div>
           <div>
             <div class="vacant-card-header">
-              <span class="vacant-card-title">${acName} <span class="vacant-ac-no">(AC ${String(item.ac_no).padStart(3, '0')})</span></span>
-              <span class="vacant-status-badge">${statusText}</span>
+              <div class="vacant-card-title-group">
+                <span class="vacant-card-title">${acName}</span>
+                <span class="vacant-ac-no">AC ${String(item.ac_no).padStart(3, '0')}</span>
+              </div>
+              <span class="vacant-status-badge"><i class="fa-solid fa-triangle-exclamation"></i> ${statusText}</span>
             </div>
             
             <div class="vacant-card-member-row">
-              <span class="vacant-member-label">${memberLabel}:</span>
+              <span class="vacant-member-label"><i class="fa-solid fa-user-xmark"></i> ${memberLabel}:</span>
               <span class="vacant-member-name">${memberName}</span>
             </div>
             
-            <div class="vacant-card-reason">${reasonText}</div>
+            <div class="vacant-card-reason">&ldquo;${reasonText}&rdquo;</div>
           </div>
           
           <div class="vacant-card-footer">
             <span class="vacant-party-tag">${flagHtml} <span>${partyName}</span></span>
-            <span class="vacant-impact-badge">${seatImpact}</span>
+            <span class="vacant-impact-badge"><i class="fa-solid fa-receipt"></i> ${seatImpact}</span>
           </div>
         </div>
 
@@ -532,19 +538,138 @@ function renderVacantSeatsSection(lang) {
   }).join('');
 }
 
-const PARTY_WINNERS_CARDS_DATA = [
-  { code: "TVK", codeTa: "தவெக", nameEn: "Tamilaga Vettri Kazhagam", nameTa: "தமிழக வெற்றி கழகம்", seats: "107", seatsNote: "(108 Won, -1 Vacant)", seatsNoteTa: "(108 வென்றவை, -1 காலி)", share: "35.07%", color: "#d30d25", border: "#ffcc00" },
-  { code: "DMK", codeTa: "திமுக", nameEn: "Dravida Munnetra Kazhagam", nameTa: "திராவிட முன்னேற்றக் கழகம்", seats: 59, share: "24.19%", color: "#d30d25", border: "#ff4444" },
-  { code: "AIADMK", codeTa: "அதிமுக", nameEn: "All India Anna DMK", nameTa: "அனைத்திந்திய அண்ணா திமுக", seats: "41", seatsNote: "(47 Won, -6 Vacant)", seatsNoteTa: "(47 வென்றவை, -6 காலி)", share: "21.21%", color: "#12702c", border: "#22c55e" },
-  { code: "INC", codeTa: "காங்", nameEn: "Indian National Congress", nameTa: "இந்திய தேசிய காங்கிரஸ்", seats: 5, share: "3.85%", color: "#0b407a", border: "#3399ff" },
-  { code: "PMK", codeTa: "பாமக", nameEn: "Pattali Makkal Katchi", nameTa: "பாட்டாளி மக்கள் கட்சி", seats: 4, share: "3.20%", color: "#ffaa00", border: "#ffaa00" },
-  { code: "IUML", codeTa: "முஸ்லிம் லீக்", nameEn: "Indian Union Muslim League", nameTa: "இந்திய யூனியன் முஸ்லிம் லீக்", seats: 2, share: "1.15%", color: "#064e3b", border: "#10b981" },
-  { code: "CPI", codeTa: "இகம்", nameEn: "Communist Party of India", nameTa: "இந்திய கம்யூனிஸ்ட் கட்சி", seats: 2, share: "1.10%", color: "#cc0000", border: "#ff3333" },
-  { code: "VCK", codeTa: "விசிக", nameEn: "Viduthalai Chiruthaigal Katchi", nameTa: "விடுதலைச் சிறுத்தைகள் கட்சி", seats: 2, share: "1.08%", color: "#491a66", border: "#8b3fc4" },
-  { code: "CPI(M)", codeTa: "இகம்(மா)", nameEn: "CPI (Marxist)", nameTa: "இந்திய கம்யூனிஸ்ட் (மார்க்சிஸ்ட்)", seats: 2, share: "1.05%", color: "#cc0000", border: "#ff3333" },
-  { code: "BJP", codeTa: "பாஜக", nameEn: "Bharatiya Janata Party", nameTa: "பாரதிய ஜனதா கட்சி", seats: 1, share: "2.10%", color: "#ff8800", border: "#ff8800" },
-  { code: "DMDK", codeTa: "தேமுதிக", nameEn: "Desiya Murpokku Dravida Kazhagam", nameTa: "தேசிய முற்போக்கு திராவிட கழகம்", seats: 1, share: "0.95%", color: "#dd0000", border: "#ff4444" },
-  { code: "AMMK", codeTa: "அமமுக", nameEn: "Amma Makkal Munnettra Kazagam", nameTa: "அம்மா மக்கள் முன்னேற்றக் கழகம்", seats: 1, share: "0.80%", color: "#006600", border: "#22c55e" }
+const ALLIANCE_GROUPS_DATA = [
+  {
+    allianceId: "TVK",
+    nameEn: "TVK / Single Coalition",
+    nameTa: "தமிழக வெற்றி கழகக் கூட்டணி",
+    totalSeatsWon: 108,
+    color: "#d30d25",
+    accentColor: "#d4a72c",
+    bgTint: "rgba(212, 167, 44, 0.04)",
+    parties: [
+      {
+        code: "TVK", codeTa: "தவெக",
+        nameEn: "Tamilaga Vettri Kazhagam", nameTa: "தமிழக வெற்றி கழகம்",
+        partyTypeEn: "Unrecognised", partyTypeTa: "அங்கீகரிக்கப்படாத கட்சி",
+        leaderEn: "Vijay", leaderTa: "விஜய்",
+        contested: 233, won: 108, seatsDisplay: "107",
+        seatsNote: "(108 Won, -1 Vacant)", seatsNoteTa: "(108 வென்றவை, -1 காலி)",
+        share: "35.07%", color: "#d30d25", border: "#d4a72c"
+      }
+    ]
+  },
+  {
+    allianceId: "SPA",
+    nameEn: "SPA / DMK+ ALLIANCE",
+    nameTa: "திமுக+ மதச்சார்பற்ற முற்போக்கு கூட்டணி",
+    totalSeatsWon: 73,
+    color: "#c0001a",
+    accentColor: "#dc2626",
+    bgTint: "rgba(192, 0, 26, 0.04)",
+    parties: [
+      {
+        code: "DMK", codeTa: "திமுக",
+        nameEn: "Dravida Munnetra Kazhagam", nameTa: "திராவிட முன்னேற்றக் கழகம்",
+        partyTypeEn: "State Party", partyTypeTa: "மாநிலக் கட்சி",
+        leaderEn: "M. K. Stalin", leaderTa: "மு.க. ஸ்டாலின்",
+        contested: 176, won: 59, seatsDisplay: "59",
+        share: "24.19%", color: "#c0001a", border: "#c0001a"
+      },
+      {
+        code: "INC", codeTa: "காங்",
+        nameEn: "Indian National Congress", nameTa: "இந்திய தேசிய காங்கிரஸ்",
+        partyTypeEn: "National Party", partyTypeTa: "தேசியக் கட்சி",
+        leaderEn: "K. Selvaperunthagai", leaderTa: "கே. செல்வப்பெருந்தகை",
+        contested: 28, won: 5, seatsDisplay: "5",
+        share: "3.85%", color: "#2c7da0", border: "#2c7da0"
+      },
+      {
+        code: "VCK", codeTa: "விசிக",
+        nameEn: "Viduthalai Chiruthaigal Katchi", nameTa: "விடுதலைச் சிறுத்தைகள் கட்சி",
+        partyTypeEn: "State Party", partyTypeTa: "மாநிலக் கட்சி",
+        leaderEn: "Thol. Thirumavalavan", leaderTa: "தொல். திருமாவளவன்",
+        contested: 8, won: 2, seatsDisplay: "2",
+        share: "1.08%", color: "#6b3f87", border: "#6b3f87"
+      },
+      {
+        code: "CPI", codeTa: "இகம்",
+        nameEn: "Communist Party of India", nameTa: "இந்திய கம்யூனிஸ்ட் கட்சி",
+        partyTypeEn: "National Party", partyTypeTa: "தேசியக் கட்சி",
+        leaderEn: "R. Mutharasan", leaderTa: "ஆர். முத்தரசன்",
+        contested: 5, won: 2, seatsDisplay: "2",
+        share: "1.10%", color: "#cc0000", border: "#cc0000"
+      },
+      {
+        code: "CPI(M)", codeTa: "இகம்(மா)",
+        nameEn: "CPI (Marxist)", nameTa: "இந்திய கம்யூனிஸ்ட் (மார்க்சிஸ்ட்)",
+        partyTypeEn: "National Party", partyTypeTa: "தேசியக் கட்சி",
+        leaderEn: "K. Balakrishnan", leaderTa: "கே. பாலகிருஷ்ணன்",
+        contested: 5, won: 2, seatsDisplay: "2",
+        share: "1.05%", color: "#b30000", border: "#b30000"
+      },
+      {
+        code: "IUML", codeTa: "முஸ்லிம் லீக்",
+        nameEn: "Indian Union Muslim League", nameTa: "இந்திய யூனியன் முஸ்லிம் லீக்",
+        partyTypeEn: "State Party - Other", partyTypeTa: "மாநிலக் கட்சி - பிற",
+        leaderEn: "K. M. Kader Mohideen", leaderTa: "கே.எம். காதர் மொகிதீன்",
+        contested: 2, won: 2, seatsDisplay: "2",
+        share: "1.15%", color: "#0d6b45", border: "#0d6b45"
+      },
+      {
+        code: "DMDK", codeTa: "தேமுதிக",
+        nameEn: "Desiya Murpokku Dravida Kazhagam", nameTa: "தேசிய முற்போக்கு திராவிட கழகம்",
+        partyTypeEn: "State Party", partyTypeTa: "மாநிலக் கட்சி",
+        leaderEn: "Premalatha Vijayakant", leaderTa: "பிரேமலதா விஜயகாந்த்",
+        contested: 10, won: 1, seatsDisplay: "1",
+        share: "0.95%", color: "#dd0000", border: "#dd0000"
+      }
+    ]
+  },
+  {
+    allianceId: "NDA",
+    nameEn: "NDA / ADMK+ ALLIANCE",
+    nameTa: "அதிமுக+ தேசிய ஜனநாயகக் கூட்டணி",
+    totalSeatsWon: 53,
+    color: "#277239",
+    accentColor: "#16a34a",
+    bgTint: "rgba(39, 114, 57, 0.04)",
+    parties: [
+      {
+        code: "AIADMK", codeTa: "அதிமுக",
+        nameEn: "All India Anna DMK", nameTa: "அனைத்திந்திய அண்ணா திமுக",
+        partyTypeEn: "State Party", partyTypeTa: "மாநிலக் கட்சி",
+        leaderEn: "K. Palaniswami", leaderTa: "எடப்பாடி பழனிசாமி",
+        contested: 172, won: 47, seatsDisplay: "41",
+        seatsNote: "(47 Won, -6 Vacant)", seatsNoteTa: "(47 வென்றவை, -6 காலி)",
+        share: "21.21%", color: "#277239", border: "#277239"
+      },
+      {
+        code: "PMK", codeTa: "பாமக",
+        nameEn: "Pattali Makkal Katchi", nameTa: "பாட்டாளி மக்கள் கட்சி",
+        partyTypeEn: "Unrecognised", partyTypeTa: "அங்கீகரிக்கப்படாத கட்சி",
+        leaderEn: "Anbumani Ramadoss", leaderTa: "அன்புமணி ராமதாஸ்",
+        contested: 18, won: 4, seatsDisplay: "4",
+        share: "3.20%", color: "#d97706", border: "#d97706"
+      },
+      {
+        code: "BJP", codeTa: "பாஜக",
+        nameEn: "Bharatiya Janata Party", nameTa: "பாரதிய ஜனதா கட்சி",
+        partyTypeEn: "National Party", partyTypeTa: "தேசியக் கட்சி",
+        leaderEn: "Nainar Nagendran", leaderTa: "நயினார் நாகேந்திரன்",
+        contested: 33, won: 1, seatsDisplay: "1",
+        share: "2.10%", color: "#ff9933", border: "#ff9933"
+      },
+      {
+        code: "AMMK", codeTa: "அமமுக",
+        nameEn: "Amma Makkal Munnettra Kazagam", nameTa: "அம்மா மக்கள் முன்னேற்றக் கழகம்",
+        partyTypeEn: "Unrecognised", partyTypeTa: "அங்கீகரிக்கப்படாத கட்சி",
+        leaderEn: "T. T. V. Dhinakaran", leaderTa: "டி.டி.வி. தினகரன்",
+        contested: 11, won: 1, seatsDisplay: "1",
+        share: "0.80%", color: "#006600", border: "#006600"
+      }
+    ]
+  }
 ];
 
 function renderStatewideSeatsTally(lang) {
@@ -552,32 +677,132 @@ function renderStatewideSeatsTally(lang) {
   if (!container) return;
 
   const isTa = lang === 'ta';
-  const seatLabel = isTa ? 'இடங்கள்' : 'Seats';
+  const labelWon = isTa ? 'வென்றவை' : 'SEATS WON';
+  const labelContested = isTa ? 'போட்டியிட்டவை' : 'Contested';
+  const labelWonShort = isTa ? 'வென்றவை' : 'Won';
+  const labelStrike = isTa ? 'வெற்றி %' : 'Strike Rate';
 
-  container.innerHTML = PARTY_WINNERS_CARDS_DATA.map(item => {
-    const flagHtml = typeof getPartyFlagHtml === 'function'
-      ? getPartyFlagHtml(item.code, "width:24px; height:16px; object-fit:cover; border-radius:2px; border:1px solid rgba(0,0,0,0.25); display:inline-block; vertical-align:middle;")
-      : "";
-    const partyName = isTa ? item.nameTa : item.nameEn;
-    const partyCode = isTa ? (item.codeTa || item.code) : item.code;
-    const noteText = isTa ? (item.seatsNoteTa || '') : (item.seatsNote || '');
-    const seatsHtml = noteText
-      ? `${item.seats} ${seatLabel} <span style="font-size:10px; color:#d30d25; font-weight:bold; display:block;">${noteText}</span>`
-      : `${item.seats} ${seatLabel}`;
+  container.innerHTML = ALLIANCE_GROUPS_DATA.map(group => {
+    const allianceName = isTa ? group.nameTa : group.nameEn;
+    const allianceWonText = `${group.totalSeatsWon} ${labelWon}`;
+    const isSingleParty = group.parties.length === 1;
+
+    const partyCardsHtml = group.parties.map(p => {
+      const flagHtml = typeof getPartyFlagHtml === 'function'
+        ? getPartyFlagHtml(p.code, "width:22px; height:14px; object-fit:cover; border-radius:2px; border:1px solid rgba(0,0,0,0.2); display:inline-block; vertical-align:middle;")
+        : "";
+      const pName = isTa ? p.nameTa : p.nameEn;
+      const pCode = isTa ? (p.codeTa || p.code) : p.code;
+      const pType = isTa ? p.partyTypeTa : p.partyTypeEn;
+      const pLeader = isTa ? p.leaderTa : p.leaderEn;
+      const noteText = isTa ? (p.seatsNoteTa || '') : (p.seatsNote || '');
+      const strikeRate = ((p.won / p.contested) * 100).toFixed(1);
+
+      if (isSingleParty) {
+        // Wide horizontal hero layout for single party alliance (TVK) to fill right side width
+        return `
+          <div class="party-medium-card tvk-hero-card" style="border-top: 4px solid ${p.border}; background: #ffffff;">
+            <div class="tvk-hero-inner">
+              <div class="tvk-hero-col-left">
+                <div class="party-card-identity" style="margin-bottom: 6px;">
+                  ${flagHtml}
+                  <span class="party-card-code" style="color: ${p.color}; font-size: 15px;">${pCode}</span>
+                  <span class="party-card-status-badge" style="border-color: ${p.border}; color: ${p.color}">${pType}</span>
+                </div>
+                <div class="party-card-name" style="font-size: 14px; font-weight: 800;" title="${pName}">${pName}</div>
+                <div class="party-card-leader" style="margin-top: 6px;">
+                  <i class="fa-solid fa-user-tie"></i> <span>${isTa ? 'தலைவர்:' : 'Leader:'}</span> <strong>${pLeader}</strong>
+                </div>
+              </div>
+
+              <div class="tvk-hero-col-center">
+                <div class="party-card-seats-display">
+                  <div class="party-card-seat-val" style="color: ${p.color}; font-size: 34px;">${p.seatsDisplay || p.won}</div>
+                  <div class="party-card-seat-meta">
+                    <span class="party-card-seat-lbl">${isTa ? 'செயலில் உள்ள இருக்கைகள்' : 'Active Seats'}</span>
+                    ${noteText ? `<span class="party-card-seat-note">${noteText}</span>` : ''}
+                  </div>
+                </div>
+                <div class="party-card-progress-container" style="margin-top: 6px; height: 6px;" title="${strikeRate}% Strike Rate">
+                  <div class="party-card-progress-bar" style="width: ${Math.min(100, strikeRate)}%; background: ${p.border};"></div>
+                </div>
+              </div>
+
+              <div class="tvk-hero-col-right">
+                <div class="tvk-contest-box">
+                  <div class="tvk-stat-item"><span>${labelContested}:</span> <strong>${p.contested}</strong></div>
+                  <div class="tvk-stat-item"><span>${labelWonShort}:</span> <strong style="color:${p.color}">${p.won}</strong></div>
+                  <div class="tvk-stat-item"><span>${labelStrike}:</span> <strong>${strikeRate}%</strong></div>
+                </div>
+                <div class="party-card-footer" style="margin-top: 6px; border-top: none; padding-top: 0;">
+                  <span class="party-card-share-label"><i class="fa-solid fa-chart-pie"></i> ${isTa ? 'வாக்கு சதவீதம்' : 'Vote Share'}</span>
+                  <span class="party-card-share-val" style="color: ${p.color}; font-size: 14px;">${p.share}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      return `
+        <div class="party-medium-card" style="border-top: 3.5px solid ${p.border}; background: #ffffff;">
+          <div class="party-card-header">
+            <div class="party-card-identity">
+              ${flagHtml}
+              <span class="party-card-code" style="color: ${p.color}">${pCode}</span>
+            </div>
+            <span class="party-card-status-badge" style="border-color: ${p.border}; color: ${p.color}">${pType}</span>
+          </div>
+          
+          <div class="party-card-body">
+            <div class="party-card-seats-display">
+              <div class="party-card-seat-val" style="color: ${p.color}">${p.seatsDisplay || p.won}</div>
+              <div class="party-card-seat-meta">
+                <span class="party-card-seat-lbl">${isTa ? 'இடங்கள்' : 'Seats'}</span>
+                ${noteText ? `<span class="party-card-seat-note">${noteText}</span>` : ''}
+              </div>
+            </div>
+            
+            <div class="party-card-name" title="${pName}">${pName}</div>
+            
+            <div class="party-card-leader">
+              <i class="fa-solid fa-user-tie"></i> <span>${isTa ? 'தலைவர்:' : 'Leader:'}</span> <strong>${pLeader}</strong>
+            </div>
+
+            <div class="party-card-contest-stats">
+              <span>${labelContested}: <strong>${p.contested}</strong></span> &bull; 
+              <span>${labelWonShort}: <strong style="color:${p.color}">${p.won}</strong></span> &bull; 
+              <span>${labelStrike}: <strong>${strikeRate}%</strong></span>
+            </div>
+          </div>
+
+          <div class="party-card-progress-container" title="${strikeRate}% Strike Rate (${p.won} Won / ${p.contested} Contested)">
+            <div class="party-card-progress-bar" style="width: ${Math.min(100, strikeRate)}%; background: ${p.border};"></div>
+          </div>
+
+          <div class="party-card-footer">
+            <span class="party-card-share-label"><i class="fa-solid fa-chart-pie"></i> ${isTa ? 'வாக்கு சதவீதம்' : 'Vote Share'}</span>
+            <span class="party-card-share-val" style="color: ${p.color}">${p.share}</span>
+          </div>
+        </div>
+      `;
+    }).join('');
 
     return `
-      <div class="party-medium-card" style="border-left: 5px solid ${item.border};">
-        <div class="party-card-header">
-          <div class="party-card-identity">
-            ${flagHtml}
-            <span class="party-card-code">${partyCode}</span>
+      <div class="alliance-group-block" style="background: ${group.bgTint}; border-left: 4px solid ${group.accentColor};">
+        <div class="alliance-group-header-banner">
+          <div class="alliance-header-title">
+            <i class="fa-solid fa-layer-group" style="color:${group.color}; margin-right:6px;"></i>
+            <span style="color:${group.color}; font-weight:900;">${allianceName}</span>
+            <span class="alliance-party-count">(${group.parties.length} ${isTa ? 'கட்சிகள்' : 'Parties'})</span>
           </div>
-          <span class="party-card-seats" style="text-align:right;">${seatsHtml}</span>
+          <div class="alliance-won-badge" style="background:${group.color};">
+            ${allianceWonText}
+          </div>
         </div>
-        <div class="party-card-name" title="${partyName}">${partyName}</div>
-        <div class="party-card-footer">
-          <span class="party-card-share-label">${isTa ? 'வாக்கு சதவீதம்' : 'Vote Share'}</span>
-          <span class="party-card-share-val">${item.share}</span>
+
+        <div class="party-cards-subgrid">
+          ${partyCardsHtml}
         </div>
       </div>
     `;
@@ -627,3 +852,95 @@ function initFrontPageGrid() {
     grid.appendChild(el);
   });
 }
+
+/* ── GOVERNMENT FORMATION & REALIGNMENT EDITORIAL ARTICLE ── */
+function renderGovtFormationBox(lang) {
+  const container = document.getElementById('govtFormationBox');
+  if (!container) return;
+
+  const isTa = lang === 'ta';
+
+  container.innerHTML = `
+    <div class="newspaper-editorial-article">
+      <div class="article-meta-banner">
+        <span class="article-category">${isTa ? 'அரசியல் அறிக்கை & ஆட்சி அமைப்பு' : 'GOVERNMENT FORMATION & COALITION MATH'}</span>
+        <span class="article-date">${isTa ? 'அதிகாரப்பூர்வ வர்த்தமானி' : 'OFFICIAL GAZETTE DISPATCH'}</span>
+      </div>
+
+      <h3 class="article-title">
+        ${isTa 
+          ? 'தவெக 115+ (121) இடங்களின் ஆதரவுடன் பெரும்பான்மை பெற்று புதிய ஆட்சி அமைப்பு' 
+          : 'How TVK Secured 115+ (121) Coalition Support to Form 2026 Government'
+        }
+      </h3>
+
+      <div class="article-key-number-row">
+        <span class="article-number-pill">115+</span>
+        <div class="article-number-meta">
+          <span class="article-number-label">${isTa ? 'ஆட்சி அமைத்த கூட்டணி பலம்' : 'Govt Coalition Strength'}</span>
+          <span class="article-number-sub">${isTa ? '(பெரும்பான்மை தேவை 118 | மொத்த ஆதரவு 121)' : '(118 Needed for Majority | 121 Total Support)'}</span>
+        </div>
+      </div>
+
+      <div class="article-body-text">
+        <p>
+          ${isTa
+            ? '234 உறுப்பினர்களைக் கொண்ட தமிழ்நாடு சட்டப்பேரவையில் ஆட்சி அமைப்பதற்கு <strong>118 இடங்களின் பெரும்பான்மை</strong> அவசியமாகும். 2026 சட்டமன்றத் தேர்தலில் தமிழக வெற்றி கழகம் (TVK) <strong>108 இடங்களில்</strong> வெற்றி பெற்று தனிப்பெரும் கட்சியாக உருவெடுத்தது.'
+            : 'To form the government in the 234-member Tamil Nadu Legislative Assembly, a simple majority of <strong>118 seats</strong> is mandatory. In the 2026 Assembly Election, the Tamilaga Vettri Kazhagam (TVK) emerged as the single largest party by winning <strong>108 seats</strong>.'
+          }
+        </p>
+        <p>
+          ${isTa
+            ? 'தேர்தல் முடிவுகள் வெளியானவுடன் ஏற்பட்ட முக்கிய அரசியல் மாற்றத்தில், <strong>காங்கிரஸ் கட்சி (5 இடங்கள்)</strong> திமுக+ கூட்டணியிலிருந்து விலகி தவெகவிற்கு தனது முழு ஆதரவை அறிவித்து கூட்டணியில் இணைந்தது. மேலும் <strong>இந்திய யூனியன் முஸ்லிம் லீக் (2 இடங்கள்)</strong>, <strong>விடுதலைச் சிறுத்தைகள் கட்சி (VCK - 2 இடங்கள்)</strong>, <strong>இந்திய கம்யூனிஸ்ட் (CPI - 2 இடங்கள்)</strong> மற்றும் <strong>மார்க்சிஸ்ட் கம்யூனிஸ்ட் (CPI-M - 2 இடங்கள்)</strong> ஆகிய கூட்டணிக் கட்சிகளும் தவெக அரசுக்கு வெளிப்படையான ஆதரவை வழங்கின.'
+            : 'In a decisive post-election realignment, the <strong>Indian National Congress (5 seats)</strong> formally withdrew from the DMK+ alliance and forged a governing partnership with TVK. Concurrently, <strong>IUML (2 seats)</strong>, <strong>VCK (2 seats)</strong>, <strong>CPI (2 seats)</strong>, and <strong>CPI(M) (2 seats)</strong> all extended vital outside support to the TVK Government.'
+          }
+        </p>
+        <p>
+          ${isTa
+            ? 'இதன் மூலம் <strong>108 (தவெக) + 5 (காங்) + 2 (ஐயுஎம்எல்) + 2 (விசிக) + 2 (இகம்) + 2 (இகம்-மா) = 121 சட்டமன்ற உறுப்பினர்களின் உறுதியான பலத்துடன்</strong> ஆளுநர் ஒப்புதலைப் பெற்று, முதலமைச்சர் சி. ஜோசப் விஜய் தலைமையில் புதிய அரசு வெற்றிகரமாகப் பதவியேற்று ஆட்சியை அமைத்தது.'
+            : 'With <strong>108 (TVK) + 5 (INC) + 2 (IUML) + 2 (VCK) + 2 (CPI) + 2 (CPI-M) = 121 total support</strong>, Chief Minister C. Joseph Vijay successfully established governor confirmation and floor majority (crossing the 118 mark with 115+ seats) to form the new Tamil Nadu State Government.'
+          }
+        </p>
+      </div>
+
+      <div class="article-coalition-summary-table">
+        <div class="table-row row-head">
+          <span>${isTa ? 'கட்சி / பிரிவு' : 'Party / Division'}</span>
+          <span>${isTa ? 'நிலை' : 'Status'}</span>
+          <span style="text-align:right;">${isTa ? 'இடங்கள்' : 'Seats'}</span>
+        </div>
+        <div class="table-row">
+          <span><i class="fa-solid fa-square" style="color:#d30d25; font-size:9px;"></i> TVK (தவெக)</span>
+          <span>${isTa ? 'முதன்மை கட்சி' : 'Lead Party'}</span>
+          <strong style="text-align:right;">108</strong>
+        </div>
+        <div class="table-row">
+          <span><i class="fa-solid fa-square" style="color:#2c7da0; font-size:9px;"></i> INC (காங்கிரஸ்)</span>
+          <span>${isTa ? 'கூட்டணியில் இணைந்தது' : 'Alliance Joined'}</span>
+          <strong style="text-align:right;">5</strong>
+        </div>
+        <div class="table-row">
+          <span><i class="fa-solid fa-square" style="color:#0d6b45; font-size:9px;"></i> IUML (முஸ்லிம் லீக்)</span>
+          <span>${isTa ? 'வெளி ஆதரவு' : 'Outside Support'}</span>
+          <strong style="text-align:right;">2</strong>
+        </div>
+        <div class="table-row">
+          <span><i class="fa-solid fa-square" style="color:#6b3f87; font-size:9px;"></i> VCK (விசிக)</span>
+          <span>${isTa ? 'வெளி ஆதரவு' : 'Outside Support'}</span>
+          <strong style="text-align:right;">2</strong>
+        </div>
+        <div class="table-row">
+          <span><i class="fa-solid fa-square" style="color:#cc0000; font-size:9px;"></i> CPI / CPI(M)</span>
+          <span>${isTa ? 'வெளி ஆதரவு' : 'Outside Support'}</span>
+          <strong style="text-align:right;">4</strong>
+        </div>
+        <div class="table-row row-total">
+          <span>${isTa ? 'மொத்த அரசு ஆதரவு பலம்' : 'Total Govt Support Strength'}</span>
+          <span>${isTa ? 'பெரும்பான்மை 118' : 'Majority 118'}</span>
+          <strong style="text-align:right; color:#d30d25; font-size:14px;">121 (115+)</strong>
+        </div>
+      </div>
+    </div>
+  `;
+}
+

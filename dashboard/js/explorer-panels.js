@@ -344,7 +344,6 @@ function renderWinnerProfilePanel(acNo, data, lang, hist) {
       </div>
     </div>`;
 }
-}
 
 
 /* ── PANEL 3: NTK IMPACT METER ── */

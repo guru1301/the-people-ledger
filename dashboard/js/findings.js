@@ -51,14 +51,14 @@ const FINDINGS_FALLBACK = [
   },
   {
     "id": "05",
-    "categoryEn": "Reserved Seat Competition",
-    "categoryTa": "தனித்தொகுதி போட்டித்தன்மை",
-    "keyNumber": "14,192 Margin",
-    "keyNumberTa": "14,192 வாக்கு விளிம்பு",
-    "titleEn": "SC-Reserved Seat Competitiveness",
-    "titleTa": "தனித்தொகுதிகளில் கடும் போட்டி",
-    "summaryEn": "SC-reserved seats recorded tighter average winning margins (14,192 votes) than General seats (17,544 votes); TVK achieved a 52.3% SC win rate.",
-    "summaryTa": "பொதுத் தொகுதிகளை விட எஸ்சி தனித்தொகுதிகளில் சராசரி வெற்றி வித்தியாசம் குறைவாகவும் (14,192) கடும் போட்டியாகவும் இருந்தது."
+    "categoryEn": "The Reserved Mandate",
+    "categoryTa": "தனித்தொகுதித் தீர்ப்பு",
+    "keyNumber": "46 Reserved Seats",
+    "keyNumberTa": "46 தனித்தொகுதிகள்",
+    "titleEn": "THE RESERVED MANDATE: Competition & Representation",
+    "titleTa": "தனித்தொகுதித் தீர்ப்பு: முழுமையான பகுப்பாய்வு",
+    "summaryEn": "A comprehensive reference study across Tamil Nadu's 46 reserved seats (44 SC, 2 ST). SC seats recorded tighter winning margins (14,192 vs 17,544 in General), while TVK captured 23 of 44 SC seats (52.3%).",
+    "summaryTa": "46 எஸ்சி/எஸ்டி தனித்தொகுதிகளில் போட்டித்தன்மை, பிரதிநிதித்துவம் மற்றும் தவெகவின் 23 இடங்கள் (52.3%) வெற்றி குறித்த முழுமையான பகுப்பாய்வு."
   },
   {
     "id": "06",
@@ -106,14 +106,14 @@ const FINDINGS_FALLBACK = [
   },
   {
     "id": "10",
-    "categoryEn": "Reserved Constituency Analysis",
-    "categoryTa": "தனித்தொகுதி பிரதிநிதித்துவம்",
-    "keyNumber": "46 Reserved Seats",
-    "keyNumberTa": "46 தனித்தொகுதிகள்",
-    "titleEn": "Reserved Voices: Reserved Constituency Analysis",
-    "titleTa": "தனித்தொகுதிகள்: யாருக்கு அதிக இடங்கள்?",
-    "summaryEn": "An analysis of representation across 46 SC/ST reserved seats (19.7% of house); TVK secured 23 SC seats (52.3%), leading all parties.",
-    "summaryTa": "46 எஸ்சி/எஸ்டி தனித்தொகுதிகளில் தவெக 23 எஸ்சி இடங்களைக் (52.3%) கைப்பற்றி மிகப்பெரிய வெற்றியைப் பெற்றுள்ளது."
+    "categoryEn": "Upcoming Special Finding",
+    "categoryTa": "புதிய ஆய்வு அறிக்கை",
+    "keyNumber": "Finding #10",
+    "keyNumberTa": "கண்டுபிடிப்பு #10",
+    "titleEn": "Finding #10: Upcoming Analytical Feature",
+    "titleTa": "கண்டுபிடிப்பு #10: புதிய தேர்தல் பகுப்பாய்வு",
+    "summaryEn": "Placeholder for upcoming new analytical investigation and research story.",
+    "summaryTa": "புதிய சிறப்பு தேர்தல் ஆய்வு கட்டுரைக்கான இடம்."
   },
   {
     "id": "11",

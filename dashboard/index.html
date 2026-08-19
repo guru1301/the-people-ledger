@@ -83,8 +83,8 @@
   </svg>
 
 
-  <!-- LANGUAGE SELECTION OVERLAY -->
-  <div class="lang-overlay" id="langOverlay">
+  <!-- LANGUAGE SELECTION OVERLAY (TEMPORARILY HIDDEN) -->
+  <div class="lang-overlay" id="langOverlay" style="display: none !important;">
     <div class="lang-card">
       <div class="lang-title-gothic">The People's Ledger</div>
       <div class="lang-title-tamil">மக்கள் பதிவேடு</div>
@@ -100,14 +100,14 @@
   </div>
 
   <!-- MAIN CONTAINER -->
-  <div class="container" id="mainContainer">
+  <div class="container" id="mainContainer" style="display: block !important;">
     <!-- NEWSPAPER MASTHEAD -->
     <header class="masthead">
       <!-- Top Red Utility Bar -->
       <div class="masthead-utility-bar">
         <span data-t="masthead_dateline_issue">VOL. LXXVI &middot; ISSUE 234 &middot; ASSEMBLY ELECTION SPECIAL</span>
-        <span style="cursor:pointer;font-size:11px;letter-spacing:1px" onclick="toggleLanguage()">
-          &#127760; <span id="langToggleBtnText">தமிழ் பதிப்பு</span>
+        <span style="display: none !important; cursor:pointer;font-size:11px;letter-spacing:1px" onclick="toggleLanguage()">
+          &#127760; <span id="langToggleBtnText">English Edition</span>
         </span>
         <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
@@ -186,6 +186,11 @@
             <div class="legend-grid" id="frontPageLegend">
               <!-- Loaded dynamically -->
             </div>
+          </div>
+
+          <!-- GOVERNMENT FORMATION GAZETTE CARD -->
+          <div class="govt-formation-box" id="govtFormationBox">
+            <!-- Loaded dynamically via JS -->
           </div>
         </div>
 

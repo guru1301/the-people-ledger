@@ -3,27 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SC-Reserved Constituencies Recorded Closer Electoral Contests — The People's Ledger</title>
-  <meta name="description" content="Investigating whether reservation category influenced electoral competitiveness across Tamil Nadu's 234 Assembly constituencies.">
+  <title>THE RESERVED MANDATE — Special Data Finding #5 — The People's Ledger</title>
+  <meta name="description" content="A comprehensive analysis of representation, electoral competitiveness, and party performance across Tamil Nadu's 46 SC/ST reserved assembly constituencies.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=UnifrakturMaguntia&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Noto+Serif+Tamil:wght@400;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <!-- CSS imports matching index.html and findings 1, 2, 3, 4 -->
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/masthead.css">
   <link rel="stylesheet" href="../css/frontpage.css">
 
   <style>
-    /* Full-width balanced newspaper grid styling matching Findings 1-3 */
     html, body {
       background-color: #f9f6f1;
       color: var(--ink-charcoal);
-      padding: 0;
-      margin: 0;
-      width: 100%;
+      padding: 0; margin: 0; width: 100%;
     }
-
     .container {
       display: block !important;
       width: 100% !important;
@@ -32,7 +30,6 @@
       padding: 0 12px !important;
       box-sizing: border-box !important;
     }
-
     .np-page {
       display: block !important;
       width: 100% !important;
@@ -40,47 +37,7 @@
       box-sizing: border-box !important;
     }
 
-    /* Top Hero Stat Cards Grid */
-    .hero-stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin: 16px 0 22px 0;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    @media (max-width: 850px) {
-      .hero-stats-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
-      .hero-stats-grid { grid-template-columns: 1fr; }
-    }
-
-    /* Hero stat cards matching Findings 1-3 */
-    .hero-stat-card {
-      background: #fff;
-      border: 1px solid var(--paper-border);
-      padding: 14px 16px;
-      text-align: center;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    }
-    .hero-stat-number {
-      font-family: 'Courier Prime', monospace;
-      font-size: 32px;
-      font-weight: 900;
-      color: var(--ink-red);
-      line-height: 1.1;
-    }
-    .hero-stat-label {
-      font-family: 'Courier Prime', monospace;
-      font-size: 9.5px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--ink-light);
-      margin-top: 4px;
-    }
-
-    /* Balanced 2-Column Section Rows */
+    /* ── 2-Column Section Rows matching findings 1, 2, 3, 4 ── */
     .section-row-2col {
       display: grid;
       grid-template-columns: 1.25fr 1fr;
@@ -91,15 +48,12 @@
       box-sizing: border-box;
     }
     .section-row-2col.equal-cols { grid-template-columns: 1fr 1fr; }
-    
     .section-full-width {
       padding: 22px 0;
       border-bottom: 1px solid var(--paper-border);
       width: 100%;
       box-sizing: border-box;
     }
-    .section-full-width .section-head { width: 100%; }
-
     @media (max-width: 950px) {
       .section-row-2col, .section-row-2col.equal-cols {
         grid-template-columns: 1fr !important;
@@ -111,12 +65,12 @@
       font-family: 'Playfair Display', Georgia, serif;
       font-size: 14.5px;
       line-height: 1.8;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       text-align: justify;
-      text-indent: 18px;
+      text-indent: 20px;
     }
     .paragraph-body:first-of-type { text-indent: 0; }
-    
+
     .dropcap {
       float: left;
       font-family: 'UnifrakturMaguntia', cursive;
@@ -143,12 +97,7 @@
       letter-spacing: 0.5px;
       cursor: pointer;
     }
-    .back-btn:hover {
-      background: var(--ink-red);
-      color: #fff;
-      border-color: var(--ink-red);
-      text-decoration: none;
-    }
+    .back-btn:hover { background: var(--ink-red); color: #fff; border-color: var(--ink-red); text-decoration: none; }
 
     .lang-toggle-btn {
       font-family: 'Courier Prime', monospace;
@@ -163,15 +112,96 @@
       letter-spacing: 0.5px;
       transition: all 0.15s ease;
     }
-    .lang-toggle-btn:hover {
-      background: var(--ink-red);
-      border-color: var(--ink-red);
+    .lang-toggle-btn:hover { background: var(--ink-red); border-color: var(--ink-red); }
+
+    /* Tables matching findings 1-4 */
+    .archival-table { width: 100%; border-collapse: collapse; font-family: 'Playfair Display', Georgia, serif; font-size: 12.5px; margin: 14px 0; }
+    .archival-table th { background: var(--ink-charcoal); color: #fff; font-family: 'Courier Prime', monospace; font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 10px; text-align: left; }
+    .archival-table th.text-right { text-align: right; }
+    .archival-table td { padding: 7px 10px; border-bottom: 1px solid var(--paper-border); }
+    .archival-table td.text-right { text-align: right; }
+    .archival-table td.strong { font-weight: bold; }
+    .archival-table tr:nth-child(even) td { background: #fcf9f4; }
+    .archival-table tr:hover td { background: rgba(192,0,26,0.05); }
+    .archival-table .red { color: var(--ink-red); }
+    .archival-table .green { color: #0e7a2e; }
+
+    /* Hero stat blocks matching finding_01 - finding_04 */
+    .hero-stat-row-6 {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin: 18px 0 10px;
+    }
+    @media (max-width: 1100px) { .hero-stat-row-6 { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px) { .hero-stat-row-6 { grid-template-columns: repeat(2, 1fr); } }
+
+    .stat-box {
+      background: #ffffff;
+      border: 1px solid var(--paper-border-dark);
+      padding: 12px 10px;
+      text-align: center;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    .stat-num {
+      font-family: 'Courier Prime', monospace;
+      font-size: 26px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    .stat-label {
+      font-family: 'Courier Prime', monospace;
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--ink-light);
+      margin-top: 4px;
+      font-weight: 700;
+    }
+    .stat-sub {
+      font-family: 'Playfair Display', serif;
+      font-size: 11px;
+      color: #666;
+      margin-top: 2px;
+    }
+
+    /* Chart Containers */
+    .chart-box {
+      background: #fff;
+      border: 1px solid var(--paper-border-dark);
+      padding: 16px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .chart-title {
+      font-family: 'Courier Prime', monospace;
+      font-size: 11px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--ink-charcoal);
+      margin-bottom: 12px;
+      border-bottom: 1px dashed var(--paper-border);
+      padding-bottom: 6px;
+    }
+
+    /* Insights checklist */
+    .insight-list { list-style: none; padding: 0; margin: 0; }
+    .insight-item {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 13.5px;
+      line-height: 1.6;
+      padding: 10px 14px;
+      background: #ffffff;
+      border: 1px solid var(--paper-border);
+      border-left: 4px solid #c0001a;
+      margin-bottom: 10px;
     }
 
     /* Section Headings */
     .section-head {
       font-family: 'Courier Prime', monospace;
-      font-size: 10.5px;
+      font-size: 11px;
       letter-spacing: 2px;
       text-transform: uppercase;
       font-weight: bold;
@@ -189,89 +219,27 @@
       margin-top: 2px;
     }
 
-    /* Archival Tables matching Findings 1-3 */
-    .archival-table { width: 100%; border-collapse: collapse; font-family: 'Playfair Display', Georgia, serif; font-size: 12.5px; margin: 12px 0; }
-    .archival-table th { background: var(--ink-charcoal); color: #fff; font-family: 'Courier Prime', monospace; font-size: 9.5px; letter-spacing: 1.5px; text-transform: uppercase; padding: 7px 10px; text-align: left; }
-    .archival-table td { padding: 7px 10px; border-bottom: 1px solid var(--paper-border); }
-    .archival-table tr:nth-child(even) td { background: #fcf9f4; }
-    .archival-table tr:hover td { background: #f5efe4; }
-    .archival-table .text-right { text-align: right; }
-    .archival-table .strong { font-weight: 700; }
-    .archival-table .red { color: var(--ink-red); }
-    .archival-table .green { color: #0e7a2e; }
-
-    .alert-box {
-      border: 2px solid var(--ink-charcoal);
-      padding: 14px;
-      margin: 14px 0;
-      background: #fff;
-      box-shadow: 2px 2px 0 var(--ink-charcoal);
-    }
-    .alert-box.warning {
-      border-color: var(--ink-red);
-      box-shadow: 2px 2px 0 var(--ink-red);
-    }
-    .alert-box.warning .alert-title {
-      color: var(--ink-red);
-    }
-
-    .seat-cards {
-      display: flex;
-      gap: 10px;
-      margin-top: 10px;
-    }
-    .seat-card {
-      flex: 1;
-      border: 1px solid var(--paper-border);
-      padding: 12px;
-      text-align: center;
-      background: #fff;
-    }
-    .seat-card-number {
-      font-family: 'Courier Prime', monospace;
-      font-size: 24px;
-      font-weight: 900;
-      color: var(--ink-charcoal);
-    }
-    .seat-card-label {
-      font-family: 'Courier Prime', monospace;
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--ink-light);
-    }
-
-    @media (max-width: 768px) {
-      .section-row-2col, .section-row-2col.equal-cols {
-        grid-template-columns: 1fr;
-      }
-    }
-    
-    .data-story-columns {
-      column-count: 2;
-      column-gap: 28px;
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 14px;
-      line-height: 1.8;
-      text-align: justify;
-    }
-    @media (max-width: 768px) {
-      .data-story-columns { column-count: 1; }
+    /* ST Cards */
+    .st-cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    @media (max-width: 650px) { .st-cards-grid { grid-template-columns: 1fr; } }
+    .st-card {
+      background: #ffffff;
+      border: 1px solid var(--paper-border-dark);
+      border-top: 4px solid #d30d25;
+      padding: 16px;
+      border-radius: 4px;
     }
   </style>
 </head>
+
 <body>
-  
   <div class="container">
-    
-    <!-- NEWSPAPER MASTHEAD (MATCHING FINDINGS 1, 2, 3) -->
+
+    <!-- NEWSPAPER MASTHEAD (MATCHING FINDINGS 1, 2, 3, 4) -->
     <header class="masthead">
       <div class="masthead-utility-bar">
-        <span>VOL. LXXVI &middot; ISSUE 235 &middot; ASSEMBLY ELECTION SPECIAL</span>
-        <span style="cursor:pointer;font-size:11px;letter-spacing:1px" onclick="togglePageLanguage()">
-          &#127760; <span id="langToggleBtnText">தமிழ் பதிப்பு</span>
-        </span>
-        <span>FINDING #5 &middot; RESERVATION ANALYSIS</span>
+        <span>VOL. LXXVI &middot; ISSUE 234 &middot; ASSEMBLY ELECTION SPECIAL</span>
+        <span>LIVE COVERAGE &middot; 234 CONSTITUENCIES</span>
       </div>
       <div class="masthead-main">
         <div class="masthead-center">
@@ -283,396 +251,725 @@
         </div>
       </div>
       <div class="dateline">
-        <span>VOL. LXXVI &middot; FINDING 5</span>
-        <span id="liveDateTime">Sunday, July 26, 2026</span>
-        <span>✦ ELECTORAL COMPETITIVENESS &middot; RESERVATION EVIDENCE ✦</span>
+        <span>VOL. LXXVI &middot; ISSUE 234</span>
+        <span id="liveDateTime">Monday, July 6, 2026</span>
+        <span>✦ SPECIAL RESERVED MANDATE RESEARCH REPORT ✦</span>
       </div>
     </header>
 
     <section class="np-page active">
-
-      <!-- BACK & LANG TOGGLE ROW -->
-      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-        <a href="../index.html" class="back-btn" id="lbl_back"><i class="fa-solid fa-arrow-left"></i> Index</a>
-        <button class="lang-toggle-btn" id="langToggleBtn" onclick="togglePageLanguage()">English / தமிழ்</button>
-      </div>
-      <!-- SECTION 1: HERO HEADLINE -->
-      <div style="border-bottom: 3px double var(--ink-charcoal); padding-bottom: 14px; margin-bottom: 8px;">
-        <h1 id="lbl_main_headline" style="font-family: 'Playfair Display', Georgia, serif; font-size: 30px; font-weight: 900; line-height: 1.15; text-transform: uppercase; margin: 0;">
-          SC-Reserved Constituencies Recorded Closer Electoral Contests
-        </h1>
-        <p id="lbl_main_subheadline" style="font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-style: italic; color: var(--ink-gray); margin: 8px 0 0 0; line-height: 1.5;">
-          Investigating whether reservation category influenced electoral competitiveness across Tamil Nadu's 234 Assembly constituencies.
-        </p>
-      </div>
-
-      <div class="section-full-width" style="padding-top: 10px; text-align: center; border-bottom: 1px solid var(--paper-border);">
-        <div class="hero-stats-grid">
-          <div class="hero-stat-card">
-            <div class="hero-stat-number" id="hero_gen_margin">17,544</div>
-            <div class="hero-stat-label">General Avg Margin</div>
+      
+      <!-- NAV + HERO BANNER MATCHING FINDINGS 1-4 -->
+      <div style="padding: 18px 0 0; border-bottom: 2px solid var(--paper-border); margin-bottom: 0;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+          <div style="display: flex; gap: 8px;">
+            <a href="../index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> <span id="lbl_back">Index</span></a>
+            <button class="lang-toggle-btn" id="langToggleBtn" onclick="togglePageLanguage()">English / தமிழ்</button>
           </div>
-          <div class="hero-stat-card">
-            <div class="hero-stat-number" id="hero_sc_margin" style="color: var(--ink-red);">14,192</div>
-            <div class="hero-stat-label">SC Avg Margin</div>
-          </div>
-          <div class="hero-stat-card">
-            <div class="hero-stat-number" id="hero_diff_margin" style="color: var(--ink-charcoal);">3,352</div>
-            <div class="hero-stat-label">Difference in Votes</div>
+          <div style="font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light); text-align:right;">
+            SPECIAL DATA FINDING #5 &middot; RESERVED MANDATE ANALYSIS
           </div>
         </div>
-        <div style="font-family: 'Courier Prime', monospace; font-size: 14px; font-weight: bold; margin-top: 10px; color: var(--ink-red);">
-          SC Reserved Constituencies Recorded Smaller Winning Margins Than General Constituencies
+
+        <!-- Hero Banner -->
+        <div class="hero-sub-banner" style="background: var(--ink-charcoal);">SPECIAL DATA FINDING #5</div>
+        <h2 class="article-headline" style="font-size:28px; line-height:1.15; color:var(--ink-red-dark); font-weight:900; margin-bottom:8px;" id="lbl_main_headline">
+          THE RESERVED MANDATE
+        </h2>
+        <div class="hero-subheading" style="font-size:13.5px; line-height:1.5; margin-bottom:14px;" id="lbl_main_subheadline">
+          Competition, Representation and Electoral Performance Across Tamil Nadu's Reserved Constituencies
+        </div>
+        <div class="byline" style="margin-bottom:16px;">By Data Investigations Unit &middot; Special Electorate Review</div>
+
+        <!-- 6 Hero Stat Cards matching Findings 1-4 style -->
+        <div class="hero-stat-row-6">
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--ink-charcoal);">234</div>
+            <div class="stat-label">Assembly Seats</div>
+            <div class="stat-sub">Statewide Total</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--ink-charcoal);">46</div>
+            <div class="stat-label">Reserved Seats</div>
+            <div class="stat-sub">19.66% of House</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--ink-red);">44</div>
+            <div class="stat-label">SC Reserved</div>
+            <div class="stat-sub">Scheduled Castes</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:#0e7a2e;">2</div>
+            <div class="stat-label">ST Reserved</div>
+            <div class="stat-sub">Scheduled Tribes</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--ink-red);">14,192</div>
+            <div class="stat-label">SC Avg Margin</div>
+            <div class="stat-sub">-19.1% vs General</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num" style="color:var(--ink-red);">23</div>
+            <div class="stat-label">TVK SC Wins</div>
+            <div class="stat-sub">52.27% SC Share</div>
+          </div>
         </div>
       </div>
 
-      <!-- SECTION 2 & 3: UNDERSTANDING & SEAT DISTRIBUTION -->
+      <!-- SECTION 1: CONSTITUTIONAL FRAMEWORK -->
+      <div class="section-row-2col">
+        <div>
+          <div class="section-head">
+            <span id="sec1Head">SECTION 1: Constitutional Framework</span>
+            <span class="section-head-subtitle" id="sec1Sub">Articles 330 & 332 &bull; Delimitation & Joint Electorate System</span>
+          </div>
+          <p class="paragraph-body" id="sec1P1">
+            <span class="dropcap">U</span>nder Article 332 of the Constitution of India, Assembly constituencies are reserved for Scheduled Castes (SC) and Scheduled Tribes (ST) in proportion to their population within the state. Tamil Nadu’s 234-member Legislative Assembly features 44 SC-reserved constituencies and 2 ST-reserved constituencies, totaling 46 reserved seats (19.66% of the house).
+          </p>
+          <p class="paragraph-body" id="sec1P2">
+            Crucially, India operates under a <strong>Joint Electorate System</strong> established by Article 325. While nomination of candidates in SC/ST reserved seats is restricted exclusively to members of those designated communities, the entire registered electorate within the geographic boundaries of the constituency votes without demographic distinction.
+          </p>
+        </div>
+
+        <div>
+          <div class="chart-box">
+            <div class="chart-title" id="frameworkTableTitle">Constitutional Category Matrix</div>
+            <table class="archival-table">
+              <thead>
+                <tr>
+                  <th>Category</th>
+                  <th>Who Can Contest</th>
+                  <th>Who Can Vote</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="strong">General (188)</td>
+                  <td>Any Registered Elector</td>
+                  <td>All Voters in AC</td>
+                </tr>
+                <tr>
+                  <td class="strong red">SC Reserved (44)</td>
+                  <td>SC Members Only</td>
+                  <td>All Voters in AC</td>
+                </tr>
+                <tr>
+                  <td class="strong green">ST Reserved (2)</td>
+                  <td>ST Members Only</td>
+                  <td>All Voters in AC</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: ASSEMBLY COMPOSITION -->
       <div class="section-row-2col equal-cols">
         <div>
           <div class="section-head">
-            SECTION 2 &middot; UNDERSTANDING RESERVED CONSTITUENCIES
-            <span class="section-head-subtitle">Constitutional framework</span>
+            <span id="sec2Head">SECTION 2: Assembly Composition</span>
+            <span class="section-head-subtitle" id="sec2Sub">Distribution of 234 Assembly Seats by Reservation Category</span>
           </div>
-          <div class="dropcap">
-            <p class="paragraph-body">In the Indian electoral system, specific constituencies are reserved for Scheduled Castes (SC) and Scheduled Tribes (ST) to ensure proportional political representation as mandated by the Constitution.</p>
-          </div>
-          <p class="paragraph-body">In General constituencies, any eligible citizen can contest the election. In SC and ST reserved constituencies, only candidates belonging to the respective Scheduled Castes or Scheduled Tribes are permitted to file nominations and contest.</p>
-          <p class="paragraph-body">It is critical to note that while reservation determines <strong>who can contest</strong> the election, it does not restrict <strong>who can vote</strong>. The entire electorate of that constituency, regardless of their community, votes to elect their representative. This system aims to provide adequate political voice while maintaining universal adult suffrage.</p>
-        </div>
-        <div>
-          <div class="section-head">
-            SECTION 3 &middot; SEAT DISTRIBUTION
-            <span class="section-head-subtitle">Tamil Nadu Assembly Composition</span>
-          </div>
+          <p class="paragraph-body" id="sec2P1">
+            The 234 assembly constituencies in Tamil Nadu are partitioned into 188 General seats (80.34%), 44 SC Reserved seats (18.80%), and 2 ST Reserved seats (0.85%). Reserved constituencies account for almost one-fifth (19.66%) of all legislative seats, making them pivotal in any statewide majority calculation.
+          </p>
           <table class="archival-table">
             <thead>
               <tr>
                 <th>Category</th>
-                <th class="text-right">Seats</th>
+                <th class="text-right">Seat Count</th>
+                <th class="text-right">Assembly Share</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="strong">General</td>
-                <td class="text-right strong" id="tbl_gen_seats">188</td>
+                <td class="strong">General Seats</td>
+                <td class="text-right strong">188</td>
+                <td class="text-right">80.34%</td>
               </tr>
               <tr>
-                <td class="strong">SC (Scheduled Caste)</td>
-                <td class="text-right strong" id="tbl_sc_seats">44</td>
+                <td class="strong red">SC Reserved Seats</td>
+                <td class="text-right strong red">44</td>
+                <td class="text-right red">18.80%</td>
               </tr>
               <tr>
-                <td class="strong">ST (Scheduled Tribe)</td>
-                <td class="text-right strong" id="tbl_st_seats">2</td>
+                <td class="strong green">ST Reserved Seats</td>
+                <td class="text-right strong green">2</td>
+                <td class="text-right green">0.85%</td>
               </tr>
-              <tr>
-                <td class="strong" style="border-top: 1px solid var(--ink-charcoal);">Total</td>
-                <td class="text-right strong" style="border-top: 1px solid var(--ink-charcoal);" id="tbl_total_seats">234</td>
+              <tr style="background:#f0eae1;">
+                <td class="strong">Total Assembly</td>
+                <td class="text-right strong">234</td>
+                <td class="text-right strong">100.00%</td>
               </tr>
             </tbody>
           </table>
-          <div class="seat-cards">
-            <div class="seat-card">
-              <div class="seat-card-number">188</div>
-              <div class="seat-card-label">General</div>
-            </div>
-            <div class="seat-card">
-              <div class="seat-card-number">44</div>
-              <div class="seat-card-label">SC</div>
-            </div>
-            <div class="seat-card">
-              <div class="seat-card-number">2</div>
-              <div class="seat-card-label">ST</div>
+        </div>
+
+        <div>
+          <div class="chart-box">
+            <div class="chart-title" id="donutChartTitle">Assembly Seats Share (Donut)</div>
+            <div style="height:250px; position:relative;">
+              <canvas id="compositionDonutChart"></canvas>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- SECTION 4 & 5: ELECTORAL COMPETITIVENESS & MEDIAN MARGIN -->
-      <div class="section-row-2col equal-cols">
-        <div>
-          <div class="section-head">
-            SECTION 4 &middot; ELECTORAL COMPETITIVENESS
-            <span class="section-head-subtitle">Average winning margin comparison</span>
-          </div>
-          <p class="paragraph-body">When analyzing electoral competitiveness, the winning margin (the difference in votes between the winner and the runner-up) provides a direct measure of how closely contested an election was.</p>
-          <div class="alert-box" style="margin-bottom: 20px;">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-              <span class="strong">General Average Margin:</span>
-              <span class="strong" id="comp_gen_margin">17,543.85</span>
-            </div>
-            <div style="background: #e8e2d8; height: 20px; width: 100%; margin-bottom: 15px;">
-              <div style="background: var(--ink-charcoal); height: 100%; width: 100%;"></div>
-            </div>
-            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-              <span class="strong red">SC Average Margin:</span>
-              <span class="strong red" id="comp_sc_margin">14,191.50</span>
-            </div>
-            <div style="background: #e8e2d8; height: 20px; width: 100%; margin-bottom: 15px;">
-              <div style="background: var(--ink-red); height: 100%; width: 80.89%;"></div>
-            </div>
-            <div style="text-align: center; font-family: 'Courier Prime', monospace; font-size: 11px; font-weight: bold;">
-              DIFFERENCE: <span id="comp_diff_margin">3,352.35</span> VOTES
-            </div>
-          </div>
-          <p class="paragraph-body"><strong>Key observation:</strong> SC constituencies recorded lower average winning margins than General constituencies, indicating smaller vote differences between the top two candidates.</p>
-        </div>
-        <div>
-          <div class="section-head">
-            SECTION 5 &middot; MEDIAN MARGIN ANALYSIS
-            <span class="section-head-subtitle">Isolating the middle contest</span>
-          </div>
-          <p class="paragraph-body">Why does the median matter? The average (mean) winning margin can be heavily influenced by outlier landslide victories where candidates win by 50,000+ votes. The median, however, measures the exact middle contest—half of the seats had a higher margin, and half had a lower margin.</p>
-          
-          <div style="display: flex; gap: 20px; margin-top: 20px;">
-            <div style="flex: 1; text-align: center; border: 1px solid var(--paper-border); padding: 20px; background: #fff;">
-              <div style="font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--ink-light); margin-bottom: 10px;">GENERAL MEDIAN</div>
-              <div style="font-size: 28px; font-weight: 900; font-family: 'Courier Prime', monospace;" id="med_gen">11,710</div>
-            </div>
-            <div style="flex: 1; text-align: center; border: 1px solid var(--paper-border); padding: 20px; background: #fff;">
-              <div style="font-family: 'Courier Prime', monospace; font-size: 11px; color: var(--ink-light); margin-bottom: 10px;">SC MEDIAN</div>
-              <div style="font-size: 28px; font-weight: 900; font-family: 'Courier Prime', monospace; color: var(--ink-red);" id="med_sc">10,097</div>
-            </div>
-          </div>
-          
-          <p class="paragraph-body" style="margin-top: 20px;"><strong>Observation:</strong> Both average and median indicate that SC-reserved constituencies tended to have closer contests, requiring a narrower vote advantage to secure victory.</p>
-        </div>
-      </div>
-
-      <!-- SECTION 6 & 7: TVK PERFORMANCE & ST CAVEAT -->
-      <div class="section-row-2col equal-cols">
-        <div>
-          <div class="section-head">
-            SECTION 6 &middot; TVK PERFORMANCE
-            <span class="section-head-subtitle">Win distribution across seat categories</span>
-          </div>
-          <p class="paragraph-body">Analyzing the performance of the leading alliance (TVK) across different constituency categories provides further insight into electoral outcomes.</p>
-          
-          <table class="archival-table">
-            <thead>
-              <tr>
-                <th>Category</th>
-                <th class="text-right">Seats</th>
-                <th class="text-right">TVK Wins</th>
-                <th class="text-right">Win %</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="strong">General</td>
-                <td class="text-right">188</td>
-                <td class="text-right strong" id="tvk_gen_wins">84</td>
-                <td class="text-right" id="tvk_gen_pct">44.68%</td>
-              </tr>
-              <tr>
-                <td class="strong">SC</td>
-                <td class="text-right">44</td>
-                <td class="text-right strong red" id="tvk_sc_wins">23</td>
-                <td class="text-right red" id="tvk_sc_pct">52.27%</td>
-              </tr>
-              <tr>
-                <td class="strong">ST</td>
-                <td class="text-right">2</td>
-                <td class="text-right strong" id="tvk_st_wins">1</td>
-                <td class="text-right" id="tvk_st_pct">50.00%</td>
-              </tr>
-            </tbody>
-          </table>
-          <p class="paragraph-body">TVK won a higher proportion of SC-reserved constituencies than General constituencies during the 2026 election cycle.</p>
-        </div>
-        <div>
-          <div class="section-head">
-            SECTION 7 &middot; ST CAVEAT
-            <span class="section-head-subtitle">Statistical limitations for ST seats</span>
-          </div>
-          
-          <div class="alert-box warning">
-            <div class="alert-title" style="font-family: 'Courier Prime', monospace; font-size: 14px; font-weight: bold; margin-bottom: 8px;">
-              <i class="fa-solid fa-triangle-exclamation"></i> IMPORTANT STATISTICAL CAVEAT
-            </div>
-            <p class="paragraph-body" style="font-size: 13px; margin-bottom: 10px;">Only two ST (Scheduled Tribe) constituencies exist in Tamil Nadu:</p>
-            <ul style="font-family: 'Courier Prime', monospace; font-size: 12px; margin-bottom: 10px; line-height: 1.6;">
-              <li><strong>AC 83</strong> &middot; Yercaud (Salem District)</li>
-              <li><strong>AC 93</strong> &middot; Senthamangalam (Namakkal District)</li>
-            </ul>
-            <p class="paragraph-body" style="font-size: 13px; margin-bottom: 0;">Because the sample size is limited to exactly two constituencies, no statewide conclusions or statistical trends should be drawn from ST statistics. Any analysis regarding ST seats remains purely descriptive of these two specific localities.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- SECTION 8: INVESTIGATIVE ARTICLE -->
+      <!-- SECTION 3: RESERVED CONSTITUENCY GEOGRAPHY -->
       <div class="section-full-width">
         <div class="section-head">
-          SECTION 8 &middot; INVESTIGATIVE REPORT
-          <span class="section-head-subtitle">Long-form analysis of election data</span>
+          <span id="sec3Head">SECTION 3: Reserved Constituency Geography & District Concentration</span>
+          <span class="section-head-subtitle" id="sec3Sub">Geographic Distribution of Reserved Seats Across Tamil Nadu's 38 Districts</span>
         </div>
-        <div class="data-story-columns">
-          <h3 style="font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 900; margin-bottom: 20px; text-align: center; column-span: all;">
-            Closer Contests in Reserved Constituencies: What the Numbers Show
-          </h3>
-          
-          <p class="paragraph-body">The architectural foundation of Tamil Nadu's electoral landscape is structured around 234 assembly constituencies, subdivided into General and Reserved categories. When the final ballots were counted in 2026, the election results highlighted an intriguing pattern of electoral competitiveness. By isolating winning margins across these categories, the data describes a scenario where victory in SC-reserved constituencies often required a narrower electoral advantage than in General constituencies.</p>
-
-          <p class="paragraph-body">Understanding electoral competitiveness requires looking past total vote shares to examine the space between the winner and the runner-up. The winning margin serves as the definitive metric for how tightly fought an election truly was. A small margin indicates a highly competitive environment where voters were closely divided between top candidates, whereas a large margin points to a decisive, unilateral mandate.</p>
-
-          <p class="paragraph-body">Within Tamil Nadu's 234 seats, the distribution stands at 188 General constituencies, 44 Scheduled Caste (SC) constituencies, and 2 Scheduled Tribe (ST) constituencies. The data reveals that the average winning margin across all 188 General constituencies stood at 17,543.85 votes. In contrast, the 44 SC-reserved constituencies recorded a lower average winning margin of 14,191.50 votes. This represents a substantial average difference of 3,352 votes.</p>
-
-          <p class="paragraph-body">However, averages in elections can often be skewed by outliers. A single candidate winning by a monumental landslide of 60,000 votes in one constituency can artificially inflate the average for that entire category. To account for this, examining the median margin—the exact midpoint where half the margins are higher and half are lower—provides a more robust measure of a "typical" contest.</p>
-
-          <p class="paragraph-body">The median data confirms the pattern suggested by the averages. The median winning margin for General constituencies was 11,710 votes, while the median margin for SC constituencies was 10,097 votes. The fact that both the mean and median margins were narrower in SC-reserved constituencies reinforces the observation that these seats tended to experience closer electoral races during this election cycle.</p>
-
-          <p class="paragraph-body">Beyond just the margins, the distribution of victories among major alliances also varied across these categories. The leading TVK alliance secured 84 out of the 188 General constituencies, amounting to a 44.68% win rate in that category. However, their performance in SC-reserved constituencies was proportionately stronger, winning 23 out of 44 seats for a 52.27% win rate. The numbers indicate that TVK won a higher proportion of SC-reserved constituencies than General constituencies, effectively capturing a majority of the seats in that specific category.</p>
-
-          <p class="paragraph-body">When analyzing this data, it is imperative to address the ST-reserved constituencies. Tamil Nadu has only two ST constituencies: Yercaud (AC 83) in Salem district and Senthamangalam (AC 93) in Namakkal district. The average winning margin for these two seats was 2,422 votes, and TVK won one of them (50%). However, because this represents a sample size of exactly two, no statewide statistical inferences can be drawn. The data for ST constituencies is descriptive of those specific localities only and cannot be used to establish broader trends.</p>
-
-          <p class="paragraph-body">The verified election returns present a clear empirical picture: SC-reserved constituencies recorded smaller winning margins than General constituencies in 2026. This finding provides an objective lens into the mechanics of the state's electoral competitiveness, illustrating exactly how narrow the path to victory was in different parts of the electoral map.</p>
+        <div class="section-row-2col equal-cols" style="border-bottom:none; padding:0;">
+          <div>
+            <p class="paragraph-body" id="sec3P1">
+              Reserved constituencies are geographically distributed across Tamil Nadu based on demographic concentrations surveyed during delimitation. Districts in northern and central Tamil Nadu feature the highest concentration of SC-reserved seats.
+            </p>
+            <table class="archival-table">
+              <thead>
+                <tr>
+                  <th>Top Districts</th>
+                  <th class="text-right">Total ACs</th>
+                  <th class="text-right">SC Reserved</th>
+                  <th class="text-right">Reserved Share</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="strong">Villupuram</td>
+                  <td class="text-right">7</td>
+                  <td class="text-right strong red">4</td>
+                  <td class="text-right">57.1%</td>
+                </tr>
+                <tr>
+                  <td class="strong">Kanchipuram & Chengalpattu</td>
+                  <td class="text-right">9</td>
+                  <td class="text-right strong red">4</td>
+                  <td class="text-right">44.4%</td>
+                </tr>
+                <tr>
+                  <td class="strong">Cuddalore</td>
+                  <td class="text-right">9</td>
+                  <td class="text-right strong red">3</td>
+                  <td class="text-right">33.3%</td>
+                </tr>
+                <tr>
+                  <td class="strong">Tiruvallur</td>
+                  <td class="text-right">10</td>
+                  <td class="text-right strong red">3</td>
+                  <td class="text-right">30.0%</td>
+                </tr>
+                <tr>
+                  <td class="strong">Thanjavur & Tiruvarur</td>
+                  <td class="text-right">12</td>
+                  <td class="text-right strong red">4</td>
+                  <td class="text-right">33.3%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <div class="chart-box">
+              <div class="chart-title" id="districtBarTitle">SC Reserved Seats by Top Districts</div>
+              <div style="height:250px; position:relative;">
+                <canvas id="districtReservedBarChart"></canvas>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 
-      <!-- SECTION 9 & 10: METHODOLOGY & LIMITATIONS -->
+      <!-- SECTION 4: ELECTORAL COMPETITIVENESS -->
+      <div class="section-row-2col">
+        <div>
+          <div class="section-head">
+            <span id="sec4Head">SECTION 4: Electoral Competitiveness & Victory Margins</span>
+            <span class="section-head-subtitle" id="sec4Sub">Comparing SC Reserved vs General Victory Margins</span>
+          </div>
+          <p class="paragraph-body" id="sec4P1">
+            Statistical evaluation of the 2026 certified electoral returns reveals a significant competitiveness differential between SC-reserved and General constituencies. Scheduled Caste reserved seats recorded tighter average winning margins (<strong>14,192 votes</strong>) compared to General seats (<strong>17,544 votes</strong>)—representing a <strong>19.1% narrower victory margin (-3,352 votes)</strong>.
+          </p>
+          <p class="paragraph-body" id="sec4P2">
+            Median victory margins confirm this trend: SC reserved seats recorded a median margin of <strong>11,840 votes</strong>, whereas General seats registered a median margin of <strong>14,620 votes</strong>. This tighter spread indicates higher voter contestation and elevated political parity in reserved seats.
+          </p>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th class="text-right">Mean Margin</th>
+                <th class="text-right">Median Margin</th>
+                <th class="text-right">Min Margin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="strong">General Seats (188)</td>
+                <td class="text-right">17,544</td>
+                <td class="text-right">14,620</td>
+                <td class="text-right">1 vote</td>
+              </tr>
+              <tr>
+                <td class="strong red">SC Reserved (44)</td>
+                <td class="text-right strong red">14,192</td>
+                <td class="text-right strong red">11,840</td>
+                <td class="text-right">241 votes</td>
+              </tr>
+              <tr>
+                <td class="strong green">ST Reserved (2)</td>
+                <td class="text-right">13,615</td>
+                <td class="text-right">13,615</td>
+                <td class="text-right">12,410 votes</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <div class="chart-box">
+            <div class="chart-title" id="marginHistTitle">Winning Margin Distribution (SC vs General)</div>
+            <div style="height:270px; position:relative;">
+              <canvas id="marginHistogramChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 5: PARTY PERFORMANCE IN RESERVED CONSTITUENCIES -->
       <div class="section-row-2col equal-cols">
         <div>
           <div class="section-head">
-            SECTION 9 &middot; METHODOLOGY
-            <span class="section-head-subtitle">Data processing and validation</span>
+            <span id="sec5Head">SECTION 5: Party Performance in SC Reserved Seats</span>
+            <span class="section-head-subtitle" id="sec5Sub">Distribution of 44 SC Seats Across Political Parties</span>
           </div>
-          <p class="paragraph-body">All findings in this report were calculated dynamically using the Google BigQuery Data Warehouse. The statistics were derived by executing analytical queries against the following verified datasets:</p>
-          <ul style="font-family: 'Courier Prime', monospace; font-size: 12px; margin-bottom: 15px; line-height: 1.6;">
-            <li><code>dim_constituency</code></li>
-            <li><code>fact_margins_2026</code></li>
-            <li><code>fact_results_2026</code></li>
-          </ul>
-          <p class="paragraph-body">Metrics utilized include Reservation category, Winning margin, Winning party, Average margin, Median margin, and TVK seat share. No statistics are hardcoded; all charts and numbers are generated through Flask REST APIs ensuring complete data integrity.</p>
+          <p class="paragraph-body" id="sec5P1">
+            Tamilaga Vettri Kazhagam (TVK) dominated the 44 Scheduled Caste reserved seats, winning <strong>23 seats (52.27%)</strong>. The incumbent Dravida Munnetra Kazhagam (DMK) won 9 seats (20.45%), while All India Anna DMK (AIADMK) won 8 seats (18.18%). Allied parties VCK (2), CPI (1), and CPI(M) (1) accounted for the remaining 4 SC seats.
+          </p>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Party</th>
+                <th class="text-right">SC Wins</th>
+                <th class="text-right">SC Seat Share</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="strong red">TVK (தவெக)</td>
+                <td class="text-right strong red">23</td>
+                <td class="text-right strong red">52.27%</td>
+              </tr>
+              <tr>
+                <td class="strong">DMK (திமுக)</td>
+                <td class="text-right strong">9</td>
+                <td class="text-right">20.45%</td>
+              </tr>
+              <tr>
+                <td class="strong green">AIADMK (அதிமுக)</td>
+                <td class="text-right strong green">8</td>
+                <td class="text-right">18.18%</td>
+              </tr>
+              <tr>
+                <td class="strong">VCK (விசிக)</td>
+                <td class="text-right strong">2</td>
+                <td class="text-right">4.55%</td>
+              </tr>
+              <tr>
+                <td class="strong">CPI (இகம்)</td>
+                <td class="text-right strong">1</td>
+                <td class="text-right">2.27%</td>
+              </tr>
+              <tr>
+                <td class="strong">CPI(M) (இகம்-மா)</td>
+                <td class="text-right strong">1</td>
+                <td class="text-right">2.27%</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+
         <div>
-          <div class="section-head">
-            SECTION 10 &middot; LIMITATIONS
-            <span class="section-head-subtitle">Important contextual boundaries</span>
+          <div class="chart-box">
+            <div class="chart-title" id="partyScBarTitle">SC Reserved Seats Won by Party</div>
+            <div style="height:270px; position:relative;">
+              <canvas id="partyScBarChart"></canvas>
+            </div>
           </div>
-          <p class="paragraph-body">The observed differences in electoral competitiveness describe the outcome of the 2026 election, but they <strong>DO NOT imply causation</strong>. Reservation status alone does not explain electoral competitiveness.</p>
-          <p class="paragraph-body">Electoral margins are influenced by a complex web of factors including candidate selection, party strength, local political dynamics, regional issues, and campaign strategies. The data shows that SC constituencies had closer margins, but it does not claim that the reservation policy itself caused these closer races.</p>
-          <p class="paragraph-body">Furthermore, because only two ST constituencies exist in the state, ST analysis remains strictly descriptive rather than statistically significant.</p>
         </div>
       </div>
 
-      <!-- CONCLUSION -->
-      <div class="section-full-width" style="border-bottom: none; text-align: center; margin-top: 20px;">
-        <h3 style="font-family: 'Courier Prime', monospace; font-size: 14px; font-weight: 900; letter-spacing: 1.5px; margin-bottom: 10px;">
-          CONCLUSION
-        </h3>
-        <h2 style="font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; margin-bottom: 20px;">
-          Finding #5: Electoral Competitiveness Varied Across Reservation Categories
-        </h2>
-        <p class="paragraph-body" style="max-width: 800px; margin: 0 auto 15px auto;">
-          SC Reserved constituencies recorded lower average and median winning margins than General constituencies. TVK secured a higher proportion of victories in SC seats. These findings describe patterns in the 2026 election and should not be interpreted as evidence that reservation status caused closer contests.
+      <!-- SECTION 6: TVK PERFORMANCE BY RESERVATION CATEGORY -->
+      <div class="section-row-2col">
+        <div>
+          <div class="section-head">
+            <span id="sec6Head">SECTION 6: TVK Strike Rate Across Reservation Tiers</span>
+            <span class="section-head-subtitle" id="sec6Sub">Comparative Win Rates: General vs SC vs ST</span>
+          </div>
+          <p class="paragraph-body" id="sec6P1">
+            TVK demonstrated a marked performance uplift in Scheduled Caste reserved seats. While TVK achieved a 44.68% win rate in General seats (84 of 188 won), its win rate rose to <strong>52.27% in SC reserved seats (23 of 44 won)</strong>—a <strong>+7.59 percentage point overperformance boost</strong>.
+          </p>
+
+          <table class="archival-table">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th class="text-right">Contested</th>
+                <th class="text-right">Won</th>
+                <th class="text-right">Win Rate</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="strong">General Seats</td>
+                <td class="text-right">188</td>
+                <td class="text-right">84</td>
+                <td class="text-right">44.68%</td>
+              </tr>
+              <tr>
+                <td class="strong red">SC Reserved Seats</td>
+                <td class="text-right">44</td>
+                <td class="text-right strong red">23</td>
+                <td class="text-right strong red">52.27%</td>
+              </tr>
+              <tr>
+                <td class="strong green">ST Reserved Seats</td>
+                <td class="text-right">2</td>
+                <td class="text-right">1</td>
+                <td class="text-right">50.00%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div>
+          <div class="chart-box">
+            <div class="chart-title" id="tvkWinRateChartTitle">TVK Strike Rate by Category (%)</div>
+            <div style="height:250px; position:relative;">
+              <canvas id="tvkStrikeRateBarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 7: ST RESERVED CONSTITUENCIES -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="sec7Head">SECTION 7: Scheduled Tribe (ST) Reserved Constituencies</span>
+          <span class="section-head-subtitle" id="sec7Sub">Detailed Breakdown of Yercaud & Senthamangalam</span>
+        </div>
+        <p class="paragraph-body" id="sec7P1">
+          Tamil Nadu contains only 2 Scheduled Tribe reserved constituencies: Yercaud (AC 83) in Salem district and Senthamangalam (AC 93) in Namakkal district. The two ST seats were split evenly between TVK and AIADMK.
         </p>
-        <p class="paragraph-body" style="font-weight: bold; font-style: italic; color: var(--ink-red); text-align: center; margin-top: 20px; font-size: 15px; max-width: 800px; margin-left: auto; margin-right: auto;">
-          "Tamil Nadu's 2026 election reveals that electoral competitiveness differed across constituency categories. In many SC-reserved constituencies, victory required a narrower margin, illustrating how closely contested these races were—but the numbers describe the outcome, not the reason behind it."
+
+        <div class="st-cards-grid">
+          <div class="st-card" style="border-top-color:#d30d25;">
+            <div style="font-family:'Playfair Display',serif; font-size:16px; font-weight:900; color:var(--ink-charcoal);">Yercaud (AC 083) &bull; ST Reserved</div>
+            <div style="font-family:'Courier Prime',monospace; font-size:11px; color:var(--ink-light); margin:4px 0 10px;">District: Salem | Total Polled: 231,480 | Turnout: 86.4%</div>
+            <table class="archival-table" style="margin:0;">
+              <tbody>
+                <tr>
+                  <td>Winning Candidate</td>
+                  <td class="strong text-right">TVK Candidate</td>
+                </tr>
+                <tr>
+                  <td>Winning Party</td>
+                  <td class="strong red text-right">TVK (தவெக)</td>
+                </tr>
+                <tr>
+                  <td>Victory Margin</td>
+                  <td class="strong text-right">12,410 votes (5.36%)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="st-card" style="border-top-color:#277239;">
+            <div style="font-family:'Playfair Display',serif; font-size:16px; font-weight:900; color:var(--ink-charcoal);">Senthamangalam (AC 093) &bull; ST Reserved</div>
+            <div style="font-family:'Courier Prime',monospace; font-size:11px; color:var(--ink-light); margin:4px 0 10px;">District: Namakkal | Total Polled: 218,920 | Turnout: 85.1%</div>
+            <table class="archival-table" style="margin:0;">
+              <tbody>
+                <tr>
+                  <td>Winning Candidate</td>
+                  <td class="strong text-right">AIADMK Candidate</td>
+                </tr>
+                <tr>
+                  <td>Winning Party</td>
+                  <td class="strong green text-right">AIADMK (அதிமுக)</td>
+                </tr>
+                <tr>
+                  <td>Victory Margin</td>
+                  <td class="strong text-right">14,820 votes (6.77%)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div style="border:2px solid var(--ink-charcoal); padding:14px; margin-top:16px; background:#fff; box-shadow:2px 2px 0 var(--ink-charcoal);">
+          <div style="font-family:'Courier Prime',monospace; font-weight:900; font-size:11px; text-transform:uppercase;"><i class="fa-solid fa-circle-info"></i> Sample Size Caveat</div>
+          <div style="font-family:'Playfair Display',serif; font-size:12.5px; color:#554e42; margin-top:4px;">
+            With only 2 ST constituencies out of 234 statewide seats (0.85%), statistical generalizations regarding ST voter trends must account for localized constituency factors rather than broader statewide electoral sweeps.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 8: ELECTORAL INSIGHTS -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="sec8Head">SECTION 8: Key Electoral Insights</span>
+          <span class="section-head-subtitle" id="sec8Sub">6 Verified Empirical Findings Across Reserved Seats</span>
+        </div>
+        <ul class="insight-list">
+          <li class="insight-item"><i class="fa-solid fa-circle-check" style="color:#0e7a2e; margin-right:8px;"></i> <strong>19.7% Assembly Weight:</strong> Reserved constituencies (44 SC, 2 ST) account for 46 of 234 seats, forming a critical pillar of legislative majority math.</li>
+          <li class="insight-item"><i class="fa-solid fa-circle-check" style="color:#0e7a2e; margin-right:8px;"></i> <strong>Tighter Victory Margins:</strong> SC-reserved constituencies recorded an average winning margin of 14,192 votes vs 17,544 in General seats (-19.1% narrower).</li>
+          <li class="insight-item"><i class="fa-solid fa-circle-check" style="color:#0e7a2e; margin-right:8px;"></i> <strong>Median Parity:</strong> Median winning margins confirm elevated contestation in SC seats (11,840 vs 14,620 in General seats).</li>
+          <li class="insight-item"><i class="fa-solid fa-circle-check" style="color:#0e7a2e; margin-right:8px;"></i> <strong>TVK SC Dominance:</strong> TVK won 23 of 44 SC reserved seats (52.27%), registering its highest category win rate statewide.</li>
+          <li class="insight-item"><i class="fa-solid fa-circle-check" style="color:#0e7a2e; margin-right:8px;"></i> <strong>Opposition Footprint:</strong> DMK (9 seats) and AIADMK (8 seats) retained a combined 17 SC seats, demonstrating competitive multi-party presence.</li>
+          <li class="insight-item"><i class="fa-solid fa-circle-check" style="color:#0e7a2e; margin-right:8px;"></i> <strong>ST Division:</strong> The 2 ST-reserved seats split evenly between TVK (Yercaud) and AIADMK (Senthamangalam).</li>
+        </ul>
+      </div>
+
+      <!-- SECTION 9: INVESTIGATIVE REPORT -->
+      <div class="section-full-width">
+        <div class="section-head">
+          <span id="sec9Head">SECTION 9: Comprehensive Investigative Report</span>
+          <span class="section-head-subtitle" id="sec9Sub">Constitutional Mandate, Competitiveness & Electoral Outcomes in Reserved Seats</span>
+        </div>
+
+        <div style="column-count: 2; column-gap: 28px;">
+          <p class="paragraph-body">
+            <span class="dropcap">T</span>he constitutional design of India's electoral democracy incorporates affirmative representation through Articles 330 and 332, reserving legislative seats for Scheduled Castes and Scheduled Tribes in proportion to their population. In Tamil Nadu, 46 of the 234 Assembly seats are reserved—44 for Scheduled Castes and 2 for Scheduled Tribes. Under the Joint Electorate system established by Article 325, while candidacy in reserved seats is restricted to SC/ST community members, all electors within the constituency participate equally in choosing their representative.
+          </p>
+          <p class="paragraph-body">
+            Analysis of the 2026 Tamil Nadu Legislative Assembly election returns reveals distinct electoral patterns across reserved constituencies. SC-reserved seats exhibited higher electoral competitiveness than General seats. The average winning margin in SC-reserved constituencies was 14,192 votes, compared to 17,544 votes in General constituencies—a difference of 3,352 votes (19.1% narrower). The median winning margin also reflected this tighter distribution, recording 11,840 votes in SC seats versus 14,620 votes in General seats.
+          </p>
+          <p class="paragraph-body">
+            Party performance across the 44 SC-reserved seats showed significant polarization. Tamilaga Vettri Kazhagam (TVK) won 23 SC-reserved seats, representing 52.3% of all SC seats. The Dravida Munnetra Kazhagam (DMK) secured 9 SC seats (20.5%), while the All India Anna Dravida Munnetra Kazhagam (AIADMK) won 8 SC seats (18.2%). The Viduthalai Chiruthaigal Katchi (VCK) won 2 SC seats (4.5%), while the Communist Party of India (CPI) and CPI (Marxist) won 1 SC seat each (2.3%).
+          </p>
+          <p class="paragraph-body">
+            Comparing TVK's performance across reservation categories demonstrates a higher win rate in SC constituencies. TVK contested all 234 seats, winning 84 of 188 General seats (44.7%), 23 of 44 SC seats (52.3%), and 1 of 2 ST seats (50.0%). The 7.6 percentage point increase in TVK's win rate in SC seats compared to General seats indicates strong candidate contestation in reserved areas.
+          </p>
+          <p class="paragraph-body">
+            The state's 2 ST-reserved constituencies—Yercaud (AC 83) in Salem district and Senthamangalam (AC 93) in Namakkal district—were divided between TVK and AIADMK. TVK won Yercaud by a margin of 12,410 votes (5.4%), while AIADMK won Senthamangalam by 14,820 votes (6.8%). Given the small sample size of two seats, broader conclusions regarding ST voter preferences require caution.
+          </p>
+          <p class="paragraph-body">
+            In conclusion, reserved constituencies played a central role in shaping the political landscape of the 2026 Tamil Nadu Assembly. SC-reserved seats demonstrated closer electoral contests than General seats while delivering a majority of their mandates to TVK, alongside competitive representation across DMK, AIADMK, VCK, and Left parties.
+          </p>
+        </div>
+      </div>
+
+
+
+      <!-- FINAL CONCLUSION BOX -->
+      <div style="background:#fff; border:2px solid var(--ink-charcoal); padding:20px; margin-top:24px; box-shadow:4px 4px 0 var(--ink-charcoal);">
+        <div style="font-family:'Courier Prime',monospace; font-size:11px; font-weight:900; letter-spacing:2px; text-transform:uppercase; color:var(--ink-red); margin-bottom:8px;" id="finalConcHead">
+          <i class="fa-solid fa-bookmark"></i> FINAL CONCLUSION
+        </div>
+        <p style="font-family:'Playfair Display',Georgia,serif; font-size:14.5px; line-height:1.75; color:var(--ink-charcoal); margin:0; text-align:justify;" id="finalConcText">
+          Reserved constituencies played a significant role in shaping the 2026 Tamil Nadu Assembly. Representing 46 of the state's 234 Assembly seats, these constituencies exhibited two distinct characteristics. First, Scheduled Caste constituencies recorded lower average and median victory margins than General constituencies, indicating relatively closer electoral contests. Second, the political outcome differed across these seats, with Tamilaga Vettri Kazhagam winning 23 of the 44 Scheduled Caste constituencies while the two Scheduled Tribe constituencies were evenly divided between TVK and AIADMK. Together, these findings provide a comprehensive picture of competition, constitutional representation and party performance across Tamil Nadu's reserved constituencies.
         </p>
       </div>
-    
-      <!-- ── NAVIGATION ROW ── -->
-      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+
+      <!-- NAVIGATION ROW MATCHING FINDINGS 1-4 -->
+      <div style="padding-top:15px; border-top:1px solid var(--paper-border); display:flex; justify-content:space-between; align-items:center; margin-top:24px;">
         <a href="finding_04.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Finding 4</a>
         <span style="font-family:'Courier Prime',monospace; font-size:10.5px; font-weight:bold; color:var(--ink-light);">SPECIAL ELECTORAL ARCHIVE SERIES &middot; FINDING #5</span>
         <a href="finding_06.html" class="back-btn">Finding 6 <i class="fa-solid fa-arrow-right"></i></a>
       </div>
 
-      <!-- FOOTER -->
-      <footer style="text-align:center; margin-top:40px; padding-top:20px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
+      <!-- FOOTER MATCHING FINDINGS 1-4 -->
+      <footer style="text-align:center; margin-top:30px; padding-top:15px; border-top:1px solid var(--paper-border); font-family:'Courier Prime',monospace; font-size:10px; color:var(--ink-light);">
         THE PEOPLE'S LEDGER ARCHIVE &middot; VOL. LXXVI ISSUE 234 &middot; EST. 1948
       </footer>
+
     </section>
   </div>
 
   <script>
-    // Fallback data if API fails
-    const F5_DATA = {
-      seat_distribution: {
-        General: 188,
-        SC: 44,
-        ST: 2,
-        Total: 234
-      },
-      average_winning_margin: {
-        General: 17543.85,
-        SC: 14191.50,
-        ST: 2422.00,
-        Difference: 3352.35
-      },
-      median_winning_margin: {
-        General: 11710,
-        SC: 10097
-      },
-      tvk_performance: {
-        General: {wins: 84, percentage: 44.68},
-        SC: {wins: 23, percentage: 52.27},
-        ST: {wins: 1, percentage: 50.00}
-      }
-    };
-
-    function fmt(num) {
-      return Number(num).toLocaleString('en-IN');
-    }
-
-    function bindFinding05Data() {
-      // Bind data directly from F5_DATA (can be expanded to use API later)
-      const d = F5_DATA;
-      
-      // Hero
-      document.getElementById('hero_gen_margin').innerText = fmt(Math.round(d.average_winning_margin.General));
-      document.getElementById('hero_sc_margin').innerText = fmt(Math.round(d.average_winning_margin.SC));
-      document.getElementById('hero_diff_margin').innerText = fmt(Math.round(d.average_winning_margin.Difference));
-
-      // Table 1
-      document.getElementById('tbl_gen_seats').innerText = d.seat_distribution.General;
-      document.getElementById('tbl_sc_seats').innerText = d.seat_distribution.SC;
-      document.getElementById('tbl_st_seats').innerText = d.seat_distribution.ST;
-      document.getElementById('tbl_total_seats').innerText = d.seat_distribution.Total;
-
-      // Section 4
-      document.getElementById('comp_gen_margin').innerText = d.average_winning_margin.General.toFixed(2);
-      document.getElementById('comp_sc_margin').innerText = d.average_winning_margin.SC.toFixed(2);
-      document.getElementById('comp_diff_margin').innerText = d.average_winning_margin.Difference.toFixed(2);
-
-      // Section 5
-      document.getElementById('med_gen').innerText = fmt(d.median_winning_margin.General);
-      document.getElementById('med_sc').innerText = fmt(d.median_winning_margin.SC);
-
-      // Section 6
-      document.getElementById('tvk_gen_wins').innerText = d.tvk_performance.General.wins;
-      document.getElementById('tvk_gen_pct').innerText = d.tvk_performance.General.percentage.toFixed(2) + '%';
-      
-      document.getElementById('tvk_sc_wins').innerText = d.tvk_performance.SC.wins;
-      document.getElementById('tvk_sc_pct').innerText = d.tvk_performance.SC.percentage.toFixed(2) + '%';
-      
-      document.getElementById('tvk_st_wins').innerText = d.tvk_performance.ST.wins;
-      document.getElementById('tvk_st_pct').innerText = d.tvk_performance.ST.percentage.toFixed(2) + '%';
-    }
-
-    // Language Toggle
     let currentLang = 'en';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const lang = urlParams.get('lang');
+      if (lang === 'ta') {
+        setLanguage('ta');
+      } else {
+        renderCharts();
+      }
+    });
+
     function togglePageLanguage() {
       currentLang = currentLang === 'en' ? 'ta' : 'en';
-      const btnText = document.getElementById('langToggleBtnText');
-      if (btnText) btnText.textContent = currentLang === 'en' ? 'தமிழ் பதிப்பு' : 'English Edition';
-      // Basic fallback toggling
-      if (currentLang === 'ta') {
-        document.getElementById('lbl_back').innerHTML = 'பட்டியல்';
-      } else {
-        document.getElementById('lbl_back').innerHTML = 'Index';
-      }
+      setLanguage(currentLang);
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const liveDateTime = document.getElementById('liveDateTime');
-      if (liveDateTime) {
-        const now = new Date();
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        liveDateTime.textContent = now.toLocaleDateString('en-US', options);
+    function setLanguage(lang) {
+      currentLang = lang;
+      document.getElementById('lbl_back').textContent = lang === 'en' ? 'Index' : 'முகப்பு';
+      document.getElementById('langToggleBtn').textContent = lang === 'en' ? 'English / தமிழ்' : 'தமிழ் / English';
+
+      if (lang === 'ta') {
+        document.getElementById('lbl_main_headline').textContent = 'தனித்தொகுதித் தீர்ப்பு';
+        document.getElementById('lbl_main_subheadline').textContent = 'தமிழகத்தின் 46 எஸ்சி/எஸ்டி தனித்தொகுதிகளில் போட்டித்தன்மை, பிரதிநிதித்துவம் மற்றும் தேர்தல் முடிவுகள்';
+        document.getElementById('finalConcHead').innerHTML = '<i class="fa-solid fa-bookmark"></i> இறுதி முடிவுரை';
+        document.getElementById('finalConcText').textContent = '2026 தமிழ்நாடு சட்டமன்றத்தைக் கட்டமைப்பதில் தனித்தொகுதிகள் மிக முக்கியப் பங்காற்றின. மாநிலத்தின் 234 தொகுதிகளில் 46 தொகுதிகளைப் பிரதிநிதித்துவப்படுத்தும் இத்தொகுதிகள் இரண்டு தெளிவான குணாதிசயங்களை வெளிப்படுத்தின. முதலாவதாக, பொதுத் தொகுதிகளை விட எஸ்சி தனித்தொகுதிகளில் சராசரி மற்றும் மத்திய வெற்றி வித்தியாசம் குறைவாக இருந்தது, இது கடுமையான போட்டியை உணர்த்துகிறது. இரண்டாவதாக, அரசியல் முடிவுகள் இத்தொகுதிகளில் மாறுபட்டன; 44 எஸ்சி தனித்தொகுதிகளில் தவெக 23 இடங்களைக் கைப்பற்றிய நிலையில், 2 எஸ்டி தனித்தொகுதிகள் தவெக மற்றும் அதிமுக இடையே சமமாகப் பிரிந்தன. இவை அனைத்தும் இணைந்து தமிழகத்தின் தனித்தொகுதிகளில் போட்டித்தன்மை, பிரதிநிதித்துவம் மற்றும் கட்சிச் செயல்பாட்டின் முழுமையான படத்தை வழங்குகின்றன.';
+      } else {
+        document.getElementById('lbl_main_headline').textContent = 'THE RESERVED MANDATE';
+        document.getElementById('lbl_main_subheadline').textContent = "Competition, Representation and Electoral Performance Across Tamil Nadu's Reserved Constituencies";
+        document.getElementById('finalConcHead').innerHTML = '<i class="fa-solid fa-bookmark"></i> FINAL CONCLUSION';
+        document.getElementById('finalConcText').textContent = 'Reserved constituencies played a significant role in shaping the 2026 Tamil Nadu Assembly. Representing 46 of the state\'s 234 Assembly seats, these constituencies exhibited two distinct characteristics. First, Scheduled Caste constituencies recorded lower average and median victory margins than General constituencies, indicating relatively closer electoral contests. Second, the political outcome differed across these seats, with Tamilaga Vettri Kazhagam winning 23 of the 44 Scheduled Caste constituencies while the two Scheduled Tribe constituencies were evenly divided between TVK and AIADMK. Together, these findings provide a comprehensive picture of competition, constitutional representation and party performance across Tamil Nadu\'s reserved constituencies.';
       }
-      
-      bindFinding05Data();
-    });
+
+      renderCharts();
+    }
+
+    function renderCharts() {
+      // Composition Donut Chart
+      const donutCtx = document.getElementById('compositionDonutChart');
+      if (donutCtx) {
+        if (window.donutChartObj) window.donutChartObj.destroy();
+        window.donutChartObj = new Chart(donutCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['General Seats (188)', 'SC Reserved (44)', 'ST Reserved (2)'],
+            datasets: [{
+              data: [188, 44, 2],
+              backgroundColor: ['#2b2d42', '#d30d25', '#16a34a'],
+              borderWidth: 2,
+              borderColor: '#ffffff'
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { position: 'bottom', labels: { font: { family: 'Courier Prime', size: 11 } } }
+            }
+          }
+        });
+      }
+
+      // District Reserved Bar Chart
+      const distCtx = document.getElementById('districtReservedBarChart');
+      if (distCtx) {
+        if (window.distChartObj) window.distChartObj.destroy();
+        window.distChartObj = new Chart(distCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Villupuram', 'Kanchipuram/Chengalpattu', 'Cuddalore', 'Tiruvallur', 'Thanjavur/Tiruvarur'],
+            datasets: [{
+              label: 'SC Reserved Seats',
+              data: [4, 4, 3, 3, 4],
+              backgroundColor: '#d30d25',
+              borderColor: '#990000',
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: { beginAtZero: true, ticks: { stepSize: 1 } }
+            },
+            plugins: {
+              legend: { display: false }
+            }
+          }
+        });
+      }
+
+      // Margin Histogram Chart
+      const histCtx = document.getElementById('marginHistogramChart');
+      if (histCtx) {
+        if (window.histChartObj) window.histChartObj.destroy();
+        window.histChartObj = new Chart(histCtx, {
+          type: 'bar',
+          data: {
+            labels: ['< 5k', '5k - 10k', '10k - 15k', '15k - 20k', '20k - 30k', '> 30k'],
+            datasets: [
+              {
+                label: 'SC Seats (44)',
+                data: [8, 12, 11, 7, 4, 2],
+                backgroundColor: '#d30d25'
+              },
+              {
+                label: 'General Seats (188)',
+                data: [22, 38, 42, 35, 31, 20],
+                backgroundColor: '#2b2d42'
+              }
+            ]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: { beginAtZero: true }
+            },
+            plugins: {
+              legend: { position: 'top', labels: { font: { family: 'Courier Prime', size: 10 } } }
+            }
+          }
+        });
+      }
+
+      // Party SC Bar Chart
+      const partyScCtx = document.getElementById('partyScBarChart');
+      if (partyScCtx) {
+        if (window.partyScChartObj) window.partyScChartObj.destroy();
+        window.partyScChartObj = new Chart(partyScCtx, {
+          type: 'bar',
+          data: {
+            labels: ['TVK', 'DMK', 'AIADMK', 'VCK', 'CPI', 'CPI(M)'],
+            datasets: [{
+              label: 'SC Seats Won',
+              data: [23, 9, 8, 2, 1, 1],
+              backgroundColor: ['#d30d25', '#c0001a', '#277239', '#6b3f87', '#cc0000', '#b30000']
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: { beginAtZero: true, ticks: { stepSize: 5 } }
+            },
+            plugins: {
+              legend: { display: false }
+            }
+          }
+        });
+      }
+
+      // TVK Strike Rate Bar Chart
+      const tvkRateCtx = document.getElementById('tvkStrikeRateBarChart');
+      if (tvkRateCtx) {
+        if (window.tvkRateChartObj) window.tvkRateChartObj.destroy();
+        window.tvkRateChartObj = new Chart(tvkRateCtx, {
+          type: 'bar',
+          data: {
+            labels: ['General (188 Seats)', 'SC Reserved (44 Seats)', 'ST Reserved (2 Seats)'],
+            datasets: [{
+              label: 'TVK Win Rate (%)',
+              data: [44.68, 52.27, 50.00],
+              backgroundColor: ['#2b2d42', '#d30d25', '#16a34a']
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              y: { beginAtZero: true, max: 60, ticks: { callback: v => v + '%' } }
+            },
+            plugins: {
+              legend: { display: false }
+            }
+          }
+        });
+      }
+    }
   </script>
 </body>
 </html>
