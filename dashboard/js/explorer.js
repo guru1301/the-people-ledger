@@ -312,7 +312,13 @@ function loadConstituencyDetails(id) {
           <td class="text-right">${L.postal}: ${data.postal_votes.toLocaleString()}</td>
         </tr>
       </tbody>
-    </table>`;
+    </table>
+    
+    <!-- FULL CONSTITUENCY ELECTION RESULTS TABLE CONTAINER -->
+    <div id="fullResultsContainer" style="margin-top:24px;"></div>`;
+
+  // ── Render Full Results Table ──
+  fetchAndRenderFullResultsTable(id);
 
   // ── Render the 4 extra panels (History, Profile, NTK, Chart) ──
   if (typeof renderExplorerPanels === 'function') {
@@ -475,4 +481,173 @@ function updateSvgRegionPane(regName) {
     ${tallyL}: TVK <strong>${info.tvk}</strong> · DMK <strong>${info.dmk}</strong> · AIADMK <strong>${info.aiadmk}</strong><br>
     ${gapL}: <strong>${rGap}</strong><br>
     <p style="font-size:10px;margin-top:4px;font-style:italic;color:gray">${rDesc}</p>`;
+}
+
+/* ── 🗳️ FULL CONSTITUENCY ELECTION RESULTS TABLE ── */
+async function fetchAndRenderFullResultsTable(acNo) {
+  const container = document.getElementById('fullResultsContainer');
+  if (!container) return;
+
+  const L = {
+    title: currentLang === 'ta' ? "🗳️ முழு தேர்தல் முடிவுகள் அட்டவணை" : "🗳️ Full Constituency Result Table",
+    subtitle: currentLang === 'ta' ? "அனைத்து வேட்பாளர்களின் பெற்ற வாக்குகள், வாக்கு % மற்றும் நிலை விபரம்" : "Complete contesting candidates breakdown, alliances, ballot returns, and vote shares",
+    pos: currentLang === 'ta' ? "இடம்" : "Position",
+    candidate: currentLang === 'ta' ? "வேட்பாளர்" : "Candidate",
+    party: currentLang === 'ta' ? "கட்சி / கூட்டணி" : "Party & Alliance",
+    votes: currentLang === 'ta' ? "பெற்ற வாக்குகள் (EVM + தபால்)" : "Votes (EVM + Postal)",
+    share: currentLang === 'ta' ? "வாக்கு %" : "Vote %",
+    status: currentLang === 'ta' ? "நிலை" : "Status",
+    winner: currentLang === 'ta' ? "🏆 வெற்றியாளர்" : "🏆 Winner",
+    runner: currentLang === 'ta' ? "இரண்டாம் இடம்" : "Runner-up",
+    third: currentLang === 'ta' ? "3-ஆம் இடம்" : "3rd Place",
+    nota: currentLang === 'ta' ? "நோட்டா" : "NOTA",
+    depositLost: currentLang === 'ta' ? "வைப்புத்தொகை இழப்பு" : "Deposit Lost",
+    contested: currentLang === 'ta' ? "போட்டியிட்டவர்" : "Contested",
+    loading: currentLang === 'ta' ? "முடிவுகள் பதிவேற்றப்படுகின்றன..." : "Loading candidate results..."
+  };
+
+  container.innerHTML = `
+    <div class="section-head" style="margin-top:24px; display:flex; justify-content:space-between; align-items:center;">
+      <span>${L.title}</span>
+      <span class="section-head-subtitle">${L.subtitle}</span>
+    </div>
+    <div style="font-size:11px; padding:16px; text-align:center; color:var(--ink-gray); font-style:italic;">
+      <i class="fa-solid fa-spinner fa-spin"></i> ${L.loading}
+    </div>
+  `;
+
+  let candidates = [];
+  try {
+    const res = await fetch(`/api/results/${acNo}`);
+    if (res.ok) {
+      const data = await res.json();
+      candidates = data.candidates || [];
+    }
+  } catch (e) {
+    console.warn("API results fetch failed, trying local JSON fallback", e);
+  }
+
+  if (!candidates || candidates.length === 0) {
+    try {
+      const res = await fetch('/data/results_2026.json');
+      if (res.ok) {
+        const allData = await res.json();
+        candidates = allData[acNo] || allData[String(acNo)] || [];
+      }
+    } catch (e) {
+      console.error("Local results JSON fetch failed", e);
+    }
+  }
+
+  if (!candidates || candidates.length === 0) {
+    container.innerHTML = `
+      <div class="section-head" style="margin-top:24px;"><span>${L.title}</span></div>
+      <div style="font-size:11px; padding:12px; color:var(--ink-gray);">No candidate result records found for AC ${acNo}.</div>
+    `;
+    return;
+  }
+
+  const pColors = { 
+    "TVK": "#d30d25", "DMK": "#242424", "AIADMK": "#12702c", "INC": "#0b407a", 
+    "BJP": "#f97316", "NTK": "#b91c1c", "PMK": "#ca8a04", "VCK": "#7c3aed", 
+    "DMDK": "#d97706", "IUML": "#047857", "AMMK": "#c026d3", "CPI": "#dc2626", "CPI(M)": "#b91c1c"
+  };
+
+  const rowsHtml = candidates.map(c => {
+    const isWinner = c.rank === 1;
+    const isRunner = c.rank === 2;
+    const isThird  = c.rank === 3;
+    const isNota   = (c.party && c.party.toUpperCase().includes("NONE OF THE ABOVE")) || (c.candidate && c.candidate.toUpperCase() === "NOTA");
+    const depositLost = !isWinner && !isRunner && !isThird && !isNota && c.pct_votes < 16.67;
+
+    let statusText = L.contested;
+    let statusClass = "status-badge-neutral";
+    if (isWinner) {
+      statusText = L.winner;
+      statusClass = "status-badge-winner";
+    } else if (isRunner) {
+      statusText = L.runner;
+      statusClass = "status-badge-runner";
+    } else if (isThird) {
+      statusText = L.third;
+      statusClass = "status-badge-third";
+    } else if (isNota) {
+      statusText = L.nota;
+      statusClass = "status-badge-nota";
+    } else if (depositLost) {
+      statusText = L.depositLost;
+      statusClass = "status-badge-lost";
+    }
+
+    const partyColor = pColors[c.party] || "var(--ink-charcoal)";
+    const flagHtml = (typeof getPartyFlagHtml === 'function') 
+      ? getPartyFlagHtml(c.party, "width:14px;height:9px;object-fit:cover;margin-right:4px;vertical-align:middle;") 
+      : "";
+
+    const trStyle = isWinner 
+      ? "background: rgba(254, 243, 199, 0.4); font-weight:700;" 
+      : (isRunner ? "background: rgba(243, 244, 246, 0.4);" : "");
+
+    const rankBadgeClass = isWinner ? "rank-badge winner-rank" : (isRunner ? "rank-badge runner-rank" : "rank-badge");
+
+    const totalVotesFormatted = (c.total_votes || 0).toLocaleString();
+    const evmFormatted = (c.evm_votes || 0).toLocaleString();
+    const postalFormatted = (c.postal_votes || 0).toLocaleString();
+
+    return `
+      <tr style="${trStyle}">
+        <td class="text-center" style="width:50px;">
+          <span class="${rankBadgeClass}">${c.rank}</span>
+        </td>
+        <td>
+          <strong style="color:var(--ink-charcoal); font-size:12px;">${c.candidate}</strong>
+        </td>
+        <td>
+          <span class="party-tag" style="background:${partyColor}; display:inline-flex; align-items:center; font-size:10px; padding:2px 6px;">
+            ${flagHtml}${c.party}
+          </span>
+          ${c.alliance && c.alliance !== '-' ? `<span style="font-size:9px; color:var(--ink-gray); margin-left:4px;">(${c.alliance})</span>` : ''}
+        </td>
+        <td class="text-right" style="font-family:'Courier Prime',monospace; font-size:11px;">
+          <strong>${totalVotesFormatted}</strong>
+          <div style="font-size:8px; color:var(--ink-light);" title="EVM: ${evmFormatted} | Postal: ${postalFormatted}">
+            EVM: ${evmFormatted} · Postal: ${postalFormatted}
+          </div>
+        </td>
+        <td class="text-right" style="width:130px; font-family:'Courier Prime',monospace;">
+          <strong>${c.pct_votes}%</strong>
+          <div class="result-vote-track" style="height:4px; background:#e5e7eb; border-radius:2px; margin-top:2px; overflow:hidden;">
+            <div style="width:${Math.min(c.pct_votes, 100)}%; height:100%; background:${partyColor};"></div>
+          </div>
+        </td>
+        <td class="text-center" style="width:110px;">
+          <span class="${statusClass}">${statusText}</span>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  container.innerHTML = `
+    <div class="section-head" style="margin-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+      <span>${L.title}</span>
+      <span class="section-head-subtitle">${L.subtitle}</span>
+    </div>
+    <div class="table-responsive" style="overflow-x:auto;">
+      <table class="np-table np-table-results" style="font-size:11px; width:100%; border-collapse:collapse; margin-top:8px;">
+        <thead>
+          <tr>
+            <th class="text-center" style="width:50px;">${L.pos}</th>
+            <th>${L.candidate}</th>
+            <th>${L.party}</th>
+            <th class="text-right">${L.votes}</th>
+            <th class="text-right">${L.share}</th>
+            <th class="text-center">${L.status}</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${rowsHtml}
+        </tbody>
+      </table>
+    </div>
+  `;
 }

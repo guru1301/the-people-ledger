@@ -436,6 +436,60 @@ def get_constituency_history(ac_no):
     return jsonify(history_data)
 
 
+@app.route('/api/results/<ac_no>', methods=['GET'])
+def get_constituency_results(ac_no):
+    try:
+        ac_int = int(ac_no)
+    except ValueError:
+        return jsonify({"error": "Invalid AC number"}), 400
+
+    candidates = []
+
+    if bq_client:
+        try:
+            query = f"""
+            SELECT 
+              ROW_NUMBER() OVER (ORDER BY Total_Votes DESC) as rank,
+              Candidate as candidate,
+              Party as party,
+              COALESCE(EVM_Votes, 0) as evm_votes,
+              COALESCE(Postal_Votes, 0) as postal_votes,
+              COALESCE(Total_Votes, 0) as total_votes,
+              COALESCE(Pct_Votes, 0.0) as pct_votes,
+              COALESCE(Alliance, '-') as alliance
+            FROM `tn-election-2026-501004.tn_election_2026.fact_results_2026`
+            WHERE AC_No = {ac_int}
+            ORDER BY Total_Votes DESC
+            """
+            query_job = bq_client.query(query)
+            results = list(query_job.result())
+            for row in results:
+                candidates.append({
+                    "rank": int(row.rank) if row.rank else 99,
+                    "candidate": str(row.candidate or '').strip(),
+                    "party": str(row.party or '').strip(),
+                    "evm_votes": int(row.evm_votes or 0),
+                    "postal_votes": int(row.postal_votes or 0),
+                    "total_votes": int(row.total_votes or 0),
+                    "pct_votes": round(float(row.pct_votes or 0.0), 2),
+                    "alliance": str(row.alliance or '').strip()
+                })
+        except Exception as e:
+            logger.warning(f"BigQuery query for /api/results/{ac_int} failed: {e}. Using local JSON fallback.")
+
+    if not candidates:
+        json_path = os.path.join(os.path.dirname(__file__), 'data', 'results_2026.json')
+        if os.path.exists(json_path):
+            try:
+                with open(json_path, 'r', encoding='utf-8') as f:
+                    all_results = json.load(f)
+                    candidates = all_results.get(str(ac_int), []) or all_results.get(ac_int, [])
+            except Exception as ex:
+                logger.error(f"Error loading results_2026.json: {ex}")
+
+    return jsonify({"ac_no": ac_int, "candidates": candidates})
+
+
 @app.route('/api/constituencies', methods=['GET'])
 def get_constituencies():
     if bq_client:
