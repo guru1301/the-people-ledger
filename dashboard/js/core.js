@@ -255,10 +255,12 @@ let activeTabId = "frontpage";
 
 function renderTabNavigation(lang) {
   const nav = document.getElementById('tabNavContainer');
+  if (!nav) return;
   nav.innerHTML = "";
   tabMetadata.forEach(tab => {
     const btn = document.createElement('button');
     btn.className = `tab-btn ${tab.id === activeTabId ? 'active' : ''}`;
+    btn.setAttribute('data-tab-id', tab.id);
     btn.onclick = () => { activeTabId = tab.id; switchTab(tab.id); };
     btn.textContent = lang === 'en' ? tab.en : tab.ta;
     nav.appendChild(btn);
@@ -334,6 +336,7 @@ function updateLiveTime() {
 
 /* Initialization */
 window.onload = async function() {
+  renderTabNavigation(currentLang);
   initFrontPageGrid();
   initLeafletMap();
   updateLiveTime();
@@ -375,4 +378,8 @@ window.onload = async function() {
   await loadBQConstituencyData();
   await loadBQPartyWinners();
 };
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderTabNavigation(currentLang);
+});
 
