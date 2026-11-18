@@ -186,21 +186,44 @@ function resolveCandidateName(nameEn, isWinner, acNo) {
 }
 
 async function loadBQConstituencyData() {
+  let loaded = false;
   try {
     const res = await fetch('/api/constituencies');
-    if (!res.ok) throw new Error(`HTTP ${res.status} fetching constituencies API`);
-    const data = await res.json();
-    if (data && data.length > 0) {
-      data.forEach(item => {
-        BQ_CONSTITUENCY_DATA[item.ac_no.toString()] = item;
-      });
-      console.log(`[BigQuery] Successfully loaded ${data.length} real constituency records.`);
-      if (typeof populateConstituencyDropdown === 'function') {
-        populateConstituencyDropdown();
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.length > 0) {
+        data.forEach(item => {
+          BQ_CONSTITUENCY_DATA[item.ac_no.toString()] = item;
+        });
+        console.log(`[BigQuery/API] Successfully loaded ${data.length} real constituency records.`);
+        loaded = true;
       }
     }
   } catch (err) {
-    console.error('[BigQuery] Could not load constituency returns:', err);
+    console.warn('[BigQuery/API] Could not load from /api/constituencies:', err);
+  }
+
+  // Fallback to static JSON file if API failed or returned 0 records
+  if (!loaded || Object.keys(BQ_CONSTITUENCY_DATA).length === 0) {
+    try {
+      const resFallback = await fetch('data/constituencies_2026.json');
+      if (resFallback.ok) {
+        const data = await resFallback.json();
+        if (data && data.length > 0) {
+          data.forEach(item => {
+            BQ_CONSTITUENCY_DATA[item.ac_no.toString()] = item;
+          });
+          console.log(`[Local Fallback] Successfully loaded ${data.length} constituency records from static JSON.`);
+          loaded = true;
+        }
+      }
+    } catch (errFallback) {
+      console.error('[Local Fallback] Could not load static data/constituencies_2026.json:', errFallback);
+    }
+  }
+
+  if (loaded && typeof populateConstituencyDropdown === 'function') {
+    populateConstituencyDropdown();
   }
 }
 

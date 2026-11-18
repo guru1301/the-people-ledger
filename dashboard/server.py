@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import logging
 import urllib.request
 from flask import Flask, jsonify, send_from_directory, request, Response
@@ -8,7 +9,7 @@ from flask import Flask, jsonify, send_from_directory, request, Response
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = Flask(__name__, static_folder='.', static_url_path='')
+app = Flask(__name__, static_folder=None)
 
 @app.route('/api/image-proxy', methods=['GET'])
 def image_proxy():
@@ -34,16 +35,58 @@ def image_proxy():
 
 # Initialize BigQuery Client
 bq_client = None
-try:
-    from google.cloud import bigquery
-    if os.path.exists('gcp-key.json'):
-        bq_client = bigquery.Client.from_service_account_json('gcp-key.json')
-        logger.info("Successfully initialized BigQuery client using gcp-key.json.")
-    else:
-        bq_client = bigquery.Client()
-        logger.info("Successfully initialized BigQuery client using default credentials.")
-except Exception as e:
-    logger.warning(f"Could not initialize BigQuery client: {e}. Running in local fallback mode.")
+def _is_network_available():
+    if os.environ.get('DISABLE_BIGQUERY') == '1':
+        return False
+    try:
+        import socket
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.settimeout(1.0)
+        s.connect(("8.8.8.8", 53))
+        s.close()
+        return True
+    except Exception:
+        return False
+
+if _is_network_available():
+    try:
+        from google.cloud import bigquery
+        if os.path.exists('gcp-key.json'):
+            bq_client = bigquery.Client.from_service_account_json('gcp-key.json')
+            logger.info("Successfully initialized BigQuery client using gcp-key.json.")
+        else:
+            bq_client = bigquery.Client()
+            logger.info("Successfully initialized BigQuery client using default credentials.")
+
+        # Verify if tables actually exist in the BigQuery dataset
+        if bq_client:
+            try:
+                tables = list(bq_client.list_tables('tn_election_2026', max_results=1, timeout=5))
+                if not tables:
+                    logger.warning("BigQuery dataset 'tn_election_2026' has 0 tables. Operating in verified local dataset fallback mode.")
+                    bq_client = None
+                else:
+                    logger.info("BigQuery verified with active tables.")
+            except Exception as check_ex:
+                logger.warning(f"BigQuery tables check failed ({check_ex}). Operating in local fallback mode.")
+                bq_client = None
+    except Exception as e:
+        logger.warning(f"Could not initialize BigQuery client: {e}. Running in local fallback mode.")
+else:
+    logger.info("Operating in fast verified local dataset fallback mode.")
+
+def _find_data_file(filename):
+    candidates = [
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data', filename),
+        os.path.join(os.getcwd(), 'data', filename),
+        os.path.join(os.getcwd(), 'dashboard', 'data', filename),
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'data', filename),
+        os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'dashboard', 'data', filename)
+    ]
+    for p in candidates:
+        if os.path.exists(p):
+            return p
+    return candidates[0]
 
 # Import pandas for excel reading fallback
 try:
@@ -231,10 +274,6 @@ def add_cors_headers(response):
 @app.route('/')
 def serve_index():
     return send_from_directory('.', 'index.html')
-
-@app.route('/<path:path>')
-def serve_static(path):
-    return send_from_directory('.', path)
 
 # API Endpoints
 @app.route('/api/ministers', methods=['GET'])
@@ -478,7 +517,7 @@ def get_constituency_results(ac_no):
             logger.warning(f"BigQuery query for /api/results/{ac_int} failed: {e}. Using local JSON fallback.")
 
     if not candidates:
-        json_path = os.path.join(os.path.dirname(__file__), 'data', 'results_2026.json')
+        json_path = _find_data_file('results_2026.json')
         if os.path.exists(json_path):
             try:
                 with open(json_path, 'r', encoding='utf-8') as f:
@@ -552,11 +591,24 @@ def get_constituencies():
             query_job = bq_client.query(query)
             results = query_job.result()
             constituencies = [dict(row) for row in results]
-            logger.info(f"Fetched {len(constituencies)} constituencies from BigQuery.")
-            return jsonify(constituencies)
+            if constituencies:
+                logger.info(f"Fetched {len(constituencies)} constituencies from BigQuery.")
+                return jsonify(constituencies)
         except Exception as e:
-            logger.error(f"BigQuery constituencies query failed: {e}.")
-            return jsonify([])
+            logger.error(f"BigQuery constituencies query failed: {e}. Falling back to local data.")
+
+    # Fallback to verified local constituency dataset
+    json_path = _find_data_file('constituencies_2026.json')
+    if os.path.exists(json_path):
+        try:
+            with open(json_path, 'r', encoding='utf-8') as f:
+                constituencies = json.load(f)
+                logger.info(f"Serving {len(constituencies)} constituencies from local fallback JSON.")
+                return jsonify(constituencies)
+        except Exception as ex:
+            logger.error(f"Error loading constituencies_2026.json: {ex}")
+
+    return jsonify([])
             
 @app.route('/api/party-winners', methods=['GET'])
 def get_party_winners():
@@ -2831,6 +2883,13 @@ def api_statistics_charts():
       "chart17_firsttime": chart17_firsttime,
       "chart18_gender_party": chart18_gender_party
     })
+
+
+@app.route('/<path:path>')
+def serve_static(path):
+    if os.path.exists(path) and not os.path.isdir(path):
+        return send_from_directory('.', path)
+    return "Not found", 404
 
 
 if __name__ == '__main__':

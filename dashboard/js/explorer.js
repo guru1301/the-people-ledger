@@ -529,7 +529,8 @@ async function fetchAndRenderFullResultsTable(acNo) {
 
   if (!candidates || candidates.length === 0) {
     try {
-      const res = await fetch('/data/results_2026.json');
+      let res = await fetch('data/results_2026.json');
+      if (!res.ok) res = await fetch('/data/results_2026.json');
       if (res.ok) {
         const allData = await res.json();
         candidates = allData[acNo] || allData[String(acNo)] || [];
