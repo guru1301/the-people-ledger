@@ -88,6 +88,18 @@ def _find_data_file(filename):
             return p
     return candidates[0]
 
+def _load_json_fallback(filename, default=None):
+    if default is None:
+        default = {}
+    p = _find_data_file(filename)
+    if os.path.exists(p):
+        try:
+            with open(p, 'r', encoding='utf-8') as f:
+                return json.load(f)
+        except Exception as ex:
+            logger.error(f"Error loading {filename}: {ex}")
+    return default
+
 # Import pandas for excel reading fallback
 try:
     import pandas as pd
@@ -2289,15 +2301,18 @@ def _get_voters_merged_dataframe():
 
     # 2. Fallback to local CSVs
     try:
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        cleaned_dir = os.path.join(os.path.dirname(script_dir), "cleaned data")
-        if not os.path.exists(cleaned_dir):
-            cleaned_dir = os.path.join(script_dir, "cleaned data")
+        f_turnout = _find_data_file('fact_turnout_2026_FINAL.csv')
+        f_electors = _find_data_file('dim_electors_2026_FINAL.csv')
 
-        f_turnout = os.path.join(cleaned_dir, "fact_turnout_2026_FINAL.csv")
-        f_electors = os.path.join(cleaned_dir, "dim_electors_2026_FINAL.csv")
+        if not os.path.exists(f_turnout) or not os.path.exists(f_electors):
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            cleaned_dir = os.path.join(os.path.dirname(script_dir), "cleaned data")
+            if not os.path.exists(cleaned_dir):
+                cleaned_dir = os.path.join(script_dir, "cleaned data")
+            f_turnout = os.path.join(cleaned_dir, "fact_turnout_2026_FINAL.csv")
+            f_electors = os.path.join(cleaned_dir, "dim_electors_2026_FINAL.csv")
 
-        if os.path.exists(f_turnout) and os.path.exists(f_electors):
+        if os.path.exists(f_turnout) and os.path.exists(f_electors) and pd is not None:
             df_t = pd.read_csv(f_turnout)
             df_e = pd.read_csv(f_electors)
             df = pd.merge(df_t, df_e, left_on='AC_No', right_on='AC No.', how='left')
@@ -2336,7 +2351,7 @@ def api_voters_overview():
             "assembly_constituencies": total_acs,
             "districts": total_districts
         })
-    return jsonify({})
+    return jsonify(_load_json_fallback('voters_overview.json', {}))
 
 
 @app.route('/api/voters/districts', methods=['GET'])
@@ -2357,7 +2372,7 @@ def api_voters_districts():
 
         records = g[['district', 'assembly_seats', 'registered_electors', 'male', 'female', 'third_gender', 'votes_cast', 'turnout_pct']].to_dict(orient='records')
         return jsonify(records)
-    return jsonify([])
+    return jsonify(_load_json_fallback('voters_districts.json', []))
 
 
 @app.route('/api/voters/largest-electorates', methods=['GET'])
@@ -2378,7 +2393,8 @@ def api_voters_largest_electorates():
                 "turnout_pct": float(r['Poll_Pct'])
             })
         return jsonify(res)
-    return jsonify([])
+    fb = _load_json_fallback('voters_largest_electorates.json', [])
+    return jsonify(fb[:limit] if isinstance(fb, list) else [])
 
 
 @app.route('/api/voters/smallest-electorates', methods=['GET'])
@@ -2399,7 +2415,8 @@ def api_voters_smallest_electorates():
                 "turnout_pct": float(r['Poll_Pct'])
             })
         return jsonify(res)
-    return jsonify([])
+    fb = _load_json_fallback('voters_smallest_electorates.json', [])
+    return jsonify(fb[:limit] if isinstance(fb, list) else [])
 
 
 @app.route('/api/voters/top-turnout', methods=['GET'])
@@ -2420,7 +2437,8 @@ def api_voters_top_turnout():
                 "electors": int(r['Total_Electors'])
             })
         return jsonify(res)
-    return jsonify([])
+    fb = _load_json_fallback('voters_top_turnout.json', [])
+    return jsonify(fb[:limit] if isinstance(fb, list) else [])
 
 
 @app.route('/api/voters/lowest-turnout', methods=['GET'])
@@ -2441,7 +2459,8 @@ def api_voters_lowest_turnout():
                 "electors": int(r['Total_Electors'])
             })
         return jsonify(res)
-    return jsonify([])
+    fb = _load_json_fallback('voters_lowest_turnout.json', [])
+    return jsonify(fb[:limit] if isinstance(fb, list) else [])
 
 
 @app.route('/api/voters/gender', methods=['GET'])
@@ -2504,7 +2523,7 @@ def api_voters_gender():
             "female_majority_count": len(fm_list),
             "female_majority_constituencies": fm_list
         })
-    return jsonify({})
+    return jsonify(_load_json_fallback('voters_gender.json', {}))
 
 
 @app.route('/api/voters/postal', methods=['GET'])
@@ -2536,7 +2555,7 @@ def api_voters_postal():
             "rejection_pct": rejected_pct,
             "top_districts": top_districts
         })
-    return jsonify({})
+    return jsonify(_load_json_fallback('voters_postal.json', {}))
 
 
 @app.route('/api/voters/turnout-distribution', methods=['GET'])
@@ -2567,7 +2586,7 @@ def api_voters_turnout_distribution():
             "total_constituencies": total_acs,
             "distribution": dist
         })
-    return jsonify({})
+    return jsonify(_load_json_fallback('voters_turnout_distribution.json', {}))
 
 
 @app.route('/api/voters/search', methods=['GET'])
@@ -2676,7 +2695,7 @@ def api_voters_statistics():
             "most_postal_votes": {"constituency": most_postal['AC_Name'], "district": most_postal['District Name'], "value": int(most_postal['Postal_Voted'])},
             "least_postal_votes": {"constituency": least_postal['AC_Name'], "district": least_postal['District Name'], "value": int(least_postal['Postal_Voted'])}
         })
-    return jsonify({})
+    return jsonify(_load_json_fallback('voters_statistics.json', {}))
 
 
 # =============================================================
@@ -2709,6 +2728,15 @@ def api_statistics_summary():
             "parties_won": 12,
             "districts": 38
         })
+
+    p = _find_data_file('statistics_summary.json')
+    if os.path.exists(p):
+        try:
+            with open(p, 'r', encoding='utf-8') as f:
+                return jsonify(json.load(f))
+        except Exception:
+            pass
+
     return jsonify({})
 
 

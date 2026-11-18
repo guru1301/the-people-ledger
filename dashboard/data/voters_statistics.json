@@ -1,0 +1,47 @@
+{
+  "highest_female_pct": {
+    "constituency": "KARUR",
+    "district": "Karur",
+    "value": 52.91
+  },
+  "highest_male_pct": {
+    "constituency": "PENNAGARAM",
+    "district": "Dharmapuri",
+    "value": 51.45
+  },
+  "highest_third_gender": {
+    "constituency": "TIRUPPUR (NORTH)",
+    "district": "Tiruppur",
+    "value": 125
+  },
+  "highest_turnout": {
+    "constituency": "KARUR",
+    "district": "Karur",
+    "value": 94.44
+  },
+  "largest_electorate": {
+    "constituency": "SHOZHINGANALLUR",
+    "district": "Chengalpattu",
+    "value": 553978
+  },
+  "least_postal_votes": {
+    "constituency": "HARBOUR",
+    "district": "Chennai",
+    "value": 351
+  },
+  "lowest_turnout": {
+    "constituency": "PALAYAMKOTTAI",
+    "district": "Tirunelveli",
+    "value": 70.32
+  },
+  "most_postal_votes": {
+    "constituency": "DHARMAPURI",
+    "district": "Dharmapuri",
+    "value": 5537
+  },
+  "smallest_electorate": {
+    "constituency": "HARBOUR",
+    "district": "Chennai",
+    "value": 120142
+  }
+}

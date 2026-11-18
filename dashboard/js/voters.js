@@ -38,25 +38,48 @@ const voterArchiveModule = (function() {
     if (el) el.innerHTML = html;
   }
 
+  const VOTER_ROUTE_FALLBACKS = {
+    '/api/voters/overview': 'data/voters_overview.json',
+    '/api/voters/districts': 'data/voters_districts.json',
+    '/api/voters/largest-electorates': 'data/voters_largest_electorates.json',
+    '/api/voters/smallest-electorates': 'data/voters_smallest_electorates.json',
+    '/api/voters/top-turnout': 'data/voters_top_turnout.json',
+    '/api/voters/lowest-turnout': 'data/voters_lowest_turnout.json',
+    '/api/voters/gender': 'data/voters_gender.json',
+    '/api/voters/postal': 'data/voters_postal.json',
+    '/api/voters/turnout-distribution': 'data/voters_turnout_distribution.json',
+    '/api/voters/statistics': 'data/voters_statistics.json'
+  };
+
   // Safe Fetch Wrapper to handle host/port/file scheme variations
   async function safeFetch(path) {
     try {
       let resp = await fetch(path);
       if (resp && resp.ok) return resp;
-      if (window.location.protocol === 'file:' || !window.location.host.includes(':8000')) {
-        resp = await fetch('http://localhost:8000' + path);
-        if (resp && resp.ok) return resp;
-      }
     } catch (err) {
-      if (window.location.protocol === 'file:' || !window.location.host.includes(':8000')) {
-        try {
-          let resp = await fetch('http://localhost:8000' + path);
-          if (resp && resp.ok) return resp;
-        } catch (err2) {
-          console.warn('safeFetch fallback error for', path, err2);
-        }
+      // Primary fetch failed, try fallback
+    }
+
+    // Try CDN/local static fallback
+    const cleanPath = path.split('?')[0];
+    const fallbackFile = VOTER_ROUTE_FALLBACKS[cleanPath];
+    if (fallbackFile) {
+      try {
+        let resp = await fetch(fallbackFile);
+        if (!resp.ok) resp = await fetch('/' + fallbackFile);
+        if (resp && resp.ok) return resp;
+      } catch (err2) {
+        console.warn('CDN static fallback error for', fallbackFile, err2);
       }
     }
+
+    if (window.location.protocol === 'file:' || window.location.hostname === 'localhost') {
+      try {
+        let resp = await fetch('http://localhost:8000' + path);
+        if (resp && resp.ok) return resp;
+      } catch (err3) {}
+    }
+
     return null;
   }
 

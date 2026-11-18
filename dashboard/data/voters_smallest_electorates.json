@@ -1,0 +1,182 @@
+[
+  {
+    "ac_no": 18,
+    "constituency": "HARBOUR",
+    "district": "Chennai",
+    "rank": 1,
+    "registered_electors": 120142,
+    "turnout_pct": 82.93,
+    "votes_cast": 99634
+  },
+  {
+    "ac_no": 16,
+    "constituency": "EGMORE (SC)",
+    "district": "Chennai",
+    "rank": 2,
+    "registered_electors": 138796,
+    "turnout_pct": 86.4,
+    "votes_cast": 119915
+  },
+  {
+    "ac_no": 20,
+    "constituency": "THOUSAND LIGHTS",
+    "district": "Chennai",
+    "rank": 3,
+    "registered_electors": 157551,
+    "turnout_pct": 83.72,
+    "votes_cast": 131905
+  },
+  {
+    "ac_no": 24,
+    "constituency": "THIYAGARAYANAGAR",
+    "district": "Chennai",
+    "rank": 4,
+    "registered_electors": 158791,
+    "turnout_pct": 84.48,
+    "votes_cast": 134147
+  },
+  {
+    "ac_no": 17,
+    "constituency": "ROYAPURAM",
+    "district": "Chennai",
+    "rank": 5,
+    "registered_electors": 159672,
+    "turnout_pct": 79.8,
+    "votes_cast": 127420
+  },
+  {
+    "ac_no": 14,
+    "constituency": "VILLIVAKKAM",
+    "district": "Chennai",
+    "rank": 6,
+    "registered_electors": 163416,
+    "turnout_pct": 86.68,
+    "votes_cast": 141650
+  },
+  {
+    "ac_no": 19,
+    "constituency": "CHEPAUK-THIRUVALLIKENI",
+    "district": "Chennai",
+    "rank": 7,
+    "registered_electors": 166050,
+    "turnout_pct": 84.81,
+    "votes_cast": 140834
+  },
+  {
+    "ac_no": 164,
+    "constituency": "KILVELUR (SC)",
+    "district": "Nagapattinam",
+    "rank": 8,
+    "registered_electors": 170633,
+    "turnout_pct": 88.93,
+    "votes_cast": 151750
+  },
+  {
+    "ac_no": 124,
+    "constituency": "VALPARAI (SC)",
+    "district": "Coimbatore",
+    "rank": 9,
+    "registered_electors": 173659,
+    "turnout_pct": 86.68,
+    "votes_cast": 150529
+  },
+  {
+    "ac_no": 163,
+    "constituency": "NAGAPATTINAM",
+    "district": "Nagapattinam",
+    "rank": 10,
+    "registered_electors": 174736,
+    "turnout_pct": 86.71,
+    "votes_cast": 151512
+  },
+  {
+    "ac_no": 110,
+    "constituency": "COONOOR",
+    "district": "The Nilgiris",
+    "rank": 11,
+    "registered_electors": 177978,
+    "turnout_pct": 79.63,
+    "votes_cast": 141719
+  },
+  {
+    "ac_no": 98,
+    "constituency": "ERODE (EAST)",
+    "district": "Erode",
+    "rank": 12,
+    "registered_electors": 179592,
+    "turnout_pct": 90.52,
+    "votes_cast": 162573
+  },
+  {
+    "ac_no": 192,
+    "constituency": "MADURAI SOUTH",
+    "district": "Madurai",
+    "rank": 13,
+    "registered_electors": 180003,
+    "turnout_pct": 78.66,
+    "votes_cast": 141598
+  },
+  {
+    "ac_no": 15,
+    "constituency": "THIRU-VI-KA-NAGAR (SC)",
+    "district": "Chennai",
+    "rank": 14,
+    "registered_electors": 181658,
+    "turnout_pct": 79.24,
+    "votes_cast": 143940
+  },
+  {
+    "ac_no": 109,
+    "constituency": "GUDALUR (SC)",
+    "district": "The Nilgiris",
+    "rank": 15,
+    "registered_electors": 185460,
+    "turnout_pct": 81.64,
+    "votes_cast": 151412
+  },
+  {
+    "ac_no": 165,
+    "constituency": "VEDARANYAM",
+    "district": "Nagapattinam",
+    "rank": 16,
+    "registered_electors": 187527,
+    "turnout_pct": 86.64,
+    "votes_cast": 162476
+  },
+  {
+    "ac_no": 21,
+    "constituency": "ANNA NAGAR",
+    "district": "Chennai",
+    "rank": 17,
+    "registered_electors": 188908,
+    "turnout_pct": 86.51,
+    "votes_cast": 163432
+  },
+  {
+    "ac_no": 120,
+    "constituency": "COIMBATORE (SOUTH)",
+    "district": "Coimbatore",
+    "rank": 18,
+    "registered_electors": 188912,
+    "turnout_pct": 82.95,
+    "votes_cast": 156709
+  },
+  {
+    "ac_no": 108,
+    "constituency": "UDHAGAMANDALAM",
+    "district": "The Nilgiris",
+    "rank": 19,
+    "registered_electors": 188968,
+    "turnout_pct": 78.87,
+    "votes_cast": 149032
+  },
+  {
+    "ac_no": 153,
+    "constituency": "NEYVELI",
+    "district": "Cuddalore",
+    "rank": 20,
+    "registered_electors": 191337,
+    "turnout_pct": 88.35,
+    "votes_cast": 169049
+  }
+]

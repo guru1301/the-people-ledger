@@ -1,0 +1,1952 @@
+{
+  "female_electors": 29307062,
+  "female_majority_constituencies": [
+    {
+      "ac_no": 111,
+      "constituency": "METTUPPALAYAM",
+      "difference": 13656,
+      "district": "Coimbatore",
+      "female": 147928,
+      "female_pct": 52.41,
+      "male": 134272
+    },
+    {
+      "ac_no": 135,
+      "constituency": "KARUR",
+      "difference": 13421,
+      "district": "Karur",
+      "female": 121724,
+      "female_pct": 52.91,
+      "male": 108303
+    },
+    {
+      "ac_no": 29,
+      "constituency": "SRIPERUMBUDUR (SC)",
+      "difference": 12504,
+      "district": "Kancheepuram",
+      "female": 197124,
+      "female_pct": 51.63,
+      "male": 184620
+    },
+    {
+      "ac_no": 27,
+      "constituency": "SHOZHINGANALLUR",
+      "difference": 12394,
+      "district": "Chengalpattu",
+      "female": 283128,
+      "female_pct": 51.11,
+      "male": 270734
+    },
+    {
+      "ac_no": 174,
+      "constituency": "THANJAVUR",
+      "difference": 11853,
+      "district": "Thanjavur",
+      "female": 132322,
+      "female_pct": 52.33,
+      "male": 120469
+    },
+    {
+      "ac_no": 116,
+      "constituency": "SULUR",
+      "difference": 11714,
+      "district": "Coimbatore",
+      "female": 159656,
+      "female_pct": 51.89,
+      "male": 147942
+    },
+    {
+      "ac_no": 122,
+      "constituency": "KINATHUKADAVU",
+      "difference": 11675,
+      "district": "Coimbatore",
+      "female": 158779,
+      "female_pct": 51.9,
+      "male": 147104
+    },
+    {
+      "ac_no": 117,
+      "constituency": "KAVUNDAMPALAYAM",
+      "difference": 11573,
+      "district": "Coimbatore",
+      "female": 216849,
+      "female_pct": 51.36,
+      "male": 205276
+    },
+    {
+      "ac_no": 106,
+      "constituency": "GOBICHETTIPALAYAM",
+      "difference": 11007,
+      "district": "Erode",
+      "female": 125096,
+      "female_pct": 52.3,
+      "male": 114089
+    },
+    {
+      "ac_no": 112,
+      "constituency": "AVANASHI (SC)",
+      "difference": 10822,
+      "district": "Tiruppur",
+      "female": 132093,
+      "female_pct": 52.13,
+      "male": 121271
+    },
+    {
+      "ac_no": 115,
+      "constituency": "PALLADAM",
+      "difference": 10685,
+      "district": "Tiruppur",
+      "female": 170265,
+      "female_pct": 51.62,
+      "male": 159580
+    },
+    {
+      "ac_no": 155,
+      "constituency": "CUDDALORE",
+      "difference": 10617,
+      "district": "Cuddalore",
+      "female": 116890,
+      "female_pct": 52.36,
+      "male": 106273
+    },
+    {
+      "ac_no": 32,
+      "constituency": "CHENGALPATTU",
+      "difference": 10606,
+      "district": "Chengalpattu",
+      "female": 191719,
+      "female_pct": 51.41,
+      "male": 181113
+    },
+    {
+      "ac_no": 125,
+      "constituency": "UDUMALAIPETTAI",
+      "difference": 10570,
+      "district": "Tiruppur",
+      "female": 120776,
+      "female_pct": 52.28,
+      "male": 110206
+    },
+    {
+      "ac_no": 176,
+      "constituency": "PATTUKKOTTAI",
+      "difference": 10305,
+      "district": "Thanjavur",
+      "female": 126368,
+      "female_pct": 52.12,
+      "male": 116063
+    },
+    {
+      "ac_no": 5,
+      "constituency": "POONAMALLEE (SC)",
+      "difference": 10239,
+      "district": "Thiruvallur",
+      "female": 189432,
+      "female_pct": 51.38,
+      "male": 179193
+    },
+    {
+      "ac_no": 140,
+      "constituency": "TIRUCHIRAPPALLI (WEST)",
+      "difference": 9985,
+      "district": "Tiruchirappalli",
+      "female": 124465,
+      "female_pct": 52.08,
+      "male": 114480
+    },
+    {
+      "ac_no": 123,
+      "constituency": "POLLACHI",
+      "difference": 9915,
+      "district": "Coimbatore",
+      "female": 106944,
+      "female_pct": 52.42,
+      "male": 97029
+    },
+    {
+      "ac_no": 119,
+      "constituency": "THONDAMUTHUR",
+      "difference": 9903,
+      "district": "Coimbatore",
+      "female": 151588,
+      "female_pct": 51.67,
+      "male": 141685
+    },
+    {
+      "ac_no": 110,
+      "constituency": "COONOOR",
+      "difference": 9678,
+      "district": "The Nilgiris",
+      "female": 93824,
+      "female_pct": 52.72,
+      "male": 84146
+    },
+    {
+      "ac_no": 6,
+      "constituency": "AVADI",
+      "difference": 9570,
+      "district": "Thiruvallur",
+      "female": 223008,
+      "female_pct": 51.09,
+      "male": 213438
+    },
+    {
+      "ac_no": 129,
+      "constituency": "ATHOOR",
+      "difference": 9464,
+      "district": "Dindigul",
+      "female": 135888,
+      "female_pct": 51.8,
+      "male": 126424
+    },
+    {
+      "ac_no": 102,
+      "constituency": "KANGAYAM",
+      "difference": 9369,
+      "district": "Tiruppur",
+      "female": 114471,
+      "female_pct": 52.13,
+      "male": 105102
+    },
+    {
+      "ac_no": 124,
+      "constituency": "VALPARAI (SC)",
+      "difference": 9338,
+      "district": "Coimbatore",
+      "female": 91488,
+      "female_pct": 52.68,
+      "male": 82150
+    },
+    {
+      "ac_no": 99,
+      "constituency": "ERODE (WEST)",
+      "difference": 9232,
+      "district": "Erode",
+      "female": 129703,
+      "female_pct": 51.84,
+      "male": 120471
+    },
+    {
+      "ac_no": 108,
+      "constituency": "UDHAGAMANDALAM",
+      "difference": 9217,
+      "district": "The Nilgiris",
+      "female": 99087,
+      "female_pct": 52.44,
+      "male": 89870
+    },
+    {
+      "ac_no": 9,
+      "constituency": "MADAVARAM",
+      "difference": 9179,
+      "district": "Thiruvallur",
+      "female": 220482,
+      "female_pct": 51.05,
+      "male": 211303
+    },
+    {
+      "ac_no": 134,
+      "constituency": "ARAVAKURICHI",
+      "difference": 9150,
+      "district": "Karur",
+      "female": 102343,
+      "female_pct": 52.34,
+      "male": 93193
+    },
+    {
+      "ac_no": 100,
+      "constituency": "MODAKKURICHI",
+      "difference": 9141,
+      "district": "Erode",
+      "female": 108413,
+      "female_pct": 52.2,
+      "male": 99272
+    },
+    {
+      "ac_no": 31,
+      "constituency": "TAMBARAM",
+      "difference": 9046,
+      "district": "Chengalpattu",
+      "female": 169588,
+      "female_pct": 51.36,
+      "male": 160542
+    },
+    {
+      "ac_no": 94,
+      "constituency": "NAMAKKAL",
+      "difference": 9010,
+      "district": "Namakkal",
+      "female": 123443,
+      "female_pct": 51.89,
+      "male": 114433
+    },
+    {
+      "ac_no": 128,
+      "constituency": "ODDANCHATRAM",
+      "difference": 8945,
+      "district": "Dindigul",
+      "female": 114603,
+      "female_pct": 52.03,
+      "male": 105658
+    },
+    {
+      "ac_no": 25,
+      "constituency": "MYLAPORE",
+      "difference": 8876,
+      "district": "Chennai",
+      "female": 104174,
+      "female_pct": 52.22,
+      "male": 95298
+    },
+    {
+      "ac_no": 37,
+      "constituency": "KANCHEEPURAM",
+      "difference": 8862,
+      "district": "Kancheepuram",
+      "female": 143833,
+      "female_pct": 51.58,
+      "male": 134971
+    },
+    {
+      "ac_no": 121,
+      "constituency": "SINGANALLUR",
+      "difference": 8819,
+      "district": "Coimbatore",
+      "female": 139396,
+      "female_pct": 51.63,
+      "male": 130577
+    },
+    {
+      "ac_no": 11,
+      "constituency": "DR.RADHAKRISHNAN NAGAR",
+      "difference": 8736,
+      "district": "Chennai",
+      "female": 104017,
+      "female_pct": 52.17,
+      "male": 95281
+    },
+    {
+      "ac_no": 103,
+      "constituency": "PERUNDURAI",
+      "difference": 8707,
+      "district": "Erode",
+      "female": 111576,
+      "female_pct": 52.03,
+      "male": 102869
+    },
+    {
+      "ac_no": 147,
+      "constituency": "PERAMBALUR (SC)",
+      "difference": 8698,
+      "district": "Perambalur",
+      "female": 149700,
+      "female_pct": 51.49,
+      "male": 141002
+    },
+    {
+      "ac_no": 101,
+      "constituency": "DHARAPURAM (SC)",
+      "difference": 8620,
+      "district": "Tiruppur",
+      "female": 115523,
+      "female_pct": 51.94,
+      "male": 106903
+    },
+    {
+      "ac_no": 189,
+      "constituency": "MADURAI EAST",
+      "difference": 8583,
+      "district": "Madurai",
+      "female": 172632,
+      "female_pct": 51.27,
+      "male": 164049
+    },
+    {
+      "ac_no": 139,
+      "constituency": "SRIRANGAM",
+      "difference": 8559,
+      "district": "Tiruchirappalli",
+      "female": 147863,
+      "female_pct": 51.48,
+      "male": 139304
+    },
+    {
+      "ac_no": 28,
+      "constituency": "ALANDUR",
+      "difference": 8479,
+      "district": "Kancheepuram",
+      "female": 154782,
+      "female_pct": 51.4,
+      "male": 146303
+    },
+    {
+      "ac_no": 126,
+      "constituency": "MADATHUKULAM",
+      "difference": 8277,
+      "district": "Tiruppur",
+      "female": 111549,
+      "female_pct": 51.92,
+      "male": 103272
+    },
+    {
+      "ac_no": 224,
+      "constituency": "TIRUNELVELI",
+      "difference": 8242,
+      "district": "Tirunelveli",
+      "female": 142229,
+      "female_pct": 51.48,
+      "male": 133987
+    },
+    {
+      "ac_no": 30,
+      "constituency": "PALLAVARAM",
+      "difference": 8226,
+      "district": "Chengalpattu",
+      "female": 172613,
+      "female_pct": 51.22,
+      "male": 164387
+    },
+    {
+      "ac_no": 107,
+      "constituency": "BHAVANISAGAR (SC)",
+      "difference": 8184,
+      "district": "Erode",
+      "female": 122895,
+      "female_pct": 51.72,
+      "male": 114711
+    },
+    {
+      "ac_no": 132,
+      "constituency": "DINDIGUL",
+      "difference": 8170,
+      "district": "Dindigul",
+      "female": 125138,
+      "female_pct": 51.68,
+      "male": 116968
+    },
+    {
+      "ac_no": 95,
+      "constituency": "PARAMATHI-VELUR",
+      "difference": 8109,
+      "district": "Namakkal",
+      "female": 106657,
+      "female_pct": 51.97,
+      "male": 98548
+    },
+    {
+      "ac_no": 13,
+      "constituency": "KOLATHUR",
+      "difference": 8109,
+      "district": "Chennai",
+      "female": 109953,
+      "female_pct": 51.91,
+      "male": 101844
+    },
+    {
+      "ac_no": 98,
+      "constituency": "ERODE (EAST)",
+      "difference": 7902,
+      "district": "Erode",
+      "female": 93728,
+      "female_pct": 52.19,
+      "male": 85826
+    },
+    {
+      "ac_no": 33,
+      "constituency": "THIRUPORUR",
+      "difference": 7830,
+      "district": "Chengalpattu",
+      "female": 151114,
+      "female_pct": 51.32,
+      "male": 143284
+    },
+    {
+      "ac_no": 144,
+      "constituency": "MANACHANALLUR",
+      "difference": 7716,
+      "district": "Tiruchirappalli",
+      "female": 122155,
+      "female_pct": 51.62,
+      "male": 114439
+    },
+    {
+      "ac_no": 63,
+      "constituency": "TIRUVANNAMALAI",
+      "difference": 7714,
+      "district": "Tiruvannamalai",
+      "female": 128846,
+      "female_pct": 51.53,
+      "male": 121132
+    },
+    {
+      "ac_no": 142,
+      "constituency": "THIRUVERUMBUR",
+      "difference": 7653,
+      "district": "Tiruchirappalli",
+      "female": 133650,
+      "female_pct": 51.46,
+      "male": 125997
+    },
+    {
+      "ac_no": 43,
+      "constituency": "VELLORE",
+      "difference": 7635,
+      "district": "Vellore",
+      "female": 111267,
+      "female_pct": 51.77,
+      "male": 103632
+    },
+    {
+      "ac_no": 141,
+      "constituency": "TIRUCHIRAPPALLI (EAST)",
+      "difference": 7580,
+      "district": "Tiruchirappalli",
+      "female": 113883,
+      "female_pct": 51.71,
+      "male": 106303
+    },
+    {
+      "ac_no": 97,
+      "constituency": "KUMARAPALAYAM",
+      "difference": 7578,
+      "district": "Namakkal",
+      "female": 113789,
+      "female_pct": 51.71,
+      "male": 106211
+    },
+    {
+      "ac_no": 201,
+      "constituency": "CUMBUM",
+      "difference": 7417,
+      "district": "Theni",
+      "female": 132359,
+      "female_pct": 51.44,
+      "male": 124942
+    },
+    {
+      "ac_no": 15,
+      "constituency": "THIRU-VI-KA-NAGAR (SC)",
+      "difference": 7363,
+      "district": "Chennai",
+      "female": 94479,
+      "female_pct": 52.01,
+      "male": 87116
+    },
+    {
+      "ac_no": 1,
+      "constituency": "GUMMIDIPOONDI",
+      "difference": 7333,
+      "district": "Thiruvallur",
+      "female": 130736,
+      "female_pct": 51.44,
+      "male": 123403
+    },
+    {
+      "ac_no": 226,
+      "constituency": "PALAYAMKOTTAI",
+      "difference": 7294,
+      "district": "Tirunelveli",
+      "female": 132387,
+      "female_pct": 51.41,
+      "male": 125093
+    },
+    {
+      "ac_no": 26,
+      "constituency": "VELACHERY",
+      "difference": 7293,
+      "district": "Chennai",
+      "female": 112227,
+      "female_pct": 51.67,
+      "male": 104934
+    },
+    {
+      "ac_no": 171,
+      "constituency": "KUMBAKONAM",
+      "difference": 7238,
+      "district": "Thanjavur",
+      "female": 130803,
+      "female_pct": 51.42,
+      "male": 123565
+    },
+    {
+      "ac_no": 41,
+      "constituency": "RANIPET",
+      "difference": 7163,
+      "district": "Ranipet",
+      "female": 128040,
+      "female_pct": 51.43,
+      "male": 120877
+    },
+    {
+      "ac_no": 154,
+      "constituency": "PANRUTI",
+      "difference": 7143,
+      "district": "Cuddalore",
+      "female": 124455,
+      "female_pct": 51.46,
+      "male": 117312
+    },
+    {
+      "ac_no": 184,
+      "constituency": "KARAIKUDI",
+      "difference": 7139,
+      "district": "Sivaganga",
+      "female": 156617,
+      "female_pct": 51.16,
+      "male": 149478
+    },
+    {
+      "ac_no": 21,
+      "constituency": "ANNA NAGAR",
+      "difference": 7112,
+      "district": "Chennai",
+      "female": 97986,
+      "female_pct": 51.87,
+      "male": 90874
+    },
+    {
+      "ac_no": 167,
+      "constituency": "MANNARGUDI",
+      "difference": 7102,
+      "district": "Thiruvarur",
+      "female": 120826,
+      "female_pct": 51.51,
+      "male": 113724
+    },
+    {
+      "ac_no": 200,
+      "constituency": "BODINAYAKANUR",
+      "difference": 7044,
+      "district": "Theni",
+      "female": 135707,
+      "female_pct": 51.33,
+      "male": 128663
+    },
+    {
+      "ac_no": 218,
+      "constituency": "KOVILPATTI",
+      "difference": 7008,
+      "district": "Thoothukudi",
+      "female": 124669,
+      "female_pct": 51.44,
+      "male": 117661
+    },
+    {
+      "ac_no": 23,
+      "constituency": "SAIDAPET",
+      "difference": 6993,
+      "district": "Chennai",
+      "female": 105554,
+      "female_pct": 51.7,
+      "male": 98561
+    },
+    {
+      "ac_no": 20,
+      "constituency": "THOUSAND LIGHTS",
+      "difference": 6968,
+      "district": "Chennai",
+      "female": 82225,
+      "female_pct": 52.19,
+      "male": 75257
+    },
+    {
+      "ac_no": 40,
+      "constituency": "KATPADI",
+      "difference": 6955,
+      "district": "Vellore",
+      "female": 118535,
+      "female_pct": 51.5,
+      "male": 111580
+    },
+    {
+      "ac_no": 214,
+      "constituency": "THOOTHUKKUDI",
+      "difference": 6944,
+      "district": "Thoothukudi",
+      "female": 128841,
+      "female_pct": 51.37,
+      "male": 121897
+    },
+    {
+      "ac_no": 36,
+      "constituency": "UTHIRAMERUR",
+      "difference": 6928,
+      "district": "Kancheepuram",
+      "female": 126557,
+      "female_pct": 51.39,
+      "male": 119629
+    },
+    {
+      "ac_no": 172,
+      "constituency": "PAPANASAM",
+      "difference": 6924,
+      "district": "Thanjavur",
+      "female": 131759,
+      "female_pct": 51.34,
+      "male": 124835
+    },
+    {
+      "ac_no": 12,
+      "constituency": "PERAMBUR",
+      "difference": 6808,
+      "district": "Chennai",
+      "female": 116540,
+      "female_pct": 51.49,
+      "male": 109732
+    },
+    {
+      "ac_no": 146,
+      "constituency": "THURAIYUR (SC)",
+      "difference": 6806,
+      "district": "Tiruchirappalli",
+      "female": 108764,
+      "female_pct": 51.61,
+      "male": 101958
+    },
+    {
+      "ac_no": 225,
+      "constituency": "AMBASAMUDRAM",
+      "difference": 6806,
+      "district": "Tirunelveli",
+      "female": 117520,
+      "female_pct": 51.49,
+      "male": 110714
+    },
+    {
+      "ac_no": 2,
+      "constituency": "PONNERI (SC)",
+      "difference": 6756,
+      "district": "Thiruvallur",
+      "female": 129071,
+      "female_pct": 51.34,
+      "male": 122315
+    },
+    {
+      "ac_no": 175,
+      "constituency": "ORATHANADU",
+      "difference": 6706,
+      "district": "Thanjavur",
+      "female": 120229,
+      "female_pct": 51.43,
+      "male": 113523
+    },
+    {
+      "ac_no": 222,
+      "constituency": "TENKASI",
+      "difference": 6688,
+      "district": "Tenkasi",
+      "female": 144294,
+      "female_pct": 51.17,
+      "male": 137606
+    },
+    {
+      "ac_no": 143,
+      "constituency": "LALGUDI",
+      "difference": 6671,
+      "district": "Tiruchirappalli",
+      "female": 109523,
+      "female_pct": 51.56,
+      "male": 102852
+    },
+    {
+      "ac_no": 82,
+      "constituency": "ATTUR (SC)",
+      "difference": 6623,
+      "district": "Salem",
+      "female": 117410,
+      "female_pct": 51.45,
+      "male": 110787
+    },
+    {
+      "ac_no": 89,
+      "constituency": "SALEM (NORTH)",
+      "difference": 6613,
+      "district": "Salem",
+      "female": 122624,
+      "female_pct": 51.37,
+      "male": 116011
+    },
+    {
+      "ac_no": 22,
+      "constituency": "VIRUGAMPAKKAM",
+      "difference": 6553,
+      "district": "Chennai",
+      "female": 103564,
+      "female_pct": 51.62,
+      "male": 97011
+    },
+    {
+      "ac_no": 4,
+      "constituency": "THIRUVALLUR",
+      "difference": 6497,
+      "district": "Thiruvallur",
+      "female": 128786,
+      "female_pct": 51.29,
+      "male": 122289
+    },
+    {
+      "ac_no": 74,
+      "constituency": "VILUPPURAM",
+      "difference": 6492,
+      "district": "Viluppuram",
+      "female": 126205,
+      "female_pct": 51.3,
+      "male": 119713
+    },
+    {
+      "ac_no": 205,
+      "constituency": "SIVAKASI",
+      "difference": 6459,
+      "district": "Virudhunagar",
+      "female": 117448,
+      "female_pct": 51.41,
+      "male": 110989
+    },
+    {
+      "ac_no": 46,
+      "constituency": "GUDIYATTAM (SC)",
+      "difference": 6414,
+      "district": "Vellore",
+      "female": 129222,
+      "female_pct": 51.27,
+      "male": 122808
+    },
+    {
+      "ac_no": 10,
+      "constituency": "THIRUVOTTIYUR",
+      "difference": 6348,
+      "district": "Thiruvallur",
+      "female": 125579,
+      "female_pct": 51.27,
+      "male": 119231
+    },
+    {
+      "ac_no": 195,
+      "constituency": "THIRUPARANKUNDRAM",
+      "difference": 6302,
+      "district": "Madurai",
+      "female": 158988,
+      "female_pct": 51.01,
+      "male": 152686
+    },
+    {
+      "ac_no": 199,
+      "constituency": "PERIYAKULAM (SC)",
+      "difference": 6220,
+      "district": "Theni",
+      "female": 136340,
+      "female_pct": 51.15,
+      "male": 130120
+    },
+    {
+      "ac_no": 120,
+      "constituency": "COIMBATORE (SOUTH)",
+      "difference": 6212,
+      "district": "Coimbatore",
+      "female": 97546,
+      "female_pct": 51.64,
+      "male": 91334
+    },
+    {
+      "ac_no": 196,
+      "constituency": "THIRUMANGALAM",
+      "difference": 6195,
+      "district": "Madurai",
+      "female": 134567,
+      "female_pct": 51.18,
+      "male": 128372
+    },
+    {
+      "ac_no": 8,
+      "constituency": "AMBATTUR",
+      "difference": 6193,
+      "district": "Thiruvallur",
+      "female": 171608,
+      "female_pct": 50.91,
+      "male": 165415
+    },
+    {
+      "ac_no": 96,
+      "constituency": "TIRUCHENGODU",
+      "difference": 6165,
+      "district": "Namakkal",
+      "female": 107608,
+      "female_pct": 51.46,
+      "male": 101443
+    },
+    {
+      "ac_no": 191,
+      "constituency": "MADURAI NORTH",
+      "difference": 6152,
+      "district": "Madurai",
+      "female": 113714,
+      "female_pct": 51.38,
+      "male": 107562
+    },
+    {
+      "ac_no": 207,
+      "constituency": "ARUPPUKKOTTAI",
+      "difference": 6097,
+      "district": "Virudhunagar",
+      "female": 107118,
+      "female_pct": 51.46,
+      "male": 101021
+    },
+    {
+      "ac_no": 219,
+      "constituency": "SANKARANKOVIL (SC)",
+      "difference": 6084,
+      "district": "Tenkasi",
+      "female": 122551,
+      "female_pct": 51.27,
+      "male": 116467
+    },
+    {
+      "ac_no": 215,
+      "constituency": "TIRUCHENDUR",
+      "difference": 5967,
+      "district": "Thoothukudi",
+      "female": 119499,
+      "female_pct": 51.27,
+      "male": 113532
+    },
+    {
+      "ac_no": 14,
+      "constituency": "VILLIVAKKAM",
+      "difference": 5963,
+      "district": "Chennai",
+      "female": 84673,
+      "female_pct": 51.81,
+      "male": 78710
+    },
+    {
+      "ac_no": 127,
+      "constituency": "PALANI",
+      "difference": 5945,
+      "district": "Dindigul",
+      "female": 122888,
+      "female_pct": 51.23,
+      "male": 116943
+    },
+    {
+      "ac_no": 168,
+      "constituency": "THIRUVARUR",
+      "difference": 5843,
+      "district": "Thiruvarur",
+      "female": 132984,
+      "female_pct": 51.12,
+      "male": 127141
+    },
+    {
+      "ac_no": 204,
+      "constituency": "SATTUR",
+      "difference": 5769,
+      "district": "Virudhunagar",
+      "female": 117928,
+      "female_pct": 51.24,
+      "male": 112159
+    },
+    {
+      "ac_no": 223,
+      "constituency": "ALANGULAM",
+      "difference": 5763,
+      "district": "Tenkasi",
+      "female": 130736,
+      "female_pct": 51.12,
+      "male": 124973
+    },
+    {
+      "ac_no": 173,
+      "constituency": "THIRUVAIYARU",
+      "difference": 5693,
+      "district": "Thanjavur",
+      "female": 132135,
+      "female_pct": 51.1,
+      "male": 126442
+    },
+    {
+      "ac_no": 24,
+      "constituency": "THIYAGARAYANAGAR",
+      "difference": 5675,
+      "district": "Chennai",
+      "female": 82216,
+      "female_pct": 51.78,
+      "male": 76541
+    },
+    {
+      "ac_no": 186,
+      "constituency": "SIVAGANGA",
+      "difference": 5600,
+      "district": "Sivaganga",
+      "female": 142103,
+      "female_pct": 51.0,
+      "male": 136503
+    },
+    {
+      "ac_no": 136,
+      "constituency": "KRISHNARAYAPURAM (SC)",
+      "difference": 5599,
+      "district": "Karur",
+      "female": 104329,
+      "female_pct": 51.37,
+      "male": 98730
+    },
+    {
+      "ac_no": 193,
+      "constituency": "MADURAI CENTRAL",
+      "difference": 5597,
+      "district": "Madurai",
+      "female": 102648,
+      "female_pct": 51.39,
+      "male": 97051
+    },
+    {
+      "ac_no": 81,
+      "constituency": "GANGAVALLI (SC)",
+      "difference": 5556,
+      "district": "Salem",
+      "female": 111962,
+      "female_pct": 51.27,
+      "male": 106406
+    },
+    {
+      "ac_no": 113,
+      "constituency": "TIRUPPUR (NORTH)",
+      "difference": 5548,
+      "district": "Tiruppur",
+      "female": 160643,
+      "female_pct": 50.86,
+      "male": 155095
+    },
+    {
+      "ac_no": 109,
+      "constituency": "GUDALUR (SC)",
+      "difference": 5513,
+      "district": "The Nilgiris",
+      "female": 95483,
+      "female_pct": 51.48,
+      "male": 89970
+    },
+    {
+      "ac_no": 206,
+      "constituency": "VIRUDHUNAGAR",
+      "difference": 5493,
+      "district": "Virudhunagar",
+      "female": 103195,
+      "female_pct": 51.36,
+      "male": 97702
+    },
+    {
+      "ac_no": 203,
+      "constituency": "SRIVILLIPUTHUR (SC)",
+      "difference": 5456,
+      "district": "Virudhunagar",
+      "female": 115160,
+      "female_pct": 51.2,
+      "male": 109704
+    },
+    {
+      "ac_no": 44,
+      "constituency": "ANAIKATTU",
+      "difference": 5443,
+      "district": "Vellore",
+      "female": 123020,
+      "female_pct": 51.12,
+      "male": 117577
+    },
+    {
+      "ac_no": 202,
+      "constituency": "RAJAPALAYAM",
+      "difference": 5429,
+      "district": "Virudhunagar",
+      "female": 110021,
+      "female_pct": 51.26,
+      "male": 104592
+    },
+    {
+      "ac_no": 217,
+      "constituency": "OTTAPIDARAM (SC)",
+      "difference": 5372,
+      "district": "Thoothukudi",
+      "female": 125001,
+      "female_pct": 51.09,
+      "male": 119629
+    },
+    {
+      "ac_no": 48,
+      "constituency": "AMBUR",
+      "difference": 5363,
+      "district": "Tirupathur",
+      "female": 110110,
+      "female_pct": 51.24,
+      "male": 104747
+    },
+    {
+      "ac_no": 145,
+      "constituency": "MUSIRI",
+      "difference": 5341,
+      "district": "Tiruchirappalli",
+      "female": 109736,
+      "female_pct": 51.24,
+      "male": 104395
+    },
+    {
+      "ac_no": 181,
+      "constituency": "THIRUMAYAM",
+      "difference": 5335,
+      "district": "Pudukkottai",
+      "female": 112977,
+      "female_pct": 51.21,
+      "male": 107642
+    },
+    {
+      "ac_no": 83,
+      "constituency": "YERCAUD (ST)",
+      "difference": 5295,
+      "district": "Salem",
+      "female": 139107,
+      "female_pct": 50.97,
+      "male": 133812
+    },
+    {
+      "ac_no": 211,
+      "constituency": "RAMANATHAPURAM",
+      "difference": 5282,
+      "district": "Ramanathapuram",
+      "female": 158866,
+      "female_pct": 50.84,
+      "male": 153584
+    },
+    {
+      "ac_no": 133,
+      "constituency": "VEDASANDUR",
+      "difference": 5253,
+      "district": "Dindigul",
+      "female": 124624,
+      "female_pct": 51.08,
+      "male": 119371
+    },
+    {
+      "ac_no": 7,
+      "constituency": "MADURAVOYAL",
+      "difference": 5244,
+      "district": "Thiruvallur",
+      "female": 189242,
+      "female_pct": 50.69,
+      "male": 183998
+    },
+    {
+      "ac_no": 194,
+      "constituency": "MADURAI WEST",
+      "difference": 5239,
+      "district": "Madurai",
+      "female": 140458,
+      "female_pct": 50.95,
+      "male": 135219
+    },
+    {
+      "ac_no": 137,
+      "constituency": "KULITHALAI",
+      "difference": 5203,
+      "district": "Karur",
+      "female": 114286,
+      "female_pct": 51.16,
+      "male": 109083
+    },
+    {
+      "ac_no": 38,
+      "constituency": "ARAKKONAM (SC)",
+      "difference": 5178,
+      "district": "Ranipet",
+      "female": 103069,
+      "female_pct": 51.28,
+      "male": 97891
+    },
+    {
+      "ac_no": 118,
+      "constituency": "COIMBATORE (NORTH)",
+      "difference": 5175,
+      "district": "Coimbatore",
+      "female": 151070,
+      "female_pct": 50.87,
+      "male": 145895
+    },
+    {
+      "ac_no": 17,
+      "constituency": "ROYAPURAM",
+      "difference": 5162,
+      "district": "Chennai",
+      "female": 82388,
+      "female_pct": 51.6,
+      "male": 77226
+    },
+    {
+      "ac_no": 67,
+      "constituency": "ARANI",
+      "difference": 5140,
+      "district": "Tiruvannamalai",
+      "female": 130788,
+      "female_pct": 50.99,
+      "male": 125648
+    },
+    {
+      "ac_no": 93,
+      "constituency": "SENTHAMANGALAM (ST)",
+      "difference": 5120,
+      "district": "Namakkal",
+      "female": 117288,
+      "female_pct": 51.11,
+      "male": 112168
+    },
+    {
+      "ac_no": 104,
+      "constituency": "BHAVANI",
+      "difference": 5093,
+      "district": "Erode",
+      "female": 114147,
+      "female_pct": 51.14,
+      "male": 109054
+    },
+    {
+      "ac_no": 105,
+      "constituency": "ANTHIYUR",
+      "difference": 5086,
+      "district": "Erode",
+      "female": 106236,
+      "female_pct": 51.22,
+      "male": 101150
+    },
+    {
+      "ac_no": 19,
+      "constituency": "CHEPAUK-THIRUVALLIKENI",
+      "difference": 5067,
+      "district": "Chennai",
+      "female": 85529,
+      "female_pct": 51.51,
+      "male": 80462
+    },
+    {
+      "ac_no": 230,
+      "constituency": "NAGERCOIL",
+      "difference": 5043,
+      "district": "Kanniyakumari",
+      "female": 132197,
+      "female_pct": 50.97,
+      "male": 127154
+    },
+    {
+      "ac_no": 92,
+      "constituency": "RASIPURAM (SC)",
+      "difference": 5019,
+      "district": "Namakkal",
+      "female": 113655,
+      "female_pct": 51.13,
+      "male": 108636
+    },
+    {
+      "ac_no": 185,
+      "constituency": "TIRUPPATTUR",
+      "difference": 4943,
+      "district": "Sivaganga",
+      "female": 140469,
+      "female_pct": 50.89,
+      "male": 135526
+    },
+    {
+      "ac_no": 220,
+      "constituency": "VASUDEVANALLUR (SC)",
+      "difference": 4940,
+      "district": "Tenkasi",
+      "female": 117053,
+      "female_pct": 51.07,
+      "male": 112113
+    },
+    {
+      "ac_no": 114,
+      "constituency": "TIRUPPUR (SOUTH)",
+      "difference": 4672,
+      "district": "Tiruppur",
+      "female": 100876,
+      "female_pct": 51.18,
+      "male": 96204
+    },
+    {
+      "ac_no": 170,
+      "constituency": "THIRUVIDAIMARUDUR (SC)",
+      "difference": 4404,
+      "district": "Thanjavur",
+      "female": 130705,
+      "female_pct": 50.86,
+      "male": 126301
+    },
+    {
+      "ac_no": 131,
+      "constituency": "NATHAM",
+      "difference": 4398,
+      "district": "Dindigul",
+      "female": 132861,
+      "female_pct": 50.83,
+      "male": 128463
+    },
+    {
+      "ac_no": 156,
+      "constituency": "KURINJIPADI",
+      "difference": 4375,
+      "district": "Cuddalore",
+      "female": 121308,
+      "female_pct": 50.91,
+      "male": 116933
+    },
+    {
+      "ac_no": 177,
+      "constituency": "PERAVURANI",
+      "difference": 4331,
+      "district": "Thanjavur",
+      "female": 109145,
+      "female_pct": 51.01,
+      "male": 104814
+    },
+    {
+      "ac_no": 73,
+      "constituency": "VANUR (SC)",
+      "difference": 4317,
+      "district": "Viluppuram",
+      "female": 107093,
+      "female_pct": 51.02,
+      "male": 102776
+    },
+    {
+      "ac_no": 90,
+      "constituency": "SALEM (SOUTH)",
+      "difference": 4277,
+      "district": "Salem",
+      "female": 115554,
+      "female_pct": 50.93,
+      "male": 111277
+    },
+    {
+      "ac_no": 180,
+      "constituency": "PUDUKKOTTAI",
+      "difference": 4241,
+      "district": "Pudukkottai",
+      "female": 115114,
+      "female_pct": 50.93,
+      "male": 110873
+    },
+    {
+      "ac_no": 72,
+      "constituency": "TINDIVANAM (SC)",
+      "difference": 4213,
+      "district": "Viluppuram",
+      "female": 111751,
+      "female_pct": 50.96,
+      "male": 107538
+    },
+    {
+      "ac_no": 163,
+      "constituency": "NAGAPATTINAM",
+      "difference": 4078,
+      "district": "Nagapattinam",
+      "female": 89396,
+      "female_pct": 51.16,
+      "male": 85318
+    },
+    {
+      "ac_no": 42,
+      "constituency": "ARCOT",
+      "difference": 4054,
+      "district": "Ranipet",
+      "female": 125406,
+      "female_pct": 50.82,
+      "male": 121352
+    },
+    {
+      "ac_no": 130,
+      "constituency": "NILAKKOTTAI (SC)",
+      "difference": 4033,
+      "district": "Dindigul",
+      "female": 112792,
+      "female_pct": 50.91,
+      "male": 108759
+    },
+    {
+      "ac_no": 198,
+      "constituency": "ANDIPATTI",
+      "difference": 4017,
+      "district": "Theni",
+      "female": 130992,
+      "female_pct": 50.77,
+      "male": 126975
+    },
+    {
+      "ac_no": 158,
+      "constituency": "CHIDAMBARAM",
+      "difference": 3999,
+      "district": "Cuddalore",
+      "female": 117647,
+      "female_pct": 50.86,
+      "male": 113648
+    },
+    {
+      "ac_no": 68,
+      "constituency": "CHEYYAR",
+      "difference": 3993,
+      "district": "Tiruvannamalai",
+      "female": 121996,
+      "female_pct": 50.83,
+      "male": 118003
+    },
+    {
+      "ac_no": 227,
+      "constituency": "NANGUNERI",
+      "difference": 3973,
+      "district": "Tirunelveli",
+      "female": 130720,
+      "female_pct": 50.77,
+      "male": 126747
+    },
+    {
+      "ac_no": 229,
+      "constituency": "KANNIYAKUMARI",
+      "difference": 3961,
+      "district": "Kanniyakumari",
+      "female": 146714,
+      "female_pct": 50.67,
+      "male": 142753
+    },
+    {
+      "ac_no": 187,
+      "constituency": "MANAMADURAI (SC)",
+      "difference": 3888,
+      "district": "Sivaganga",
+      "female": 132042,
+      "female_pct": 50.75,
+      "male": 128154
+    },
+    {
+      "ac_no": 39,
+      "constituency": "SHOLINGUR",
+      "difference": 3644,
+      "district": "Ranipet",
+      "female": 130854,
+      "female_pct": 50.7,
+      "male": 127210
+    },
+    {
+      "ac_no": 190,
+      "constituency": "SHOLAVANDAN (SC)",
+      "difference": 3642,
+      "district": "Madurai",
+      "female": 109489,
+      "female_pct": 50.84,
+      "male": 105847
+    },
+    {
+      "ac_no": 228,
+      "constituency": "RADHAPURAM",
+      "difference": 3623,
+      "district": "Tirunelveli",
+      "female": 125455,
+      "female_pct": 50.73,
+      "male": 121832
+    },
+    {
+      "ac_no": 16,
+      "constituency": "EGMORE (SC)",
+      "difference": 3619,
+      "district": "Chennai",
+      "female": 71179,
+      "female_pct": 51.28,
+      "male": 67560
+    },
+    {
+      "ac_no": 166,
+      "constituency": "THIRUTHURAIPOONDI (SC)",
+      "difference": 3619,
+      "district": "Thiruvarur",
+      "female": 115273,
+      "female_pct": 50.79,
+      "male": 111654
+    },
+    {
+      "ac_no": 53,
+      "constituency": "KRISHNAGIRI",
+      "difference": 3601,
+      "district": "Krishnagiri",
+      "female": 136467,
+      "female_pct": 50.66,
+      "male": 132866
+    },
+    {
+      "ac_no": 138,
+      "constituency": "MANAPPARAI",
+      "difference": 3563,
+      "district": "Tiruchirappalli",
+      "female": 135860,
+      "female_pct": 50.66,
+      "male": 132297
+    },
+    {
+      "ac_no": 161,
+      "constituency": "MAYILADUTHURAI",
+      "difference": 3558,
+      "district": "Mayiladuthurai",
+      "female": 119077,
+      "female_pct": 50.75,
+      "male": 115519
+    },
+    {
+      "ac_no": 35,
+      "constituency": "MADURANTAKAM (SC)",
+      "difference": 3557,
+      "district": "Chengalpattu",
+      "female": 108079,
+      "female_pct": 50.82,
+      "male": 104522
+    },
+    {
+      "ac_no": 80,
+      "constituency": "KALLAKURICHI (SC)",
+      "difference": 3540,
+      "district": "Kallakurichi",
+      "female": 142547,
+      "female_pct": 50.62,
+      "male": 139007
+    },
+    {
+      "ac_no": 213,
+      "constituency": "VILATHIKULAM",
+      "difference": 3539,
+      "district": "Thoothukudi",
+      "female": 104494,
+      "female_pct": 50.86,
+      "male": 100955
+    },
+    {
+      "ac_no": 151,
+      "constituency": "TITTAKUDI (SC)",
+      "difference": 3504,
+      "district": "Cuddalore",
+      "female": 106253,
+      "female_pct": 50.84,
+      "male": 102749
+    },
+    {
+      "ac_no": 148,
+      "constituency": "KUNNAM",
+      "difference": 3398,
+      "district": "Perambalur",
+      "female": 135775,
+      "female_pct": 50.63,
+      "male": 132377
+    },
+    {
+      "ac_no": 183,
+      "constituency": "ARANTHANGI",
+      "difference": 3362,
+      "district": "Pudukkottai",
+      "female": 116597,
+      "female_pct": 50.73,
+      "male": 113235
+    },
+    {
+      "ac_no": 162,
+      "constituency": "POOMPUHAR",
+      "difference": 3300,
+      "district": "Mayiladuthurai",
+      "female": 131312,
+      "female_pct": 50.63,
+      "male": 128012
+    },
+    {
+      "ac_no": 192,
+      "constituency": "MADURAI SOUTH",
+      "difference": 3264,
+      "district": "Madurai",
+      "female": 91609,
+      "female_pct": 50.89,
+      "male": 88345
+    },
+    {
+      "ac_no": 179,
+      "constituency": "VIRALIMALAI",
+      "difference": 3251,
+      "district": "Pudukkottai",
+      "female": 114188,
+      "female_pct": 50.71,
+      "male": 110937
+    },
+    {
+      "ac_no": 75,
+      "constituency": "VIKRAVANDI",
+      "difference": 3247,
+      "district": "Viluppuram",
+      "female": 116200,
+      "female_pct": 50.7,
+      "male": 112953
+    },
+    {
+      "ac_no": 64,
+      "constituency": "KILPENNATHUR",
+      "difference": 3032,
+      "district": "Tiruvannamalai",
+      "female": 122113,
+      "female_pct": 50.63,
+      "male": 119081
+    },
+    {
+      "ac_no": 45,
+      "constituency": "KILVAITHINANKUPPAM (SC)",
+      "difference": 3005,
+      "district": "Vellore",
+      "female": 110009,
+      "female_pct": 50.69,
+      "male": 107004
+    },
+    {
+      "ac_no": 79,
+      "constituency": "SANKARAPURAM",
+      "difference": 2841,
+      "district": "Kallakurichi",
+      "female": 134400,
+      "female_pct": 50.53,
+      "male": 131559
+    },
+    {
+      "ac_no": 66,
+      "constituency": "POLUR",
+      "difference": 2818,
+      "district": "Tiruvannamalai",
+      "female": 118949,
+      "female_pct": 50.6,
+      "male": 116131
+    },
+    {
+      "ac_no": 221,
+      "constituency": "KADAYANALLUR",
+      "difference": 2708,
+      "district": "Tenkasi",
+      "female": 136207,
+      "female_pct": 50.5,
+      "male": 133499
+    },
+    {
+      "ac_no": 165,
+      "constituency": "VEDARANYAM",
+      "difference": 2658,
+      "district": "Nagapattinam",
+      "female": 95092,
+      "female_pct": 50.71,
+      "male": 92434
+    },
+    {
+      "ac_no": 69,
+      "constituency": "VANDAVASI (SC)",
+      "difference": 2633,
+      "district": "Tiruvannamalai",
+      "female": 108101,
+      "female_pct": 50.62,
+      "male": 105468
+    },
+    {
+      "ac_no": 208,
+      "constituency": "TIRUCHULI",
+      "difference": 2596,
+      "district": "Virudhunagar",
+      "female": 104131,
+      "female_pct": 50.63,
+      "male": 101535
+    },
+    {
+      "ac_no": 169,
+      "constituency": "NANNILAM",
+      "difference": 2586,
+      "district": "Thiruvarur",
+      "female": 135074,
+      "female_pct": 50.48,
+      "male": 132488
+    },
+    {
+      "ac_no": 47,
+      "constituency": "VANIYAMBADI",
+      "difference": 2569,
+      "district": "Tirupathur",
+      "female": 122919,
+      "female_pct": 50.52,
+      "male": 120350
+    },
+    {
+      "ac_no": 182,
+      "constituency": "ALANGUDI",
+      "difference": 2473,
+      "district": "Pudukkottai",
+      "female": 107306,
+      "female_pct": 50.58,
+      "male": 104833
+    },
+    {
+      "ac_no": 216,
+      "constituency": "SRIVAIKUNTAM",
+      "difference": 2469,
+      "district": "Thoothukudi",
+      "female": 108547,
+      "female_pct": 50.57,
+      "male": 106078
+    },
+    {
+      "ac_no": 3,
+      "constituency": "TIRUTTANI",
+      "difference": 2423,
+      "district": "Thiruvallur",
+      "female": 132449,
+      "female_pct": 50.46,
+      "male": 130026
+    },
+    {
+      "ac_no": 149,
+      "constituency": "ARIYALUR",
+      "difference": 2338,
+      "district": "Ariyalur",
+      "female": 132739,
+      "female_pct": 50.44,
+      "male": 130401
+    },
+    {
+      "ac_no": 150,
+      "constituency": "JAYANKONDAM",
+      "difference": 2292,
+      "district": "Ariyalur",
+      "female": 133071,
+      "female_pct": 50.43,
+      "male": 130779
+    },
+    {
+      "ac_no": 164,
+      "constituency": "KILVELUR (SC)",
+      "difference": 2278,
+      "district": "Nagapattinam",
+      "female": 86452,
+      "female_pct": 50.67,
+      "male": 84174
+    },
+    {
+      "ac_no": 70,
+      "constituency": "GINGEE",
+      "difference": 2249,
+      "district": "Viluppuram",
+      "female": 122606,
+      "female_pct": 50.46,
+      "male": 120357
+    },
+    {
+      "ac_no": 160,
+      "constituency": "SIRKAZHI (SC)",
+      "difference": 2119,
+      "district": "Mayiladuthurai",
+      "female": 121769,
+      "female_pct": 50.44,
+      "male": 119650
+    },
+    {
+      "ac_no": 34,
+      "constituency": "CHEYYUR (SC)",
+      "difference": 2095,
+      "district": "Chengalpattu",
+      "female": 103062,
+      "female_pct": 50.51,
+      "male": 100967
+    },
+    {
+      "ac_no": 52,
+      "constituency": "BARGUR",
+      "difference": 2011,
+      "district": "Krishnagiri",
+      "female": 121235,
+      "female_pct": 50.41,
+      "male": 119224
+    },
+    {
+      "ac_no": 65,
+      "constituency": "KALASAPAKKAM",
+      "difference": 1889,
+      "district": "Tiruvannamalai",
+      "female": 117733,
+      "female_pct": 50.4,
+      "male": 115844
+    },
+    {
+      "ac_no": 210,
+      "constituency": "TIRUVADANAI",
+      "difference": 1711,
+      "district": "Ramanathapuram",
+      "female": 142909,
+      "female_pct": 50.3,
+      "male": 141198
+    },
+    {
+      "ac_no": 157,
+      "constituency": "BHUVANAGIRI",
+      "difference": 1604,
+      "district": "Cuddalore",
+      "female": 117469,
+      "female_pct": 50.34,
+      "male": 115865
+    },
+    {
+      "ac_no": 209,
+      "constituency": "PARAMAKUDI (SC)",
+      "difference": 1553,
+      "district": "Ramanathapuram",
+      "female": 118322,
+      "female_pct": 50.33,
+      "male": 116769
+    },
+    {
+      "ac_no": 188,
+      "constituency": "MELUR",
+      "difference": 1520,
+      "district": "Madurai",
+      "female": 115785,
+      "female_pct": 50.33,
+      "male": 114265
+    },
+    {
+      "ac_no": 49,
+      "constituency": "JOLARPET",
+      "difference": 1425,
+      "district": "Tirupathur",
+      "female": 119435,
+      "female_pct": 50.3,
+      "male": 118010
+    },
+    {
+      "ac_no": 152,
+      "constituency": "VRIDDHACHALAM",
+      "difference": 1404,
+      "district": "Cuddalore",
+      "female": 121113,
+      "female_pct": 50.29,
+      "male": 119709
+    },
+    {
+      "ac_no": 62,
+      "constituency": "CHENGAM (SC)",
+      "difference": 1222,
+      "district": "Tiruvannamalai",
+      "female": 135316,
+      "female_pct": 50.22,
+      "male": 134094
+    },
+    {
+      "ac_no": 159,
+      "constituency": "KATTUMANNARKOIL (SC)",
+      "difference": 1195,
+      "district": "Cuddalore",
+      "female": 113847,
+      "female_pct": 50.26,
+      "male": 112652
+    },
+    {
+      "ac_no": 88,
+      "constituency": "SALEM (WEST)",
+      "difference": 994,
+      "district": "Salem",
+      "female": 129485,
+      "female_pct": 50.18,
+      "male": 128491
+    },
+    {
+      "ac_no": 71,
+      "constituency": "MAILAM",
+      "difference": 819,
+      "district": "Viluppuram",
+      "female": 104949,
+      "female_pct": 50.19,
+      "male": 104130
+    },
+    {
+      "ac_no": 61,
+      "constituency": "HARUR (SC)",
+      "difference": 731,
+      "district": "Dharmapuri",
+      "female": 123339,
+      "female_pct": 50.14,
+      "male": 122608
+    },
+    {
+      "ac_no": 50,
+      "constituency": "TIRUPPATTUR",
+      "difference": 647,
+      "district": "Tirupathur",
+      "female": 113985,
+      "female_pct": 50.14,
+      "male": 113338
+    },
+    {
+      "ac_no": 18,
+      "constituency": "HARBOUR",
+      "difference": 515,
+      "district": "Chennai",
+      "female": 60300,
+      "female_pct": 50.19,
+      "male": 59785
+    },
+    {
+      "ac_no": 212,
+      "constituency": "MUDHUKULATHUR",
+      "difference": 500,
+      "district": "Ramanathapuram",
+      "female": 150100,
+      "female_pct": 50.08,
+      "male": 149600
+    },
+    {
+      "ac_no": 55,
+      "constituency": "HOSUR",
+      "difference": 356,
+      "district": "Krishnagiri",
+      "female": 171662,
+      "female_pct": 50.04,
+      "male": 171306
+    },
+    {
+      "ac_no": 153,
+      "constituency": "NEYVELI",
+      "difference": 181,
+      "district": "Cuddalore",
+      "female": 95751,
+      "female_pct": 50.04,
+      "male": 95570
+    },
+    {
+      "ac_no": 78,
+      "constituency": "RISHIVANDIYAM",
+      "difference": 178,
+      "district": "Kallakurichi",
+      "female": 136884,
+      "female_pct": 50.02,
+      "male": 136706
+    }
+  ],
+  "female_majority_count": 214,
+  "female_pct": 51.05,
+  "highest_female_elector_pct": {
+    "constituency": "KARUR",
+    "district": "Karur",
+    "percentage": 52.91
+  },
+  "highest_male_elector_pct": {
+    "constituency": "PENNAGARAM",
+    "district": "Dharmapuri",
+    "percentage": 51.45
+  },
+  "highest_third_gender_count": {
+    "constituency": "TIRUPPUR (NORTH)",
+    "count": 125,
+    "district": "Tiruppur"
+  },
+  "male_electors": 28097003,
+  "male_pct": 48.94,
+  "third_gender_electors": 7728,
+  "third_gender_pct": 0.0135
+}

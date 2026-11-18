@@ -291,6 +291,9 @@ function switchTab(tabId) {
   if (tabId === 'ministers') {
     renderMinistersPage(currentLang);
   }
+  if (tabId === 'voters' && typeof voterArchiveModule !== 'undefined') {
+    voterArchiveModule.init();
+  }
   if (tabId === 'statistics' && typeof statisticsModule !== 'undefined') {
     statisticsModule.init();
   }

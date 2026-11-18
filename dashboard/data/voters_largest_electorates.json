@@ -1,0 +1,182 @@
+[
+  {
+    "ac_no": 27,
+    "constituency": "SHOZHINGANALLUR",
+    "district": "Chengalpattu",
+    "rank": 1,
+    "registered_electors": 553978,
+    "turnout_pct": 80.76,
+    "votes_cast": 447368
+  },
+  {
+    "ac_no": 6,
+    "constituency": "AVADI",
+    "district": "Thiruvallur",
+    "rank": 2,
+    "registered_electors": 436522,
+    "turnout_pct": 79.34,
+    "votes_cast": 346358
+  },
+  {
+    "ac_no": 9,
+    "constituency": "MADAVARAM",
+    "district": "Thiruvallur",
+    "rank": 3,
+    "registered_electors": 431866,
+    "turnout_pct": 83.88,
+    "votes_cast": 362249
+  },
+  {
+    "ac_no": 117,
+    "constituency": "KAVUNDAMPALAYAM",
+    "district": "Coimbatore",
+    "rank": 4,
+    "registered_electors": 422240,
+    "turnout_pct": 86.26,
+    "votes_cast": 364242
+  },
+  {
+    "ac_no": 29,
+    "constituency": "SRIPERUMBUDUR (SC)",
+    "district": "Kancheepuram",
+    "rank": 5,
+    "registered_electors": 381807,
+    "turnout_pct": 86.73,
+    "votes_cast": 331155
+  },
+  {
+    "ac_no": 7,
+    "constituency": "MADURAVOYAL",
+    "district": "Thiruvallur",
+    "rank": 6,
+    "registered_electors": 373321,
+    "turnout_pct": 78.8,
+    "votes_cast": 294170
+  },
+  {
+    "ac_no": 32,
+    "constituency": "CHENGALPATTU",
+    "district": "Chengalpattu",
+    "rank": 7,
+    "registered_electors": 372889,
+    "turnout_pct": 86.91,
+    "votes_cast": 324093
+  },
+  {
+    "ac_no": 5,
+    "constituency": "POONAMALLEE (SC)",
+    "district": "Thiruvallur",
+    "rank": 8,
+    "registered_electors": 368694,
+    "turnout_pct": 83.81,
+    "votes_cast": 309019
+  },
+  {
+    "ac_no": 55,
+    "constituency": "HOSUR",
+    "district": "Krishnagiri",
+    "rank": 9,
+    "registered_electors": 343040,
+    "turnout_pct": 81.02,
+    "votes_cast": 277928
+  },
+  {
+    "ac_no": 8,
+    "constituency": "AMBATTUR",
+    "district": "Thiruvallur",
+    "rank": 10,
+    "registered_electors": 337081,
+    "turnout_pct": 77.33,
+    "votes_cast": 260675
+  },
+  {
+    "ac_no": 30,
+    "constituency": "PALLAVARAM",
+    "district": "Chengalpattu",
+    "rank": 11,
+    "registered_electors": 337024,
+    "turnout_pct": 84.2,
+    "votes_cast": 283768
+  },
+  {
+    "ac_no": 189,
+    "constituency": "MADURAI EAST",
+    "district": "Madurai",
+    "rank": 12,
+    "registered_electors": 336738,
+    "turnout_pct": 80.77,
+    "votes_cast": 272000
+  },
+  {
+    "ac_no": 31,
+    "constituency": "TAMBARAM",
+    "district": "Chengalpattu",
+    "rank": 13,
+    "registered_electors": 330181,
+    "turnout_pct": 84.51,
+    "votes_cast": 279036
+  },
+  {
+    "ac_no": 115,
+    "constituency": "PALLADAM",
+    "district": "Tiruppur",
+    "rank": 14,
+    "registered_electors": 329875,
+    "turnout_pct": 91.34,
+    "votes_cast": 301323
+  },
+  {
+    "ac_no": 113,
+    "constituency": "TIRUPPUR (NORTH)",
+    "district": "Tiruppur",
+    "rank": 15,
+    "registered_electors": 315863,
+    "turnout_pct": 83.45,
+    "votes_cast": 263576
+  },
+  {
+    "ac_no": 211,
+    "constituency": "RAMANATHAPURAM",
+    "district": "Ramanathapuram",
+    "rank": 16,
+    "registered_electors": 312463,
+    "turnout_pct": 76.07,
+    "votes_cast": 237696
+  },
+  {
+    "ac_no": 195,
+    "constituency": "THIRUPARANKUNDRAM",
+    "district": "Madurai",
+    "rank": 17,
+    "registered_electors": 311705,
+    "turnout_pct": 82.11,
+    "votes_cast": 255946
+  },
+  {
+    "ac_no": 116,
+    "constituency": "SULUR",
+    "district": "Coimbatore",
+    "rank": 18,
+    "registered_electors": 307699,
+    "turnout_pct": 88.96,
+    "votes_cast": 273735
+  },
+  {
+    "ac_no": 184,
+    "constituency": "KARAIKUDI",
+    "district": "Sivaganga",
+    "rank": 19,
+    "registered_electors": 306124,
+    "turnout_pct": 75.01,
+    "votes_cast": 229625
+  },
+  {
+    "ac_no": 122,
+    "constituency": "KINATHUKADAVU",
+    "district": "Coimbatore",
+    "rank": 20,
+    "registered_electors": 305919,
+    "turnout_pct": 87.75,
+    "votes_cast": 268432
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "accepted": 49124320,
+  "postal_ballots_received": 586954,
+  "rejected": 0,
+  "rejection_pct": 0.0,
+  "top_districts": [
+    {
+      "district": "Salem",
+      "postal_votes": 31482
+    },
+    {
+      "district": "Madurai",
+      "postal_votes": 25281
+    },
+    {
+      "district": "Tiruchirappalli",
+      "postal_votes": 25226
+    },
+    {
+      "district": "Cuddalore",
+      "postal_votes": 25143
+    },
+    {
+      "district": "Kanniyakumari",
+      "postal_votes": 23338
+    },
+    {
+      "district": "Dharmapuri",
+      "postal_votes": 22379
+    },
+    {
+      "district": "Tiruvannamalai",
+      "postal_votes": 22234
+    },
+    {
+      "district": "Erode",
+      "postal_votes": 21691
+    },
+    {
+      "district": "Chennai",
+      "postal_votes": 21006
+    },
+    {
+      "district": "Coimbatore",
+      "postal_votes": 20324
+    }
+  ]
+}

@@ -1,0 +1,182 @@
+[
+  {
+    "ac_no": 226,
+    "constituency": "PALAYAMKOTTAI",
+    "district": "Tirunelveli",
+    "electors": 257498,
+    "rank": 1,
+    "turnout_pct": 70.32,
+    "votes_cast": 181061
+  },
+  {
+    "ac_no": 234,
+    "constituency": "KILLIYOOR",
+    "district": "Kanniyakumari",
+    "electors": 247289,
+    "rank": 2,
+    "turnout_pct": 72.23,
+    "votes_cast": 178628
+  },
+  {
+    "ac_no": 191,
+    "constituency": "MADURAI NORTH",
+    "district": "Madurai",
+    "electors": 221326,
+    "rank": 3,
+    "turnout_pct": 73.15,
+    "votes_cast": 161891
+  },
+  {
+    "ac_no": 193,
+    "constituency": "MADURAI CENTRAL",
+    "district": "Madurai",
+    "electors": 199725,
+    "rank": 4,
+    "turnout_pct": 74.46,
+    "votes_cast": 148709
+  },
+  {
+    "ac_no": 184,
+    "constituency": "KARAIKUDI",
+    "district": "Sivaganga",
+    "electors": 306124,
+    "rank": 5,
+    "turnout_pct": 75.01,
+    "votes_cast": 229625
+  },
+  {
+    "ac_no": 231,
+    "constituency": "COLACHAL",
+    "district": "Kanniyakumari",
+    "electors": 266055,
+    "rank": 6,
+    "turnout_pct": 75.06,
+    "votes_cast": 199711
+  },
+  {
+    "ac_no": 25,
+    "constituency": "MYLAPORE",
+    "district": "Chennai",
+    "electors": 199496,
+    "rank": 7,
+    "turnout_pct": 75.59,
+    "votes_cast": 150800
+  },
+  {
+    "ac_no": 230,
+    "constituency": "NAGERCOIL",
+    "district": "Kanniyakumari",
+    "electors": 259361,
+    "rank": 8,
+    "turnout_pct": 75.78,
+    "votes_cast": 196545
+  },
+  {
+    "ac_no": 176,
+    "constituency": "PATTUKKOTTAI",
+    "district": "Thanjavur",
+    "electors": 242451,
+    "rank": 9,
+    "turnout_pct": 75.95,
+    "votes_cast": 184152
+  },
+  {
+    "ac_no": 211,
+    "constituency": "RAMANATHAPURAM",
+    "district": "Ramanathapuram",
+    "electors": 312463,
+    "rank": 10,
+    "turnout_pct": 76.07,
+    "votes_cast": 237696
+  },
+  {
+    "ac_no": 118,
+    "constituency": "COIMBATORE (NORTH)",
+    "district": "Coimbatore",
+    "electors": 296994,
+    "rank": 11,
+    "turnout_pct": 76.19,
+    "votes_cast": 226267
+  },
+  {
+    "ac_no": 232,
+    "constituency": "PADMANABHAPURAM",
+    "district": "Kanniyakumari",
+    "electors": 237160,
+    "rank": 12,
+    "turnout_pct": 76.59,
+    "votes_cast": 181648
+  },
+  {
+    "ac_no": 233,
+    "constituency": "VILAVANCODE",
+    "district": "Kanniyakumari",
+    "electors": 228697,
+    "rank": 13,
+    "turnout_pct": 76.72,
+    "votes_cast": 175453
+  },
+  {
+    "ac_no": 186,
+    "constituency": "SIVAGANGA",
+    "district": "Sivaganga",
+    "electors": 278609,
+    "rank": 14,
+    "turnout_pct": 77.07,
+    "votes_cast": 214716
+  },
+  {
+    "ac_no": 212,
+    "constituency": "MUDHUKULATHUR",
+    "district": "Ramanathapuram",
+    "electors": 299702,
+    "rank": 15,
+    "turnout_pct": 77.2,
+    "votes_cast": 231373
+  },
+  {
+    "ac_no": 8,
+    "constituency": "AMBATTUR",
+    "district": "Thiruvallur",
+    "electors": 337081,
+    "rank": 16,
+    "turnout_pct": 77.33,
+    "votes_cast": 260675
+  },
+  {
+    "ac_no": 210,
+    "constituency": "TIRUVADANAI",
+    "district": "Ramanathapuram",
+    "electors": 284130,
+    "rank": 17,
+    "turnout_pct": 77.59,
+    "votes_cast": 220448
+  },
+  {
+    "ac_no": 185,
+    "constituency": "TIRUPPATTUR",
+    "district": "Sivaganga",
+    "electors": 275999,
+    "rank": 18,
+    "turnout_pct": 78.27,
+    "votes_cast": 216016
+  },
+  {
+    "ac_no": 23,
+    "constituency": "SAIDAPET",
+    "district": "Chennai",
+    "electors": 204177,
+    "rank": 19,
+    "turnout_pct": 78.61,
+    "votes_cast": 160496
+  },
+  {
+    "ac_no": 192,
+    "constituency": "MADURAI SOUTH",
+    "district": "Madurai",
+    "electors": 180003,
+    "rank": 20,
+    "turnout_pct": 78.66,
+    "votes_cast": 141598
+  }
+]

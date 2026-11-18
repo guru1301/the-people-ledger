@@ -1,0 +1,382 @@
+[
+  {
+    "assembly_seats": 2,
+    "district": "Ariyalur",
+    "female": 265810.0,
+    "male": 261180.0,
+    "registered_electors": 527018.0,
+    "third_gender": 28.0,
+    "turnout_pct": 88.22,
+    "votes_cast": 464937.0
+  },
+  {
+    "assembly_seats": 7,
+    "district": "Chengalpattu",
+    "female": 1179303.0,
+    "male": 1125549.0,
+    "registered_electors": 2305239.0,
+    "third_gender": 387.0,
+    "turnout_pct": 86.04,
+    "votes_cast": 1983475.0
+  },
+  {
+    "assembly_seats": 16,
+    "district": "Chennai",
+    "female": 1497004.0,
+    "male": 1396192.0,
+    "registered_electors": 2894064.0,
+    "third_gender": 868.0,
+    "turnout_pct": 84.39,
+    "votes_cast": 2442354.0
+  },
+  {
+    "assembly_seats": 10,
+    "district": "Coimbatore",
+    "female": 1421244.0,
+    "male": 1323264.0,
+    "registered_electors": 2745042.0,
+    "third_gender": 534.0,
+    "turnout_pct": 85.45,
+    "votes_cast": 2345770.0
+  },
+  {
+    "assembly_seats": 9,
+    "district": "Cuddalore",
+    "female": 1034733.0,
+    "male": 1000711.0,
+    "registered_electors": 2035743.0,
+    "third_gender": 299.0,
+    "turnout_pct": 86.61,
+    "votes_cast": 1763216.0
+  },
+  {
+    "assembly_seats": 5,
+    "district": "Dharmapuri",
+    "female": 621921.0,
+    "male": 631586.0,
+    "registered_electors": 1253659.0,
+    "third_gender": 152.0,
+    "turnout_pct": 91.78,
+    "votes_cast": 1150612.0
+  },
+  {
+    "assembly_seats": 7,
+    "district": "Dindigul",
+    "female": 868794.0,
+    "male": 822586.0,
+    "registered_electors": 1691555.0,
+    "third_gender": 175.0,
+    "turnout_pct": 90.08,
+    "votes_cast": 1523723.0
+  },
+  {
+    "assembly_seats": 8,
+    "district": "Erode",
+    "female": 911794.0,
+    "male": 847442.0,
+    "registered_electors": 1759418.0,
+    "third_gender": 182.0,
+    "turnout_pct": 91.29,
+    "votes_cast": 1606254.0
+  },
+  {
+    "assembly_seats": 4,
+    "district": "Kallakurichi",
+    "female": 564080.0,
+    "male": 557768.0,
+    "registered_electors": 1122055.0,
+    "third_gender": 207.0,
+    "turnout_pct": 89.26,
+    "votes_cast": 1001578.0
+  },
+  {
+    "assembly_seats": 4,
+    "district": "Kancheepuram",
+    "female": 622296.0,
+    "male": 585523.0,
+    "registered_electors": 1208023.0,
+    "third_gender": 204.0,
+    "turnout_pct": 88.4,
+    "votes_cast": 1067926.0
+  },
+  {
+    "assembly_seats": 6,
+    "district": "Kanniyakumari",
+    "female": 765218.0,
+    "male": 762779.0,
+    "registered_electors": 1528123.0,
+    "third_gender": 126.0,
+    "turnout_pct": 76.69,
+    "votes_cast": 1171963.0
+  },
+  {
+    "assembly_seats": 4,
+    "district": "Karur",
+    "female": 442682.0,
+    "male": 409309.0,
+    "registered_electors": 852072.0,
+    "third_gender": 81.0,
+    "turnout_pct": 93.58,
+    "votes_cast": 797360.0
+  },
+  {
+    "assembly_seats": 6,
+    "district": "Krishnagiri",
+    "female": 785619.0,
+    "male": 787650.0,
+    "registered_electors": 1573535.0,
+    "third_gender": 266.0,
+    "turnout_pct": 86.28,
+    "votes_cast": 1357585.0
+  },
+  {
+    "assembly_seats": 10,
+    "district": "Madurai",
+    "female": 1273755.0,
+    "male": 1227492.0,
+    "registered_electors": 2501512.0,
+    "third_gender": 265.0,
+    "turnout_pct": 81.28,
+    "votes_cast": 2033279.0
+  },
+  {
+    "assembly_seats": 3,
+    "district": "Mayiladuthurai",
+    "female": 372158.0,
+    "male": 363181.0,
+    "registered_electors": 735386.0,
+    "third_gender": 47.0,
+    "turnout_pct": 82.82,
+    "votes_cast": 609051.0
+  },
+  {
+    "assembly_seats": 3,
+    "district": "Nagapattinam",
+    "female": 270940.0,
+    "male": 261926.0,
+    "registered_electors": 532896.0,
+    "third_gender": 30.0,
+    "turnout_pct": 87.4,
+    "votes_cast": 465738.0
+  },
+  {
+    "assembly_seats": 6,
+    "district": "Namakkal",
+    "female": 682440.0,
+    "male": 641439.0,
+    "registered_electors": 1324087.0,
+    "third_gender": 208.0,
+    "turnout_pct": 91.59,
+    "votes_cast": 1212708.0
+  },
+  {
+    "assembly_seats": 2,
+    "district": "Perambalur",
+    "female": 285475.0,
+    "male": 273379.0,
+    "registered_electors": 558886.0,
+    "third_gender": 32.0,
+    "turnout_pct": 86.69,
+    "votes_cast": 484524.0
+  },
+  {
+    "assembly_seats": 6,
+    "district": "Pudukkottai",
+    "female": 663626.0,
+    "male": 646171.0,
+    "registered_electors": 1309867.0,
+    "third_gender": 70.0,
+    "turnout_pct": 84.64,
+    "votes_cast": 1108666.0
+  },
+  {
+    "assembly_seats": 4,
+    "district": "Ramanathapuram",
+    "female": 570197.0,
+    "male": 561151.0,
+    "registered_electors": 1131404.0,
+    "third_gender": 56.0,
+    "turnout_pct": 77.74,
+    "votes_cast": 879531.0
+  },
+  {
+    "assembly_seats": 4,
+    "district": "Ranipet",
+    "female": 487369.0,
+    "male": 467330.0,
+    "registered_electors": 954810.0,
+    "third_gender": 111.0,
+    "turnout_pct": 90.46,
+    "votes_cast": 863726.0
+  },
+  {
+    "assembly_seats": 11,
+    "district": "Salem",
+    "female": 1398026.0,
+    "male": 1383084.0,
+    "registered_electors": 2781434.0,
+    "third_gender": 324.0,
+    "turnout_pct": 91.85,
+    "votes_cast": 2554779.0
+  },
+  {
+    "assembly_seats": 4,
+    "district": "Sivaganga",
+    "female": 571231.0,
+    "male": 549661.0,
+    "registered_electors": 1120935.0,
+    "third_gender": 43.0,
+    "turnout_pct": 77.56,
+    "votes_cast": 869448.0
+  },
+  {
+    "assembly_seats": 5,
+    "district": "Tenkasi",
+    "female": 650841.0,
+    "male": 624658.0,
+    "registered_electors": 1275669.0,
+    "third_gender": 170.0,
+    "turnout_pct": 83.61,
+    "votes_cast": 1066602.0
+  },
+  {
+    "assembly_seats": 8,
+    "district": "Thanjavur",
+    "female": 1013466.0,
+    "male": 956012.0,
+    "registered_electors": 1969635.0,
+    "third_gender": 157.0,
+    "turnout_pct": 81.39,
+    "votes_cast": 1603041.0
+  },
+  {
+    "assembly_seats": 3,
+    "district": "The Nilgiris",
+    "female": 288394.0,
+    "male": 263986.0,
+    "registered_electors": 552406.0,
+    "third_gender": 26.0,
+    "turnout_pct": 80.04,
+    "votes_cast": 442163.0
+  },
+  {
+    "assembly_seats": 4,
+    "district": "Theni",
+    "female": 535398.0,
+    "male": 510700.0,
+    "registered_electors": 1046276.0,
+    "third_gender": 178.0,
+    "turnout_pct": 82.33,
+    "votes_cast": 861406.0
+  },
+  {
+    "assembly_seats": 10,
+    "district": "Thiruvallur",
+    "female": 1640393.0,
+    "male": 1570611.0,
+    "registered_electors": 3211622.0,
+    "third_gender": 618.0,
+    "turnout_pct": 84.24,
+    "votes_cast": 2705380.0
+  },
+  {
+    "assembly_seats": 4,
+    "district": "Thiruvarur",
+    "female": 504157.0,
+    "male": 485007.0,
+    "registered_electors": 989215.0,
+    "third_gender": 51.0,
+    "turnout_pct": 84.4,
+    "votes_cast": 834907.0
+  },
+  {
+    "assembly_seats": 6,
+    "district": "Thoothukudi",
+    "female": 711051.0,
+    "male": 679752.0,
+    "registered_electors": 1391004.0,
+    "third_gender": 201.0,
+    "turnout_pct": 81.52,
+    "votes_cast": 1133989.0
+  },
+  {
+    "assembly_seats": 9,
+    "district": "Tiruchirappalli",
+    "female": 1105899.0,
+    "male": 1042025.0,
+    "registered_electors": 2148234.0,
+    "third_gender": 310.0,
+    "turnout_pct": 86.54,
+    "votes_cast": 1859026.0
+  },
+  {
+    "assembly_seats": 5,
+    "district": "Tirunelveli",
+    "female": 648311.0,
+    "male": 618373.0,
+    "registered_electors": 1266830.0,
+    "third_gender": 146.0,
+    "turnout_pct": 79.07,
+    "votes_cast": 1001728.0
+  },
+  {
+    "assembly_seats": 4,
+    "district": "Tirupathur",
+    "female": 466449.0,
+    "male": 456445.0,
+    "registered_electors": 923035.0,
+    "third_gender": 141.0,
+    "turnout_pct": 89.41,
+    "votes_cast": 825254.0
+  },
+  {
+    "assembly_seats": 8,
+    "district": "Tiruppur",
+    "female": 1026196.0,
+    "male": 957633.0,
+    "registered_electors": 1984080.0,
+    "third_gender": 251.0,
+    "turnout_pct": 89.36,
+    "votes_cast": 1772971.0
+  },
+  {
+    "assembly_seats": 8,
+    "district": "Tiruvannamalai",
+    "female": 983842.0,
+    "male": 955401.0,
+    "registered_electors": 1939400.0,
+    "third_gender": 157.0,
+    "turnout_pct": 90.53,
+    "votes_cast": 1755750.0
+  },
+  {
+    "assembly_seats": 5,
+    "district": "Vellore",
+    "female": 592053.0,
+    "male": 562601.0,
+    "registered_electors": 1154819.0,
+    "third_gender": 165.0,
+    "turnout_pct": 89.33,
+    "votes_cast": 1031644.0
+  },
+  {
+    "assembly_seats": 7,
+    "district": "Viluppuram",
+    "female": 809896.0,
+    "male": 789744.0,
+    "registered_electors": 1599855.0,
+    "third_gender": 215.0,
+    "turnout_pct": 89.98,
+    "votes_cast": 1439569.0
+  },
+  {
+    "assembly_seats": 7,
+    "district": "Virudhunagar",
+    "female": 775001.0,
+    "male": 737702.0,
+    "registered_electors": 1512950.0,
+    "third_gender": 247.0,
+    "turnout_pct": 85.81,
+    "votes_cast": 1298325.0
+  }
+]

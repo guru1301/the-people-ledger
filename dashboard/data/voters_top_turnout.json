@@ -1,0 +1,182 @@
+[
+  {
+    "ac_no": 135,
+    "constituency": "KARUR",
+    "district": "Karur",
+    "electors": 230068,
+    "rank": 1,
+    "turnout_pct": 94.44,
+    "votes_cast": 217276
+  },
+  {
+    "ac_no": 91,
+    "constituency": "VEERAPANDI",
+    "district": "Salem",
+    "electors": 250504,
+    "rank": 2,
+    "turnout_pct": 94.27,
+    "votes_cast": 236141
+  },
+  {
+    "ac_no": 103,
+    "constituency": "PERUNDURAI",
+    "district": "Erode",
+    "electors": 214451,
+    "rank": 3,
+    "turnout_pct": 93.76,
+    "votes_cast": 201079
+  },
+  {
+    "ac_no": 137,
+    "constituency": "KULITHALAI",
+    "district": "Karur",
+    "electors": 223376,
+    "rank": 4,
+    "turnout_pct": 93.69,
+    "votes_cast": 209285
+  },
+  {
+    "ac_no": 87,
+    "constituency": "SANKARI",
+    "district": "Salem",
+    "electors": 260590,
+    "rank": 5,
+    "turnout_pct": 93.64,
+    "votes_cast": 244023
+  },
+  {
+    "ac_no": 57,
+    "constituency": "PALACODU",
+    "district": "Dharmapuri",
+    "electors": 240861,
+    "rank": 6,
+    "turnout_pct": 93.62,
+    "votes_cast": 225496
+  },
+  {
+    "ac_no": 86,
+    "constituency": "EDAPPADI",
+    "district": "Salem",
+    "electors": 276472,
+    "rank": 7,
+    "turnout_pct": 93.5,
+    "votes_cast": 258490
+  },
+  {
+    "ac_no": 104,
+    "constituency": "BHAVANI",
+    "district": "Erode",
+    "electors": 223221,
+    "rank": 8,
+    "turnout_pct": 93.39,
+    "votes_cast": 208464
+  },
+  {
+    "ac_no": 136,
+    "constituency": "KRISHNARAYAPURAM (SC)",
+    "district": "Karur",
+    "electors": 203090,
+    "rank": 9,
+    "turnout_pct": 93.37,
+    "votes_cast": 189634
+  },
+  {
+    "ac_no": 35,
+    "constituency": "MADURANTAKAM (SC)",
+    "district": "Chengalpattu",
+    "electors": 212666,
+    "rank": 10,
+    "turnout_pct": 93.36,
+    "votes_cast": 198551
+  },
+  {
+    "ac_no": 97,
+    "constituency": "KUMARAPALAYAM",
+    "district": "Namakkal",
+    "electors": 220072,
+    "rank": 11,
+    "turnout_pct": 93.31,
+    "votes_cast": 205359
+  },
+  {
+    "ac_no": 83,
+    "constituency": "YERCAUD (ST)",
+    "district": "Salem",
+    "electors": 272937,
+    "rank": 12,
+    "turnout_pct": 92.97,
+    "votes_cast": 253743
+  },
+  {
+    "ac_no": 133,
+    "constituency": "VEDASANDUR",
+    "district": "Dindigul",
+    "electors": 243998,
+    "rank": 13,
+    "turnout_pct": 92.9,
+    "votes_cast": 226683
+  },
+  {
+    "ac_no": 68,
+    "constituency": "CHEYYAR",
+    "district": "Tiruvannamalai",
+    "electors": 240008,
+    "rank": 14,
+    "turnout_pct": 92.89,
+    "votes_cast": 222933
+  },
+  {
+    "ac_no": 102,
+    "constituency": "KANGAYAM",
+    "district": "Tiruppur",
+    "electors": 219586,
+    "rank": 15,
+    "turnout_pct": 92.8,
+    "votes_cast": 203782
+  },
+  {
+    "ac_no": 36,
+    "constituency": "UTHIRAMERUR",
+    "district": "Kancheepuram",
+    "electors": 246248,
+    "rank": 16,
+    "turnout_pct": 92.68,
+    "votes_cast": 228219
+  },
+  {
+    "ac_no": 134,
+    "constituency": "ARAVAKURICHI",
+    "district": "Karur",
+    "electors": 195538,
+    "rank": 17,
+    "turnout_pct": 92.65,
+    "votes_cast": 181165
+  },
+  {
+    "ac_no": 60,
+    "constituency": "PAPPIREDDIPATTI",
+    "district": "Dharmapuri",
+    "electors": 257016,
+    "rank": 18,
+    "turnout_pct": 92.28,
+    "votes_cast": 237164
+  },
+  {
+    "ac_no": 92,
+    "constituency": "RASIPURAM (SC)",
+    "district": "Namakkal",
+    "electors": 222304,
+    "rank": 19,
+    "turnout_pct": 92.17,
+    "votes_cast": 204902
+  },
+  {
+    "ac_no": 34,
+    "constituency": "CHEYYUR (SC)",
+    "district": "Chengalpattu",
+    "electors": 204049,
+    "rank": 20,
+    "turnout_pct": 92.15,
+    "votes_cast": 188026
+  }
+]

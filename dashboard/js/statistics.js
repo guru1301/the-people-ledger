@@ -12,25 +12,40 @@ const statisticsModule = (function() {
     if (el) el.innerText = (val !== undefined && val !== null) ? val : '--';
   }
 
+  const STATS_ROUTE_FALLBACKS = {
+    '/api/statistics/summary': 'data/statistics_summary.json',
+    '/api/statistics/charts': 'data/statistics_charts.json'
+  };
+
   // Safe Fetch Wrapper to handle host/port/file scheme variations
   async function safeFetch(path) {
     try {
       let resp = await fetch(path);
       if (resp && resp.ok) return resp;
-      if (window.location.protocol === 'file:' || !window.location.host.includes(':8000')) {
-        resp = await fetch('http://localhost:8000' + path);
-        if (resp && resp.ok) return resp;
-      }
     } catch (err) {
-      if (window.location.protocol === 'file:' || !window.location.host.includes(':8000')) {
-        try {
-          let resp = await fetch('http://localhost:8000' + path);
-          if (resp && resp.ok) return resp;
-        } catch (err2) {
-          console.warn('safeFetch fallback error for', path, err2);
-        }
+      // Primary fetch failed
+    }
+
+    // Try CDN/local static fallback
+    const cleanPath = path.split('?')[0];
+    const fallbackFile = STATS_ROUTE_FALLBACKS[cleanPath];
+    if (fallbackFile) {
+      try {
+        let resp = await fetch(fallbackFile);
+        if (!resp.ok) resp = await fetch('/' + fallbackFile);
+        if (resp && resp.ok) return resp;
+      } catch (err2) {
+        console.warn('CDN static fallback error for', fallbackFile, err2);
       }
     }
+
+    if (window.location.protocol === 'file:' || window.location.hostname === 'localhost') {
+      try {
+        let resp = await fetch('http://localhost:8000' + path);
+        if (resp && resp.ok) return resp;
+      } catch (err3) {}
+    }
+
     return null;
   }
 

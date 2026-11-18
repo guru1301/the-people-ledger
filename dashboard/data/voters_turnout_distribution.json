@@ -1,0 +1,35 @@
+{
+  "distribution": [
+    {
+      "constituencies_count": 0,
+      "percentage": 0.0,
+      "range": "Below 70"
+    },
+    {
+      "constituencies_count": 4,
+      "percentage": 1.71,
+      "range": "70-75"
+    },
+    {
+      "constituencies_count": 28,
+      "percentage": 11.97,
+      "range": "75-80"
+    },
+    {
+      "constituencies_count": 56,
+      "percentage": 23.93,
+      "range": "80-85"
+    },
+    {
+      "constituencies_count": 81,
+      "percentage": 34.62,
+      "range": "85-90"
+    },
+    {
+      "constituencies_count": 65,
+      "percentage": 27.78,
+      "range": "90+"
+    }
+  ],
+  "total_constituencies": 234
+}
